@@ -1,0 +1,4 @@
+stage,rows,state_years
+parsed NASS table rows including U.S. totals,345,147
+state rows before complete-case restriction,336,144
+complete three-crop state-year sample,231,77

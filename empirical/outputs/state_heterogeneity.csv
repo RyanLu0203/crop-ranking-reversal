@@ -1,0 +1,105 @@
+ranking_definition,state,years,mean_inversions,top_reversal_rate,strong_reversal_rate
+operating_margin,Alabama,3,2.3333333333333335,1.0,1.0
+operating_margin,Arkansas,3,1.0,1.0,0.0
+operating_margin,Delaware,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+operating_margin,Georgia,3,0.6666666666666666,0.3333333333333333,0.0
+operating_margin,Illinois,3,0.3333333333333333,0.3333333333333333,0.0
+operating_margin,Indiana,3,2.0,1.0,0.3333333333333333
+operating_margin,Kansas,3,1.3333333333333333,1.0,0.3333333333333333
+operating_margin,Kentucky,3,2.6666666666666665,1.0,0.6666666666666666
+operating_margin,Maryland,3,2.0,1.0,0.6666666666666666
+operating_margin,Michigan,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+operating_margin,Mississippi,3,0.3333333333333333,0.3333333333333333,0.0
+operating_margin,Missouri,3,2.0,1.0,0.3333333333333333
+operating_margin,Nebraska,3,0.3333333333333333,0.3333333333333333,0.0
+operating_margin,New Jersey,2,3.0,1.0,1.0
+operating_margin,New York,3,2.3333333333333335,1.0,0.6666666666666666
+operating_margin,North Carolina,3,2.6666666666666665,1.0,1.0
+operating_margin,North Dakota,3,2.6666666666666665,1.0,0.6666666666666666
+operating_margin,Ohio,3,2.6666666666666665,1.0,0.6666666666666666
+operating_margin,Oklahoma,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+operating_margin,Pennsylvania,3,2.6666666666666665,1.0,1.0
+operating_margin,South Carolina,3,2.6666666666666665,1.0,1.0
+operating_margin,South Dakota,3,1.0,0.3333333333333333,0.0
+operating_margin,Tennessee,3,2.0,1.0,1.0
+operating_margin,Texas,3,1.3333333333333333,1.0,0.3333333333333333
+operating_margin,Virginia,3,2.3333333333333335,1.0,0.6666666666666666
+operating_margin,Wisconsin,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+relative_yield,Alabama,3,2.6666666666666665,1.0,1.0
+relative_yield,Arkansas,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+relative_yield,Delaware,3,2.0,1.0,1.0
+relative_yield,Georgia,3,1.6666666666666667,1.0,0.3333333333333333
+relative_yield,Illinois,3,2.3333333333333335,1.0,1.0
+relative_yield,Indiana,3,2.0,1.0,1.0
+relative_yield,Kansas,3,0.0,0.0,0.0
+relative_yield,Kentucky,3,2.3333333333333335,1.0,1.0
+relative_yield,Maryland,3,2.3333333333333335,1.0,1.0
+relative_yield,Michigan,3,2.0,1.0,1.0
+relative_yield,Mississippi,3,1.0,0.3333333333333333,0.3333333333333333
+relative_yield,Missouri,3,2.6666666666666665,1.0,1.0
+relative_yield,Nebraska,3,0.6666666666666666,0.6666666666666666,0.0
+relative_yield,New Jersey,2,3.0,1.0,1.0
+relative_yield,New York,3,3.0,1.0,1.0
+relative_yield,North Carolina,3,2.3333333333333335,1.0,1.0
+relative_yield,North Dakota,3,3.0,1.0,1.0
+relative_yield,Ohio,3,2.3333333333333335,1.0,1.0
+relative_yield,Oklahoma,3,1.6666666666666667,0.6666666666666666,0.6666666666666666
+relative_yield,Pennsylvania,3,3.0,1.0,1.0
+relative_yield,South Carolina,3,2.3333333333333335,1.0,1.0
+relative_yield,South Dakota,3,2.6666666666666665,1.0,1.0
+relative_yield,Tennessee,3,2.3333333333333335,1.0,1.0
+relative_yield,Texas,3,1.0,0.3333333333333333,0.3333333333333333
+relative_yield,Virginia,3,2.6666666666666665,1.0,1.0
+relative_yield,Wisconsin,3,2.6666666666666665,1.0,1.0
+standardized_revenue,Alabama,3,2.0,1.0,0.0
+standardized_revenue,Arkansas,3,1.0,1.0,0.0
+standardized_revenue,Delaware,3,0.6666666666666666,0.0,0.0
+standardized_revenue,Georgia,3,0.6666666666666666,0.0,0.0
+standardized_revenue,Illinois,3,0.0,0.0,0.0
+standardized_revenue,Indiana,3,1.0,1.0,0.0
+standardized_revenue,Kansas,3,2.0,1.0,0.0
+standardized_revenue,Kentucky,3,1.3333333333333333,1.0,0.0
+standardized_revenue,Maryland,3,1.3333333333333333,0.6666666666666666,0.0
+standardized_revenue,Michigan,3,0.6666666666666666,0.0,0.0
+standardized_revenue,Mississippi,3,1.0,1.0,0.0
+standardized_revenue,Missouri,3,1.0,1.0,0.0
+standardized_revenue,Nebraska,3,0.0,0.0,0.0
+standardized_revenue,New Jersey,2,2.0,1.0,0.0
+standardized_revenue,New York,3,0.3333333333333333,0.0,0.0
+standardized_revenue,North Carolina,3,1.3333333333333333,0.6666666666666666,0.0
+standardized_revenue,North Dakota,3,1.3333333333333333,1.0,0.0
+standardized_revenue,Ohio,3,1.0,1.0,0.0
+standardized_revenue,Oklahoma,3,2.3333333333333335,1.0,1.0
+standardized_revenue,Pennsylvania,3,0.3333333333333333,0.0,0.0
+standardized_revenue,South Carolina,3,1.3333333333333333,1.0,0.0
+standardized_revenue,South Dakota,3,0.0,0.0,0.0
+standardized_revenue,Tennessee,3,1.3333333333333333,1.0,0.0
+standardized_revenue,Texas,3,2.0,1.0,0.0
+standardized_revenue,Virginia,3,1.6666666666666667,1.0,0.0
+standardized_revenue,Wisconsin,3,0.0,0.0,0.0
+total_cost_margin,Alabama,3,2.3333333333333335,1.0,1.0
+total_cost_margin,Arkansas,3,1.6666666666666667,1.0,0.6666666666666666
+total_cost_margin,Delaware,3,2.0,1.0,1.0
+total_cost_margin,Georgia,3,1.3333333333333333,0.6666666666666666,0.3333333333333333
+total_cost_margin,Illinois,3,2.0,0.6666666666666666,0.6666666666666666
+total_cost_margin,Indiana,3,2.3333333333333335,1.0,1.0
+total_cost_margin,Kansas,3,0.3333333333333333,0.0,0.0
+total_cost_margin,Kentucky,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Maryland,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Michigan,3,2.3333333333333335,1.0,1.0
+total_cost_margin,Mississippi,3,1.0,0.3333333333333333,0.0
+total_cost_margin,Missouri,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Nebraska,3,1.0,0.6666666666666666,0.0
+total_cost_margin,New Jersey,2,3.0,1.0,1.0
+total_cost_margin,New York,3,2.6666666666666665,1.0,1.0
+total_cost_margin,North Carolina,3,2.0,1.0,1.0
+total_cost_margin,North Dakota,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Ohio,3,2.3333333333333335,1.0,1.0
+total_cost_margin,Oklahoma,3,1.3333333333333333,0.6666666666666666,0.6666666666666666
+total_cost_margin,Pennsylvania,3,2.6666666666666665,1.0,1.0
+total_cost_margin,South Carolina,3,2.0,1.0,1.0
+total_cost_margin,South Dakota,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Tennessee,3,2.0,1.0,1.0
+total_cost_margin,Texas,3,0.3333333333333333,0.0,0.0
+total_cost_margin,Virginia,3,2.6666666666666665,1.0,1.0
+total_cost_margin,Wisconsin,3,2.6666666666666665,1.0,1.0

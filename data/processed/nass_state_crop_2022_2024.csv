@@ -1,0 +1,346 @@
+state,year,crop,planted_acres_1000,yield_bushels_per_acre,source_path,source_table,source_unit_acres,source_unit_yield
+Alabama,2022,corn,300.0,118.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Alabama,2022,soybeans,360.0,41.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Alabama,2022,winter_wheat,180.0,72.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Alabama,2023,corn,330.0,164.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Alabama,2023,soybeans,350.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Alabama,2023,winter_wheat,205.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Alabama,2024,corn,270.0,112.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Alabama,2024,soybeans,360.0,31.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Alabama,2024,winter_wheat,110.0,71.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arizona,2022,corn,90.0,220.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arizona,2023,corn,105.0,206.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arizona,2024,corn,70.0,225.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arkansas,2022,corn,710.0,173.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arkansas,2022,soybeans,3180.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arkansas,2022,winter_wheat,220.0,53.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arkansas,2023,corn,850.0,183.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arkansas,2023,soybeans,2980.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arkansas,2023,winter_wheat,230.0,57.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arkansas,2024,corn,500.0,187.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Arkansas,2024,soybeans,3050.0,55.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Arkansas,2024,winter_wheat,130.0,56.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+California,2022,corn,360.0,177.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+California,2022,winter_wheat,350.0,73.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+California,2023,corn,400.0,178.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+California,2023,winter_wheat,320.0,80.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+California,2024,corn,410.0,182.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+California,2024,winter_wheat,290.0,78.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Colorado,2022,corn,1340.0,121.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Colorado,2022,winter_wheat,1950.0,25.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Colorado,2023,corn,1330.0,122.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Colorado,2023,winter_wheat,2300.0,41.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Colorado,2024,corn,1460.0,116.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Colorado,2024,winter_wheat,2100.0,35.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Connecticut,2022,corn,24.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Connecticut,2023,corn,24.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Connecticut,2024,corn,24.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Delaware,2022,corn,160.0,170.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Delaware,2022,soybeans,160.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Delaware,2022,winter_wheat,80.0,76.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Delaware,2023,corn,175.0,189.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Delaware,2023,soybeans,150.0,46.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Delaware,2023,winter_wheat,80.0,92.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Delaware,2024,corn,165.0,171.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Delaware,2024,soybeans,155.0,45.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Delaware,2024,winter_wheat,70.0,72.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Florida,2022,corn,85.0,164.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Florida,2023,corn,90.0,158.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Florida,2024,corn,85.0,141.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Georgia,2022,corn,415.0,175.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Georgia,2022,soybeans,165.0,41.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Georgia,2022,winter_wheat,200.0,58.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Georgia,2023,corn,485.0,174.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Georgia,2023,soybeans,160.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Georgia,2023,winter_wheat,195.0,55.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Georgia,2024,corn,375.0,163.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Georgia,2024,soybeans,170.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Georgia,2024,winter_wheat,145.0,59.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Idaho,2022,corn,310.0,216.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Idaho,2022,winter_wheat,770.0,90.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Idaho,2023,corn,360.0,203.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Idaho,2023,winter_wheat,750.0,89.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Idaho,2024,corn,380.0,206.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Idaho,2024,winter_wheat,760.0,89.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2022,corn,10800.0,214.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Illinois,2022,soybeans,10800.0,63.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2022,winter_wheat,650.0,79.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2023,corn,11200.0,206.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Illinois,2023,soybeans,10350.0,63.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2023,winter_wheat,840.0,87.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2024,corn,10800.0,217.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Illinois,2024,soybeans,10800.0,64.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Illinois,2024,winter_wheat,770.0,86.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2022,corn,5250.0,190.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Indiana,2022,soybeans,5850.0,57.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2022,winter_wheat,290.0,81.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2023,corn,5450.0,203.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Indiana,2023,soybeans,5500.0,61.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2023,winter_wheat,405.0,92.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2024,corn,5200.0,198.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Indiana,2024,soybeans,5800.0,59.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Indiana,2024,winter_wheat,310.0,89.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Iowa,2022,corn,12900.0,200.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Iowa,2022,soybeans,10100.0,58.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Iowa,2023,corn,13100.0,201.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Iowa,2023,soybeans,9950.0,58.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Iowa,2024,corn,12900.0,211.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Iowa,2024,soybeans,10050.0,60.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2022,corn,5500.0,115.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kansas,2022,soybeans,5050.0,27.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2022,winter_wheat,7300.0,37.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2023,corn,5750.0,119.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kansas,2023,soybeans,4430.0,26.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2023,winter_wheat,8100.0,35.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2024,corn,6300.0,129.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kansas,2024,soybeans,4530.0,35.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kansas,2024,winter_wheat,7600.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2022,corn,1420.0,156.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kentucky,2022,soybeans,1950.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2022,winter_wheat,530.0,80.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2023,corn,1600.0,187.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kentucky,2023,soybeans,1830.0,55.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2023,winter_wheat,610.0,88.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2024,corn,1370.0,178.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Kentucky,2024,soybeans,2050.0,48.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Kentucky,2024,winter_wheat,560.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Louisiana,2022,corn,450.0,170.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Louisiana,2022,soybeans,1260.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Louisiana,2023,corn,700.0,175.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Louisiana,2023,soybeans,1030.0,40.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Louisiana,2024,corn,470.0,185.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Louisiana,2024,soybeans,1100.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maine,2022,corn,29.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maine,2023,corn,28.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maine,2024,corn,30.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maryland,2022,corn,420.0,165.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maryland,2022,soybeans,520.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maryland,2022,winter_wheat,355.0,78.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maryland,2023,corn,480.0,165.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maryland,2023,soybeans,470.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maryland,2023,winter_wheat,340.0,85.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maryland,2024,corn,440.0,143.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Maryland,2024,soybeans,495.0,44.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Maryland,2024,winter_wheat,325.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Massachusetts,2022,corn,14.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Massachusetts,2023,corn,14.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Massachusetts,2024,corn,14.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Michigan,2022,corn,2300.0,168.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Michigan,2022,soybeans,2250.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Michigan,2022,winter_wheat,460.0,83.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Michigan,2023,corn,2400.0,168.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Michigan,2023,soybeans,2040.0,46.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Michigan,2023,winter_wheat,600.0,83.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Michigan,2024,corn,2250.0,181.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Michigan,2024,soybeans,2200.0,49.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Michigan,2024,winter_wheat,400.0,87.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Minnesota,2022,corn,8000.0,195.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Minnesota,2022,soybeans,7450.0,50.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Minnesota,2023,corn,8600.0,185.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Minnesota,2023,soybeans,7350.0,48.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Minnesota,2024,corn,8200.0,174.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Minnesota,2024,soybeans,7400.0,45.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2022,corn,580.0,165.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Mississippi,2022,soybeans,2310.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2022,winter_wheat,100.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2023,corn,790.0,181.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Mississippi,2023,soybeans,2180.0,56.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2023,winter_wheat,120.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2024,corn,490.0,186.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Mississippi,2024,soybeans,2300.0,56.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Mississippi,2024,winter_wheat,60.0,50.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2022,corn,3350.0,161.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Missouri,2022,soybeans,6100.0,45.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2022,winter_wheat,630.0,60.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2023,corn,3850.0,153.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Missouri,2023,soybeans,5600.0,48.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2023,winter_wheat,780.0,70.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2024,corn,3450.0,183.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Missouri,2024,soybeans,5900.0,49.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Missouri,2024,winter_wheat,670.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Montana,2022,corn,130.0,112.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Montana,2022,winter_wheat,2050.0,33.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Montana,2023,corn,135.0,129.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Montana,2023,winter_wheat,1850.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Montana,2024,corn,130.0,85.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Montana,2024,winter_wheat,1950.0,50.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2022,corn,9600.0,165.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Nebraska,2022,soybeans,5750.0,49.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2022,winter_wheat,980.0,32.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2023,corn,9950.0,182.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Nebraska,2023,soybeans,5250.0,51.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2023,winter_wheat,1130.0,42.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2024,corn,10050.0,188.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Nebraska,2024,soybeans,5300.0,57.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nebraska,2024,winter_wheat,1000.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Nevada,2022,corn,12.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Nevada,2023,corn,13.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Nevada,2024,corn,20.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Hampshire,2022,corn,13.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Hampshire,2023,corn,13.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Hampshire,2024,corn,12.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Jersey,2022,corn,68.0,114.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Jersey,2022,soybeans,110.0,28.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Jersey,2022,winter_wheat,26.0,70.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Jersey,2023,corn,74.0,168.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Jersey,2023,soybeans,100.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Jersey,2023,winter_wheat,34.0,82.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Jersey,2024,corn,72.0,157.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Jersey,2024,soybeans,105.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Jersey,2024,winter_wheat,,,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Mexico,2022,corn,100.0,149.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Mexico,2022,winter_wheat,360.0,17.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Mexico,2023,corn,125.0,155.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Mexico,2023,winter_wheat,405.0,11.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New Mexico,2024,corn,100.0,157.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New Mexico,2024,winter_wheat,370.0,12.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2022,corn,1010.0,142.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New York,2022,soybeans,350.0,45.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2022,winter_wheat,140.0,72.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2023,corn,1040.0,159.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New York,2023,soybeans,350.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2023,winter_wheat,150.0,81.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2024,corn,1020.0,169.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+New York,2024,soybeans,370.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+New York,2024,winter_wheat,135.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2022,corn,820.0,126.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Carolina,2022,soybeans,1700.0,38.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2022,winter_wheat,480.0,64.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2023,corn,950.0,147.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Carolina,2023,soybeans,1640.0,38.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2023,winter_wheat,480.0,70.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2024,corn,890.0,87.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Carolina,2024,soybeans,1630.0,39.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Carolina,2024,winter_wheat,410.0,57.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2022,corn,2950.0,130.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Dakota,2022,soybeans,5700.0,35.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2022,winter_wheat,105.0,60.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2023,corn,4050.0,143.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Dakota,2023,soybeans,6200.0,35.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2023,winter_wheat,155.0,56.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2024,corn,3950.0,149.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+North Dakota,2024,soybeans,6600.0,37.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+North Dakota,2024,winter_wheat,125.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2022,corn,3400.0,187.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Ohio,2022,soybeans,5100.0,55.5,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2022,winter_wheat,510.0,79.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2023,corn,3600.0,198.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Ohio,2023,soybeans,4750.0,58.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2023,winter_wheat,650.0,90.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2024,corn,3400.0,177.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Ohio,2024,soybeans,5050.0,50.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Ohio,2024,winter_wheat,520.0,85.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2022,corn,350.0,122.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oklahoma,2022,soybeans,545.0,17.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2022,winter_wheat,4300.0,28.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2023,corn,390.0,149.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oklahoma,2023,soybeans,460.0,26.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2023,winter_wheat,4550.0,28.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2024,corn,450.0,98.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oklahoma,2024,soybeans,505.0,20.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oklahoma,2024,winter_wheat,4350.0,38.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oregon,2022,corn,80.0,237.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oregon,2022,winter_wheat,730.0,68.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oregon,2023,corn,95.0,214.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oregon,2023,winter_wheat,740.0,56.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Oregon,2024,corn,100.0,208.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Oregon,2024,winter_wheat,740.0,70.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2022,corn,1020.0,140.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Pennsylvania,2022,soybeans,600.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2022,winter_wheat,270.0,73.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2023,corn,1040.0,157.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Pennsylvania,2023,soybeans,570.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2023,winter_wheat,280.0,76.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2024,corn,990.0,138.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Pennsylvania,2024,soybeans,610.0,45.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Pennsylvania,2024,winter_wheat,240.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Rhode Island,2022,corn,2.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Rhode Island,2023,corn,2.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Rhode Island,2024,corn,2.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Carolina,2022,corn,320.0,122.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Carolina,2022,soybeans,405.0,37.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Carolina,2022,winter_wheat,120.0,57.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Carolina,2023,corn,365.0,150.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Carolina,2023,soybeans,395.0,39.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Carolina,2023,winter_wheat,110.0,58.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Carolina,2024,corn,330.0,101.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Carolina,2024,soybeans,390.0,34.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Carolina,2024,winter_wheat,80.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2022,corn,5750.0,132.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Dakota,2022,soybeans,5100.0,38.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2022,winter_wheat,830.0,52.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2023,corn,6300.0,152.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Dakota,2023,soybeans,5100.0,44.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2023,winter_wheat,920.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2024,corn,5900.0,164.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+South Dakota,2024,soybeans,5450.0,43.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+South Dakota,2024,winter_wheat,860.0,63.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2022,corn,830.0,130.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Tennessee,2022,soybeans,1650.0,48.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2022,winter_wheat,410.0,73.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2023,corn,940.0,173.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Tennessee,2023,soybeans,1600.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2023,winter_wheat,470.0,80.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2024,corn,700.0,152.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Tennessee,2024,soybeans,1820.0,42.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Tennessee,2024,winter_wheat,380.0,75.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2022,corn,2150.0,95.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Texas,2022,soybeans,155.0,20.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2022,winter_wheat,5300.0,30.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2023,corn,2500.0,122.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Texas,2023,soybeans,125.0,25.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2023,winter_wheat,6400.0,37.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2024,corn,2150.0,112.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Texas,2024,soybeans,100.0,32.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Texas,2024,winter_wheat,5500.0,31.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2022,corn,88162.0,173.4,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+United States,2022,soybeans,87450.0,49.6,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2022,winter_wheat,33281.0,47.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2023,corn,94641.0,177.3,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+United States,2023,soybeans,83600.0,50.6,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2023,winter_wheat,36699.0,50.6,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2024,corn,90594.0,179.3,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+United States,2024,soybeans,87050.0,50.7,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+United States,2024,winter_wheat,33390.0,51.7,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Utah,2022,corn,60.0,165.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Utah,2022,winter_wheat,110.0,36.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Utah,2023,corn,75.0,185.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Utah,2023,winter_wheat,105.0,53.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Utah,2024,corn,70.0,167.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Utah,2024,winter_wheat,105.0,49.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Vermont,2022,corn,90.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Vermont,2023,corn,89.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Vermont,2024,corn,94.0,,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Virginia,2022,corn,430.0,167.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Virginia,2022,soybeans,620.0,41.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Virginia,2022,winter_wheat,230.0,68.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Virginia,2023,corn,495.0,157.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Virginia,2023,soybeans,580.0,38.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Virginia,2023,winter_wheat,200.0,78.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Virginia,2024,corn,460.0,114.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Virginia,2024,soybeans,610.0,44.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Virginia,2024,winter_wheat,150.0,66.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Washington,2022,corn,135.0,220.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Washington,2022,winter_wheat,1850.0,68.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Washington,2023,corn,160.0,240.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Washington,2023,winter_wheat,1800.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Washington,2024,corn,175.0,235.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Washington,2024,winter_wheat,1800.0,70.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+West Virginia,2022,corn,40.0,168.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+West Virginia,2023,corn,44.0,145.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+West Virginia,2024,corn,41.0,110.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wisconsin,2022,corn,3900.0,180.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wisconsin,2022,soybeans,2160.0,54.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wisconsin,2022,winter_wheat,300.0,78.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wisconsin,2023,corn,4000.0,176.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wisconsin,2023,soybeans,2110.0,51.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wisconsin,2023,winter_wheat,280.0,76.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wisconsin,2024,corn,3750.0,174.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wisconsin,2024,soybeans,2150.0,48.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Soybeans for Beans Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wisconsin,2024,winter_wheat,265.0,82.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wyoming,2022,corn,95.0,153.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wyoming,2022,winter_wheat,115.0,17.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wyoming,2023,corn,85.0,153.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wyoming,2023,winter_wheat,115.0,30.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre
+Wyoming,2024,corn,85.0,155.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Corn Area Planted for All Purposes and Harvested for Grain, Yield, and Production","1,000 acres",bushels per acre
+Wyoming,2024,winter_wheat,110.0,31.0,data/raw/usda_nass/crop_production_2024_summary.txt,"Winter Wheat Area Planted and Harvested, Yield, and Production - States and","1,000 acres",bushels per acre

@@ -26,11 +26,13 @@ def test_draft_completion_matrix_has_no_unmapped_major_item():
 def test_simulation_numbers_preserve_design_dry_run_and_nonheadline_boundaries():
     with (ROOT / "evidence_registry/numbers.csv").open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
-    assert all(row["number_id"].startswith("NUM-SIM-") for row in rows)
+    assert all(row["number_id"].startswith(("NUM-SIM-", "NUM-EMP-")) for row in rows)
     allowed = {
         "VERIFIED_DESIGN_ONLY", "VERIFIED_RESOURCE_PLAN", "DRY_RUN_ONLY",
         "FORMAL_VERIFIED_NONHEADLINE", "FORMAL_RESULT_NONHEADLINE",
         "REPRODUCIBILITY_VERIFIED", "ADVERSE_RESULT_VERIFIED", "RESOURCE_CAP_VERIFIED",
+        "EMPIRICAL_VERIFIED", "DESCRIPTIVE_EMPIRICAL", "NULL_RESULT_VERIFIED",
+        "LOW_POWER_DESCRIPTIVE_VALIDATION",
     }
     assert all(row["verification_status"] in allowed for row in rows)
     formal_results = [row for row in rows if row["verification_status"] == "FORMAL_RESULT_NONHEADLINE"]

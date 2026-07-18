@@ -1,0 +1,7 @@
+{
+  "comparison": "two isolated complete raw-to-analysis executions",
+  "filename_sets_match": true,
+  "files_compared": 19,
+  "mismatched_files": [],
+  "status": "PASS"
+}

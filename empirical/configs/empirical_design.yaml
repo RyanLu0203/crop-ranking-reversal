@@ -1,0 +1,88 @@
+design_id: CRR-EMP-FREEZE-2026-07-19
+design_version: 1.0.0
+frozen_at: 2026-07-19T16:45:00+08:00
+status: FROZEN_BEFORE_EMPIRICAL_RESULTS
+owner_issue: 7
+
+sources:
+  national_panel: data/processed/canonical_crop_year_panel.csv
+  nass_snapshot: data/raw/usda_nass/crop_production_2024_summary.txt
+  source_registry: evidence_registry/data_source_registry.csv
+
+sample:
+  geography: NASS reporting states
+  years: [2022, 2023, 2024]
+  crops: [corn, soybeans, winter_wheat]
+  inclusion_rule: complete planted acreage and yield for all three crops within state-year
+  excluded_geographies: [United States]
+  missing_codes: ['(NA)', '(D)', '(Z)']
+  no_imputation: true
+
+observed_allocation:
+  variable: planted_acres_1000
+  interpretation: observed aggregate state crop acreage only
+  prohibited_interpretations:
+    - model_optimum
+    - representative_farm_allocation
+    - revealed_CVaR_preference
+    - private_constraint_measure
+
+ranking_definitions:
+  relative_yield:
+    formula: state_yield_bushels_per_acre / national_yield_bushels_per_acre_same_crop_year
+    interpretation: within-crop relative agronomic performance proxy
+  standardized_revenue:
+    formula: state_yield * national_ERS_harvest_price * CPI_U_deflator_to_2024
+    interpretation: accounting counterfactual using national price
+  operating_margin:
+    formula: (state_yield * national_ERS_harvest_price - national_ERS_operating_cost) * CPI_U_deflator_to_2024
+    interpretation: accounting counterfactual using national price and operating cost
+  total_cost_margin:
+    formula: (state_yield * national_ERS_harvest_price - national_ERS_total_cost) * CPI_U_deflator_to_2024
+    interpretation: robustness accounting counterfactual
+  lagged_relative_yield:
+    formula: mean prior observed relative yield using 2022 onward only
+    decision_year: 2024
+    minimum_training_years: 2
+    interpretation: low-powered leakage-free validation only
+
+discordance_metrics:
+  pairwise_inversions: count of score-acreage discordant crop pairs out of 3
+  inversion_distance: pairwise_inversions / 3
+  top_rank_reversal: top score crop differs from top acreage crop
+  strong_reversal: top score crop is bottom acreage crop
+  permutation_benchmark:
+    expected_inversions: 1.5
+    expected_top_rank_reversal: 0.6666666666666666
+    exact_permutations: 6
+    interpretation: combinatorial reference not a sampling null
+
+economic_accounting:
+  observed_share_value: acreage-share weighted standardized margin
+  equal_share_value: equal-share weighted standardized margin
+  score_top_value: value of all share on highest-score crop
+  interpretation: descriptive accounting comparison without feasibility or causal claim
+
+robustness:
+  ranking_definitions: [relative_yield, standardized_revenue, operating_margin, total_cost_margin]
+  year_leave_one_out: [2022, 2023, 2024]
+  cost_conventions: [operating_cost, total_listed_cost]
+  temporal_validation: lagged_relative_yield_for_2024
+  data_revision: fixed_2024_NASS_summary_snapshot_only
+  optimizer_selection: NOT_IDENTIFIED_NO_PRIVATE_FEASIBLE_SET
+
+identification_boundaries:
+  descriptive: ranking discordance and accounting comparisons
+  associative: state/year heterogeneity without causal attribution
+  mechanism: not identified from this aggregate panel
+  causal: prohibited
+  cvar_binding: not identified
+  copula_causality: not identified
+  geographic_price_cost: national standardized inputs do not measure state-specific realized margins
+  downside_outcomes: three annual observations are insufficient for state-level CVaR estimation
+
+reproducibility:
+  single_command: python scripts/run_empirical_analysis.py
+  exact_repeat_required: true
+  output_checksum_required: true
+  no_manual_output_edits: true
