@@ -16,13 +16,30 @@ class CopulaMetadata:
     copula_type: str
     parameter: Any
     lower_tail_dependence: float
+    ordering_scope: str
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "copula_type": self.copula_type,
             "copula_param": self.parameter,
             "lower_tail_dependence": self.lower_tail_dependence,
+            "ordering_scope": self.ordering_scope,
         }
+
+
+def validate_correlation_matrix(corr: np.ndarray, n_crops: int) -> np.ndarray:
+    """Validate a copula correlation matrix and reject silent repairs."""
+
+    matrix = np.asarray(corr, dtype=float)
+    if matrix.shape != (n_crops, n_crops):
+        raise ValueError(f"correlation matrix must have shape {(n_crops, n_crops)}")
+    if not np.isfinite(matrix).all() or not np.allclose(matrix, matrix.T, atol=1e-12):
+        raise ValueError("correlation matrix must be finite and symmetric")
+    if not np.allclose(np.diag(matrix), 1.0, atol=1e-12):
+        raise ValueError("correlation matrix diagonal must equal one")
+    if np.linalg.eigvalsh(matrix).min() < -1e-10:
+        raise ValueError("correlation matrix must be positive semidefinite")
+    return matrix
 
 
 def lower_tail_dependence(copula_type: str, copula_param: Any) -> float:
@@ -60,7 +77,7 @@ def gaussian_copula_uniforms(
     if corr is None:
         corr = np.full((n_crops, n_crops), 0.35)
         np.fill_diagonal(corr, 1.0)
-    corr = np.asarray(corr, dtype=float)
+    corr = validate_correlation_matrix(corr, n_crops)
     draws = rng.multivariate_normal(np.zeros(n_crops), corr, size=n_scenarios)
     uniforms = stats.norm.cdf(draws)
     return np.clip(uniforms, 1e-9, 1.0 - 1e-9)
@@ -75,6 +92,8 @@ def clayton_copula_uniforms(
     """Sample uniforms from an exchangeable Clayton copula."""
 
     theta = float(theta)
+    if not np.isfinite(theta):
+        raise ValueError("Clayton theta must be finite")
     if theta <= 1e-8:
         return rng.uniform(1e-9, 1.0 - 1e-9, size=(n_scenarios, n_crops))
     frailty = rng.gamma(shape=1.0 / theta, scale=1.0, size=n_scenarios)
@@ -95,7 +114,9 @@ def t_copula_uniforms(
     if corr is None:
         corr = np.full((n_crops, n_crops), 0.35)
         np.fill_diagonal(corr, 1.0)
-    corr = np.asarray(corr, dtype=float)
+    corr = validate_correlation_matrix(corr, n_crops)
+    if not np.isfinite(df) or float(df) <= 2.0:
+        raise ValueError("Student-t copula df must exceed 2")
     normals = rng.multivariate_normal(np.zeros(n_crops), corr, size=n_scenarios)
     chi2 = rng.chisquare(df, size=n_scenarios)
     t_draws = normals / np.sqrt(chi2[:, None] / df)
@@ -112,6 +133,8 @@ def sample_copula_uniforms(
 ) -> np.ndarray:
     """Dispatch copula sampling by name."""
 
+    if int(n_scenarios) <= 0 or int(n_crops) <= 0:
+        raise ValueError("n_scenarios and n_crops must be positive")
     normalized = copula_type.lower().replace("_", "-")
     if normalized in {"gaussian", "normal"}:
         corr = copula_param if copula_param is not None else None
@@ -131,4 +154,7 @@ def copula_metadata(copula_type: str, copula_param: Any) -> CopulaMetadata:
         copula_type=str(copula_type),
         parameter=copula_param,
         lower_tail_dependence=lower_tail_dependence(copula_type, copula_param),
+        ordering_scope=(
+            "WITHIN_NAMED_FAMILY_ONLY; scalar tail dependence is not a cross-family order"
+        ),
     )

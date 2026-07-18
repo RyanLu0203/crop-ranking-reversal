@@ -23,7 +23,14 @@ def test_draft_completion_matrix_has_no_unmapped_major_item():
     assert all(row["target_issue_ids"] or row["supervisor_confirmation_required"] == "YES" for row in rows)
 
 
-def test_no_number_is_admitted_in_issue_one():
+def test_no_scientific_result_number_is_admitted_before_formal_run():
     with (ROOT / "evidence_registry/numbers.csv").open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
-    assert rows == []
+    assert all(row["number_id"].startswith("NUM-SIM-") for row in rows)
+    assert all(
+        row["verification_status"] in {
+            "VERIFIED_DESIGN_ONLY", "VERIFIED_RESOURCE_PLAN", "DRY_RUN_ONLY"
+        }
+        for row in rows
+    )
+    assert all("result" not in row["notes"].lower() or row["notes"] == "Not a scientific result" for row in rows)

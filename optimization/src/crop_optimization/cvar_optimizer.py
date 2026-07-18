@@ -50,6 +50,7 @@ def solve_cvar_allocation(
     upper_bounds: Iterable[float],
     rotation_caps: Optional[Dict[str, float]] = None,
     crop_names: Optional[List[str]] = None,
+    contract_minimums: Optional[Dict[str, float]] = None,
 ) -> AllocationResult:
     """Solve the CVaR-constrained allocation problem with scipy linprog.
 
@@ -73,6 +74,16 @@ def solve_cvar_allocation(
 
     if costs_arr.size != n_crops or lb.size != n_crops or ub.size != n_crops:
         raise ValueError("costs, lower_bounds, and upper_bounds must match scenario columns.")
+    if n_scenarios == 0 or not np.isfinite(scenarios).all():
+        raise ValueError("profit_scenarios must be finite and non-empty.")
+    if not 0.0 < float(alpha) < 1.0:
+        raise ValueError("alpha must be strictly between zero and one.")
+    if not np.isfinite(costs_arr).all() or np.any(costs_arr < 0):
+        raise ValueError("costs must be finite and nonnegative.")
+    if not np.isfinite(lb).all() or not np.isfinite(ub).all() or np.any(lb > ub):
+        raise ValueError("bounds must be finite and lower_bounds <= upper_bounds.")
+    if float(total_acres) < 0 or not np.isfinite(total_acres) or not np.isfinite(budget):
+        raise ValueError("total_acres and budget must be finite; total_acres must be nonnegative.")
 
     n_vars = n_crops + 1 + n_scenarios
     v_idx = n_crops
@@ -128,6 +139,20 @@ def solve_cvar_allocation(
             a_ub.append(row)
             b_ub.append(float(cap))
             constraint_names.append(f"rotation_{crop}")
+
+    if contract_minimums:
+        for crop, minimum in contract_minimums.items():
+            if crop not in crop_names:
+                raise ValueError(f"contract crop {crop!r} is not in crop_names.")
+            idx = crop_names.index(crop)
+            minimum = float(minimum)
+            if minimum < 0 or minimum > ub[idx]:
+                raise ValueError(f"invalid contract minimum for {crop!r}.")
+            row = np.zeros(n_vars)
+            row[idx] = -1.0
+            a_ub.append(row)
+            b_ub.append(-minimum)
+            constraint_names.append(f"contract_{crop}")
 
     bounds = [(float(lb[i]), float(ub[i])) for i in range(n_crops)]
     bounds.append((None, None))
@@ -223,6 +248,57 @@ def solve_cvar_allocation(
             diagnostics[f"rotation_slack_{crop}"] = slack
             diagnostics[f"rotation_binds_{crop}"] = bool(slack <= active_tol)
             rotation_binds_any = rotation_binds_any or bool(slack <= active_tol)
+    contract_binds_any = False
+    if contract_minimums:
+        for crop in contract_minimums:
+            key = f"contract_{crop}"
+            slack = float(named_slacks.get(key, np.nan))
+            diagnostics[f"contract_slack_{crop}"] = slack
+            diagnostics[f"contract_binds_{crop}"] = bool(slack <= active_tol)
+            contract_binds_any = contract_binds_any or bool(slack <= active_tol)
+
+    # Complete LP KKT diagnostics. HiGHS inequality marginals are derivatives
+    # with respect to right-hand sides, so their negatives are nonnegative
+    # multipliers for A x <= b. Bound marginals follow the analogous signs.
+    inequality_marginals = np.asarray(result.ineqlin.marginals, dtype=float)
+    inequality_duals = -inequality_marginals
+    lower_raw = np.asarray(result.lower.marginals, dtype=float)
+    upper_raw = np.asarray(result.upper.marginals, dtype=float)
+    lower_duals = lower_raw
+    upper_duals = -upper_raw
+    stationarity = (
+        objective
+        + a_ub_arr.T @ inequality_duals
+        - lower_duals
+        + upper_duals
+    )
+    lower_residual = np.maximum(
+        np.asarray([bound[0] if bound[0] is not None else -np.inf for bound in bounds]) - result.x,
+        0.0,
+    )
+    upper_residual = np.maximum(
+        result.x - np.asarray([bound[1] if bound[1] is not None else np.inf for bound in bounds]),
+        0.0,
+    )
+    cvar_index = constraint_names.index("cvar")
+    tail_indices = [idx for idx, name in enumerate(constraint_names) if name.startswith("tail_scenario_")]
+    risk_dual = float(inequality_duals[cvar_index])
+    tail_duals = inequality_duals[tail_indices]
+    if risk_dual > 1e-10:
+        tail_weights = tail_duals / risk_dual
+        tail_weight_sum = float(tail_weights.sum())
+        tail_weight_min = float(tail_weights.min())
+        tail_weight_max = float(tail_weights.max())
+        tail_weight_cap = float(1.0 / ((1.0 - alpha) * n_scenarios))
+        tail_weight_violation = float(
+            max(0.0, -tail_weight_min, tail_weight_max - tail_weight_cap)
+        )
+    else:
+        tail_weight_sum = np.nan
+        tail_weight_min = np.nan
+        tail_weight_max = np.nan
+        tail_weight_cap = float(1.0 / ((1.0 - alpha) * n_scenarios))
+        tail_weight_violation = np.nan
     diagnostics.update(
         {
             "optimizer_var_auxiliary": float(result.x[v_idx]),
@@ -233,8 +309,37 @@ def solve_cvar_allocation(
             "cvar_binds": bool(empirical_cvar_slack <= active_tol),
             "land_binds": bool(land_slack <= active_tol),
             "rotation_binds": bool(rotation_binds_any),
+            "contract_binds": bool(contract_binds_any),
             "lower_bound_binds": bool(any(bounds_diagnostics[f"lower_bound_binds_{crop}"] for crop in crop_names)),
             "upper_bound_binds": bool(any(bounds_diagnostics[f"upper_bound_binds_{crop}"] for crop in crop_names)),
+            "kkt_primal_residual": float(max(
+                np.maximum(a_ub_arr @ result.x - b_ub_arr, 0.0).max(initial=0.0),
+                lower_residual.max(initial=0.0),
+                upper_residual.max(initial=0.0),
+            )),
+            "kkt_dual_nonnegativity_violation": float(max(
+                np.maximum(-inequality_duals, 0.0).max(initial=0.0),
+                np.maximum(-lower_duals, 0.0).max(initial=0.0),
+                np.maximum(-upper_duals, 0.0).max(initial=0.0),
+            )),
+            "kkt_stationarity_residual": float(np.max(np.abs(stationarity))),
+            "kkt_complementarity_residual": float(max(
+                np.max(np.abs(inequality_duals * constraint_slacks)),
+                np.max(np.abs(lower_duals * np.maximum(result.x - np.asarray([
+                    bound[0] if bound[0] is not None else result.x[i]
+                    for i, bound in enumerate(bounds)
+                ]), 0.0))),
+                np.max(np.abs(upper_duals * np.maximum(np.asarray([
+                    bound[1] if bound[1] is not None else result.x[i]
+                    for i, bound in enumerate(bounds)
+                ]) - result.x, 0.0))),
+            )),
+            "risk_dual_eta": risk_dual,
+            "tail_weight_sum": tail_weight_sum,
+            "tail_weight_min": tail_weight_min,
+            "tail_weight_max": tail_weight_max,
+            "tail_weight_cap": tail_weight_cap,
+            "tail_weight_violation": tail_weight_violation,
         }
     )
     diagnostics.update(raw_marginals)
@@ -261,6 +366,7 @@ def solve_expected_profit_allocation(
     upper_bounds: Iterable[float],
     rotation_caps: Optional[Dict[str, float]],
     crop_names: List[str],
+    contract_minimums: Optional[Dict[str, float]] = None,
 ) -> AllocationResult:
     """Solve expected-profit allocation without a CVaR constraint."""
 
@@ -280,6 +386,15 @@ def solve_expected_profit_allocation(
             a_ub.append(row)
             b_ub.append(float(cap))
             constraint_names.append(f"rotation_{crop}")
+    if contract_minimums:
+        for crop, minimum in contract_minimums.items():
+            if crop not in crop_names:
+                raise ValueError(f"contract crop {crop!r} is not in crop_names.")
+            row = np.zeros(n_crops)
+            row[crop_names.index(crop)] = -1.0
+            a_ub.append(row)
+            b_ub.append(-float(minimum))
+            constraint_names.append(f"contract_{crop}")
 
     result = linprog(
         -means_arr,

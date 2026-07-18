@@ -1,0 +1,24 @@
+field,level,type,required,definition,claim_boundary
+design_id,run,string,YES,Frozen design identifier,Design fact only
+design_sha256,run,sha256,YES,Hash of experiment_design.yaml,Any mismatch invalidates run
+cell_id,cell,string,YES,Preregistered LHS or anchor cell identifier,No post-result cells
+replication_seed,replication,integer,YES,Frozen replication seed,No silent seed replacement
+scenario_sha256,replication,sha256,YES,Hash of generated scenario matrix,Reproducibility only
+copula_family,cell,category,YES,Named dependence family,No cross-family scalar ordering
+marginal_family,cell,category,YES,Named marginal family,Family sensitivity required
+kendall_tau,cell,decimal,YES,Family-specific dependence input,Not a general joint-law order
+alpha,cell,decimal,YES,Loss-CVaR confidence,ILLUSTRATIVE_ONLY
+risk_limit,cell,decimal,YES,Calibrated cell-specific loss limit,ILLUSTRATIVE_ONLY
+solver_status,replication,string,YES,HiGHS termination status,Failed cells cannot support claims
+expected_profit,replication,decimal,YES,Sample expected portfolio profit,Requires Issue 6 uncertainty
+cvar_loss,replication,decimal,YES,Direct atom-safe sample loss-CVaR,Loss sign convention mandatory
+kkt_primal_residual,replication,decimal,YES,Maximum primal violation,Must pass frozen tolerance
+kkt_stationarity_residual,replication,decimal,YES,Maximum stationarity residual,Must pass frozen tolerance
+risk_dual_eta,replication,decimal,YES,CVaR constraint multiplier,Zero is allowed
+tail_weight_sum,replication,decimal,CONDITIONAL,Normalized tail-weight total when risk dual positive,Not identified when risk dual is zero
+selected_reversal,replication,boolean,YES,Selected solver allocation reverses pair,Selection-dependent
+possible_reversal,replication,boolean,YES,Some objective-equivalent optimum reverses pair,Optimal-face audited
+universal_reversal,replication,boolean,YES,Every objective-equivalent optimum reverses pair,Requires max face difference below negative tolerance
+crossing_set,cell,json,YES,All detected crossing intervals,Unique threshold not presumed
+pseudo_diversification,cell,boolean,YES,Predeclared descriptive flag,Not welfare or exclusion
+manuscript_admissible,asset,boolean,YES,Governance decision,Dry runs are NO

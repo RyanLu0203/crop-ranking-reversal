@@ -1,0 +1,23 @@
+{
+  "all_exact_repeat": true,
+  "all_finite": true,
+  "all_solvers_optimal": true,
+  "cells": 3,
+  "design_id": "CRR-SIM-FREEZE-2026-07-19",
+  "design_sha256": "4b5897f5d225af6334e3082ce8d9f065cdd7067f2664f3ef63426b5597055b27",
+  "formal_resource_budget": {
+    "convergence_solves": 50,
+    "expected_wall_clock_hours_single_machine": [
+      1.0,
+      4.0
+    ],
+    "formal_cells": 90,
+    "formal_solves": 450,
+    "parallel_workers_max": 4,
+    "peak_memory_per_solve_gb": 0.5,
+    "scenario_rows": 4500000,
+    "stop_rule": "no_automatic_range_or_seed_changes"
+  },
+  "panel_source": "data/processed/canonical_crop_year_panel.csv",
+  "status": "DRY_RUN_ONLY_NOT_A_FORMAL_EXPERIMENT"
+}
