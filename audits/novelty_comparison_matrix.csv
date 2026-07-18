@@ -1,0 +1,13 @@
+study_id,citation_key,crop_or_agriculture,multi_crop_allocation,stochastic_profit,loss_cvar,copula_tail_dependence,ordinal_recommendation_comparison,solution_set_reversal,information_value,operational_flexibility,closest_overlap,remaining_difference,novelty_use
+N01,filippi2017mixed,YES,YES,YES,YES,NO,NO,NO,NO,PARTIAL,"Constrained stochastic crop mix with CVaR","No ordinal score comparison; no possible/universal/selected reversal; no copula or information layer",CLOSEST_METHOD_PREDECESSOR
+N02,boyabatli2019crop,YES,YES,YES,NO,NO,NO,NO,NO,YES,"Uncertain dynamic acreage with rotation flexibility","Two-crop dynamic allocation; no CVaR or ranking-reversal mechanism",CLOSEST_OPERATIONAL_PREDECESSOR
+N03,benini2023crop,YES,YES,NO,NO,NO,NO,NO,NO,YES,"Multi-period crop allocation with rotation and diversification","No stochastic loss tail or recommendation comparison",OPERATIONAL_CONSTRAINT_PREDECESSOR
+N04,randall2022robust,YES,YES,YES,NO,NO,NO,NO,NO,PARTIAL,"Crop planning robust to multiple climate projections","Robust evolutionary framework rather than probabilistic CVaR/copula ranking mechanism",ALTERNATIVE_UNCERTAINTY_PREDECESSOR
+N05,rockafellar2000optimization,NO,YES,YES,YES,NO,NO,NO,NO,NO,"CVaR optimization and scenario LP","No agricultural score or reversal question",THEORY_FOUNDATION
+N06,demarta2005tcopula,NO,NO,YES,NO,YES,NO,NO,NO,NO,"Named copula tail dependence","No constrained crop allocation or monotone reversal theorem",DEPENDENCE_FOUNDATION
+N07,bertsimas2020predictive,NO,YES,YES,PARTIAL,NO,NO,NO,YES,YES,"Side information to conditional prescriptions","No crop suitability ranking or solution-set reversal",PRESCRIPTIVE_FOUNDATION
+N08,elmachtoub2022smart,NO,YES,PARTIAL,NO,NO,NO,NO,NO,NO,"Prediction trained against downstream decision regret","No stochastic crop-portfolio tail model or information valuation",DECISION_QUALITY_FOUNDATION
+N09,keisler2004value,NO,YES,YES,NO,NO,NO,NO,YES,PARTIAL,"Information value for portfolio resource allocation","Project portfolios; no crop risk and no flexibility theorem",INFORMATION_FOUNDATION
+N10,vanmieghem1998investment,NO,YES,YES,NO,NO,NO,NO,NO,YES,"Flexible resource value under multivariate uncertainty","Manufacturing capacity; no crop recommendations or information signal",FLEXIBILITY_FOUNDATION
+N11,merkhofer1975value,NO,YES,YES,NO,NO,NO,NO,YES,YES,"Direct analysis of information value given decision flexibility","Analytical decision example; does not prove strict complementarity in canonical crop model",JOINT_INFORMATION_FLEXIBILITY_FOUNDATION
+PROPOSED_PAPER,,YES,YES,YES,YES,YES,YES,YES,YES,YES,"Joint mechanism after all dependent Issues are executed","Integration is defensible only relative to this bounded matrix; priority claim prohibited",CONDITIONAL_INTEGRATION_CLAIM
