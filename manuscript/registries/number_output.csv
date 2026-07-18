@@ -1,0 +1,28 @@
+macro,displayed_value,unit,output_file,output_field,generation_command,verification_status
+NStates,26,states,empirical/outputs/summary.json,states,python scripts/generate_manuscript_inputs.py,VERIFIED
+NStateYears,77,state-years,empirical/outputs/summary.json,complete_state_years,python scripts/generate_manuscript_inputs.py,VERIFIED
+NCropRows,231,crop rows,empirical/outputs/summary.json,complete_panel_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalStartYear,2022,year,empirical/configs/empirical_design.yaml,start_year,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalEndYear,2024,year,empirical/configs/empirical_design.yaml,end_year,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingTopCount,63,state-years,empirical/outputs/discordance_detail.csv,sum top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingTopRate,81.8,percent,empirical/outputs/definition_summary.csv,operating_margin.top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingStrongCount,41,state-years,empirical/outputs/discordance_detail.csv,sum strong_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingStrongRate,53.2,percent,empirical/outputs/definition_summary.csv,operating_margin.strong_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
+DefinitionMinRate,62.3,percent,empirical/outputs/definition_summary.csv,min top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
+DefinitionMaxRate,87.0,percent,empirical/outputs/definition_summary.csv,max top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedStates,25,states,empirical/outputs/lagged_2024_validation.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedTopCount,22,states,empirical/outputs/lagged_2024_validation.csv,sum top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedTopRate,88.0,percent,empirical/outputs/lagged_2024_validation.csv,mean top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalComparisons,9,crop-years,empirical/outputs/national_check.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalReversals,0,crop-years,empirical/outputs/national_check.csv,sum rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
+SimulationCells,90,design cells,simulation/outputs/summary.json,formal_cells,python scripts/generate_manuscript_inputs.py,VERIFIED
+SimulationReplications,450,replications,simulation/outputs/summary.json,formal_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+UniversalReplications,150,replications,simulation/outputs/summary.json,universal_reversal_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+RiskBindingReplications,245,replications,simulation/outputs/summary.json,risk_binding_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+RiskSlackReplications,205,replications,simulation/outputs/summary.json,derived formal minus binding,python scripts/generate_manuscript_inputs.py,VERIFIED
+PseudoDiversificationReplications,84,replications,simulation/outputs/summary.json,pseudo_diversification_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+ReplayPasses,450,replications,simulation/outputs/summary.json,independent_replay_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
+SolverPasses,9,comparisons,simulation/outputs/summary.json,solver_sensitivity_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
+ConvergencePassRows,0,grid rows,simulation/outputs/convergence_summary.csv,sum convergence_pass,python scripts/generate_manuscript_inputs.py,VERIFIED
+ConvergenceRows,5,grid rows,simulation/outputs/convergence_summary.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+ConvergenceWidth,0.278,probability,simulation/outputs/convergence_summary.csv,max reversal_probability_interval_width,python scripts/generate_manuscript_inputs.py,VERIFIED

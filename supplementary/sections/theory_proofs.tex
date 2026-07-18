@@ -1,0 +1,41 @@
+\section{Canonical theory and proof record}
+
+This supplement summarizes the canonical results used by the manuscript. The complete line-by-line proof package is versioned in \texttt{theory/repaired/proofs.md}; the theorem transition registry records every replacement of a teacher-Draft claim.
+
+\begin{theorem}[Existence and finite-scenario linearity]
+If the operational polytope is non-empty and compact, per-acre profits are integrable and the risk-feasible set is non-empty, the loss-CVaR problem has an optimizer. Its feasible set is convex. Under a finite distribution with positive scenario weights, it has the auxiliary linear-programme representation in the main text.
+\end{theorem}
+\paragraph{Proof.} Compactness of the risk-feasible subset and continuity of the linear objective give existence. Convexity follows from convexity of loss-CVaR and of the polytope. Substituting the Rockafellar--Uryasev auxiliary function and one non-negative excess variable per scenario gives the finite linear programme \citep{rockafellar2000optimization,rockafellar2002conditional}. \hfill$\square$
+
+\begin{proposition}[Ordinal insufficiency]
+A weak or strict suitability ranking alone does not identify a cardinal acreage allocation.
+\end{proposition}
+\paragraph{Proof.} A ranking contains only pairwise order relations. Strictly increasing transformations preserve those relations but change cardinal ratios, while arbitrary feasible sets and objectives consistent with the same ranking can have different optimizers. Therefore an allocation requires a mapping, objective, feasible set and selection rule not contained in the order. \hfill$\square$
+
+\begin{proposition}[Feasibility-forced reversal]
+For $s_i>s_j$, if $\sup_{x\in X}x_i+\tau_x<\inf_{x\in X}x_j$, every feasible allocation universally reverses the pair.
+\end{proposition}
+\paragraph{Proof.} The premise implies $x_i+\tau_x<x_j$ for every $x\in X$. Every optimizer belongs to $X$. \hfill$\square$
+
+\begin{theorem}[Subgradient KKT characterization]
+Under a convex constraint qualification, or for a feasible bounded finite-scenario linear programme, a feasible $x^*$ is optimal if and only if there are non-negative multipliers $\lambda,\gamma,\beta,\eta,a,b$ and $d\in\partial r_\alpha(x^*)$ satisfying stationarity and complementary slackness as stated in the main text.
+\end{theorem}
+\paragraph{Proof.} Apply convex KKT sufficiency and necessity to the minimization of $-\mu^\top x$. The normal cone of the box contributes $-a+b$; shared restrictions contribute $G^\top\eta$; land and budget contribute $\gamma\mathbf 1$ and $\beta c$. Pairwise subtraction cancels only the common land term. For a finite distribution, a valid CVaR subgradient is constructed from tail weights whose total is one and whose atom weights lie in their permitted intervals. \hfill$\square$
+
+\begin{theorem}[Restricted dependence ordering]
+Fix marginals and a named copula family. If portfolio losses are convex-ordered for every allocation in a declared domain, loss-CVaR is weakly ordered there. If the domain is the whole operational set, the more dispersed model has a subset of the risk-feasible policies and weakly lower optimal expected profit.
+\end{theorem}
+\paragraph{Proof.} CVaR is monotone under convex order for integrable losses. Pointwise risk ordering yields nested risk-feasible sets; maximizing the same objective over nested sets yields the value inequality. Crop-specific acreage need not be ordered. \hfill$\square$
+
+\begin{proposition}[Crossing-set inclusion]
+Let $g^+_{ij}$ and $g^-_{ij}$ be the maximum and minimum pairwise acreage gaps over the optimal set. For any declared selection, the universal reversal region is contained in the selected region, which is contained in the possible region.
+\end{proposition}
+\paragraph{Proof.} The selected optimizer is an element of the optimal set. If the minimum gap exceeds tolerance, every element, including the selection, reverses. If the selection reverses, the maximum gap over the set exceeds tolerance. No connectedness or uniqueness of the parameter region follows. \hfill$\square$
+
+\begin{theorem}[Information actionability]
+When ignoring a signal remains feasible, value of information is non-negative. A common posterior-optimal action gives zero value. Informed and uninformed optimized values are weakly non-decreasing under nested action sets, but their difference need not be monotone or strictly positive.
+\end{theorem}
+\paragraph{Proof.} The uninformed optimizer is an admissible constant contingent policy, so posterior optimization weakly improves the outer expectation. A common posterior optimizer makes the two objectives equal. Set inclusion weakly raises each maximum separately, but the difference of two weakly increasing functions has no general monotonicity. \hfill$\square$
+
+\section{Teacher-Draft theorem transitions}
+The original ranking-reversal equivalence is replaced by the complete KKT identity plus sufficient displacement and feasibility certificates. Scalar tail monotonicity is replaced by the restricted convex-order result. The unique threshold is replaced by crossing sets. Pseudo-diversification is a diagnostic only. Strict information--flexibility complementarity is a simulation hypothesis unless additional lattice and increasing-differences conditions are established.

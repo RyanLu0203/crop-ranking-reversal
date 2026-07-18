@@ -1,0 +1,16 @@
+\section{Numerical protocol and adverse convergence result}
+
+The experiment comprises \SimulationCells{} frozen cells and \SimulationReplications{} primary replications. Every scenario matrix is generated from an explicit seed; each optimization records the scenario hash, solver status, objective, allocation, loss-CVaR, optimal-face gaps, named slacks and dual diagnostics. Independent replay reconstructs all tasks in reverse order. Solver sensitivity compares three HiGHS methods at selected anchors.
+
+The optimal-face audit first fixes the primary objective within a declared tolerance and then minimizes and maximizes each relevant acreage gap. This separates possible, universal and selected reversal even when the solver returns a single vertex. Direct loss-CVaR is computed from the optimized loss vector and compared with the auxiliary expression. Tail weights, stationarity, complementarity and feasibility are checked independently.
+
+Figure~\ref{fig:s1} shows the mixed-factor landscape. Filled markers indicate a universal reversal in at least one of five replications; they are not a fitted decision boundary. Constraint frequencies demonstrate that land and contract restrictions often bind, while the downside-risk constraint is both binding and slack across the design. The pseudo-diversification flag remains descriptive.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../figures/supplementary/FigureS1.pdf}
+\caption{Mixed-factor simulation landscape and binding diagnostics. All patterns are nonheadline because the convergence audit fails.}
+\label{fig:s1}
+\end{figure}
+
+The convergence grid uses five scenario counts and ten replications at each count. A row must meet both the frozen numeric-pass fraction and Wilson interval-width requirements. \ConvergencePassRows{} of \ConvergenceRows{} rows pass. Thus, successful solver checks do not authorize reversal-probability or unique-threshold claims. The complete gate table is available as \texttt{tables/supplementary/TableS1\_simulation\_gates.csv}.

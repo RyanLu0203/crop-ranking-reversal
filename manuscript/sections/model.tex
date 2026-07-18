@@ -1,0 +1,29 @@
+\section{Integrated multi-crop stochastic model}
+
+Let crops be indexed by $i=1,\ldots,n$ and let $x_i$ denote acreage. Random per-acre profit is $\widetilde\pi_i=\widetilde p_i\widetilde y_i-c_i$, where price and yield may be dependent within and across crops and baseline cost $c_i$ is deterministic. Portfolio profit and loss are
+\begin{equation}
+\Pi(x,\omega)=\sum_i x_i\widetilde\pi_i(\omega),\qquad L(x,\omega)=-\Pi(x,\omega).
+\end{equation}
+Returns are linear in acreage; fixed setup costs, crop interactions and endogenous price feedback are outside the baseline model.
+
+Operational feasibility is represented by the non-empty polytope
+\begin{equation}
+X=\{x\in\R^n:\ell\leq x\leq u,\;\mathbf 1^\top x\leq A,\;c^\top x\leq B,\;Gx\leq g\}.
+\label{eq:feasible}
+\end{equation}
+The rows of $Gx\leq g$ accommodate rotation, contract, agronomic and other shared restrictions. Land is an inequality because idling may be optimal or forced; full use requires an admissible profitable expansion. Bounds, budgets and shared restrictions in the simulation are illustrative stresses, not estimated private farm constraints.
+
+For confidence level $\alpha\in(0,1)$, loss-CVaR is
+\begin{equation}
+r_\alpha(x)=\cvar_\alpha[L(x)]=\min_{v\in\R}\left\{v+\frac{1}{1-\alpha}\E[(L(x)-v)_+]\right\}.
+\label{eq:cvar}
+\end{equation}
+The canonical problem maximizes expected profit $\mu^\top x$, where $\mu_i=\E[\widetilde\pi_i]$, subject to $x\in X$ and $r_\alpha(x)\leq\kappa$. The sign convention protects against large losses. For finite scenarios $s$ with positive weights $w_s$, the problem is a linear programme after introducing a free $v$ and non-negative excess-loss variables $q_s$.
+
+Marginal profit distributions $F_i$ and a valid $n$-copula $C_\theta$ define the joint law. Pairwise lower-tail dependence $\lambda_{L,ij}$ is a diagnostic when its limit exists, but it does not identify a copula, a conditional tail mean or an allocation. We therefore vary named Gaussian, Student-$t$ and Clayton families in simulation and make no cross-family scalar ordering claim.
+
+A suitability vector $s$ induces a weak order; ties form equivalence classes. Proportional and winner-take-all rules are benchmark mappings and are not feasible optima by definition. Let
+\begin{equation}
+S_\kappa=\arg\max\{\mu^\top x:x\in X,\;r_\alpha(x)\leq\kappa\}.
+\end{equation}
+For a strict pair $s_i>s_j$ and tolerance $\tau_x$, reversal at $x$ means $x_j-x_i>\tau_x$. Reversal is \emph{possible} if it holds at some $x\in S_\kappa$, \emph{universal} if it holds at every $x\in S_\kappa$, and \emph{selected} if it holds for a declared deterministic selection. Strong and top-rank reversal add zero-allocation and highest-tie-class conditions, respectively.

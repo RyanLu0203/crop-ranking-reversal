@@ -1,0 +1,16 @@
+\section{Empirical sample, definitions and robustness}
+
+The sample flow begins with all parsed state and US-total rows in the frozen official summary. US totals are retained only for the national check. State rows are restricted to complete planted acreage and yield for corn, soybeans and winter wheat in a common state-year. No missing values are inferred. The resulting \NCropRows{} crop rows form \NStateYears{} state-years.
+
+Relative yield normalizes each state crop yield by its national same-year value. Standardized revenue multiplies yield by national price. Operating and total-cost margins further subtract corresponding national cost measures. These accounting definitions hold price and cost geography constant, allowing state-yield variation to be examined transparently, but they omit state marketing bases and local costs.
+
+Figure~\ref{fig:s3} reports the three main robustness checks. Leave-one-year-out rates remain definition-dependent. The lagged check uses only 2022--2023 relative yields to rank 2024 crops and yields \LaggedTopCount{} disagreements among \LaggedStates{} states. National margin and acreage ranks align in every comparison. These outcomes are retained together because selective reporting of only the state-level positive pattern would overstate the evidence.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../figures/supplementary/FigureS3.pdf}
+\caption{Empirical robustness checks: leave-one-year-out summaries, low-powered lagged validation and national rank alignment.}
+\label{fig:s3}
+\end{figure}
+
+The claim boundary is fixed: state discordance is descriptively identified; accounting consequences are not welfare; geographic patterns are associative; observed-acreage optimality, CVaR binding or causality, copula mechanism, state downside risk and private constraints are not identified. Table S2 in the repository records these statements in machine-readable form.

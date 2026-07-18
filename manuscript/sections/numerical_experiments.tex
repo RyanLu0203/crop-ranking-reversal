@@ -1,0 +1,16 @@
+\section{Numerical experiments}
+
+The numerical experiment probes the repaired propositions rather than calibrating a representative farmer. A preregistered mixed-factor design combines named copula and marginal families with Kendall dependence, a CVaR frontier quantile, budget tightness, a dominant-crop cap and a contract minimum. It contains \SimulationCells{} cells and five fixed replications per cell, yielding \SimulationReplications{} primary optimizations. Parameters not identified by public aggregate data are labelled illustrative and are varied over frozen ranges.
+
+Every primary solve reached an optimal status. Reverse-order independent replay passed for \ReplayPasses{} replications, and all \SolverPasses{} solver-method comparisons passed. Direct CVaR evaluation, tail-weight identities and KKT residuals were checked against frozen tolerances. These results support implementation integrity, not the substantive prevalence of reversal.
+
+The substantive landscape is deliberately supplementary. Universal reversal occurs in \UniversalReplications{} replications; the CVaR constraint binds in \RiskBindingReplications{} and is slack in \RiskSlackReplications{}; and the preregistered pseudo-diversification diagnostic is flagged in \PseudoDiversificationReplications{}. These variations refute any blanket assertion that reversal requires a binding CVaR constraint or that dependence produces one monotone threshold.
+
+Most importantly, the convergence audit fails. Across \ConvergenceRows{} scenario-count rows, only \ConvergencePassRows{} satisfy the joint numeric-pass and interval-width rule; the largest Wilson interval width remains \ConvergenceWidth{}. The simulation figures and substantive counts are therefore marked \textsc{nonheadline}. We report this adverse result because passing solver diagnostics and failing inferential precision are different facts.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/supplementary/FigureS2.pdf}
+\caption{Predeclared convergence and numerical diagnostics. None of the five scenario-count rows passes both gates; the panel is supplementary and nonheadline.}
+\label{fig:convergence}
+\end{figure}
