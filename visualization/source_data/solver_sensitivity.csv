@@ -1,0 +1,10 @@
+cell_id,replication_seed,solver_method,solver_status,expected_profit,cvar_loss,allocation_Corn,allocation_Soybean,allocation_Winter Wheat,selected_reversal,possible_reversal,universal_reversal,objective_difference_vs_highs,allocation_l1_vs_highs,solver_sensitivity_pass
+ANCHOR-001,2026071901,highs,optimal,374.9817255,-90.31632585,0.9643628196,0.03563718042,0,False,False,False,0,0,True
+ANCHOR-001,2026071901,highs-ds,optimal,374.9817255,-90.31632585,0.9643628196,0.03563718042,0,False,False,False,0,0,True
+ANCHOR-001,2026071901,highs-ipm,optimal,374.9817255,-90.31632585,0.9643628196,0.03563718042,0,False,False,False,0,2.046973702e-15,True
+ANCHOR-009,2026071901,highs,optimal,372.4720017,-131.6117914,0.7861481531,0.2138518469,0,False,False,False,0,0,True
+ANCHOR-009,2026071901,highs-ds,optimal,372.4720017,-131.6117914,0.7861481531,0.2138518469,0,False,False,False,0,0,True
+ANCHOR-009,2026071901,highs-ipm,optimal,372.4720017,-131.6117914,0.7861481531,0.2138518469,0,False,False,False,5.684341886e-14,3.247402347e-15,True
+ANCHOR-012,2026071901,highs,optimal,337.2876157,-109.6949739,0.4818625527,0.3681374473,0.15,False,False,False,0,0,True
+ANCHOR-012,2026071901,highs-ds,optimal,337.2876157,-109.6949739,0.4818625527,0.3681374473,0.15,False,False,False,0,0,True
+ANCHOR-012,2026071901,highs-ipm,optimal,337.2876157,-109.6949739,0.4818625527,0.3681374473,0.15,False,False,False,0,0,True

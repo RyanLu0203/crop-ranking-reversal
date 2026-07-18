@@ -14,14 +14,23 @@ SINGLE_COLUMN_MM = 89
 DOUBLE_COLUMN_MM = 183
 MAX_HEIGHT_MM = 170
 
+NATURE_COLORS: Mapping[str, str] = {
+    "charcoal": "#3D3539",
+    "cyan": "#0F9EA8",
+    "teal": "#008B82",
+    "steel_blue": "#45728F",
+    "mint": "#8CD1B2",
+    "muted_violet": "#8B84A3",
+}
+
 SCI_COLORS: Mapping[str, str] = {
-    "deep_blue": "#45728F",
-    "blue_violet": "#8B84A3",
-    "lavender": "#8CD1B2",
-    "blush": "#8CD1B2",
-    "apricot": "#0F9EA8",
-    "coral": "#008B82",
-    "terracotta": "#3D3539",
+    "deep_blue": NATURE_COLORS["steel_blue"],
+    "blue_violet": NATURE_COLORS["muted_violet"],
+    "lavender": NATURE_COLORS["mint"],
+    "blush": NATURE_COLORS["mint"],
+    "apricot": NATURE_COLORS["cyan"],
+    "coral": NATURE_COLORS["teal"],
+    "terracotta": NATURE_COLORS["charcoal"],
     "warm_grey": "#D6D6D6",
     "sand": "#DDEBE6",
     "teal": "#008B82",
@@ -166,10 +175,11 @@ def apply_style() -> None:
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.linewidth": 0.55,
-            "axes.edgecolor": "#4A4A4A",
-            "axes.labelcolor": "#303030",
-            "xtick.color": "#4A4A4A",
-            "ytick.color": "#4A4A4A",
+            "axes.edgecolor": NATURE_COLORS["charcoal"],
+            "axes.labelcolor": NATURE_COLORS["charcoal"],
+            "text.color": NATURE_COLORS["charcoal"],
+            "xtick.color": NATURE_COLORS["charcoal"],
+            "ytick.color": NATURE_COLORS["charcoal"],
             "xtick.major.width": 0.45,
             "ytick.major.width": 0.45,
             "xtick.major.size": 2.2,
@@ -204,12 +214,19 @@ def panel_label(ax: plt.Axes, label: str) -> None:
 
 
 def save_figure(fig: plt.Figure, stem: Path) -> None:
+    """Export an exact-size editable vector pair and 300/600-dpi rasters."""
     stem.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(stem.with_suffix(".pdf"), bbox_inches="tight")
+    metadata = {"Creator": "crop-ranking-reversal", "Producer": "matplotlib"}
+    fig.savefig(stem.with_suffix(".pdf"), metadata=metadata)
     svg_path = stem.with_suffix(".svg")
-    fig.savefig(svg_path, bbox_inches="tight")
+    fig.savefig(svg_path, metadata={"Creator": "crop-ranking-reversal"})
     # Matplotlib emits trailing spaces in path-data lines; normalize the
     # editable source so generated figures also pass repository diff checks.
     svg_text = svg_path.read_text(encoding="utf-8")
     svg_path.write_text("\n".join(line.rstrip() for line in svg_text.splitlines()) + "\n", encoding="utf-8")
-    fig.savefig(stem.with_suffix(".png"), bbox_inches="tight", dpi=600)
+    fig.savefig(stem.with_suffix(".png"), dpi=300, metadata={"Software": "crop-ranking-reversal"})
+    fig.savefig(
+        stem.with_suffix(".tiff"),
+        dpi=600,
+        pil_kwargs={"compression": "tiff_lzw"},
+    )

@@ -1,0 +1,8 @@
+section,item,rows_or_mean_inversions,n_state_years,states,top_rank_reversal_rate,strong_reversal_rate
+Sample construction,parsed NASS table rows including U.S. totals,345,147,,,
+Sample construction,state rows before complete-case restriction,336,144,,,
+Sample construction,complete three-crop state-year sample,231,77,,,
+Ranking definitions,Operating margin,1.792207792,77,26,81.8%,53.2%
+Ranking definitions,Relative yield,2.116883117,77,26,87.0%,81.8%
+Ranking definitions,Standardized revenue,1.051948052,77,26,62.3%,3.9%
+Ranking definitions,Total-cost margin,2.038961039,77,26,84.4%,77.9%

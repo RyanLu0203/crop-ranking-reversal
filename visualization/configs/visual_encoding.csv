@@ -1,0 +1,14 @@
+entity,variable,visual_channel,value,secondary_encoding,scope
+ranking_definition,relative_yield,color,#0F9EA8,hatch //,all figures
+ranking_definition,standardized_revenue,color,#45728F,hatch xx,all figures
+ranking_definition,operating_margin,color,#008B82,hatch ..,all figures
+ranking_definition,total_cost_margin,color,#8B84A3,hatch \\,all figures
+observed_allocation,acreage,color,#3D3539,solid edge,empirical and schematic
+reversal_state,universal,fill,#008B82,filled marker,simulation
+reversal_state,none,fill,#FFFFFF,open marker with #3D3539 edge,simulation
+marginal_family,gaussian,marker,circle,color inherited,simulation
+marginal_family,student_t_df5,marker,triangle,color inherited,simulation
+marginal_family,empirical_resample,marker,square,color inherited,simulation
+uncertainty,replication_range,color,#8CD1B2,thin line or pale band,simulation
+risk_boundary,CVaR,color,#8B84A3,dashed line or hatch,simulation and schematic
+neutral_boundary,null_or_not_identified,color,#3D3539,dotted line plus direct text,all figures

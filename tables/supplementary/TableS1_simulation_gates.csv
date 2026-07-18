@@ -1,0 +1,6 @@
+n_scenarios,replications,numeric_pass_fraction,reversal_probability,reversal_probability_wilson_low,reversal_probability_wilson_high,reversal_probability_interval_width,required_numeric_pass_fraction,required_interval_width,convergence_pass,structural_interval_warning,evidence_status
+1000,10,0,0,0,0.2775327999,0.2775327999,0.8,0.1,False,True,NONHEADLINE
+2500,10,0.2,0,0,0.2775327999,0.2775327999,0.8,0.1,False,True,NONHEADLINE
+5000,10,0.1,0,0,0.2775327999,0.2775327999,0.8,0.1,False,True,NONHEADLINE
+10000,10,0,0,0,0.2775327999,0.2775327999,0.8,0.1,False,True,NONHEADLINE
+25000,10,1,0,0,0.2775327999,0.2775327999,0.8,0.1,False,True,NONHEADLINE

@@ -1,0 +1,8 @@
+constraint,binding_frequency,replications
+Land,1,450
+Budget,0.1644444444,450
+Cvar,0.5444444444,450
+Rotation,0.2911111111,450
+Contract,0.8444444444,450
+Lower Bound,0.1555555556,450
+Upper Bound,0,450
