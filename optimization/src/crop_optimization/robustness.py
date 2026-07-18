@@ -45,6 +45,7 @@ def solve_for_theta(config: Dict[str, object], theta: float, *, n_scenarios: Opt
         upper_bounds,
         dict(config.get("rotation_caps") or {}),
         crop_names,
+        dict(config.get("contract_minimums") or {}),
     )
     row = {
         "theta": float(theta),

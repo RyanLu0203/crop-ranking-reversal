@@ -1,0 +1,143 @@
+design_id: CRR-SIM-FREEZE-2026-07-19
+design_version: 1.0.0
+frozen_at: 2026-07-19T03:00:00+08:00
+status: FROZEN_BEFORE_FORMAL_RUN
+owner_issue: 5
+dependencies:
+  theory: theory/repaired/canonical_theorem_set.md
+  theory_map: theory/repaired/theory_to_simulation_map.csv
+  data_registry: evidence_registry/data_source_registry.csv
+  parameter_registry: evidence_registry/parameter_provenance.csv
+  panel: data/processed/canonical_crop_year_panel.csv
+
+scientific_scope:
+  crops: [corn, soybeans, wheat]
+  geography: United States
+  years: [1998, 2024]
+  outcome: primary_margin_real_2024_usd_per_planted_acre
+  land_unit: normalized_share
+  manuscript_admissibility: DRY_RUN_ONLY_UNTIL_ISSUE_6
+
+calibration:
+  moments: sample_mean_and_sample_standard_deviation
+  empirical_dependence: pearson_and_kendall_with_bootstrap
+  marginal_candidates: [gaussian, student_t_df5, empirical_resample]
+  copula_candidates: [gaussian, student_t_df4, clayton]
+  selection_rule: rolling_origin_log_score_then_parsimony_with_all_family_sensitivity
+  minimum_training_years: 15
+  bootstrap_repetitions: 1000
+  regime_sensitivity: ERS_survey_base_year_indicator_and_2008_2020_leave_period_out
+
+design:
+  method: balanced_stratified_lhs_plus_preregistered_anchors
+  lhs_seed: 20260719
+  lhs_cells_per_copula_family: 24
+  anchor_cells: 18
+  formal_replications_per_cell: 5
+  dry_run_cells: 3
+  dry_run_scenarios: 64
+  formal_scenarios: 10000
+  convergence_scenario_counts: [1000, 2500, 5000, 10000, 25000]
+  convergence_replications: 10
+  replication_seeds: [2026071901, 2026071902, 2026071903, 2026071904, 2026071905]
+  convergence_seed_root: 2026071950
+  common_random_numbers_within_ordered_family_comparison: true
+
+factors:
+  marginal_family:
+    type: categorical_balanced
+    values: [gaussian, student_t_df5, empirical_resample]
+    evidence_status: DATA_DERIVED_MODEL_CHOICE
+  copula_family:
+    type: categorical_balanced
+    values: [gaussian, student_t_df4, clayton]
+    evidence_status: CONDITIONAL_FAMILY_COMPARISON
+  kendall_tau:
+    type: continuous_lhs
+    range: [0.0, 0.60]
+    evidence_status: DATA_DERIVED_RANGE_WITH_SENSITIVITY
+  alpha:
+    type: continuous_lhs
+    range: [0.90, 0.99]
+    evidence_status: ILLUSTRATIVE_ONLY
+  risk_limit_frontier_quantile:
+    type: continuous_lhs
+    range: [0.10, 0.90]
+    evidence_status: ILLUSTRATIVE_ONLY
+  budget_to_max_cost_ratio:
+    type: continuous_lhs
+    range: [0.70, 1.10]
+    evidence_status: ILLUSTRATIVE_ONLY
+  dominant_crop_cap_share:
+    type: continuous_lhs
+    range: [0.35, 1.0]
+    evidence_status: ILLUSTRATIVE_ONLY
+  contract_minimum_share:
+    type: continuous_lhs
+    range: [0.0, 0.15]
+    evidence_status: ILLUSTRATIVE_ONLY
+
+anchors:
+  dependence_levels_kendall_tau: [0.0, 0.25, 0.50]
+  alpha_levels: [0.90, 0.95, 0.99]
+  operational_regimes: [unrestricted, budget_tight, rotation_tight, contract_minimum]
+  risk_regimes: [slack, frontier, binding]
+  marginal_families: [gaussian, student_t_df5, empirical_resample]
+  copula_families: [gaussian, student_t_df4, clayton]
+
+optimization:
+  objective: maximize_sample_expected_profit
+  risk_measure: loss_CVaR_Rockafellar_Uryasev
+  solver: scipy_linprog_highs
+  optimizer_selection: highs_default_deterministic_basis_then_optimal_face_audit
+  land_constraint: sum_x_less_than_or_equal_to_1
+  budget_costs: 2024_real_ERS_operating_cost_per_planted_acre
+  bounds: normalized_share
+  rotation_caps: normalized_share
+  contract_minimums: normalized_share
+  benchmarks: [ranking_proportional_repaired, expected_profit, mean_variance, loss_CVaR]
+
+metrics:
+  primary: [expected_profit, loss_CVaR, selected_reversal, possible_reversal, universal_reversal]
+  mechanism: [active_constraints, duals, optimal_face_ranges, crossing_set, pseudo_diversification]
+  information: [value_of_information, policy_actionability, nested_flexibility_value]
+  uncertainty: [Monte_Carlo_standard_error, replication_interval, bootstrap_interval]
+
+tolerances:
+  feasibility_absolute: 1.0e-8
+  cvar_absolute: 1.0e-7
+  allocation_share_tie: 1.0e-4
+  near_zero_share: 1.0e-4
+  objective_equivalence_relative: 1.0e-8
+  dual_nonnegativity: 1.0e-8
+  kkt_residual: 1.0e-7
+  crossing_parameter: 1.0e-4
+
+convergence:
+  allocation_l1_tolerance: 0.01
+  cvar_relative_tolerance: 0.02
+  objective_relative_tolerance: 0.01
+  reversal_probability_interval_width: 0.10
+  required_fraction_replications_passing: 0.80
+
+falsification:
+  - Any loss/profit sign disagreement or LP-versus-direct CVaR error above tolerance.
+  - Any reported optimum violates a primal constraint or KKT residual tolerance.
+  - Any universal reversal whose optimal-face maximum difference is not below the negative tie tolerance.
+  - Any unique threshold claim when the crossing-set audit finds multiple disjoint reversal regions.
+  - Any Clayton or scalar lower-tail coefficient result described as a general ordering across copula families.
+  - Any negative value of information when ignoring the signal is admissible.
+  - Any decrease in value under a verified nested action-set expansion.
+  - Any substantive claim supported only by an ILLUSTRATIVE_ONLY factor.
+  - Any formal cell failing the frozen convergence rule.
+  - Any range seed metric or family changed after result inspection without a versioned new design.
+
+resource_budget:
+  formal_cells: 90
+  formal_solves: 450
+  convergence_solves: 50
+  scenario_rows: 4500000
+  peak_memory_per_solve_gb: 0.50
+  expected_wall_clock_hours_single_machine: [1.0, 4.0]
+  parallel_workers_max: 4
+  stop_rule: no_automatic_range_or_seed_changes

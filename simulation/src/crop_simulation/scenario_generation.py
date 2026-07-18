@@ -72,6 +72,22 @@ def _skewed_mixture_ppf(
     return result
 
 
+def _empirical_marginal_ppf(uniforms: np.ndarray, samples: np.ndarray) -> np.ndarray:
+    """Apply a column-wise empirical inverse CDF with linear interpolation."""
+
+    empirical = np.asarray(samples, dtype=float)
+    if empirical.ndim != 2 or empirical.shape[1] != uniforms.shape[1]:
+        raise ValueError("empirical marginal samples must be a T x n_crops matrix")
+    if empirical.shape[0] < 2 or not np.isfinite(empirical).all():
+        raise ValueError("empirical marginal samples must contain finite repeated observations")
+    result = np.empty_like(uniforms, dtype=float)
+    for crop_idx in range(uniforms.shape[1]):
+        result[:, crop_idx] = np.quantile(
+            empirical[:, crop_idx], uniforms[:, crop_idx], method="linear"
+        )
+    return result
+
+
 def generate_profit_scenarios(
     means: Iterable[float],
     stds: Iterable[float],
@@ -84,22 +100,27 @@ def generate_profit_scenarios(
 ) -> Tuple[np.ndarray, Dict[str, Any]]:
     """Generate per-acre profit scenarios and metadata.
 
-    Parameters match the paper objective. By default, the function uses a
-    calibrated skewed-mixture marginal that preserves the requested means
-    and standard deviations while creating downside scenarios.
+    Parameters match the frozen design engine. The default is Gaussian;
+    non-Gaussian marginal choices must be explicit in the design.
     """
 
     means_arr = _as_array(means)
     stds_arr = _as_array(stds)
     if means_arr.shape != stds_arr.shape:
         raise ValueError("means and stds must have the same length.")
+    if len(means_arr) == 0 or not np.isfinite(means_arr).all():
+        raise ValueError("means must be finite and non-empty.")
+    if not np.isfinite(stds_arr).all() or np.any(stds_arr < 0):
+        raise ValueError("stds must be finite and nonnegative.")
+    if int(n_scenarios) <= 0:
+        raise ValueError("n_scenarios must be positive.")
 
     n_crops = len(means_arr)
     rng = np.random.default_rng(int(random_seed))
     uniforms = sample_copula_uniforms(n_scenarios, n_crops, copula_type, copula_param, rng)
 
-    marginal_model = dict(marginal_model or {"type": "skewed_mixture"})
-    marginal_type = marginal_model.get("type", "skewed_mixture").lower()
+    marginal_model = dict(marginal_model or {"type": "normal"})
+    marginal_type = marginal_model.get("type", "normal").lower()
     if marginal_type in {"normal", "gaussian"}:
         scenarios = _normal_marginal_ppf(uniforms, means_arr, stds_arr)
     elif marginal_type in {"student_t", "student-t", "t"}:
@@ -117,6 +138,10 @@ def generate_profit_scenarios(
             tail_probability=float(marginal_model.get("tail_probability", 0.07)),
             within_std_fraction=float(marginal_model.get("within_std_fraction", 0.20)),
         )
+    elif marginal_type in {"empirical", "empirical_resample", "empirical_quantile"}:
+        if "samples" not in marginal_model:
+            raise ValueError("empirical marginal model requires samples")
+        scenarios = _empirical_marginal_ppf(uniforms, np.asarray(marginal_model["samples"], dtype=float))
     else:
         raise ValueError(f"Unsupported marginal model: {marginal_type}")
 
@@ -130,7 +155,11 @@ def generate_profit_scenarios(
             "target_stds": stds_arr.tolist(),
             "sample_means": scenarios.mean(axis=0).tolist(),
             "sample_stds": scenarios.std(axis=0, ddof=1).tolist(),
-            "marginal_assumptions": marginal_model,
+            "marginal_assumptions": (
+                {"type": marginal_type, "sample_rows": int(np.asarray(marginal_model["samples"]).shape[0])}
+                if marginal_type in {"empirical", "empirical_resample", "empirical_quantile"}
+                else marginal_model
+            ),
         }
     )
     return scenarios, metadata

@@ -20,6 +20,7 @@ RISK_KAPPA_GRID = [10000, 15000, 20000, 25000, 30000, 40000]
 RISK_CORN_VOL_GRID = [1.0, 1.25, 1.5, 2.0]
 RISK_TAIL_GRID = ["normal", "student_t_df5", "student_t_df3"]
 RISK_THETA_GRID = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0]
+LEGACY_RESULT_DRIVEN_SEARCH_DISABLED = True
 
 
 def tail_model_from_label(label: str) -> Dict[str, object]:
@@ -152,6 +153,7 @@ def solve_stress_regime(
         array_by_crop(config["upper_bounds"], crop_names),
         dict(config.get("rotation_caps") or {}),
         crop_names,
+        dict(config.get("contract_minimums") or {}),
     )
     row = _result_row(
         result,
@@ -171,6 +173,7 @@ def solve_stress_regime(
             array_by_crop(config["upper_bounds"], crop_names),
             dict(config.get("rotation_caps") or {}),
             crop_names,
+            dict(config.get("contract_minimums") or {}),
         )
         if eo.allocation is not None:
             row["allocation_l1_shift_from_eo"] = float(np.abs(result.allocation - eo.allocation).sum())
@@ -194,6 +197,11 @@ def active_constraint_diagnostics(config: Dict[str, object]) -> pd.DataFrame:
 
 
 def run_regime_search(config: Dict[str, object]) -> pd.DataFrame:
+    if LEGACY_RESULT_DRIVEN_SEARCH_DISABLED:
+        raise RuntimeError(
+            "Result-driven regime search was disabled by the Issue #5 design freeze; "
+            "use experiment_design.expand_design before any formal run."
+        )
     stress_cfg = dict(config.get("stress_calibration") or {})
     n_scenarios = int(stress_cfg.get("search_n_scenarios", 300))
     rows: List[Dict[str, object]] = []
@@ -240,6 +248,10 @@ def run_regime_search(config: Dict[str, object]) -> pd.DataFrame:
 
 
 def select_regimes(config: Dict[str, object], active_df: pd.DataFrame, search_df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, object]]:
+    if LEGACY_RESULT_DRIVEN_SEARCH_DISABLED:
+        raise RuntimeError(
+            "Post-result regime selection is prohibited by the frozen Issue #5 design."
+        )
     selected: List[Dict[str, object]] = []
     baseline = active_df.iloc[0].to_dict()
     baseline["selected_regime"] = "baseline_liquidity_driven"
@@ -628,6 +640,7 @@ def _solve_allocation(config: Dict[str, object], scenarios: np.ndarray) -> np.nd
         array_by_crop(config["upper_bounds"], crop_names),
         dict(config.get("rotation_caps") or {}),
         crop_names,
+        dict(config.get("contract_minimums") or {}),
     )
     if result.allocation is None:
         return array_by_crop(config["lower_bounds"], crop_names)
