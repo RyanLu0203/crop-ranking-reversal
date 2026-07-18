@@ -12,6 +12,7 @@ validate:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_literature_evidence.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_official_data.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_simulation_design.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_formal_simulation.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 
 test:

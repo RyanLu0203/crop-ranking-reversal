@@ -61,10 +61,13 @@ if {row["marginal_family"] for row in dry_rows} != {"gaussian", "student_t_df5",
 
 parameters = rows("evidence_registry/parameter_provenance.csv")
 simulation_parameters = [row for row in parameters if row["parameter_id"].startswith("P-SIM-")]
-if len(simulation_parameters) != 10:
+if len(simulation_parameters) < 10:
     errors.append(f"simulation_parameter_count:{len(simulation_parameters)}")
 for row in simulation_parameters:
-    if row["config_path"] != "simulation/configs/experiment_design.yaml":
+    if row["config_path"] not in {
+        "simulation/configs/experiment_design.yaml",
+        "simulation/configs/formal_run_protocol.yaml",
+    }:
         errors.append(f"parameter_config_link:{row['parameter_id']}")
     if not row["evidence_status"] or not row["uncertainty_method"]:
         errors.append(f"parameter_incomplete:{row['parameter_id']}")
@@ -81,7 +84,9 @@ if not dry_claim or dry_claim["manuscript_admissible"] != "NO":
     errors.append("dry_claim_admissibility")
 
 simulation_numbers = [row for row in rows("evidence_registry/numbers.csv") if row["number_id"].startswith("NUM-SIM-")]
-if {row["number_id"] for row in simulation_numbers} != {"NUM-SIM-001", "NUM-SIM-002", "NUM-SIM-003"}:
+if not {"NUM-SIM-001", "NUM-SIM-002", "NUM-SIM-003"}.issubset(
+    {row["number_id"] for row in simulation_numbers}
+):
     errors.append("simulation_number_set")
 for row in simulation_numbers:
     path = ROOT / row["output_file"]

@@ -1,0 +1,47 @@
+protocol_id: CRR-SIM-RUN-2026-07-19
+protocol_version: 1.0.0
+frozen_at: 2026-07-19T16:10:00+08:00
+status: FROZEN_BEFORE_FORMAL_RESULTS
+owner_issue: 6
+experiment_design_id: CRR-SIM-FREEZE-2026-07-19
+experiment_design_sha256: 4b5897f5d225af6334e3082ce8d9f065cdd7067f2664f3ef63426b5597055b27
+
+risk_limit_operationalization:
+  reason: The Issue 5 design froze a frontier quantile but did not define its endpoints.
+  lower_endpoint: minimum direct loss-CVaR among feasible ranking-proportional and expected-profit reference policies
+  upper_endpoint: maximum direct loss-CVaR among feasible ranking-proportional and expected-profit reference policies
+  interpolation: lower + risk_limit_frontier_quantile * (upper - lower)
+  evidence_status: ILLUSTRATIVE_ONLY
+  no_posthoc_replacement: true
+
+policy_protocol:
+  ranking_scores: 1998-2024 official-panel sample mean real primary margin
+  ranking_pair: [Corn, Soybean]
+  mean_variance_gamma: 1.0e-6
+  mean_variance_evidence_status: ILLUSTRATIVE_ONLY
+  operational_constraints_apply_to_all_policies: true
+
+uncertainty_protocol:
+  cell_summary_interval: empirical_minimum_and_maximum_across_five_frozen_replications
+  monte_carlo_standard_error: sample_standard_deviation_divided_by_sqrt_replications
+  reversal_probability_interval: two_sided_95_percent_Wilson
+  note: The convergence audit must report if ten replications cannot attain the frozen 0.10 Wilson-width target even under unanimous outcomes.
+
+verification_protocol:
+  primary_order: design_order_then_seed_order
+  independent_replay_order: reverse_design_order_then_reverse_seed_order
+  replay_requirement: exact equality of scenario hashes and tolerance equality of numeric outputs
+  solver_sensitivity_methods: [highs, highs-ds, highs-ipm]
+  solver_sensitivity_cells: [ANCHOR-001, ANCHOR-009, ANCHOR-012]
+
+crossing_protocol:
+  main_design_status: mixed_factor_conditional_sensitivity
+  ordering_variable: kendall_tau_within_named_copula_family
+  unique_threshold_claim_allowed: false
+  note: Other LHS factors vary, so detected intervals are not controlled causal thresholds.
+
+result_boundaries:
+  simulation_is_not_empirical_evidence: true
+  null_nonmonotone_infeasible_and_slack_results_retained: true
+  failed_convergence_cells_excluded_from_headline_use: true
+  no_manual_output_edits: true
