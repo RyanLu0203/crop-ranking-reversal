@@ -23,8 +23,17 @@ def empirical_var_cvar_losses(losses: np.ndarray, alpha: float) -> Tuple[float, 
     if losses.size == 0:
         raise ValueError("losses must be non-empty.")
     alpha = float(alpha)
+    # Retain the conservative upper sample quantile as the displayed VaR.
+    # The RU hinge minimizer is evaluated separately using the empirical
+    # inverse CDF. NumPy's ``higher`` uses an (n - 1)-scaled index and is not
+    # generally an RU minimizer when alpha * n is non-integer. The two VaRs
+    # can differ at atoms while the atom-safe CVaR remains well defined.
     var = float(np.quantile(losses, alpha, method="higher"))
-    cvar = float(var + np.maximum(losses - var, 0.0).mean() / max(1.0 - alpha, 1e-12))
+    ru_var = float(np.quantile(losses, alpha, method="inverted_cdf"))
+    cvar = float(
+        ru_var
+        + np.maximum(losses - ru_var, 0.0).mean() / max(1.0 - alpha, 1e-12)
+    )
     return var, cvar
 
 

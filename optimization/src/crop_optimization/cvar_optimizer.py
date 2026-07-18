@@ -7,8 +7,21 @@ from typing import Any, Dict, Iterable, List, Optional
 
 import numpy as np
 from scipy.optimize import linprog
+from scipy.sparse import lil_matrix
 
 from .evaluation import constraint_diagnostics, empirical_var_cvar_losses, portfolio_profit
+
+
+def highs_tolerance_options(method: str) -> Dict[str, float]:
+    """Numerical options needed to honor the frozen direct-CVaR tolerances."""
+
+    options: Dict[str, float] = {
+        "primal_feasibility_tolerance": 1e-9,
+        "dual_feasibility_tolerance": 1e-9,
+    }
+    if str(method) in {"highs", "highs-ipm"}:
+        options["ipm_optimality_tolerance"] = 1e-10
+    return options
 
 
 @dataclass
@@ -51,6 +64,7 @@ def solve_cvar_allocation(
     rotation_caps: Optional[Dict[str, float]] = None,
     crop_names: Optional[List[str]] = None,
     contract_minimums: Optional[Dict[str, float]] = None,
+    solver_method: str = "highs",
 ) -> AllocationResult:
     """Solve the CVaR-constrained allocation problem with scipy linprog.
 
@@ -96,49 +110,45 @@ def solve_cvar_allocation(
     # alter the primary expected-profit objective rather than implement an
     # exact lexicographic tie-break, so their coefficients remain zero.
 
-    a_ub = []
-    b_ub = []
+    n_extra = len(rotation_caps or {}) + len(contract_minimums or {})
+    a_ub = lil_matrix((3 + n_scenarios + n_extra, n_vars), dtype=float)
+    b_ub = np.zeros(3 + n_scenarios + n_extra, dtype=float)
     constraint_names: List[str] = []
+    row_idx = 0
 
-    row = np.zeros(n_vars)
-    row[:n_crops] = 1.0
-    a_ub.append(row)
-    b_ub.append(float(total_acres))
+    a_ub[row_idx, :n_crops] = 1.0
+    b_ub[row_idx] = float(total_acres)
     constraint_names.append("land")
+    row_idx += 1
 
-    row = np.zeros(n_vars)
-    row[:n_crops] = costs_arr
-    a_ub.append(row)
-    b_ub.append(float(budget))
+    a_ub[row_idx, :n_crops] = costs_arr
+    b_ub[row_idx] = float(budget)
     constraint_names.append("budget")
+    row_idx += 1
 
-    cvar_row = np.zeros(n_vars)
-    cvar_row[v_idx] = 1.0
-    cvar_row[q_start:] = 1.0 / max((1.0 - alpha) * n_scenarios, 1e-12)
-    a_ub.append(cvar_row)
-    b_ub.append(float(cvar_limit))
+    a_ub[row_idx, v_idx] = 1.0
+    a_ub[row_idx, q_start:] = 1.0 / max((1.0 - alpha) * n_scenarios, 1e-12)
+    b_ub[row_idx] = float(cvar_limit)
     constraint_names.append("cvar")
+    row_idx += 1
 
     # q_s >= loss_s - v, where loss_s = -profit_s @ x.
     # Equivalent: (-profit_s) x - v - q_s <= 0.
     for scenario_idx in range(n_scenarios):
-        row = np.zeros(n_vars)
-        row[:n_crops] = -scenarios[scenario_idx, :]
-        row[v_idx] = -1.0
-        row[q_start + scenario_idx] = -1.0
-        a_ub.append(row)
-        b_ub.append(0.0)
+        a_ub[row_idx, :n_crops] = -scenarios[scenario_idx, :]
+        a_ub[row_idx, v_idx] = -1.0
+        a_ub[row_idx, q_start + scenario_idx] = -1.0
         constraint_names.append(f"tail_scenario_{scenario_idx}")
+        row_idx += 1
 
     if rotation_caps:
         for crop, cap in rotation_caps.items():
             if crop not in crop_names:
                 raise ValueError(f"rotation cap crop {crop!r} is not in crop_names.")
-            row = np.zeros(n_vars)
-            row[crop_names.index(crop)] = 1.0
-            a_ub.append(row)
-            b_ub.append(float(cap))
+            a_ub[row_idx, crop_names.index(crop)] = 1.0
+            b_ub[row_idx] = float(cap)
             constraint_names.append(f"rotation_{crop}")
+            row_idx += 1
 
     if contract_minimums:
         for crop, minimum in contract_minimums.items():
@@ -148,22 +158,23 @@ def solve_cvar_allocation(
             minimum = float(minimum)
             if minimum < 0 or minimum > ub[idx]:
                 raise ValueError(f"invalid contract minimum for {crop!r}.")
-            row = np.zeros(n_vars)
-            row[idx] = -1.0
-            a_ub.append(row)
-            b_ub.append(-minimum)
+            a_ub[row_idx, idx] = -1.0
+            b_ub[row_idx] = -minimum
             constraint_names.append(f"contract_{crop}")
+            row_idx += 1
 
     bounds = [(float(lb[i]), float(ub[i])) for i in range(n_crops)]
     bounds.append((None, None))
     bounds.extend((0.0, None) for _ in range(n_scenarios))
 
+    a_ub_arr = a_ub.tocsr()
     result = linprog(
         objective,
-        A_ub=np.vstack(a_ub),
-        b_ub=np.asarray(b_ub),
+        A_ub=a_ub_arr,
+        b_ub=b_ub,
         bounds=bounds,
-        method="highs",
+        method=str(solver_method),
+        options=highs_tolerance_options(str(solver_method)),
     )
 
     if not result.success:
@@ -201,8 +212,7 @@ def solve_cvar_allocation(
         cvar_loss,
         cvar_limit,
     )
-    a_ub_arr = np.vstack(a_ub)
-    b_ub_arr = np.asarray(b_ub)
+    b_ub_arr = b_ub
     constraint_slacks = b_ub_arr - a_ub_arr @ result.x
     active_tol = 1e-4
     shadow_prices = {}

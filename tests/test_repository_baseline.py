@@ -23,14 +23,16 @@ def test_draft_completion_matrix_has_no_unmapped_major_item():
     assert all(row["target_issue_ids"] or row["supervisor_confirmation_required"] == "YES" for row in rows)
 
 
-def test_no_scientific_result_number_is_admitted_before_formal_run():
+def test_simulation_numbers_preserve_design_dry_run_and_nonheadline_boundaries():
     with (ROOT / "evidence_registry/numbers.csv").open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     assert all(row["number_id"].startswith("NUM-SIM-") for row in rows)
-    assert all(
-        row["verification_status"] in {
-            "VERIFIED_DESIGN_ONLY", "VERIFIED_RESOURCE_PLAN", "DRY_RUN_ONLY"
-        }
-        for row in rows
-    )
-    assert all("result" not in row["notes"].lower() or row["notes"] == "Not a scientific result" for row in rows)
+    allowed = {
+        "VERIFIED_DESIGN_ONLY", "VERIFIED_RESOURCE_PLAN", "DRY_RUN_ONLY",
+        "FORMAL_VERIFIED_NONHEADLINE", "FORMAL_RESULT_NONHEADLINE",
+        "REPRODUCIBILITY_VERIFIED", "ADVERSE_RESULT_VERIFIED", "RESOURCE_CAP_VERIFIED",
+    }
+    assert all(row["verification_status"] in allowed for row in rows)
+    formal_results = [row for row in rows if row["verification_status"] == "FORMAL_RESULT_NONHEADLINE"]
+    assert formal_results
+    assert all("Supplementary" in row["manuscript_location"] for row in formal_results)

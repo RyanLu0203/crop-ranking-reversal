@@ -1,0 +1,40 @@
+{
+  "frozen_cap_gb": 0.5,
+  "maximum_peak_rss_bytes": 240435200,
+  "maximum_peak_rss_gb": 0.2404352,
+  "measurement": "isolated process ru_maxrss",
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "representative_cells": [
+    {
+      "cell_id": "ANCHOR-001",
+      "face_status": "solved",
+      "peak_rss_bytes": 227082240,
+      "peak_rss_gb": 0.22708224,
+      "resource_cap_gb": 0.5,
+      "resource_cap_pass": true,
+      "status": "optimal",
+      "wall_seconds": 1.1821600829999999
+    },
+    {
+      "cell_id": "ANCHOR-009",
+      "face_status": "solved",
+      "peak_rss_bytes": 230047744,
+      "peak_rss_gb": 0.230047744,
+      "resource_cap_gb": 0.5,
+      "resource_cap_pass": true,
+      "status": "optimal",
+      "wall_seconds": 0.6151157079999999
+    },
+    {
+      "cell_id": "ANCHOR-012",
+      "face_status": "solved",
+      "peak_rss_bytes": 240435200,
+      "peak_rss_gb": 0.2404352,
+      "resource_cap_gb": 0.5,
+      "resource_cap_pass": true,
+      "status": "optimal",
+      "wall_seconds": 1.228942542
+    }
+  ],
+  "status": "PASS"
+}

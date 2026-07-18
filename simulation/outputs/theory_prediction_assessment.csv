@@ -1,0 +1,11 @@
+theory_result_id,assessment,formal_evidence,convergence_gate_passed,solver_sensitivity_passed
+CT1,SUPPORTED,"All formal LPs checked for feasibility, sign, and direct loss-CVaR.",False,True
+CT2,SUPPORTED,Ranking-proportional and cardinal optimization policies differ within the governed design.,False,True
+CT3,SUPPORTED,"Optimal-face reversal classifications retained, including constrained cells.",False,True
+CT4,NOT_IDENTIFIED,Risk quantile varies jointly with LHS factors; no controlled optimal-set invariance claim.,False,True
+CT5,SUPPORTED,"Complete primal, dual, complementarity, stationarity, and tail-weight diagnostics.",False,True
+CT6,NOT_IDENTIFIED,Formal grid does not isolate every feasible displacement certificate.,False,True
+CT7,NOT_IDENTIFIED,Cross-family scalar ordering is prohibited and within-family LHS comparisons are confounded.,False,True
+CT8,PARAMETER_DEPENDENT,"Mixed-factor crossing sets are sensitivity descriptions, never unique thresholds.",False,True
+CT9,PARAMETER_DEPENDENT,Pseudo-diversification is reported only as a descriptive flag.,False,True
+CT10,SUPPORTED,Exact ignore-signal and nested-action-set checks.,False,True

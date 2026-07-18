@@ -1,0 +1,13 @@
+{
+  "command": "python scripts/run_formal_simulation.py --workers 4",
+  "completed_unix": 1784403491.082772,
+  "numpy": "1.26.4",
+  "pandas": "2.0.3",
+  "peak_rss_kb_parent": 149651456,
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "python": "3.9.21",
+  "scipy": "1.10.1",
+  "started_unix": 1784403294.2881742,
+  "wall_seconds": 196.794597864151,
+  "workers": 4
+}
