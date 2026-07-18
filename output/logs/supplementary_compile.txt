@@ -1,0 +1,17 @@
+FIRST COMPILED DRAFT FOR SUPERVISOR REVIEW
+document=supplementary
+source=supplementary/supplementary.tex
+engine=pdfLaTeX via latexmk and BibTeX
+isolated_build_passes=2
+pass1_exit_code=0
+pass2_exit_code=0
+byte_stable=YES
+pdf_sha256=6b77ce4ccfda2b9faa7beb3a55f8b4bd7a15075a85599903c07c12184ad4d539
+pdf_bytes=345832
+diagnostic_scan=PASS
+latex_errors=0
+undefined_citations=0
+undefined_references=0
+missing_assets=0
+overfull_boxes=0
+raw_logs=build/paper/pass*/<document>/<entry>.log (transient; gitignored)

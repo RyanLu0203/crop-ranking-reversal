@@ -2,7 +2,7 @@
 \usepackage[margin=2.35cm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,natbib}
 \usepackage[T1]{fontenc}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,pdftitle={When crop rankings do not determine land allocations},pdfauthor={Authors to be confirmed},pdfsubject={First compiled draft for supervisor review}]{hyperref}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{xcolor}
 \newtheorem{theorem}{Theorem}
@@ -11,6 +11,10 @@
 \newcommand{\cvar}{\operatorname{CVaR}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\R}{\mathbb{R}}
+\pdftrailerid{}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
 \input{generated/numbers.tex}
 \input{frontmatter/title_page.tex}
 \begin{document}
@@ -29,5 +33,5 @@
 \input{sections/methods.tex}
 \input{frontmatter/declarations.tex}
 \bibliographystyle{plainnat}
-\bibliography{../references}
+\bibliography{references}
 \end{document}

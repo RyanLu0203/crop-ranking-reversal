@@ -1,4 +1,5 @@
 import sys
+import re
 from pathlib import Path
 
 import numpy as np
@@ -13,6 +14,12 @@ ACREAGE_TOL = 1e-6
 BUDGET_TOL = 1e-5
 CVAR_TOL = 1e-5
 ACTIVE_TOL = 1e-4
+SYNC_COLLISION = re.compile(r" \d+$")
+
+
+def pytest_ignore_collect(collection_path: Path, config: pytest.Config) -> bool:
+    """Keep Finder/iCloud collision copies outside the canonical test suite."""
+    return bool(SYNC_COLLISION.search(collection_path.stem))
 
 
 @pytest.fixture

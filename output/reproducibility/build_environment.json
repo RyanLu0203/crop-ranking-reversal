@@ -1,0 +1,11 @@
+{
+  "label": "FIRST COMPILED DRAFT FOR SUPERVISOR REVIEW",
+  "source_date_epoch": "1784390400",
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "python": "3.11.15",
+  "latexmk": "Latexmk, John Collins, 27 Dec. 2024. Version 4.86a",
+  "pdflatex": "pdfTeX 3.141592653-2.6-1.40.27 (TeX Live 2025)",
+  "bibtex": "BibTeX 0.99d (TeX Live 2025)",
+  "source_identity": "canonical repository manifest plus release checksums",
+  "build_command": "make paper"
+}
