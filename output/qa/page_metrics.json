@@ -1,0 +1,257 @@
+[
+  {
+    "document": "main",
+    "page": 1,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 133,
+      "top": 218,
+      "right": 131,
+      "bottom": 74
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 2,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 138,
+      "right": 130,
+      "bottom": 74
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 3,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 189,
+      "right": 132,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 4,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 135,
+      "right": 131,
+      "bottom": 74
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 5,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 139,
+      "right": 130,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 6,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 149,
+      "right": 130,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 7,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 139,
+      "right": 130,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 8,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 192,
+      "right": 130,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 9,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 135,
+      "right": 130,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 10,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 132,
+      "top": 135,
+      "right": 131,
+      "bottom": 73
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 11,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 133,
+      "top": 139,
+      "right": 129,
+      "bottom": 74
+    },
+    "blank": false
+  },
+  {
+    "document": "main",
+    "page": 12,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 133,
+      "top": 139,
+      "right": 129,
+      "bottom": 74
+    },
+    "blank": false
+  },
+  {
+    "document": "supplementary",
+    "page": 1,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 129,
+      "top": 214,
+      "right": 127,
+      "bottom": 71
+    },
+    "blank": false
+  },
+  {
+    "document": "supplementary",
+    "page": 2,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 129,
+      "top": 135,
+      "right": 128,
+      "bottom": 71
+    },
+    "blank": false
+  },
+  {
+    "document": "supplementary",
+    "page": 3,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 130,
+      "top": 137,
+      "right": 128,
+      "bottom": 70
+    },
+    "blank": false
+  },
+  {
+    "document": "supplementary",
+    "page": 4,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 130,
+      "top": 168,
+      "right": 128,
+      "bottom": 71
+    },
+    "blank": false
+  },
+  {
+    "document": "supplementary",
+    "page": 5,
+    "pixels": [
+      1224,
+      1584
+    ],
+    "ink_margins_pixels": {
+      "left": 130,
+      "top": 136,
+      "right": 127,
+      "bottom": 70
+    },
+    "blank": false
+  }
+]

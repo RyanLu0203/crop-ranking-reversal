@@ -43,7 +43,8 @@ Issues #6 and #7 may run in parallel only after their dependencies are satisfied
 - `simulation/`, `optimization/`: Issues #5–#6 engines and registered outputs
 - `empirical/`: Issue #7 pipeline
 - `visualization/`, `figures/`, `tables/`: Issue #8 generated visual system
-- `manuscript/`, `supplementary/`: Issues #9–#10 LaTeX artifacts
+- `manuscript/`, `supplementary/`: canonical modular LaTeX sources
+- `output/`: deterministic supervisor-review PDFs, compile logs, page QA and release checksums
 - `evidence_registry/`, `audits/`, `provenance/`: claim-level governance and reproducibility records
 
 ## Reproducible setup
@@ -52,11 +53,12 @@ Python 3.11 is canonical. With [`uv`](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync --locked --extra test
+make paper
 make check
 ```
 
-`make check` runs the repository validator, secret/path checks, baseline hash validation, and the current canonical test suite. Formal experiments and empirical reruns are deliberately not part of Issue #1.
+`make paper` performs two isolated deterministic builds of each PDF, renders all pages and validates the release package. `make check` runs every repository, theory, literature, data, simulation, empirical, visual, manuscript and final-package validator plus the canonical test suite.
 
 ## Current milestone
 
-Issue #1 establishes the baseline and engineering skeleton. No manuscript result is admitted yet. The final milestone must be explicitly labeled **“First compiled draft for supervisor review.”**
+Issues #1--#10 are integrated in the milestone package labelled **“First compiled draft for supervisor review.”** It is ready for supervisor review, not direct submission; author metadata, funding, licensing, target-journal conversion and the scientific actions in `output/remaining_actions.md` remain open.
