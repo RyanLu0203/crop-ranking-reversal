@@ -1,0 +1,22 @@
+{
+  "causal_claim_admissible": false,
+  "complete_panel_rows": 231,
+  "complete_state_years": 77,
+  "cvar_mechanism_identified": false,
+  "design_id": "CRR-EMP-FREEZE-2026-07-19",
+  "design_sha256": "2900b8a3ff5fceee19796115231c31c256f0699c44e9b1b9565bc0d917cac9eb",
+  "lagged_2024_states": 25,
+  "lagged_2024_top_reversal_rate": 0.88,
+  "observed_acreage_is_optimum": false,
+  "operating_margin_mean_pairwise_inversions": 1.7922077922077921,
+  "operating_margin_strong_reversal_rate": 0.5324675324675324,
+  "operating_margin_top_reversal_rate": 0.8181818181818182,
+  "parsed_rows": 345,
+  "result_scope": "DESCRIPTIVE_AND_ACCOUNTING_ONLY",
+  "states": 26,
+  "years": [
+    2022,
+    2023,
+    2024
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "analysis_panel_rows": 231,
+  "command": "python scripts/run_empirical_analysis.py",
+  "design_id": "CRR-EMP-FREEZE-2026-07-19",
+  "design_sha256": "2900b8a3ff5fceee19796115231c31c256f0699c44e9b1b9565bc0d917cac9eb",
+  "manual_output_edits": false,
+  "nass_processed_rows": 345,
+  "nass_snapshot_sha256": "d0f902548f924e6c14b56ff0f485174dffe643a46d0c95c710395e46a39b6f41",
+  "national_panel_sha256": "ddaf1a2aec05966c284865897b98d09371e015f9ca61ff302b85b787dca7be76"
+}

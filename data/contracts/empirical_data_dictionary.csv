@@ -1,0 +1,14 @@
+field,artifact,type,unit,definition,source_or_derivation,claim_boundary
+state,nass_state_crop_2022_2024,string,state,NASS reporting state,NASS Crop Production 2024 Summary,No county or farm interpretation
+year,nass_state_crop_2022_2024,integer,calendar year,Published crop year,NASS Crop Production 2024 Summary,2022-2024 only
+crop,nass_state_crop_2022_2024,category,crop,"corn soybeans or winter_wheat",NASS table identity,Winter wheat is not all wheat
+planted_acres_1000,nass_state_crop_2022_2024,decimal,1000 acres,Published planted area,NASS Crop Production 2024 Summary,Observed aggregate acreage not an optimum
+yield_bushels_per_acre,nass_state_crop_2022_2024,decimal,bushels per acre,Published yield,NASS Crop Production 2024 Summary,State aggregate
+relative_yield,empirical_state_crop_analysis_panel,decimal,ratio,State yield divided by NASS national same-crop-year yield,Deterministic script,Agronomic performance proxy only
+standardized_revenue_real_2024_usd_per_acre,empirical_state_crop_analysis_panel,decimal,2024 USD per acre,State yield times national ERS harvest price CPI-deflated,NASS yield plus ERS price plus BLS CPI,Not realized state revenue
+standardized_operating_margin_real_2024_usd_per_acre,empirical_state_crop_analysis_panel,decimal,2024 USD per acre,Standardized revenue less national ERS operating cost,NASS yield plus ERS price/cost plus BLS CPI,Accounting counterfactual not local profit
+standardized_total_cost_margin_real_2024_usd_per_acre,empirical_state_crop_analysis_panel,decimal,2024 USD per acre,Standardized revenue less national ERS total listed cost,NASS yield plus ERS price/cost plus BLS CPI,Robustness accounting counterfactual
+observed_acreage_share,empirical_state_crop_analysis_panel,decimal,state three-crop share,Crop planted acres divided by admitted three-crop state-year total,Deterministic script,Excludes other crops and does not reveal preferences
+pairwise_inversions,discordance_detail,integer,count 0-3,Strictly discordant score-acreage crop pairs,Deterministic script,Descriptive only
+top_rank_reversal,discordance_detail,boolean,indicator,Top score set disjoint from top acreage set,Deterministic script,Not a causal mechanism
+strong_reversal,discordance_detail,boolean,indicator,Every top score crop lies in bottom acreage set,Deterministic script,Not a causal mechanism
