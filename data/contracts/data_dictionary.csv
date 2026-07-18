@@ -1,0 +1,18 @@
+field,type,unit,source_id,transformation,missing_policy,admissible_interpretation
+crop,string,category,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",lowercase canonical label,hard failure,commodity identity
+year,integer,calendar or production-account year,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",select 1998-2024,hard failure,annual account label
+geography,string,geographic label,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",constant United States from U.S. total selection,hard failure,national aggregate
+ers_survey_base_year,string,year label,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",copied from ERS record,hard failure,technology/accounting survey vintage
+yield_bushels_per_planted_acre,decimal,bushels per planted acre,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",U.S. total Yield,hard failure,national ERS supporting estimate
+harvest_price_usd_per_bushel,decimal,nominal USD per bushel,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",U.S. total Price,hard failure,harvest-period price
+operating_cost_usd_per_planted_acre,decimal,nominal USD per planted acre,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR","U.S. total Total, operating costs",hard failure,sector-account operating cost
+total_cost_usd_per_planted_acre,decimal,nominal USD per planted acre,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR","U.S. total Total, costs listed",hard failure,operating plus allocated overhead costs
+enterprise_size_planted_acres,decimal,planted acres,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",U.S. total Enterprise size,hard failure,descriptive representative enterprise size not a constraint
+dryland_share_percent,decimal,percent of acres,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",U.S. total Dryland,hard failure,descriptive production-practice share
+irrigated_share_percent,decimal,percent of acres,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",U.S. total Irrigated,hard failure,descriptive production-practice share
+primary_margin_nominal_usd_per_planted_acre,decimal,nominal USD per planted acre,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR",price times yield minus operating cost,hard failure,constructed primary-product operating margin
+cpi_u_annual_index,decimal,index 1982-84=100,DATA-BLS-CPI-U,arithmetic mean of 12 monthly indexes,hard failure,general consumer-price index
+cpi_u_deflator_to_2024,decimal,ratio,DATA-BLS-CPI-U,2024 annual CPI-U divided by year annual CPI-U,hard failure,transparent general-price deflator
+primary_margin_real_2024_usd_per_planted_acre,decimal,2024 USD per planted acre,"DATA-ERS-CORN-CCR;DATA-ERS-SOYBEANS-CCR;DATA-ERS-WHEAT-CCR;DATA-BLS-CPI-U",nominal primary margin times CPI-U factor,hard failure,inflation-normalized constructed margin
+annual_precipitation_inches,decimal,inches,DATA-NOAA-CAG-PCP,calendar-year CONUS value joined by year,hard failure,national contextual climate covariate
+annual_mean_temperature_f,decimal,degrees Fahrenheit,DATA-NOAA-CAG-TAVG,calendar-year CONUS value joined by year,hard failure,national contextual climate covariate
