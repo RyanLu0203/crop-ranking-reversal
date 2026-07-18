@@ -1,0 +1,20 @@
+{
+  "palette": {
+    "charcoal": "#3D3539",
+    "cyan": "#0F9EA8",
+    "teal": "#008B82",
+    "steel_blue": "#45728F",
+    "mint": "#8CD1B2",
+    "muted_violet": "#8B84A3"
+  },
+  "redundant_encoding": "hatch, marker, label or direct annotation accompanies semantic color",
+  "grayscale_files": [
+    "Figure1_grayscale.png",
+    "Figure2_grayscale.png",
+    "FigureS1_grayscale.png",
+    "FigureS2_grayscale.png",
+    "FigureS3_grayscale.png"
+  ],
+  "colorblind_note": "cyan/teal are never the sole discriminator; definitions are labelled and secondary series use hatch or markers",
+  "status": "PASS"
+}

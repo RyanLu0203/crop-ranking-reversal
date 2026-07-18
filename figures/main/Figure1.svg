@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="518.740157pt" height="340.15748pt" viewBox="0 0 518.740157 340.15748" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-18T16:00:00+00:00</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>crop-ranking-reversal</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 340.15748
+L 518.740157 340.15748
+L 518.740157 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 67.254661 107.403311
+L 122.733921 107.403311
+Q 128.764276 107.403311 128.764276 105.771341
+L 128.764276 71.608749
+Q 128.764276 69.976778 122.733921 69.976778
+L 67.254661 69.976778
+Q 61.224307 69.976778 61.224307 71.608749
+L 61.224307 105.771341
+Q 61.224307 107.403311 67.254661 107.403311
+z
+" clip-path="url(#p3998f6294f)" style="fill: #45728f; opacity: 0.22; stroke: #45728f; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 128.351284 88.690045
+Q 137.708772 88.690045 146.339538 88.690045
+" clip-path="url(#p3998f6294f)" style="fill: none; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+    <path d="M 143.539538 87.290045
+L 146.339538 88.690045
+L 143.539538 90.090045
+z
+" clip-path="url(#p3998f6294f)" style="fill: #3d3539; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 152.684681 107.403311
+L 208.163941 107.403311
+Q 214.194295 107.403311 214.194295 105.771341
+L 214.194295 71.608749
+Q 214.194295 69.976778 208.163941 69.976778
+L 152.684681 69.976778
+Q 146.654327 69.976778 146.654327 71.608749
+L 146.654327 105.771341
+Q 146.654327 107.403311 152.684681 107.403311
+z
+" clip-path="url(#p3998f6294f)" style="fill: #0f9ea8; opacity: 0.22; stroke: #0f9ea8; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 213.781303 88.690045
+Q 223.138791 88.690045 231.769557 88.690045
+" clip-path="url(#p3998f6294f)" style="fill: none; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+    <path d="M 228.969557 87.290045
+L 231.769557 88.690045
+L 228.969557 90.090045
+z
+" clip-path="url(#p3998f6294f)" style="fill: #3d3539; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 238.114701 107.403311
+L 293.593961 107.403311
+Q 299.624315 107.403311 299.624315 105.771341
+L 299.624315 71.608749
+Q 299.624315 69.976778 293.593961 69.976778
+L 238.114701 69.976778
+Q 232.084346 69.976778 232.084346 71.608749
+L 232.084346 105.771341
+Q 232.084346 107.403311 238.114701 107.403311
+z
+" clip-path="url(#p3998f6294f)" style="fill: #8cd1b2; opacity: 0.22; stroke: #8cd1b2; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 299.211323 88.690045
+Q 308.568811 88.690045 317.199577 88.690045
+" clip-path="url(#p3998f6294f)" style="fill: none; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+    <path d="M 314.399577 87.290045
+L 317.199577 88.690045
+L 314.399577 90.090045
+z
+" clip-path="url(#p3998f6294f)" style="fill: #3d3539; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 323.54472 107.403311
+L 379.02398 107.403311
+Q 385.054335 107.403311 385.054335 105.771341
+L 385.054335 71.608749
+Q 385.054335 69.976778 379.02398 69.976778
+L 323.54472 69.976778
+Q 317.514366 69.976778 317.514366 71.608749
+L 317.514366 105.771341
+Q 317.514366 107.403311 323.54472 107.403311
+z
+" clip-path="url(#p3998f6294f)" style="fill: #8b84a3; opacity: 0.22; stroke: #8b84a3; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 384.641343 88.690045
+Q 393.998831 88.690045 402.629597 88.690045
+" clip-path="url(#p3998f6294f)" style="fill: none; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+    <path d="M 399.829597 87.290045
+L 402.629597 88.690045
+L 399.829597 90.090045
+z
+" clip-path="url(#p3998f6294f)" style="fill: #3d3539; stroke: #3d3539; stroke-width: 0.65; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 408.97474 107.403311
+L 464.454 107.403311
+Q 470.484354 107.403311 470.484354 105.771341
+L 470.484354 71.608749
+Q 470.484354 69.976778 464.454 69.976778
+L 408.97474 69.976778
+Q 402.944386 69.976778 402.944386 71.608749
+L 402.944386 105.771341
+Q 402.944386 107.403311 408.97474 107.403311
+z
+" clip-path="url(#p3998f6294f)" style="fill: #008b82; opacity: 0.22; stroke: #008b82; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #3d3539; font: 700 7.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="16.599685" y="34.927694" transform="rotate(-0 16.599685 34.927694)">a</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #3d3539; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="94.994291" y="84.857298" transform="rotate(-0 94.994291 84.857298)">Rank crops</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #3d3539; font: 5.3px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="94.994291" y="99.852003" transform="rotate(-0 94.994291 99.852003)">Ordinal information</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #3d3539; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="180.424311" y="84.857298" transform="rotate(-0 180.424311 84.857298)">Cardinalize</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #3d3539; font: 5.3px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="180.424311" y="99.853245" transform="rotate(-0 180.424311 99.853245)">Scores or payoffs</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #3d3539; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="265.854331" y="84.895079" transform="rotate(-0 265.854331 84.895079)">Impose feasible set</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #3d3539; font: 5.3px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="265.854331" y="99.820949" transform="rotate(-0 265.854331 99.820949)">Land, budget, risk and policy constraints</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #3d3539; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="351.28435" y="84.895079" transform="rotate(-0 351.28435 84.895079)">Solve optimal face</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #3d3539; font: 5.3px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="351.28435" y="99.8843" transform="rotate(-0 351.28435 99.8843)">Set-valued optimum</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #3d3539; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="436.71437" y="84.857298" transform="rotate(-0 436.71437 84.857298)">Select allocation</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #3d3539; font: 5.3px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="436.71437" y="99.820949" transform="rotate(-0 436.71437 99.820949)">Tie-breaking or observed action</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #3d3539; font: 600 7.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="265.854331" y="54.649684" transform="rotate(-0 265.854331 54.649684)">Ordinal rankings become allocations only through additional cardinal and feasibility assumptions</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #008b82; font: 600 6.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="265.854331" y="134.9015" transform="rotate(-0 265.854331 134.9015)">Identification boundary: observed acreage does not reveal the feasible set, objective or optimizer selection rule</text>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_11">
+    <path d="M 68.338377 231.215506
+L 110.288668 231.215506
+L 110.288668 211.067717
+L 68.338377 211.067717
+z
+" clip-path="url(#pc36b2ee4e3)" style="fill: #0f9ea8; opacity: 0.24"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 68.338377 260.4298
+L 110.288668 260.4298
+L 110.288668 240.282011
+L 68.338377 240.282011
+z
+" clip-path="url(#pc36b2ee4e3)" style="fill: #008b82; opacity: 0.24"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 68.338377 289.644094
+L 110.288668 289.644094
+L 110.288668 269.496305
+L 68.338377 269.496305
+z
+" clip-path="url(#pc36b2ee4e3)" style="fill: #8b84a3; opacity: 0.24"/>
+   </g>
+   <g id="text_14">
+    <text style="fill: #3d3539; font: 700 7.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="43.867374" y="196.432372" transform="rotate(-0 43.867374 196.432372)">b</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="89.313523" y="222.904299" transform="rotate(-0 89.313523 222.904299)">Possible</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 217.02125)">At least one optimizer</text>
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 223.155837)">reverses ranking</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #3d3539; font: 5.4px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="232.643684" y="227.039207" transform="rotate(-0 232.643684 227.039207)">Face property</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="89.313523" y="252.118593" transform="rotate(-0 89.313523 252.118593)">Universal</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 246.20156)">Every optimizer</text>
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 252.404116)">reverses ranking</text>
+   </g>
+   <g id="text_20">
+    <text style="fill: #3d3539; font: 5.4px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="232.643684" y="256.253502" transform="rotate(-0 232.643684 256.253502)">Face property</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: middle" x="89.313523" y="281.332887" transform="rotate(-0 89.313523 281.332887)">Selected</text>
+   </g>
+   <g id="text_22">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 275.449839)">Reported optimizer</text>
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif" transform="translate(119.028312 281.584426)">reverses ranking</text>
+   </g>
+   <g id="text_23">
+    <text style="fill: #3d3539; font: 5.4px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="232.643684" y="285.532343" transform="rotate(-0 232.643684 285.532343)">Solver-dependent</text>
+   </g>
+   <g id="text_24">
+    <text style="fill: #3d3539; font: 600 7.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="64.84252" y="196.001211" transform="rotate(-0 64.84252 196.001211)">Three non-equivalent reversal definitions</text>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="patch_14">
+    <path d="M 295.56912 225.171169
+L 459.874427 225.171169
+Q 461.622355 225.171169 461.622355 224.16378
+L 461.622355 208.045548
+Q 461.622355 207.038159 459.874427 207.038159
+L 295.56912 207.038159
+Q 293.821191 207.038159 293.821191 208.045548
+L 293.821191 224.16378
+Q 293.821191 225.171169 295.56912 225.171169
+z
+" clip-path="url(#p02e02757f1)" style="fill: #45728f; opacity: 0.13; stroke: #45728f; stroke-width: 0.55; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 295.56912 247.837432
+L 459.874427 247.837432
+Q 461.622355 247.837432 461.622355 246.830042
+L 461.622355 230.711811
+Q 461.622355 229.704422 459.874427 229.704422
+L 295.56912 229.704422
+Q 293.821191 229.704422 293.821191 230.711811
+L 293.821191 246.830042
+Q 293.821191 247.837432 295.56912 247.837432
+z
+" clip-path="url(#p02e02757f1)" style="fill: #8b84a3; opacity: 0.13; stroke: #8b84a3; stroke-width: 0.55; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 295.56912 270.503695
+L 459.874427 270.503695
+Q 461.622355 270.503695 461.622355 269.496305
+L 461.622355 253.378074
+Q 461.622355 252.370684 459.874427 252.370684
+L 295.56912 252.370684
+Q 293.821191 252.370684 293.821191 253.378074
+L 293.821191 269.496305
+Q 293.821191 270.503695 295.56912 270.503695
+z
+" clip-path="url(#p02e02757f1)" style="fill: #008b82; opacity: 0.13; stroke: #008b82; stroke-width: 0.55; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 295.56912 293.169958
+L 459.874427 293.169958
+Q 461.622355 293.169958 461.622355 292.162568
+L 461.622355 276.044337
+Q 461.622355 275.036947 459.874427 275.036947
+L 295.56912 275.036947
+Q 293.821191 275.036947 293.821191 276.044337
+L 293.821191 292.162568
+Q 293.821191 293.169958 295.56912 293.169958
+z
+" clip-path="url(#p02e02757f1)" style="fill: #3d3539; opacity: 0.13; stroke: #3d3539; stroke-width: 0.55; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_25">
+    <text style="fill: #3d3539; font: 700 7.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="271.098117" y="196.432372" transform="rotate(-0 271.098117 196.432372)">c</text>
+   </g>
+   <g id="text_26">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="300.812907" y="215.304253" transform="rotate(-0 300.812907 215.304253)">Theory</text>
+   </g>
+   <g id="text_27">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="341.015269" y="215.085581" transform="rotate(-0 341.015269 215.085581)">Defines set-valued reversal</text>
+   </g>
+   <g id="text_28">
+    <text style="fill: #3d3539; font: 600 5.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="456.378569" y="220.47477" transform="rotate(-0 456.378569 220.47477)">PROVED / BOUNDED</text>
+   </g>
+   <g id="text_29">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="300.812907" y="238.015141" transform="rotate(-0 300.812907 238.015141)">Simulation</text>
+   </g>
+   <g id="text_30">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="341.015269" y="237.753203" transform="rotate(-0 341.015269 237.753203)">0/5 convergence rows pass</text>
+   </g>
+   <g id="text_31">
+    <text style="fill: #3d3539; font: 600 5.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="456.378569" y="243.141033" transform="rotate(-0 456.378569 243.141033)">NONHEADLINE</text>
+   </g>
+   <g id="text_32">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="300.812907" y="260.681403" transform="rotate(-0 300.812907 260.681403)">Empirical</text>
+   </g>
+   <g id="text_33">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="341.015269" y="260.392732" transform="rotate(-0 341.015269 260.392732)">26 states; 77 state-years</text>
+   </g>
+   <g id="text_34">
+    <text style="fill: #3d3539; font: 600 5.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="456.378569" y="265.807295" transform="rotate(-0 456.378569 265.807295)">DESCRIPTIVE</text>
+   </g>
+   <g id="text_35">
+    <text style="fill: #3d3539; font: 600 6.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="300.812907" y="283.347666" transform="rotate(-0 300.812907 283.347666)">Mechanism</text>
+   </g>
+   <g id="text_36">
+    <text style="fill: #3d3539; font: 5.8px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="341.015269" y="283.085729" transform="rotate(-0 341.015269 283.085729)">Acreage optimum / CVaR</text>
+   </g>
+   <g id="text_37">
+    <text style="fill: #3d3539; font: 600 5.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: end" x="456.378569" y="288.473558" transform="rotate(-0 456.378569 288.473558)">NOT IDENTIFIED</text>
+   </g>
+   <g id="text_38">
+    <text style="fill: #3d3539; font: 600 7.2px 'Arial', 'Helvetica', 'DejaVu Sans', sans-serif; text-anchor: start" x="292.073263" y="196.001211" transform="rotate(-0 292.073263 196.001211)">Evidence domains remain separated</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3998f6294f">
+   <rect x="64.84252" y="40.818898" width="402.023622" height="108.798062"/>
+  </clipPath>
+  <clipPath id="pc36b2ee4e3">
+   <rect x="64.84252" y="202.001211" width="174.792879" height="100.738946"/>
+  </clipPath>
+  <clipPath id="p02e02757f1">
+   <rect x="292.073263" y="202.001211" width="174.792879" height="100.738946"/>
+  </clipPath>
+ </defs>
+</svg>

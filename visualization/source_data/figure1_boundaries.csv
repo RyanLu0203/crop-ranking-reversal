@@ -1,0 +1,7 @@
+concept,definition,status
+possible,at least one optimizer reverses the ranking,THEORY_DEFINED
+universal,every optimizer reverses the ranking,THEORY_DEFINED
+selected,the reported optimizer reverses the ranking,SOLVER_DEPENDENT
+simulation,0 of 5 convergence rows pass,NONHEADLINE
+empirical,state-year discordance is descriptive,DESCRIPTIVE_IDENTIFIED
+acreage mechanism,observed acreage is not an identified optimum,NOT_IDENTIFIED

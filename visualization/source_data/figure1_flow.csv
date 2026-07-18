@@ -1,0 +1,6 @@
+stage,object,evidence_domain,identification_boundary
+Rank crops,Ordinal information,THEORY,Ranking alone does not identify an allocation
+Cardinalize,Scores or payoffs,THEORY,Cardinalization is an additional assumption
+Impose feasible set,"Land, budget, risk and policy constraints",THEORY,Constraints can change the optimal face
+Solve optimal face,Set-valued optimum,THEORY,Possible and universal reversal are face properties
+Select allocation,Tie-breaking or observed action,BOUNDARY,Observed acreage does not identify the mechanism

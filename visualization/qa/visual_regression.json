@@ -1,0 +1,87 @@
+[
+  {
+    "figure_id": "Figure1",
+    "width_mm": 183,
+    "height_mm": 120,
+    "png_pixels": [
+      2161,
+      1417
+    ],
+    "expected_pixels": [
+      2161,
+      1417
+    ],
+    "size_pass": true,
+    "svg_editable_text": true,
+    "png_sha256": "025516715b5e3568e613a7eb342308de7e055ba3412add44d7028bff8e72370f",
+    "svg_sha256": "137575f560a5da783839933cb5343f1977bf9c880cfd7406f3e2ce55d0ea8e8a"
+  },
+  {
+    "figure_id": "Figure2",
+    "width_mm": 183,
+    "height_mm": 150,
+    "png_pixels": [
+      2161,
+      1771
+    ],
+    "expected_pixels": [
+      2161,
+      1772
+    ],
+    "size_pass": true,
+    "svg_editable_text": true,
+    "png_sha256": "33d4c5139f340a4ef6e5e72d2ec5b55fc748db234bad8231286a035d9b29d26d",
+    "svg_sha256": "c4b9047e6ea96ce3b1324dc77c4be35b57eda964ca8a070d22ebf4a17edfe95c"
+  },
+  {
+    "figure_id": "FigureS1",
+    "width_mm": 183,
+    "height_mm": 140,
+    "png_pixels": [
+      2161,
+      1653
+    ],
+    "expected_pixels": [
+      2161,
+      1654
+    ],
+    "size_pass": true,
+    "svg_editable_text": true,
+    "png_sha256": "05c782941f69b2cc79b4f989e3c18486bb44fd42a91bac6d9dc6e50dd7faa1d1",
+    "svg_sha256": "158d6f99f52bb1ac130441a3c3df979cedb2daa678800aac6e7c6710d5dedeb2"
+  },
+  {
+    "figure_id": "FigureS2",
+    "width_mm": 183,
+    "height_mm": 105,
+    "png_pixels": [
+      2161,
+      1240
+    ],
+    "expected_pixels": [
+      2161,
+      1240
+    ],
+    "size_pass": true,
+    "svg_editable_text": true,
+    "png_sha256": "2441f497a5e5ca022dfb75c4160bd9f9ebc4ab70d61bcae7a10cc7842ce2f9b1",
+    "svg_sha256": "b92bab9f3d842c623e9d540193505a8a88c316e5cbaef2731f698d3cd94beddd"
+  },
+  {
+    "figure_id": "FigureS3",
+    "width_mm": 183,
+    "height_mm": 120,
+    "png_pixels": [
+      2161,
+      1417
+    ],
+    "expected_pixels": [
+      2161,
+      1417
+    ],
+    "size_pass": true,
+    "svg_editable_text": true,
+    "png_sha256": "6a7770d81222ae001541805dbf20c3809b585542b2f87b580447da7497ce9791",
+    "svg_sha256": "3d0f9fa8abb5be8d82769ea7a480f34e4e904f2d033c56e20ba53431f275e8f7"
+  }
+]
