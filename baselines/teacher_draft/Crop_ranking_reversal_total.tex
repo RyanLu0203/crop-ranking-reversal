@@ -1,0 +1,1204 @@
+\documentclass[12pt,review,authoryear]{elsarticle}
+\usepackage[latin9]{inputenc}
+\usepackage{booktabs}
+\usepackage{textcomp}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\makeatletter
+\providecommand{\tabularnewline}{\\}
+\IfFileExists{mmap.sty}{\usepackage[noTeX]{mmap}}{}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{mathrsfs}
+\allowdisplaybreaks[4]
+\numberwithin{equation}{section}
+\newtheorem{prop}{Proposition}[section]
+\usepackage{subfigure}
+\usepackage{paralist}
+\usepackage{multirow}
+\usepackage{ifthen}
+\usepackage{threeparttable}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{relsize}
+\usepackage{rotating}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\onehalfspacing
+\makeatother
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{exam}{Example}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\let\originalepsffile\epsffile
+\renewcommand{\epsffile}[1]{\originalepsffile{graph_results/#1}}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+\vfuzz2pt
+\hfuzz2pt
+
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\topskip}{0.0in}
+\addtolength{\textheight}{1.5in}
+\addtolength{\textwidth}{0.8in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\evensidemargin}{-0.4in}
+
+\renewcommand{\thesubfigure}{Figure \thefigure{}\alph{subfigure}:}
+\newcommand{\documentspacing}{\linespread{1.4}}
+\newcommand{\condensedspacing}{\linespread{1.1}}
+\documentspacing
+\newcommand{\Anonymize}{NO}
+
+\makeatother
+
+%----------------------------------------------------------------
+\begin{document}
+
+\begin{frontmatter}
+
+\title{From Suitability to Operational Optimality: Ranking Reversal,
+Diversification Failure, and the Limits of Climate Information
+in Crop Planning under Risk Constraints}
+
+\author[inst1]{Peimin Chen}
+\author[inst1]{Author Two}
+
+\address[inst1]{Business Analytics Programme, Faculty of Business and Management,
+Beijing Normal--Hong Kong Baptist University (UIC), Zhuhai, Guangdong,
+519087, China}
+
+\begin{abstract}
+Crop recommendation systems used in agricultural planning routinely rank
+candidate crops by agro-climatic suitability scores derived from soil
+profiles, temperature accumulation, precipitation patterns, and historical
+yield statistics.  Practitioners, extension services, and lending
+institutions widely presume that allocating the largest share of acreage
+to the highest-ranked crop constitutes good operational practice.  This
+paper challenges that presumption by establishing a formal theory of
+\emph{ranking reversal}: the phenomenon whereby the crop ranked first by
+any suitability criterion is excluded from, or receives strictly less
+acreage than a lower-ranked crop in the solution to a risk-constrained
+land-allocation problem.  We model the producer's decision as an
+irreversible acreage commitment made before yield or price uncertainty is
+resolved, subject to Conditional Value-at-Risk (CVaR) constraints,
+acreage bounds, rotational obligations, and liquidity requirements.  We
+derive closed-form and linear-programming characterizations of when
+reversal occurs and show that three structural forces drive it: (i)
+\emph{margin heterogeneity}---the highest-suitability crop need not carry
+the highest expected margin net of input costs; (ii) \emph{lower-tail
+dependence}---when extreme losses across crops co-move, a portfolio
+concentrated in the top-ranked crop amplifies downside risk rather than
+diversifying it, a phenomenon we term \emph{diversification failure}; and
+(iii) \emph{operational inflexibility}---rotational, contractual, and
+liquidity constraints compress the feasible set in ways that make
+suitability-ordered allocations infeasible or dominated.  We further show
+that better climate information reduces ranking reversal only when
+producers possess sufficient operational flexibility to act on it,
+establishing an \emph{information--flexibility complementarity} that
+bounds the value of precision agriculture investments.  Calibrated
+numerical simulations using USDA county-level crop budget and yield data
+confirm all theoretical predictions and quantify the welfare loss from
+ignoring ranking reversal: naive suitability-based allocation raises CVaR
+losses by 19--34\% relative to the risk-optimal plan.  The results carry
+direct implications for the design of crop advisory systems, agricultural
+lending covenants, and climate-adaptation policy.
+\end{abstract}
+
+\begin{keyword}
+Crop Planning \sep Ranking Reversal \sep Conditional Value-at-Risk \sep
+Tail Dependence \sep Diversification Failure \sep Value of Climate Information \sep
+Prescriptive Analytics \sep Agricultural Operations Management
+\end{keyword}
+
+\end{frontmatter}
+
+%================================================================
+\section{Introduction}
+\label{sec:intro}
+%================================================================
+
+Agricultural producers face a planning problem that is both operationally
+rich and economically consequential.  Before any seed enters the ground,
+a farmer must commit irreversibly to the allocation of land across a
+portfolio of competing crops.  That commitment is made under compounded
+uncertainty: neither the per-acre yield that will materialize from the
+growing season nor the market price that will prevail at harvest is known
+at planting time.  The economic stakes are substantial.  In the United
+States alone, total on-farm crop revenue exceeds \$200 billion annually,
+and a single bad year can push leveraged operations into insolvency
+\citep{USDA2023ERS}.  In emerging economies, where subsistence producers
+lack access to crop insurance or formal credit markets, a failed
+allocation decision can translate directly into food insecurity
+\citep{Barnett2008}.
+
+To help producers navigate this complexity, a sprawling industry of crop
+recommendation systems has emerged.  Land-grant universities publish crop
+suitability maps.  Private agronomic consultants rank varieties by
+expected yield.  Remote-sensing platforms score fields by soil organic
+matter, drainage class, and climate-zone alignment.  Digital agriculture
+startups embed machine-learning models that synthesize satellite imagery,
+weather forecasts, and genomic yield predictions into a ranked list of
+candidate crops \citep{Kamilaris2018,vanKlompenburg2020}.  Despite their
+surface differences, virtually all of these systems share a common
+operational logic: rank crops by a suitability score and implicitly or
+explicitly advise the producer to allocate the most acreage to the
+highest-ranked crop.
+
+This paper argues that the suitability-ranking heuristic is not merely
+suboptimal but can be systematically misleading.  Our central theoretical
+result is that the crop ranked first by any suitability criterion---
+whether defined as expected yield, agro-climatic fit, expected profit, or
+even Sharpe ratio---may be optimally \emph{excluded} from the
+risk-constrained land allocation, while a lower-ranked crop receives the
+largest acreage share.  We call this phenomenon \emph{ranking reversal}.
+It is not a numerical curiosity or a degenerate edge case.  Instead, it
+is a structural consequence of the interaction between three forces that
+suitability scores cannot capture: margin heterogeneity, lower-tail
+co-movement across crop returns, and operational constraints.
+
+The first force, margin heterogeneity, is the simplest.  A crop can be
+agronomically well-suited to a location and yet generate a low net margin
+because input costs are high, price support programs are absent, or
+market access is limited.  Most suitability scores are constructed from
+yield or agro-climatic proxies that have only a loose relationship to
+profitability \citep{Lobell2009}.  When a producer's objective includes
+downside-risk protection, even a small margin disadvantage of the
+top-ranked crop can be enough to reverse the allocation.
+
+The second force, lower-tail dependence, is subtler and more damaging.
+Modern financial econometrics has established that asset returns exhibit
+tail dependence: during market crashes, correlations spike, and assets
+that appear diversifying under normal conditions move together in the
+left tail \citep{Longin2001,Ang2002}.  Agricultural profits are no
+different.  Extreme weather events, commodity-price collapses, and
+regional pest outbreaks afflict multiple crops simultaneously
+\citep{Barnett2008,Barnhill2022}.  A producer who concentrates acreage in
+the top-ranked crop on the grounds that it is the ``best'' crop may
+inadvertently create a portfolio with high left-tail concentration.
+When we account for this lower-tail dependence through a copula-based
+model of joint profit distributions, we show that traditional
+diversification advice---grow more crop types to reduce risk---can fail:
+adding a lower-suitability crop to the portfolio can \emph{reduce} CVaR
+if and only if its lower-tail dependence with existing crops is
+sufficiently weak.  We term the failure mode \emph{diversification
+failure} and characterize the threshold condition precisely.
+
+The third force is operational inflexibility.  Producers operate under a
+web of constraints that suitability scores ignore entirely: rotational
+requirements that prevent continuous corn; marketing contracts that
+mandate minimum delivery quantities; equipment limitations that restrict
+the set of feasible crops; USDA program payment conditions; and liquidity
+covenants imposed by agricultural lenders.  These constraints
+collectively shrink the feasible acreage set in ways that render
+suitability-ordered allocations infeasible or dominated.
+
+Our third contribution concerns the interaction between climate
+information quality and operational flexibility.  Recent advances in
+seasonal climate forecasting, soil sensing, and precision-agriculture
+technology have generated enormous enthusiasm for improving the accuracy
+of suitability scores \citep{Lobell2009,Kuwayama2019}.  We show,
+however, that the operational value of better climate information---
+defined as the improvement in CVaR-adjusted profit from using a more
+accurate suitability model---is strictly bounded by the producer's
+operational flexibility.  When rotational, contractual, or liquidity
+constraints are binding, improved climate information cannot translate
+into improved decisions because the feasible set offers no room to
+respond.  This \emph{information--flexibility complementarity} implies
+that investments in precision agriculture generate the highest returns
+precisely for those producers who have already relaxed their operational
+constraints, and may yield near-zero returns for heavily constrained
+smallholders---a finding with direct policy relevance.
+
+The paper is organized as follows.  Section~\ref{sec:literature} reviews
+the related literature and situates our contributions.
+Section~\ref{sec:model} develops the formal model.
+Section~\ref{sec:theory} states and proves the main theoretical results.
+Section~\ref{sec:simulation} presents the numerical simulation.
+Section~\ref{sec:discussion} discusses managerial and policy implications.
+Section~\ref{sec:conclusion} concludes.
+
+%================================================================
+\section{Literature Review}
+\label{sec:literature}
+%================================================================
+
+Our work connects four streams of research that have developed largely
+in parallel: agricultural production planning, risk management in
+operations, copula-based dependence modeling, and the value of
+information under operational constraints.
+
+\subsection*{Agricultural Production Planning}
+
+The operations management literature on agricultural planning is
+considerably smaller than its importance would suggest.
+\citet{Hardaker2004} provided an early framework for farm-level decision
+making under uncertainty, emphasizing expected-utility maximization.
+\citet{Ramirez2003} showed that price and yield risks are correlated in
+ways that affect the optimal crop mix, but relied on the Pearson
+correlation structure.  \citet{Chavas2001} studied diversification in
+crop portfolios using a mean-variance lens, concluding that diversification
+is generally beneficial.  More recently, \citet{Finger2018} and
+\citet{Barnhill2022} have documented that climate change is altering the
+joint distribution of crop yields in ways that standard models fail to
+capture.  None of these papers formally derives conditions under which
+suitability-ordered recommendations are reversed by risk constraints, nor
+do they address lower-tail dependence as a mechanism.
+
+\subsection*{Risk Management and CVaR in Operations}
+
+The use of CVaR in operations management follows the pioneering work of
+\citet{RockafellarUryasev2000,RockafellarUryasev2002}, who showed that
+CVaR is a coherent risk measure and admits a tractable linear programming
+reformulation.  \citet{Chen2009} and \citet{Gotoh2007} applied CVaR
+optimization to inventory and capacity problems, demonstrating that CVaR
+constraints can radically alter the optimal policy relative to
+expected-profit maximization.  \citet{Choi2011} studied risk aversion in
+supply chain contracting.  In agricultural contexts, \citet{Gao2016}
+used CVaR to study crop insurance design, and \citet{Blank2001} examined
+the role of downside risk in farm portfolio choice.  Our model extends
+this literature by deriving structural conditions---expressed in terms of
+margin heterogeneity, tail dependence, and constraint tightness---under
+which the CVaR-optimal allocation reverses the suitability ranking.
+
+\subsection*{Copula Models and Tail Dependence}
+
+The statistical literature on copulas has produced rich tools for modeling
+dependence beyond linear correlation.  \citet{Sklar1959} established the
+theoretical foundation.  \citet{Joe1997} and \citet{Nelsen2006} developed
+the properties of parametric copula families relevant to lower-tail
+dependence.  \citet{Longin2001} and \citet{Ang2002} demonstrated
+empirically that financial asset returns exhibit asymmetric tail
+dependence, with stronger co-movement in the left tail than the right.
+\citet{Zhu2011} applied copula models to agricultural yield dependence
+and found significant lower-tail dependence across spatially proximate
+crops.  \citet{Barnhill2022} extended this to price--yield joint
+dependence.  We build on this literature to characterize how lower-tail
+dependence drives diversification failure and, consequently, ranking
+reversal in constrained optimization.
+
+\subsection*{Value of Information under Operational Constraints}
+
+The classical value-of-information framework \citep{Raiffa1961,Lawrence1999}
+defines the value of perfect information as the expected gain from
+resolving uncertainty before a decision is made.  In operations
+management, \citet{Cachon2007} and \citet{Vives1999} examined information
+sharing and its value in supply chains.  \citet{Kuwayama2019} and
+\citet{Lobell2009} studied the economic value of improved climate
+forecasts for agricultural decisions.  The important nuance that
+operational constraints cap the value of information has been noted in
+inventory theory \citep{Gaur2005} but has not been formally developed in
+the agricultural planning context.  Our information--flexibility
+complementarity result fills this gap.
+
+\subsection*{Crop Recommendation Systems}
+
+The recent machine-learning literature on crop recommendation is large
+and growing \citep{Kamilaris2018,vanKlompenburg2020,Liakos2018}.
+These systems construct suitability rankings from soil, climate, and
+historical yield data and are increasingly being deployed at scale.
+\citet{Mucherino2009} and \citet{Pantazi2016} survey the methods.
+A common theme is that predictive accuracy---how well the model forecasts
+yield---is used as the primary evaluation criterion, with little attention
+to the downstream operational decision quality.  Our paper provides the
+first formal analysis, to our knowledge, of when following the ranking
+produced by any such system leads to a worse risk-adjusted outcome than
+a lower-ranked alternative, thereby motivating a shift from predictive
+to prescriptive evaluation of recommendation systems.
+
+%================================================================
+\section{Model}
+\label{sec:model}
+%================================================================
+
+\subsection{Setting and Notation}
+
+Consider a single producer who must allocate $A$ acres of homogeneous
+land among $n$ crops indexed by $i \in \mathcal{N} = \{1, 2, \ldots, n\}$
+before any stochastic outcomes are realized.  The decision variable
+$x_i \geq 0$ denotes the acreage planted to crop $i$, collected into the
+vector $\mathbf{x} = (x_1, \ldots, x_n)$.  The total acreage constraint
+requires $\sum_{i=1}^{n} x_i \leq A$.
+
+Let $\tilde{\pi}_i(\omega)$ denote the per-acre profit of crop $i$ in
+scenario $\omega \in \Omega$, where $(\Omega, \mathcal{F}, \mathbb{P})$
+is a complete probability space.  The per-acre profit is defined as
+$\tilde{\pi}_i = \tilde{p}_i \cdot \tilde{y}_i - c_i$, where
+$\tilde{p}_i$ is the harvest-time price (dollars per bushel),
+$\tilde{y}_i$ is the per-acre yield (bushels per acre), and $c_i$ is the
+deterministic per-acre input cost (dollars per acre).  The total profit of
+the portfolio is $\Pi(\mathbf{x}, \omega) = \sum_{i=1}^{n} x_i \tilde{\pi}_i(\omega)$.
+
+The joint distribution of $(\tilde{\pi}_1, \ldots, \tilde{\pi}_n)$ is
+modeled via a copula representation.  Let $F_i$ denote the marginal CDF
+of $\tilde{\pi}_i$ and let $C: [0,1]^n \to [0,1]$ be the copula function
+such that the joint CDF satisfies $F(z_1, \ldots, z_n) = C(F_1(z_1), \ldots, F_n(z_n))$
+\citep{Sklar1959}.  The lower-tail dependence coefficient between crops
+$i$ and $j$ is defined as
+\begin{equation}
+\lambda_{ij}^{L} = \lim_{u \to 0^{+}} \mathbb{P}
+\bigl( F_i(\tilde{\pi}_i) \leq u \mid F_j(\tilde{\pi}_j) \leq u \bigr),
+\label{eq:ltd}
+\end{equation}
+with $\lambda_{ij}^{L} \in [0,1]$.  When $\lambda_{ij}^{L} = 0$, the
+two crops are asymptotically independent in the lower tail; when
+$\lambda_{ij}^{L} = 1$, extreme losses are perfectly co-dependent.  The
+Gaussian copula satisfies $\lambda_{ij}^{L} = 0$ for all $\rho < 1$,
+while the Clayton and lower-Joe-Clayton copulas admit $\lambda_{ij}^{L} > 0$.
+
+\subsection{Suitability Scores and the Recommendation Heuristic}
+
+Each crop $i$ is assigned a suitability score $s_i \in [0, 100]$ by an
+external recommendation system.  Without loss of generality, assume
+$s_1 \geq s_2 \geq \cdots \geq s_n$.  The recommendation heuristic
+allocates acreage proportionally to suitability scores, or in its
+simplest form, recommends $x_i^{\text{rec}} = A \cdot s_i / \sum_j s_j$.
+A stronger version simply allocates all acreage to crop 1:
+$x_1^{\text{rec}} = A$, $x_i^{\text{rec}} = 0$ for $i > 1$.  We
+analyze the general case in which the recommendation produces an ordering
+$x_1^{\text{rec}} \geq x_2^{\text{rec}} \geq \cdots \geq x_n^{\text{rec}}$.
+
+\subsection{The Risk-Constrained Optimization Problem}
+
+The producer's problem is to choose acreage allocations to maximize
+expected profit subject to a CVaR constraint, acreage limits, a
+rotational constraint, and a liquidity constraint.  Following
+\citet{RockafellarUryasev2000}, let $\text{CVaR}_\alpha(\mathbf{x})$
+denote the expected loss in the worst $(1-\alpha)$ fraction of scenarios.
+Formally, define
+\begin{equation}
+\text{CVaR}_\alpha(\mathbf{x}) = -\frac{1}{1-\alpha}
+\int_{\alpha}^{1} F_{\Pi}^{-1}(u;\mathbf{x})\, du,
+\label{eq:cvar_def}
+\end{equation}
+where $F_{\Pi}(\cdot;\mathbf{x})$ is the CDF of portfolio profit
+$\Pi(\mathbf{x},\cdot)$.  The producer's problem is:
+\begin{align}
+(\mathcal{P})\quad
+\max_{\mathbf{x}} \quad & \mathbb{E}[\Pi(\mathbf{x},\tilde{\boldsymbol{\pi}})]
+= \sum_{i=1}^{n} x_i \mu_i
+\label{eq:obj} \\
+\text{s.t.} \quad
+& \text{CVaR}_\alpha(\mathbf{x}) \leq \kappa,
+\label{eq:cvar_con} \\
+& \sum_{i=1}^{n} x_i \leq A,
+\label{eq:land} \\
+& \underline{x}_i \leq x_i \leq \bar{x}_i, \quad \forall i \in \mathcal{N},
+\label{eq:bounds} \\
+& \sum_{i \in \mathcal{R}} x_i \leq \rho A,
+\label{eq:rotation} \\
+& \sum_{i=1}^{n} c_i x_i \leq B,
+\label{eq:liquidity}
+\end{align}
+where $\mu_i = \mathbb{E}[\tilde{\pi}_i]$ is the expected per-acre profit
+of crop $i$; $\kappa > 0$ is the maximum tolerated CVaR; $\underline{x}_i$
+and $\bar{x}_i$ are lower and upper acreage bounds; $\mathcal{R} \subseteq \mathcal{N}$
+is the set of crops subject to a rotational cap $\rho \in (0,1]$; and
+$B$ is the producer's total input budget.  The objective is expected
+profit, and the CVaR constraint captures the producer's or lender's
+requirement that downside risk not exceed a threshold.
+
+\subsection{Linear Programming Reformulation}
+
+Because the CVaR of a portfolio can be expressed as a linear function of
+$\mathbf{x}$ and an auxiliary variable when scenarios are
+discrete \citep{RockafellarUryasev2000}, the problem $(\mathcal{P})$ can
+be recast as a linear program.  Let $\{\omega_1, \ldots, \omega_S\}$ be
+a finite set of equally probable scenarios with $\tilde{\pi}_i(\omega_s) =
+\pi_{is}$.  Introduce auxiliary variables $v \in \mathbb{R}$ and
+$\mathbf{q} = (q_1, \ldots, q_S) \geq \mathbf{0}$.  The LP reformulation
+of $(\mathcal{P})$ is:
+\begin{align}
+(\mathcal{P}_{\text{LP}})\quad
+\max_{\mathbf{x}, v, \mathbf{q}} \quad &
+\frac{1}{S} \sum_{s=1}^{S} \sum_{i=1}^{n} x_i \pi_{is}
+\label{eq:lp_obj} \\
+\text{s.t.} \quad
+& v + \frac{1}{(1-\alpha)S} \sum_{s=1}^{S} q_s \leq \kappa,
+\label{eq:lp_cvar} \\
+& -\sum_{i=1}^{n} x_i \pi_{is} - v \leq q_s, \quad s = 1, \ldots, S,
+\label{eq:lp_aux} \\
+& q_s \geq 0, \quad s = 1, \ldots, S,
+\label{eq:lp_q} \\
+& \text{constraints } \eqref{eq:land}\text{--}\eqref{eq:liquidity}.
+\nonumber
+\end{align}
+The LP reformulation is exact and allows standard sensitivity analysis
+via dual variables, which we exploit in the theoretical results below.
+
+\subsection{The Suitability--Margin Separation and Marginal CVaR}
+
+A key quantity is the marginal CVaR contribution of crop $i$:
+\begin{equation}
+\frac{\partial \text{CVaR}_\alpha(\mathbf{x})}{\partial x_i}
+= -\mathbb{E}[\tilde{\pi}_i \mid \Pi(\mathbf{x},\tilde{\boldsymbol{\pi}})\leq F_\Pi^{-1}(\alpha;\mathbf{x})],
+\label{eq:margcvar}
+\end{equation}
+which equals the negative expected per-acre profit of crop $i$
+\emph{conditional on the portfolio being in the left tail}.  This
+quantity is generally different from $-\mu_i$ because of tail dependence:
+if $\tilde{\pi}_i$ is strongly lower-tail dependent with the portfolio,
+its tail conditional expectation will be much lower than $\mu_i$.  In
+what follows, we denote the marginal CVaR contribution of crop $i$
+evaluated at a given $\mathbf{x}$ as $\Delta_i(\mathbf{x})$.
+
+%================================================================
+\section{Theoretical Results}
+\label{sec:theory}
+%================================================================
+
+\subsection{Ranking Reversal: Definition and Characterization}
+
+We begin by defining ranking reversal precisely, then state the conditions
+under which it occurs.
+
+\begin{definition}[Suitability Ranking]
+A suitability ranking is any ordering $\sigma$ of $\mathcal{N}$ such that
+$s_{\sigma(1)} \geq s_{\sigma(2)} \geq \cdots \geq s_{\sigma(n)}$.
+Without loss of generality, assume $\sigma$ is the identity so that
+$s_1 \geq \cdots \geq s_n$.
+\end{definition}
+
+\begin{definition}[Ranking Reversal]
+\label{def:rr}
+Let $\mathbf{x}^*$ be an optimal solution to $(\mathcal{P})$.  A
+\emph{ranking reversal} occurs between crops $i$ and $j$ with $s_i > s_j$
+if $x_i^* < x_j^*$.  A \emph{strong ranking reversal} occurs if
+$x_i^* = 0$ and $x_j^* > 0$.
+\end{definition}
+
+The KKT optimality conditions for $(\mathcal{P}_{\text{LP}})$ imply that
+at an interior solution the Lagrange multiplier on the CVaR constraint,
+denoted $\lambda \geq 0$, satisfies: for each $i$ with $x_i^* > 0$,
+\begin{equation}
+\mu_i - \lambda \Delta_i(\mathbf{x}^*) - \gamma - \delta_i + \nu_i = 0,
+\label{eq:kkt}
+\end{equation}
+where $\gamma \geq 0$ is the multiplier on the land constraint, $\delta_i$
+and $\nu_i$ are multipliers on the upper and lower acreage bounds,
+and $\lambda \geq 0$ is the shadow price of the CVaR constraint.  Crops
+with $x_i^* = 0$ satisfy the complementary condition
+$\mu_i - \lambda \Delta_i(\mathbf{x}^*) - \gamma - \nu_i \leq 0$.
+
+The optimality condition \eqref{eq:kkt} makes clear that the ranking of
+crops in the optimal solution is governed not by $s_i$ or even $\mu_i$
+alone, but by the \emph{risk-adjusted margin}
+$m_i(\lambda) \equiv \mu_i - \lambda \Delta_i(\mathbf{x}^*)$.
+
+\begin{theorem}[Ranking Reversal Condition]
+\label{thm:rr}
+Suppose $s_i > s_j$ and $\mu_i \geq \mu_j$.  At the optimal solution
+$\mathbf{x}^*$ of $(\mathcal{P})$, a ranking reversal $x_i^* < x_j^*$
+occurs if and only if
+\begin{equation}
+\lambda^* \bigl[\Delta_i(\mathbf{x}^*) - \Delta_j(\mathbf{x}^*)\bigr]
+> \mu_i - \mu_j + \text{gap}_{ij}(\mathbf{x}^*),
+\label{eq:rr_cond}
+\end{equation}
+where $\lambda^* > 0$ is the shadow price of the active CVaR constraint,
+$\Delta_i(\mathbf{x}^*)$ is the marginal CVaR contribution of crop $i$,
+and $\text{gap}_{ij}(\mathbf{x}^*) \geq 0$ captures the differential
+tightness of operational constraints on crops $i$ and $j$.
+\end{theorem}
+
+\begin{proof}
+From the KKT conditions \eqref{eq:kkt}, crop $j$ receives weakly more
+acreage than crop $i$ at optimality when its risk-adjusted margin
+weakly dominates: $m_j(\lambda^*) + \delta_j^{\prime} \geq m_i(\lambda^*)
++ \delta_i^{\prime}$, where $\delta^{\prime}$ captures net constraint effects.
+Substituting $m_i(\lambda^*) = \mu_i - \lambda^* \Delta_i(\mathbf{x}^*)$,
+rearranging gives condition \eqref{eq:rr_cond}.  The shadow price
+$\lambda^* > 0$ because the CVaR constraint is assumed active at the optimum.
+\end{proof}
+
+Theorem~\ref{thm:rr} has a transparent economic interpretation.  The
+left-hand side of \eqref{eq:rr_cond} measures the extra risk penalty
+that the CVaR constraint imposes on crop $i$ relative to crop $j$.  When
+crop $i$, despite being agronomically superior, contributes more to
+portfolio tail risk---because it exhibits stronger lower-tail dependence
+with other crops in the portfolio---the risk penalty can overwhelm its
+expected-margin advantage, reversing the allocation.
+
+The following corollary addresses the case in which suitability is
+measured by expected profit directly.
+
+\begin{corollary}[Reversal under Profit-Based Suitability]
+\label{cor:profit_suit}
+If the suitability score coincides with expected profit ($s_i = \mu_i$
+for all $i$) and $\mu_i > \mu_j$, then ranking reversal occurs if and
+only if $\lambda^* [\Delta_i(\mathbf{x}^*) - \Delta_j(\mathbf{x}^*)] >
+\mu_i - \mu_j + \text{gap}_{ij}(\mathbf{x}^*)$.  In particular,
+reversal can occur even when crop $i$ has both higher suitability and
+higher expected margin, provided its tail-risk contribution is sufficiently greater.
+\end{corollary}
+
+\subsection{Diversification Failure as the Mechanism}
+
+We now formalize the mechanism through which lower-tail dependence drives
+ranking reversal.  The following proposition connects the lower-tail
+dependence coefficient $\lambda_{ij}^L$ to the marginal CVaR gap
+$\Delta_i(\mathbf{x}^*) - \Delta_j(\mathbf{x}^*)$.
+
+\begin{proposition}[Tail Dependence and Marginal CVaR]
+\label{prop:ltd_margcvar}
+For a two-crop portfolio ($n = 2$) with crops 1 and 2, suppose profit
+margins follow distributions with lower-tail dependence coefficient
+$\lambda_{12}^L$.  Let the portfolio be $\Pi(x,\tilde{\pi}_1,\tilde{\pi}_2)
+= x\tilde{\pi}_1 + (A-x)\tilde{\pi}_2$ for $x \in [0,A]$.  Then
+$\Delta_1(\mathbf{x}) - \Delta_2(\mathbf{x})$ is increasing in $\lambda_{12}^L$
+when $\mu_1 \geq \mu_2$ and $\sigma_1 \leq \sigma_2$.
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:margcvar}, $\Delta_i(\mathbf{x}) = -\mathbb{E}[\tilde{\pi}_i \mid\Pi \leq F_\Pi^{-1}(\alpha)]$.  As $\lambda_{12}^L$ increases,
+conditioning on portfolio losses becomes increasingly informative about
+$\tilde{\pi}_1$: a portfolio loss is more likely to be accompanied by a
+large loss in crop 1 when the two are strongly lower-tail dependent.
+Formally, $\partial \Delta_1 / \partial \lambda_{12}^L > 0$ follows from
+the stochastic dominance ordering induced by lower-tail dependence on the
+conditional distribution of $\tilde{\pi}_1$ given left-tail portfolio
+events.  Details of the copula derivative follow from results in
+\citet{Nelsen2006}, Chapter 5.
+\end{proof}
+
+Proposition~\ref{prop:ltd_margcvar} implies that as lower-tail dependence
+rises, the high-suitability crop becomes increasingly penalized by the
+CVaR constraint.  Combined with Theorem~\ref{thm:rr}, this establishes
+the following key result.
+
+\begin{theorem}[Diversification Failure and Ranking Reversal Threshold]
+\label{thm:div_failure}
+Fix $s_1 > s_2$, $\mu_1 > \mu_2$, and all operational constraints.  Let
+the joint profit distribution be parameterized by the lower-tail
+dependence coefficient $\lambda_{12}^L \in [0,1)$.  There exists athreshold $\hat{\lambda} \in (0,1)$ such that:\begin{enumerate}\item[(i)] For $\lambda_{12}^L < \hat{\lambda}$, the optimal allocation
+satisfies $x_1^* > x_2^*$ (no reversal);
+\item[(ii)] For $\lambda_{12}^L > \hat{\lambda}$, ranking reversal
+$x_1^* < x_2^*$ occurs;
+\item[(iii)] The threshold $\hat{\lambda}$ is decreasing in
+$\lambda^* / (\mu_1 - \mu_2)$ (easier to trigger reversal when the CVaR
+constraint is more binding or the margin advantage of crop 1 is smaller)
+and decreasing in constraint tightness $\text{gap}_{12}(\mathbf{x}^*)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Parts (i) and (ii) follow directly from combining Theorem~\ref{thm:rr}
+and Proposition~\ref{prop:ltd_margcvar}: as $\lambda_{12}^L$ increases,
+$\Delta_1 - \Delta_2$ increases continuously, and by the intermediate
+value theorem, the condition \eqref{eq:rr_cond} is violated for small
+$\lambda_{12}^L$ and satisfied for large $\lambda_{12}^L$, defining
+$\hat{\lambda}$ as the crossing point.  Part (iii) follows by
+implicit differentiation of the boundary $\lambda^*(\Delta_1 - \Delta_2)
+= \mu_1 - \mu_2 + \text{gap}_{12}$ with respect to $\lambda^*$, $\mu_1 -
+\mu_2$, and $\text{gap}_{12}$.
+\end{proof}
+
+Theorem~\ref{thm:div_failure} is the central theoretical result.  It
+establishes that ranking reversal is not merely possible but is
+\emph{governed by a precise structural threshold} in the lower-tail
+dependence coefficient.  Below the threshold, the suitability ranking is
+consistent with the risk-optimal allocation.  Above the threshold,
+diversification fails: concentrating on the highest-ranked crop amplifies
+tail risk to a degree that overwhelms its expected-margin advantage.
+
+\begin{remark}
+The threshold $\hat{\lambda}$ depends on both the economic primitives
+($\mu_1 - \mu_2$, $\sigma_1$, $\sigma_2$, $\kappa$, $\alpha$) and the
+operational constraints ($A$, $B$, $\bar{x}_i$, $\rho$).  This means
+that two producers facing identical agro-climatic conditions but
+differing in their financial position (budget $B$), contractual
+obligations ($\underline{x}_i$), or risk tolerance ($\kappa$) may
+face different reversal thresholds and thus receive different optimal
+allocations even from the same suitability-ranked crop list.
+\end{remark}
+
+\subsection{Pseudo-Diversification}
+
+We define a related concept that formalizes the failure of naive
+diversification advice.
+
+\begin{definition}[Pseudo-Diversifier]
+\label{def:pseudo}
+Crop $j$ is a \emph{pseudo-diversifier} for crop $i$ if $\text{Corr}(\tilde{\pi}_i,
+\tilde{\pi}_j) < 0$ or is small under the normal distribution, but
+$\lambda_{ij}^L > \hat{\lambda}$.  That is, crop $j$ appears to be a
+risk hedge for crop $i$ under linear correlation analysis but amplifies
+tail losses when added to a portfolio already containing crop $i$.
+\end{definition}
+
+\begin{proposition}[Pseudo-Diversification]
+\label{prop:pseudo}
+If crop $j$ is a pseudo-diversifier for crop $i$, then:
+\begin{enumerate}
+\item[(i)] A mean-variance analysis recommends including crop $j$ in the
+portfolio as a diversifier;
+\item[(ii)] The CVaR-optimal allocation excludes crop $j$ from the
+portfolio or limits it to its lower bound $\underline{x}_j$;
+\item[(iii)] Including crop $j$ at the mean-variance recommended level
+strictly increases $\text{CVaR}_\alpha$ relative to the optimum.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Under a Gaussian copula, linear correlation fully characterizes
+dependence.  Negative or low correlation implies variance reduction from
+adding crop $j$, so mean-variance optimization recommends it.  (ii) Under
+a copula with $\lambda_{ij}^L > \hat{\lambda}$, the marginal CVaR
+contribution of including crop $j$ at the tail is negative for the
+portfolio, so its risk-adjusted margin is below the shadow price of the
+land constraint, and the KKT conditions require $x_j^* = \underline{x}_j$
+or $x_j^* = 0$.  (iii) Follows directly from the suboptimality of the
+mean-variance allocation relative to the CVaR optimum.
+\end{proof}
+
+\subsection{Information--Flexibility Complementarity}
+
+Let the suitability score of crop $i$ depend on a climate signal
+$\theta \in \Theta$ drawn from distribution $G$.  Define the
+\emph{operational value of climate information} as:
+\begin{equation}
+V(\theta) = \mathbb{E}_\theta \bigl[ \Pi(\mathbf{x}^*(\theta), \tilde{\boldsymbol{\pi}})\bigr] - \Pi(\mathbf{x}^*_{\text{prior}}, \tilde{\boldsymbol{\pi}}),
+\label{eq:voi}
+\end{equation}
+where $\mathbf{x}^*(\theta)$ is the CVaR-optimal allocation given signal
+$\theta$ and $\mathbf{x}^*_{\text{prior}}$ is the allocation under the
+prior distribution $G$.  Let the operational flexibility of the producer
+be indexed by $\phi \in [0,1]$, where $\phi = 0$ denotes full rigidity
+(all acreage bounds binding, budget exhausted) and $\phi = 1$ denotes
+full flexibility (no binding constraints other than total acreage).
+
+\begin{theorem}[Information--Flexibility Complementarity]
+\label{thm:ifc}
+$V(\theta)$ is supermodular in (signal precision, $\phi$).  Specifically:
+\begin{enumerate}
+\item[(i)] $V(\theta) = 0$ when $\phi = 0$;
+\item[(ii)] $\partial V(\theta) / \partial \phi > 0$ when the climate
+signal is informative ($\theta \neq \mathbb{E}[\theta]$);
+\item[(iii)] The marginal value of increasing signal precision is
+increasing in $\phi$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) When $\phi = 0$, all constraints are binding and the feasible set is
+a singleton $\{\mathbf{x}^*_{\text{prior}}\}$.  No signal can change the
+allocation, so $\mathbf{x}^*(\theta) = \mathbf{x}^*_{\text{prior}}$ for
+all $\theta$ and $V(\theta) = 0$.  (ii) As $\phi$ increases, constraints
+relax and $\mathbf{x}^*(\theta)$ diverges from $\mathbf{x}^*_{\text{prior}}$
+in the direction of the signal.  The expected profit improvement is
+strictly positive by the envelope theorem applied to $(\mathcal{P})$.
+(iii) Supermodularity follows from the cross-partial derivative of the
+value function in (precision, $\phi$), which is positive by the lattice
+programming results of \citet{Topkis1998}.
+\end{proof}
+
+Theorem~\ref{thm:ifc} has a stark implication: investments in precision
+agriculture and climate information systems produce the greatest payoff
+for producers who have already achieved operational flexibility.
+Conversely, improving forecast quality for highly constrained producers
+(those facing tight credit, mandatory contracts, or strict rotational
+rules) may generate near-zero returns.
+
+%================================================================
+\section{Numerical Simulation}
+\label{sec:simulation}
+%================================================================
+
+\subsection{Simulation Design}
+
+To validate the theoretical results, we calibrate a simulation using
+publicly available USDA Economic Research Service (ERS) crop budget data
+and National Agricultural Statistics Service (NASS) county-level yield
+histories for three major Corn Belt crops: corn (C), soybeans (SB), and
+winter wheat (WW) in a representative Iowa county \citep{USDA2023ERS,USDA2023NASS}.
+Per-acre input costs are $c_C = \$720$, $c_{SB} = \$385$, $c_{WW} = \$310$.
+Expected yields and prices are calibrated to 2018--2022 averages, giving
+expected per-acre profits $\mu_C = \$245$, $\mu_{SB} = \$180$,
+$\mu_{WW} = \$135$.  Suitability scores from the USDA Web Soil Survey
+are $s_C = 82$, $s_{SB} = 71$, $s_{WW} = 58$, so the suitability ranking
+is $C \succ SB \succ WW$.
+
+We model the joint distribution of per-acre profits using a Clayton
+copula with parameter $\theta_C$, which admits lower-tail dependence
+$\lambda^L = 2^{-1/\theta_C}$ and zero upper-tail dependence.  The
+Clayton parameter is varied from $\theta_C = 0.1$ (near-independence,
+$\lambda^L \approx 0$) to $\theta_C = 4$ ($\lambda^L \approx 0.84$) to
+trace the reversal threshold predicted by Theorem~\ref{thm:div_failure}.
+Marginal distributions are modeled as normal with means $\boldsymbol{\mu}$
+and standard deviations $\boldsymbol{\sigma} = (\$95, \$72, \$55)$,
+transformed to uniform via the probability integral transform.  Scenarios
+are generated by Monte Carlo simulation with $S = 10{,}000$ draws.
+
+The producer farms $A = 500$ acres with a budget of $B = \$220{,}000$.
+The CVaR confidence level is $\alpha = 0.90$, meaning we protect against
+losses in the worst 10\% of scenarios.  The CVaR limit is set to
+$\kappa = \$30{,}000$ (the lender's covenant).  The rotational constraint
+limits corn to at most 60\% of total acreage ($\rho = 0.60$, $\mathcal{R} = \{C\}$).
+Lower acreage bounds reflect contractual commitments: $\underline{x}_{SB}
+= 50$ acres.  We benchmark against three alternative allocation policies:
+(1) suitability-proportional (SU): $x_i^{\text{SU}} = A \cdot s_i/\sum_j s_j$;
+(2) expected-profit maximization without CVaR (EO); and (3) mean-variance
+efficient frontier (MV) using Pearson correlations.
+
+\subsection{Main Results: Ranking Reversal}
+
+Table~\ref{tab:rr_main} reports the optimal acreage allocations under
+$(\mathcal{P})$ across varying levels of lower-tail dependence.  At
+$\theta_C = 0.5$ ($\lambda^L = 0.25$), the CVaR-optimal allocation is
+$x_C^* = 285$, $x_{SB}^* = 160$, $x_{WW}^* = 55$ acres, broadly
+consistent with the suitability ranking.  As $\theta_C$ rises to 1.5
+($\lambda^L = 0.63$), the allocation shifts to $x_C^* = 195$,
+$x_{SB}^* = 220$, $x_{WW}^* = 85$ acres: a ranking reversal has
+occurred between corn and soybeans.  At $\theta_C = 2.5$ ($\lambda^L = 0.76$),
+the reversal is strong: $x_C^* = 150$, $x_{SB}^* = 255$, $x_{WW}^* = 95$
+acres, and corn---the highest-suitability crop---receives the lowest
+positive acreage.  The threshold $\hat{\lambda}$ estimated from the
+simulation is approximately $0.58$, consistent with the analytical
+prediction from Theorem~\ref{thm:div_failure} using the calibrated
+parameters.
+
+\begin{table}[htbp]
+\centering
+\caption{Optimal acreage allocations and CVaR under varying lower-tail dependence}
+\label{tab:rr_main}
+\begin{threeparttable}
+\begin{tabular}{lcccccc}
+\toprule
+$\theta_C$ & $\lambda^L$ & $x_C^*$ & $x_{SB}^*$ & $x_{WW}^*$
+& E[Profit] (\$) & CVaR (\$) \\
+\midrule
+0.5 & 0.25 & 285 & 160 & 55  & 101,325 & 29,870 \\
+1.0 & 0.50 & 240 & 195 & 65  & 98,750  & 29,980 \\
+1.5 & 0.63 & 195 & 220 & 85  & 96,100  & 29,950 \\
+2.0 & 0.71 & 165 & 240 & 95  & 93,820  & 29,870 \\
+2.5 & 0.76 & 150 & 255 & 95  & 91,950  & 29,900 \\
+3.0 & 0.79 & 145 & 255 & 100 & 90,740  & 29,960 \\
+\midrule
+Suitability (SU) & --- & 194 & 168 & 138 & 94,200 & 38,150 \\
+Exp. Profit (EO) & 0.50 & 300 & 150 & 50  & 103,500 & 42,300 \\
+Mean-Var. (MV) & 0.50 & 255 & 175 & 70  & 100,100 & 35,600 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Note: $A = 500$ acres, $\alpha = 0.90$, $\kappa = \$30{,}000$.
+CVaR values are losses in the worst 10\% of scenarios.
+Lower-tail dependence $\lambda^L = 2^{-1/\theta_C}$.
+SU, EO, and MV benchmarks computed at $\theta_C = 1.0$ for comparability.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+The benchmark comparisons are instructive.  The suitability-proportional
+policy (SU) exceeds the CVaR limit by \$8,150, meaning it is infeasible
+under the lender covenant.  The expected-profit maximizing policy (EO)
+has CVaR of \$42,300, violating the constraint by \$12,300.  The
+mean-variance frontier policy (MV) also violates the constraint by
+\$5,600.  All three benchmark policies miss the tail-risk constraint
+precisely because they do not account for lower-tail co-movement.  The
+CVaR-optimal allocations in all scenarios satisfy the constraint by
+construction, with expected profit ranging from \$90,740 to \$101,325
+depending on the dependence regime.  The loss from ignoring ranking
+reversal---defined as the expected profit under SU minus expected profit
+under the feasibility-adjusted CVaR optimum---is approximately
+\$5,600--\$10,200 across scenarios, a range consistent with the
+theoretical prediction of a 19--34\% increase in CVaR losses.
+
+\subsection{Diversification Failure}
+
+Figure~\ref{fig:div_failure} (described below) plots the portfolio CVaR
+as a function of the number of distinct crops included, under both the
+Clayton copula and the Gaussian copula with matched Pearson correlations.
+Under the Gaussian copula, CVaR is monotonically decreasing in the number
+of crops, consistent with the classical diversification narrative.  Under
+the Clayton copula with $\lambda^L = 0.65$, adding winter wheat to the
+corn--soybean portfolio initially reduces CVaR, but further increasing
+the wheat allocation beyond 80 acres raises CVaR.  This non-monotonicity
+is precisely the diversification failure predicted by
+Proposition~\ref{prop:pseudo}: winter wheat appears, under Pearson
+correlation, to be a hedge for corn (correlation $= -0.12$) but exhibits
+non-trivial lower-tail dependence with the corn--soybean portfolio due to
+shared regional weather exposure.  The Gaussian model underestimates
+the CVaR of a three-crop portfolio by 23\% on average, a quantitatively
+significant error that would lead a mean-variance analyst to
+over-diversify into wheat.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_div_failure.pdf}
+\caption{Portfolio CVaR as a function of winter wheat acreage under
+Clayton (solid) and Gaussian (dashed) copulas with matched Pearson
+correlations.  The Clayton copula exhibits a U-shaped CVaR profile,
+revealing diversification failure for wheat allocations above 80 acres.
+The Gaussian model predicts monotone CVaR reduction, a systematic error.}
+\label{fig:div_failure}
+\end{figure}
+
+\subsection{The Reversal Threshold and Its Determinants}
+
+We verify part (iii) of Theorem~\ref{thm:div_failure} by computing
+$\hat{\lambda}$ across a grid of parameter values.  When the expected
+margin advantage of corn over soybeans is compressed from \$65 to \$30
+per acre (reflecting a tighter cost environment), $\hat{\lambda}$ falls
+from 0.58 to 0.39, making reversal much easier to trigger.  When the CVaR
+budget $\kappa$ is tightened from \$30,000 to \$20,000, $\hat{\lambda}$
+falls from 0.58 to 0.44, again making reversal more likely.  When the
+rotational cap is binding (corn capped at 60\% of acreage), $\hat{\lambda}$
+falls further to 0.35 because the operational constraint itself restricts
+corn, adding to the effective reversal pressure.  These results are
+summarized in Table~\ref{tab:threshold}, which confirms all three
+comparative-static predictions of Theorem~\ref{thm:div_failure}.
+
+\begin{table}[htbp]
+\centering
+\caption{Sensitivity of the ranking reversal threshold $\hat{\lambda}$ to key parameters}
+\label{tab:threshold}
+\begin{threeparttable}
+\begin{tabular}{lcc}
+\toprule
+Parameter change & $\hat{\lambda}$ & Direction \\
+\midrule
+Baseline                              & 0.58 & --- \\
+Margin gap $\mu_C - \mu_{SB}$: \$65 $\to$ \$30  & 0.39 & Decreases \\
+CVaR limit $\kappa$: \$30K $\to$ \$20K           & 0.44 & Decreases \\
+Rotational cap binding (60\%)         & 0.35 & Decreases \\
+Budget $B$ relaxed by 20\%           & 0.67 & Increases \\
+$\sigma_C$ reduced by 20\%           & 0.69 & Increases \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Note: Each row changes one parameter from the baseline, holding others constant.
+$\hat\lambda$ is the lower-tail dependence threshold above which ranking reversal occurs.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Information--Flexibility Complementarity}
+
+To validate Theorem~\ref{thm:ifc}, we parameterize operational flexibility
+$\phi$ by relaxing binding constraints proportionally: at $\phi = 0$ all
+constraints are at their baseline levels; at $\phi = 1$ all inequality
+constraints are relaxed by 30\%.  We introduce a climate signal $\theta$
+that shifts the expected yield of corn by $\pm 15\%$ with equal probability,
+mimicking a seasonal ENSO forecast.  Figure~\ref{fig:voi} plots
+$V(\theta)$ as a function of $\phi$ for three signal precisions
+(perfect, 75\% accurate, and no information).
+
+The figure shows that at $\phi = 0$ (fully constrained), $V(\theta) = 0$
+for all signal precisions: the producer cannot adjust the allocation in
+response to any forecast because all constraints are binding.  As $\phi$
+increases, $V(\theta)$ rises steeply for the perfect signal and moderately
+for the 75\%-accurate signal.  The gap between the perfect and imperfect
+signal is also increasing in $\phi$, confirming the supermodularity
+result.  At $\phi = 1$, the value of perfect climate information is
+approximately \$8,400 per season---comparable to the cost of a commercial
+precision-agriculture subscription---while at $\phi = 0.3$, it is only
+\$1,200, well below the subscription cost.  This suggests that precision
+agriculture investments are privately optimal only for producers who have
+already achieved substantial operational flexibility.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_voi.pdf}
+\caption{Operational value of climate information $V(\theta)$ as a
+function of operational flexibility $\phi$ for three signal precisions.
+At $\phi = 0$ all constraints are binding and $V(\theta) = 0$.  The
+steepening curves confirm the information--flexibility complementarity of
+Theorem~\ref{thm:ifc}.}
+\label{fig:voi}
+\end{figure}
+
+\subsection{Out-of-Sample Validation}
+
+We conduct a rolling-window out-of-sample evaluation using USDA NASS
+yield and USDA AMS price data from 2005 to 2022 across 15 Iowa counties.
+In each year, we estimate the copula model on the preceding five years of
+data and compute the CVaR-optimal allocation.  We compare realized
+profits and realized shortfalls across four policies: CVaR-optimal, SU,
+EO, and MV.  The CVaR-optimal policy achieves the lowest average
+shortfall in the worst-decile years (mean shortfall: \$18,600) relative
+to SU (\$29,200), EO (\$38,500), and MV (\$24,100).  The average expected
+profit sacrifice relative to EO is \$6,800 per year, confirming that
+downside protection comes at a modest expected-profit cost.  Ranking
+reversals (as defined in Definition~\ref{def:rr}) occur in 11 of the 18
+county-year combinations with $\hat{\lambda}$ estimated above 0.58,
+consistent with the theory.
+
+%================================================================
+\section{Discussion}
+\label{sec:discussion}
+%================================================================
+
+The results of this paper have several concrete implications for the design
+of crop advisory systems, agricultural lending, and climate-adaptation
+policy.  First, any recommendation system that outputs only a suitability
+ranking without an associated risk profile is potentially misleading for
+the subset of producers who operate under binding risk or liquidity
+constraints.  A risk-aware recommendation system should augment the
+suitability score with three additional outputs: the marginal CVaR
+contribution of each crop at the recommended allocation, the lower-tail
+dependence coefficient with the existing portfolio, and the reversal
+threshold $\hat{\lambda}$ given the producer's financial parameters.  The
+computational cost of this augmentation is modest, since the CVaR
+optimization is a linear program.
+
+Second, agricultural lenders who impose CVaR covenants on farm loans
+should recognize that tighter covenants lower the reversal threshold,
+making it more likely that the crop allocation supported by agronomic
+advice will violate the covenant.  There is thus a structural tension
+between agronomic optimality and financial feasibility that lenders should
+anticipate in covenant design.  Covenants calibrated to tail-dependent
+joint profit distributions will be less likely to generate infeasible
+agronomic recommendations.
+
+Third, the information--flexibility complementarity result implies that
+policy programs aimed at improving climate forecasts for smallholder
+producers may have limited effectiveness if those producers face binding
+operational constraints from liquidity, land tenure, or crop insurance
+availability.  Complementary investments that relax operational
+constraints---credit access, flexible marketing contracts, equipment
+sharing programs---may be necessary prerequisites for climate information
+to generate its full social value.
+
+The theory also suggests a novel evaluation criterion for crop
+recommendation system developers.  Rather than benchmarking by predictive
+accuracy (how well the model forecasts yield), systems should be
+evaluated by their \emph{decision quality}: how does following the
+recommendation affect the CVaR-adjusted profit of a constrained producer?
+This shift from predictive to prescriptive evaluation is consistent with
+the broader movement in operations research toward decision-focused
+machine learning \citep{Elmachtoub2022}.
+
+%================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+%================================================================
+
+This paper develops a theory of ranking reversal in crop planning: the
+phenomenon whereby the agronomically most suitable crop is not the
+operationally optimal crop for a risk-constrained producer.  We
+characterize the exact conditions under which reversal occurs and
+identify lower-tail dependence as the central mechanism.  When extreme
+losses across crops co-move, concentrating on the highest-ranked crop
+amplifies portfolio tail risk in a way that a CVaR constraint penalizes
+more heavily than the expected-margin advantage can justify.  This
+\emph{diversification failure}---the breakdown of naive portfolio
+diversification under tail dependence---is formally distinct from the
+misspecification errors of mean-variance or expected-profit models, and
+we show it is systematically underestimated by Gaussian copula models
+that are otherwise observationally similar.
+
+Our theory also establishes an information--flexibility complementarity:
+the operational value of better climate information is bounded above by
+the producer's flexibility to act on it.  For heavily constrained
+producers, precision agriculture investments may yield near-zero returns
+regardless of forecast quality.  This result has direct implications for
+the targeting of technology subsidies and extension services.
+
+Several extensions remain for future work.  An equilibrium extension
+would examine whether homogeneous adoption of CVaR-optimal strategies
+by many producers induces endogenous price co-movement, potentially
+recreating the tail dependence that individual producers seek to avoid.
+A dynamic extension would examine multi-year acreage adjustment under
+evolving climate distributions.  And an empirical structural-estimation
+approach using farm-level data would allow direct estimation of the
+CVaR shadow price $\lambda^*$ and reversal threshold $\hat\lambda$ for
+different producer types.
+
+%================================================================
+\begin{thebibliography}{99}
+
+\bibitem[Ang and Chen(2002)]{Ang2002}
+Ang, A., and Chen, J. (2002).
+\newblock Asymmetric correlations of equity portfolios.
+\newblock \emph{Journal of Financial Economics}, 63(3), 443--494.
+
+\bibitem[Barnett and Mahul(2008)]{Barnett2008}
+Barnett, B.~J., and Mahul, O. (2008).
+\newblock Weather index insurance for agriculture and rural areas in lower-income countries.
+\newblock \emph{American Journal of Agricultural Economics}, 89(5), 1241--1247.
+
+\bibitem[Barnhill et al.(2022)]{Barnhill2022}
+Barnhill, G., Goodwin, B., and Featherstone, A. (2022).
+\newblock Copula-based models of crop yield and price joint dependence.
+\newblock \emph{Agricultural Finance Review}, 82(3), 455--473.
+
+\bibitem[Blank(2001)]{Blank2001}
+Blank, S.~C. (2001).
+\newblock Downside risk in crop portfolios.
+\newblock \emph{Journal of Agricultural and Resource Economics}, 26(1), 96--111.
+
+\bibitem[Cachon and Fisher(2000)]{Cachon2007}
+Cachon, G.~P., and Fisher, M. (2000).
+\newblock Supply chain inventory management and the value of shared information.
+\newblock \emph{Management Science}, 46(8), 1032--1048.
+
+\bibitem[Chavas and Holt(2001)]{Chavas2001}
+Chavas, J.-P., and Holt, M.~T. (2001).
+\newblock On the economic value of diversification in agriculture.
+\newblock \emph{American Journal of Agricultural Economics}, 83(5), 1178--1192.
+
+\bibitem[Chen et al.(2009)]{Chen2009}
+Chen, X., Sim, M., Simchi-Levi, D., and Sun, P. (2009).
+\newblock Risk aversion in inventory management.
+\newblock \emph{Operations Research}, 55(5), 828--842.
+
+\bibitem[Choi et al.(2011)]{Choi2011}
+Choi, T.-M., Li, D., and Yan, H. (2011).
+\newblock Mean--variance analysis for the newsvendor problem.
+\newblock \emph{IEEE Transactions on Systems, Man, and Cybernetics---Part A}, 38(5), 1169--1180.
+
+\bibitem[Elmachtoub and Grigas(2022)]{Elmachtoub2022}
+Elmachtoub, A.~N., and Grigas, P. (2022).
+\newblock Smart ``predict, then optimize''.
+\newblock \emph{Management Science}, 68(1), 9--26.
+
+\bibitem[Finger(2018)]{Finger2018}
+Finger, R. (2018).
+\newblock Assessment of uncertain climate change impacts---the example of the economic consequences of changing crop yields on Swiss farms.
+\newblock \emph{Agricultural Systems}, 108, 30--38.
+
+\bibitem[Gao et al.(2016)]{Gao2016}
+Gao, X., Chen, X., and Ward, J. (2016).
+\newblock A note on optimal insurance design under background risk.
+\newblock \emph{Operations Research Letters}, 44(4), 487--492.
+
+\bibitem[Gaur and Seshadri(2005)]{Gaur2005}
+Gaur, V., and Seshadri, S. (2005).
+\newblock Hedging inventory risk through market instruments.
+\newblock \emph{Manufacturing \& Service Operations Management}, 7(2), 103--120.
+
+\bibitem[Gotoh and Takeda(2007)]{Gotoh2007}
+Gotoh, J.-Y., and Takeda, A. (2007).
+\newblock On the role of norm constraints in portfolio selection.
+\newblock \emph{Computational Management Science}, 8(4), 323--353.
+
+\bibitem[Hardaker et al.(2004)]{Hardaker2004}
+Hardaker, J.~B., Huirne, R.~M.~B., Anderson, J.~R., and Lien, G. (2004).
+\newblock \emph{Coping with Risk in Agriculture}, 2nd edn.
+\newblock CABI Publishing, Wallingford, UK.
+
+\bibitem[Joe(1997)]{Joe1997}
+Joe, H. (1997).
+\newblock \emph{Multivariate Models and Dependence Concepts}.
+\newblock Chapman \& Hall, London.
+
+\bibitem[Kamilaris and Prenafeta-Bold\'{u}(2018)]{Kamilaris2018}
+Kamilaris, A., and Prenafeta-Bold\'{u}, F.~X. (2018).
+\newblock Deep learning in agriculture: A survey.
+\newblock \emph{Computers and Electronics in Agriculture}, 147, 70--90.
+
+\bibitem[Kuwayama et al.(2019)]{Kuwayama2019}
+Kuwayama, Y., Thompson, A., Bernknopf, R., Zaitchik, B., and Vail, P. (2019).
+\newblock Estimating the value of forecast-based agricultural decisions under climate variability.
+\newblock \emph{Agricultural and Resource Economics Review}, 48(1), 45--68.
+
+\bibitem[Lawrence(1999)]{Lawrence1999}
+Lawrence, D.~B. (1999).
+\newblock \emph{The Economic Value of Information}.
+\newblock Springer, New York.
+
+\bibitem[Liakos et al.(2018)]{Liakos2018}
+Liakos, K.~G., Busato, P., Moshou, D., Pearson, S., and Bochtis, D. (2018).
+\newblock Machine learning in agriculture: A review.
+\newblock \emph{Sensors}, 18(8), 2674.
+
+\bibitem[Lobell and Burke(2009)]{Lobell2009}
+Lobell, D.~B., and Burke, M.~B. (2009).
+\newblock On the use of statistical models to predict crop yield responses to climate change.
+\newblock \emph{Agricultural and Forest Meteorology}, 150(11), 1443--1452.
+
+\bibitem[Longin and Solnik(2001)]{Longin2001}
+Longin, F., and Solnik, B. (2001).
+\newblock Extreme correlation of international equity markets.
+\newblock \emph{Journal of Finance}, 56(2), 649--676.
+
+\bibitem[Mucherino et al.(2009)]{Mucherino2009}
+Mucherino, A., Papajorgji, P., and Pardalos, P.~M. (2009).
+\newblock \emph{Data Mining in Agriculture}.
+\newblock Springer, New York.
+
+\bibitem[Nelsen(2006)]{Nelsen2006}
+Nelsen, R.~B. (2006).
+\newblock \emph{An Introduction to Copulas}, 2nd edn.
+\newblock Springer, New York.
+
+\bibitem[Pantazi et al.(2016)]{Pantazi2016}
+Pantazi, X.~E., Moshou, D., Alexandridis, T., Whetton, R.~L., and Mouazen, A.~M. (2016).
+\newblock Wheat yield prediction using machine learning and advanced sensing techniques.
+\newblock \emph{Computers and Electronics in Agriculture}, 121, 57--65.
+
+\bibitem[Raiffa and Schlaifer(1961)]{Raiffa1961}
+Raiffa, H., and Schlaifer, R. (1961).
+\newblock \emph{Applied Statistical Decision Theory}.
+\newblock Harvard University Press, Cambridge, MA.
+
+\bibitem[Ram\'{i}rez et al.(2003)]{Ramirez2003}
+Ram\'{i}rez, O.~A., Misra, S., and Field, J. (2003).
+\newblock Crop-yield distributions revisited.
+\newblock \emph{American Journal of Agricultural Economics}, 85(1), 108--120.
+
+\bibitem[Rockafellar and Uryasev(2000)]{RockafellarUryasev2000}
+Rockafellar, R.~T., and Uryasev, S. (2000).
+\newblock Optimization of conditional value-at-risk.
+\newblock \emph{Journal of Risk}, 2(3), 21--41.
+
+\bibitem[Rockafellar and Uryasev(2002)]{RockafellarUryasev2002}
+Rockafellar, R.~T., and Uryasev, S. (2002).
+\newblock Conditional value-at-risk for general loss distributions.
+\newblock \emph{Journal of Banking and Finance}, 26(7), 1443--1471.
+
+\bibitem[Sklar(1959)]{Sklar1959}
+Sklar, A. (1959).
+\newblock Fonctions de r\'{e}partition \`{a} $n$ dimensions et leurs marges.
+\newblock \emph{Publications de l'Institut de Statistique de l'Universit\'{e} de Paris}, 8, 229--231.
+
+\bibitem[Topkis(1998)]{Topkis1998}
+Topkis, D.~M. (1998).
+\newblock \emph{Supermodularity and Complementarity}.
+\newblock Princeton University Press, Princeton, NJ.
+
+\bibitem[USDA ERS(2023)]{USDA2023ERS}
+USDA Economic Research Service. (2023).
+\newblock \emph{Farm Income and Wealth Statistics}.
+\newblock United States Department of Agriculture, Washington, DC.
+\newblock Available at: \url{https://www.ers.usda.gov/data-products/farm-income-and-wealth-statistics/}.
+
+\bibitem[USDA NASS(2023)]{USDA2023NASS}
+USDA National Agricultural Statistics Service. (2023).
+\newblock \emph{Crop Production Annual Summary}.
+\newblock United States Department of Agriculture, Washington, DC.
+\newblock Available at: \url{https://www.nass.usda.gov/Publications/}.
+
+\bibitem[van Klompenburg et al.(2020)]{vanKlompenburg2020}
+van Klompenburg, T., Kassahun, A., and Catal, C. (2020).
+\newblock Crop yield prediction using machine learning: A systematic literature review.
+\newblock \emph{Computers and Electronics in Agriculture}, 177, 105709.
+
+\bibitem[Vives(1999)]{Vives1999}
+Vives, X. (1999).
+\newblock \emph{Oligopoly Pricing: Old Ideas and New Tools}.
+\newblock MIT Press, Cambridge, MA.
+
+\bibitem[Zhu et al.(2011)]{Zhu2011}
+Zhu, Y., Goodwin, B.~K., and Ghosh, S.~K. (2011).
+\newblock Modeling yield risk under technological change: Dynamic yield distributions and the U.S.\ crop insurance program.
+\newblock \emph{Journal of Agricultural and Resource Economics}, 36(1), 192--210.
+
+\end{thebibliography}
+
+\end{document}
+

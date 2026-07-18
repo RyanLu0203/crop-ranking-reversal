@@ -1,0 +1,31 @@
+symbol,LaTeX,meaning,type,domain,unit,stochastic_or_deterministic,decision_or_parameter,first_location,consistency_status,conflicts,proposed_canonical_definition
+i,i,crop index,index,integer,integer,deterministic,parameter_or_random_primitive,Sec. 3,retained,,"i=1,...,n"
+x_i,x_{i},acreage allocated to crop i,scalar_or_component,real-valued; subject to canonical constraints,acres,deterministic,decision,Sec. 3,retained,Use x for allocations only,decision variable
+p_i,p_{i},price,scalar_or_component,real-valued; subject to canonical constraints,currency/output unit,stochastic,parameter_or_random_primitive,Sec. 3,retained,,random output price
+y_i,y_{i},yield,scalar_or_component,real-valued; subject to canonical constraints,output unit/acre,stochastic,parameter_or_random_primitive,Sec. 3,retained,,random output per acre
+c_i,c_{i},cost,scalar_or_component,real-valued; subject to canonical constraints,currency/acre,deterministic,parameter_or_random_primitive,Sec. 3,retained,If stochastic costs are later used redefine profit scenarios,deterministic per-acre production cost
+pi_i,pi_{i},profit per acre,scalar_or_component,real-valued; subject to canonical constraints,currency/acre,stochastic,parameter_or_random_primitive,Sec. 3,retained,,p_i*y_i-c_i
+Pi,Pi,portfolio profit,scalar_or_component,real-valued; subject to canonical constraints,currency,stochastic,parameter_or_random_primitive,Sec. 3,retained,Uppercase distinguishes portfolio from per-acre profit,sum_i x_i*pi_i
+L,L,portfolio loss,scalar_or_component,real-valued; subject to canonical constraints,currency,stochastic,parameter_or_random_primitive,implicit,added,Canonical CVaR argument,-Pi
+mu_i,mu_{i},mean profit,scalar_or_component,real-valued; subject to canonical constraints,currency/acre,deterministic,parameter_or_random_primitive,Sec. 3,retained,,E[pi_i]
+s_i,s_{i},suitability score,scalar_or_component,real-valued; subject to canonical constraints,declared score scale,deterministic,parameter_or_random_primitive,Sec. 3,conditional,Never equate dimensionally with mu_i; define ranking equivalence instead,external ordinal or cardinal score
+A,A,available land,scalar_or_component,real-valued; subject to canonical constraints,acres,deterministic,parameter_or_random_primitive,Sec. 3,retained,,maximum total acreage
+B,B,cost budget,scalar_or_component,real-valued; subject to canonical constraints,currency,deterministic,parameter_or_random_primitive,Sec. 3,retained,,maximum c^T x
+ell_i,ell_{i},lower bound,scalar_or_component,real-valued; subject to canonical constraints,acres,deterministic,parameter_or_random_primitive,Sec. 3,normalized,Teacher uses underline x,minimum crop acreage
+u_i,u_{i},upper bound,scalar_or_component,real-valued; subject to canonical constraints,acres,deterministic,parameter_or_random_primitive,Sec. 3,normalized,Teacher uses overline x,maximum crop acreage
+"H,h","H,h",shared constraints,matrix_or_vector,real-valued; subject to canonical constraints,mixed declared units,deterministic,parameter_or_random_primitive,Sec. 3,added,Collects rotation and other group constraints,Hx<=h
+alpha,alpha,CVaR confidence,scalar_or_component,dimensionless; 0<alpha<1,dimensionless; 0<alpha<1,deterministic,parameter_or_random_primitive,Sec. 3,retained,,loss-tail confidence
+kappa,kappa,CVaR limit,scalar_or_component,real-valued; subject to canonical constraints,currency,deterministic,parameter_or_random_primitive,Sec. 3,retained,Can be negative if worst-tail outcomes remain profitable,maximum accepted loss CVaR
+v,v,VaR auxiliary,scalar_or_component,real-valued; subject to canonical constraints,currency,deterministic,decision,Sec. 3,retained,Not necessarily unique at atoms,free RU threshold
+q_s,q_{s},tail excess auxiliary,scalar_or_component,real-valued; subject to canonical constraints,currency,deterministic,decision,Sec. 3,retained,,max(L_s-v;0)
+w_s,w_{s},scenario probability,scalar_or_component,real-valued; subject to canonical constraints,dimensionless,deterministic,parameter_or_random_primitive,implicit,added,Teacher equal-weight case has 1/S,positive; sums to one
+d_i,d_{i},CVaR subgradient component,scalar_or_component,real-valued; subject to canonical constraints,currency/acre,deterministic,auxiliary_or_dual,Sec. 4,repaired,Teacher Delta_i treated as a derivative without regularity,component i of partial CVaR(L(x))
+lambda,lambda,KKT multiplier for CVaR constraint,scalar_or_component,real-valued; subject to canonical constraints,expected-profit per CVaR unit,deterministic,auxiliary_or_dual,Sec. 4,retained,Not tail-dependence lambda_L,nonnegative dual variable
+lambda_L,lambda_{L},lower-tail dependence coefficient,scalar_or_component,dimensionless; [0;1],dimensionless; [0;1],deterministic,parameter_or_random_primitive,Sec. 3,retained,Does not identify the copula,lim u->0 C(u;u)/u
+gamma,gamma,KKT land multiplier,scalar_or_component,real-valued; subject to canonical constraints,currency/acre,deterministic,auxiliary_or_dual,Sec. 4,retained,,nonnegative dual variable
+beta,beta,KKT budget multiplier,scalar_or_component,real-valued; subject to canonical constraints,expected-profit/currency,deterministic,auxiliary_or_dual,omitted,added,,nonnegative dual variable
+eta,eta,KKT shared-constraint multipliers,matrix_or_vector,real-valued; subject to canonical constraints,declared by rows of H,deterministic,auxiliary_or_dual,omitted,added,,nonnegative vector
+"u_plus,u_minus","u_i^+,u_i^-",KKT bound multipliers,matrix_or_vector,real-valued; subject to canonical constraints,currency/acre,deterministic,auxiliary_or_dual,Sec. 4,normalized,,upper and lower bound duals
+tau_x,tau_{x},acreage comparison tolerance,scalar_or_component,real-valued; subject to canonical constraints,acres,deterministic,parameter_or_random_primitive,omitted,added,,threshold for strict reversal
+phi,phi,flexibility parameter,scalar_or_component,real-valued; subject to canonical constraints,declared dimensionless scale,deterministic,parameter_or_random_primitive,Sec. 4,conditional,Needs explicit X(phi),indexing nested feasible sets
+Z,Z,information signal,random element,signal space,signal space,stochastic,parameter_or_random_primitive,Sec. 4,normalized,Teacher theta timing was ambiguous,observed before recourse action

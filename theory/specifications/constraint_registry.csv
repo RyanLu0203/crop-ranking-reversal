@@ -1,0 +1,10 @@
+constraint_id,name,canonical_form,units,convex,teacher_status,feasibility_condition,dual_symbol,audit_note
+C01,land,1^T x <= A,acres,YES,present,"A>=0 and compatible with lower bounds",gamma,"Equality is not automatic"
+C02,budget,c^T x <= B,currency,YES,present,"c^T ell<=B is necessary when c>=0",beta,"Omitted from teacher KKT"
+C03,lower bounds,ell-x <= 0,acres,YES,present,"ell<=u",u_minus,"Sign normalized in stationarity"
+C04,upper bounds,x-u <= 0,acres,YES,present,"ell<=u",u_plus,"Can force reversals"
+C05,shared rotation,Hx <= h,row-specific,YES,present,"phase-I LP required",eta,"Omitted from teacher KKT; overlapping groups allowed"
+C06,CVaR,"CVaR_alpha(-pi^T x)<=kappa",currency,YES,present,"phase-I LP including v/q required",lambda,"Teacher continuous quantile formula uses wrong profit tail"
+C07,tail epigraph,"-pi_s^T x-v-q_s<=0",currency,YES,present,"q_s>=0; v free",scenario_duals,"Correct sign for loss convention"
+C08,CVaR epigraph,"v+(1/(1-alpha))*sum_s w_s q_s<=kappa",currency,YES,present,"0<alpha<1; weights sum one",lambda,"Teacher equal-weight version is structurally correct"
+C09,nonnegative excess,-q_s<=0,currency,YES,present,"always compatible",tail_nonnegative_duals,

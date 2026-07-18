@@ -1,0 +1,53 @@
+target_journal: Nature Food
+backend: python_matplotlib
+single_column_width_mm: 89
+double_column_width_mm: 183
+maximum_height_mm: 170
+font_family: Arial_or_Helvetica_compatible_sans_serif
+font_size_pt:
+  minimum: 5
+  body: 6.5
+  maximum: 7
+  panel_label: 8
+exports:
+  - pdf
+  - svg
+  - png
+principles:
+  - restrained_editorial_style
+  - color_blind_accessible
+  - grayscale_interpretable_where_practical
+  - no_rainbow_palettes
+  - no_3d_charts
+  - no_decorative_dashboard_elements
+semantic_colours:
+  deep_blue: "#4E659B"
+  blue_violet: "#8A8CBF"
+  lavender: "#B8A8CF"
+  blush: "#E7BCC6"
+  apricot: "#FDCF9E"
+  coral: "#EFA484"
+  terracotta: "#B6766C"
+  suitability: "#4E659B"
+  expected_yield: "#8A8CBF"
+  expected_profit: "#B8A8CF"
+  cost_aware: "#B6766C"
+  random_placebo: "#E7BCC6"
+  universal_optimal_reversal: "#4E659B"
+  possible_optimal_reversal: "#FDCF9E"
+  neutral: "#545454"
+  annotation_accent: "#EFA484"
+palette_policy:
+  - one_semantic_mapping_across_all_main_figures
+  - cool_family_for_primary_ranking_and_universal_evidence
+  - warm_family_for_attenuation_resolution_and_thresholds
+  - neutral_text_and_reference_lines
+  - secondary_shape_line_and_hatch_encoding_for_print_safety
+uncertainty:
+  dependence_aware_interval: thin_errorbar
+  placebo_interval: shaded_or_explicitly_labelled_interval
+  descriptive_comparison: no_significance_claim
+event_unit_labels:
+  policy_row: county-year-policy row
+  crop_pair_row: event-crop-pair row
+  event_id: unique decision event

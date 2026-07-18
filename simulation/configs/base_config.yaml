@@ -1,0 +1,82 @@
+random_seed: 20260703
+n_scenarios: 5000
+
+crop_names:
+  - Corn
+  - Soybean
+  - Winter Wheat
+
+total_acres: 500
+budget: 220000
+alpha: 0.90
+cvar_limit: 30000
+
+costs:
+  Corn: 720
+  Soybean: 385
+  Winter Wheat: 310
+
+means:
+  Corn: 245
+  Soybean: 180
+  Winter Wheat: 135
+
+stds:
+  Corn: 95
+  Soybean: 72
+  Winter Wheat: 55
+
+suitability_scores:
+  Corn: 82
+  Soybean: 71
+  Winter Wheat: 58
+
+lower_bounds:
+  Corn: 0
+  Soybean: 50
+  Winter Wheat: 0
+
+upper_bounds:
+  Corn: 500
+  Soybean: 500
+  Winter Wheat: 500
+
+rotation_caps:
+  Corn: 300
+
+theta_grid:
+  - 0.1
+  - 0.5
+  - 1.0
+  - 1.5
+  - 2.0
+  - 2.5
+  - 3.0
+  - 4.0
+
+gaussian_correlation:
+  - [1.00, 0.42, 0.26]
+  - [0.42, 1.00, 0.22]
+  - [0.26, 0.22, 1.00]
+
+baseline_clayton_theta: 2.0
+
+marginal_model:
+  type: skewed_mixture
+  tail_probability: 0.07
+  within_std_fraction: 0.20
+
+mean_variance_gamma: 0.00001
+
+robustness:
+  n_scenarios: 2500
+  alpha_grid: [0.85, 0.90, 0.95]
+  kappa_grid: [20000, 30000, 40000]
+  budget_grid: [180000, 220000, 260000]
+  corn_cap_share_grid: [0.50, 0.60, 0.70, 0.80]
+  corn_soybean_margin_gaps: [65, 45, 30]
+  scenario_count_grid: [1000, 5000, 10000]
+  copula_families: ["Gaussian", "Clayton"]
+
+stress_calibration:
+  search_n_scenarios: 300

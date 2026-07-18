@@ -1,0 +1,8 @@
+asset_id,asset_group,canonical_path,reproducibility_level,evidence_role,admissibility_status,verification_status,limitations
+EA-BASE-001,teacher_baseline,baselines/teacher_draft,immutable_snapshot,architecture baseline,CANONICAL_BASELINE,hash-enforced,"No citation/data/number/result admissibility"
+EA-THEORY-001,theory_audit,theory,audit_and_specification,Issue 2 input,REQUIRES_ISSUE_2_REPAIR,repository validation,"No standalone repaired theorem TeX yet"
+EA-OPT-001,optimization_components,optimization/src,component,method implementation,SYNTHETIC_CHECK_ONLY,unit tests,"No calibrated main experiment"
+EA-SIM-001,simulation_components,simulation/src,component,scenario implementation,SYNTHETIC_CHECK_ONLY,unit tests,"Issue 5 design not frozen"
+EA-EMP-001,empirical_components,empirical/src,component,processing candidate,REQUIRES_FULL_RERUN,import-only,"No data imported in Issue 1"
+EA-VIZ-001,visualization_components,visualization/src,component,visualization candidate,REQUIRES_ISSUE_8,import-only,"No result figures admitted"
+EA-UPSTREAM-001,upstream_audits,provenance/upstream_audits,context,provenance reference,NOT_MANUSCRIPT_EVIDENCE,checksum on repository manifest,"Records a different audited workspace"
