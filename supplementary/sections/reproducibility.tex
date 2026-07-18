@@ -1,0 +1,9 @@
+\section{Reproducibility, lineage and artifact inventory}
+
+The repository is organized as an evidence graph. Raw data files are immutable and checksum-registered. Processing scripts create canonical panels; formal simulation and empirical scripts write tidy outputs; visualization scripts read only those outputs; manuscript macros read verified summaries. A canonical asset manifest hashes all admitted files and excludes collision-suffixed local copies.
+
+The one-command visual build exports editable PDF/SVG and 300/600-dpi rasters, captions, source-data extracts, grayscale proofs and checksum ledgers. The manuscript build regenerates numeric macros and validates citation keys, section inclusion, claim levels, figure/table paths and closure of the teacher-Draft completion matrix. No teacher-Draft numerical result or legacy threshold is admitted.
+
+\paragraph{Software environment.} Python 3.11 is managed with the locked project environment. Optimization uses SciPy/HiGHS; data processing uses pandas and NumPy; figures use Matplotlib with a frozen Nature-style contract. LaTeX source is modular and compiled in a separate isolated build directory.
+
+\paragraph{Artifact availability.} The main source is \texttt{manuscript/main.tex}; this supplement is \texttt{supplementary/supplementary.tex}. Figure and table registries provide generating commands, source data, configurations and checksums. The cover page retains explicit placeholders only for author-owned metadata and declarations that cannot be inferred from scientific evidence.

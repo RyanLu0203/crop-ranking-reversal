@@ -1,7 +1,7 @@
 UV ?= uv
 PYTHON_VERSION ?= 3.11
 
-.PHONY: install figures validate test check manifest
+.PHONY: install figures manuscript validate test check manifest
 
 install:
 	$(UV) sync --locked --extra test --python $(PYTHON_VERSION)
@@ -9,6 +9,10 @@ install:
 figures:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_nature_figures.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
+
+manuscript:
+	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_manuscript_inputs.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manuscript.py
 
 validate:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_repository.py
@@ -19,6 +23,7 @@ validate:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_formal_simulation.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_empirical_analysis.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manuscript.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 
 test:
