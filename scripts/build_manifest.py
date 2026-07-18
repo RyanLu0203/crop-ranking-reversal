@@ -5,12 +5,14 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "provenance/canonical_asset_manifest.csv"
 CHECKSUMS = ROOT / "provenance/checksums/canonical_SHA256SUMS.txt"
 EXCLUDED_NAMES = {MANIFEST.name, CHECKSUMS.name, ".DS_Store"}
+SYNC_COLLISION = re.compile(r" \d+$")
 
 
 def included(path: Path) -> bool:
@@ -23,6 +25,7 @@ def included(path: Path) -> bool:
         and "__pycache__" not in relative.parts
         and ".pytest_cache" not in relative.parts
         and path.name not in EXCLUDED_NAMES
+        and not SYNC_COLLISION.search(path.stem)
         and path.suffix != ".pyc"
     )
 

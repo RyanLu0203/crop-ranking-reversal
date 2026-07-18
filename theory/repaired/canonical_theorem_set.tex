@@ -1,0 +1,267 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,enumitem,hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newcommand{\CVaR}{\operatorname{CVaR}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\title{Canonical Repaired Theorem Set\\Multi-Crop Ranking Reversal}
+\author{Issue \#2 theory audit deliverable}
+\date{19 July 2026}
+
+\begin{document}
+\maketitle
+
+\section{Canonical model}
+
+On $(\Omega,\mathcal F,\mathbb P)$ let $\mathcal I=\{1,\ldots,n\}$ index crops.
+The ex-ante acreage decision is $x\in\mathbb R_+^n$.  Per-hectare crop
+profit is $\pi_i=P_iY_i-c_i$, portfolio profit is
+$\Pi(x)=\pi^\top x$, and loss is
+\[
+L(x)=-\Pi(x),\qquad \mu=\mathbb E[\pi].
+\]
+The retained operational set is
+\[
+X=\{x:\mathbf1^\top x\le A,\ a^\top x\le B,\ \ell\le x\le u,\
+Gx\le g\}.
+\]
+Assume throughout that $X$ is nonempty and compact and every $\pi_i$ is
+integrable.  For $\alpha\in(0,1)$ define loss CVaR by
+\[
+r_\alpha(x)=\inf_{v\in\mathbb R}
+\left\{v+\frac{1}{1-\alpha}\mathbb E[(L(x)-v)_+]\right\}.
+\]
+The canonical program and solution correspondence are
+\[
+(P_\kappa)\quad
+\max_{x\in X}\{\mu^\top x:r_\alpha(x)\le\kappa\},\qquad
+S(\kappa)=\argmax(P_\kappa).
+\]
+Marginal laws may be joined by a valid $n$-copula $C_\theta$.
+The bivariate lower-tail coefficient, when its limit exists, is
+$\lambda_L=\lim_{q\downarrow0}C(q,q)/q$; it is a diagnostic, not an
+ordering of general joint laws.
+
+\section{Reversal definitions}
+
+Let $s_i>s_j$ and let $\tau_x>0$ be a declared numerical tolerance.
+A pair $(i,j)$ is a possible reversal if some $x\in S(\kappa)$ has
+$x_j\ge x_i+\tau_x$, a universal reversal if every such $x$ does, and
+a selected reversal if a declared selection $x^\sigma\in S(\kappa)$
+does.  A strong reversal has $x_i=0<x_j$.  A top-rank reversal compares
+a highest-score crop with a lower-score crop.  These labels are not
+interchangeable.
+
+\section{Results and proofs}
+
+\begin{theorem}[CT1: existence, convexity, and finite LP]\label{ct1}
+$r_\alpha$ is finite, continuous, and convex on $X$.  If
+$(P_\kappa)$ is feasible, $S(\kappa)$ is nonempty and compact.  Under
+finite scenarios $\pi_s$ with weights $w_s>0$, $\sum_s w_s=1$, its risk
+constraint is represented exactly by
+\[
+v+\frac{1}{1-\alpha}\sum_s w_sq_s\le\kappa,\quad
+q_s\ge-\pi_s^\top x-v,\quad q_s\ge0,\quad v\in\mathbb R.
+\]
+\end{theorem}
+\begin{proof}
+Each $x\mapsto-\pi(\omega)^\top x$ is affine.  The positive part and
+expectation preserve convexity, and minimization in the Rockafellar--Uryasev
+representation gives the convex CVaR functional.  Integrability and compact
+$X$ give finiteness and continuity.  Its sublevel set intersected with $X$
+is compact; a continuous linear objective attains its maximum there.
+For finite support, replacing every positive part by its epigraph variable
+$q_s$ gives the displayed inequalities, and minimizing over $q_s$ and free
+$v$ recovers the definition exactly.
+\end{proof}
+
+\begin{theorem}[CT2: ordinal ranking insufficiency]\label{ct2}
+A strict weak order induced by suitability scores does not identify a
+cardinal acreage vector or an optimal allocation without an additional
+mapping from scores to payoffs and constraints.
+\end{theorem}
+\begin{proof}
+Every strictly increasing transformation of the scores preserves their
+order.  Infinitely many cardinal vectors and feasible sets are compatible
+with that same order, and any selected feasible vector can be made uniquely
+optimal by a suitable linear objective over a suitable compact polytope.
+Thus the ordinal information alone cannot identify acreage.
+\end{proof}
+
+\begin{proposition}[CT3: feasibility-forced universal reversal]\label{ct3}
+If $s_i>s_j$ and
+\[
+\sup_{x\in X}x_i+\tau_x\le\inf_{x\in X}x_j,
+\]
+then every feasible point, hence every optimizer, reverses $(i,j)$.
+The readily checked condition $u_i+\tau_x\le\ell_j$ is sufficient.
+\end{proposition}
+\begin{proof}
+For every $x\in X$, $x_i+\tau_x\le\sup_Xx_i+\tau_x
+\le\inf_Xx_j\le x_j$.  Restriction to $S(\kappa)\subseteq X$ preserves
+the inequality.
+\end{proof}
+
+\begin{theorem}[CT4: exact risk-slack identity]\label{ct4}
+Let $S_0=\argmax_{x\in X}\mu^\top x$.  Then
+\[
+S(\kappa)=S_0\cap\{x:r_\alpha(x)\le\kappa\}
+\]
+whenever the right side is nonempty.  Consequently all unconstrained
+optima remain optimal if all are risk-feasible; a single slack optimum
+does not imply equality of optimal sets under multiplicity.
+\end{theorem}
+\begin{proof}
+No risk-feasible point can exceed the unrestricted optimum value.
+Every risk-feasible member of $S_0$ attains that value, while any
+risk-constrained optimizer attaining a smaller value would be dominated by
+such a member.  Hence the two sets coincide.
+\end{proof}
+
+\begin{theorem}[CT5: complete KKT and finite tail weights]\label{ct5}
+Assume a convex constraint qualification.  A feasible $x^*$ is optimal
+if and only if there exist nonnegative multipliers
+$\eta,\beta,\rho,\gamma,\underline\nu,\overline\nu$ and
+$d\in\partial r_\alpha(x^*)$ satisfying
+\[
+0=-\mu+\eta\mathbf1+\beta a+G^\top\gamma
+-\underline\nu+\overline\nu+\rho d
+\]
+together with primal feasibility and complementary slackness for land,
+budget, every row of $G$, both bound systems, and risk.  Under finite
+scenarios one may take
+\[
+d=-\sum_s\xi_s\pi_s,\quad
+0\le\xi_s\le\frac{w_s}{1-\alpha},\quad \sum_s\xi_s=1,
+\]
+with upper-tail saturation and VaR-atom splitting dictated by LP
+complementarity.
+\end{theorem}
+\begin{proof}
+Apply convex KKT to minimization of $-\mu^\top x$ with all inequalities
+written in nonpositive form.  The displayed stationarity is the
+subdifferential inclusion after collecting their normals; KKT necessity
+follows from the constraint qualification and sufficiency from convexity.
+For finite support, dualizing the excess-loss epigraph bounds yields the
+box constraints on $\xi_s$, while stationarity in the free variable $v$
+gives $\sum_s\xi_s=1$.  Stationarity in $x$ yields the displayed
+subgradient, and complementarity assigns full weight above VaR, zero below,
+and admissible fractional weight at atoms.
+\end{proof}
+
+\begin{proposition}[CT6: risk-adjusted feasible displacement]\label{ct6}
+Let $x$ be feasible and let $h\ne0$ satisfy $x+th\in X$ for all small
+$t\ge0$.  Suppose $\mu^\top h>0$ and either (i) $r_\alpha(x)<\kappa$,
+(ii) $r_\alpha(x)=\kappa$ and $r_\alpha'(x;h)<0$, or (iii) direct
+evaluation establishes $r_\alpha(x+th)\le\kappa$ for some small $t>0$.
+Then $x$ is not optimal.
+\end{proposition}
+\begin{proof}
+In case (i), continuity makes every sufficiently small step risk-feasible.
+In case (ii), directional differentiability gives
+$r_\alpha(x+th)=r_\alpha(x)+t r_\alpha'(x;h)+o(t)<\kappa$ for small
+positive $t$.  Case (iii) supplies a feasible step directly.  In all cases
+the objective rises by $t\mu^\top h>0$.  Strict negativity in (ii) cannot
+be weakened to zero: an active boundary locally shaped as $t^2\le0$ has
+zero derivative but permits no positive step.
+\end{proof}
+
+\begin{theorem}[CT7: restricted dependence ordering]\label{ct7}
+Fix the marginals and a named copula family.  If for
+$\theta_1\preceq\theta_2$ and every $x$ in a declared domain $D\subseteq X$
+\[
+L_{\theta_1}(x)\preceq_{\rm cx}L_{\theta_2}(x),
+\]
+then $r_{\alpha,\theta_1}(x)\le r_{\alpha,\theta_2}(x)$ on $D$.
+Consequently the higher-dependence risk-feasible set within $D$ is a
+subset of the lower-dependence one.
+\end{theorem}
+\begin{proof}
+For each $v$, $z\mapsto(z-v)_+$ is convex.  Convex order therefore orders
+its expectations.  Add $v$, scale by $(1-\alpha)^{-1}$, and take the
+infimum over $v$ to obtain the CVaR inequality.  Sublevel-set inclusion is
+immediate.  No claim follows from $\lambda_L$ alone.
+\end{proof}
+
+\begin{theorem}[CT8: reversal regions and crossing sets]\label{ct8}
+For a declared selection rule $\sigma$, define
+$\Delta^\sigma_{ij}(\theta)=x^\sigma_j(\theta)-x^\sigma_i(\theta)$ and
+\[
+\mathcal R^\sigma_{ij}=\{\theta:\Delta^\sigma_{ij}(\theta)\ge\tau_x\},
+\qquad
+\mathcal C^\sigma_{ij}=\{\theta:\Delta^\sigma_{ij}(\theta)=0\}.
+\]
+Without continuity, uniqueness, strict monotonicity, endpoint crossing,
+and active-set regularity, the crossing set may be empty, a singleton,
+multiple points, or an interval.
+\end{theorem}
+\begin{proof}
+The set definitions are exact.  Constant positive and constant negative
+gaps give empty crossing sets; an affine sign-changing gap gives one point;
+a polynomial with several roots gives several; and a function vanishing on
+an interval gives an interval.  Optimization correspondences can realize
+discontinuity and multiplicity, so none of the omitted properties follows
+from the canonical program.
+\end{proof}
+
+\begin{proposition}[CT9: pseudo-diversification is diagnostic]\label{ct9}
+For predeclared thresholds $\rho_0,\lambda_0$, the label
+$D_{\rho,\lambda}=\{(i,j):|\rho_{ij}|\le\rho_0,\
+\lambda_{L,ij}\ge\lambda_0\}$ is descriptive only.  Membership implies
+neither optimal inclusion or exclusion nor an ordering of portfolio CVaR
+or welfare.
+\end{proposition}
+\begin{proof}
+Optimal inclusion also depends on means, all constraints, the full joint
+law, and other crops.  Raising a flagged crop's mean sufficiently can force
+inclusion; an upper bound or low mean can force exclusion independently of
+the flag.  Equal scalar diagnostics can coexist with distinct joint laws
+and CVaR.  Therefore no asserted optimization conclusion is logically
+entailed.
+\end{proof}
+
+\begin{theorem}[CT10: information actionability and weak flexibility]\label{ct10}
+Let a signal $Z$ arrive before a recourse action is selected.  If ignoring
+$Z$ is admissible, posterior optimization has value no lower than prior
+optimization.  Its value of information is zero when one common policy is
+optimal for almost every posterior problem.  If
+$\mathcal A_{f_1}(z)\subseteq\mathcal A_{f_2}(z)$ almost surely, optimized
+value is weakly increasing in flexibility.  Strict increase and
+supermodular information--flexibility complementarity do not follow
+without additional structure.
+\end{theorem}
+\begin{proof}
+The posterior decision maker can copy the prior policy, so optimization
+over signal-contingent policies weakly improves value.  A common posterior
+optimizer attains both values, proving zero value.  Maximization over a
+superset cannot lower value, proving weak flexibility monotonicity.
+Equality occurs whenever the added actions are never optimal, refuting
+strictness; substitutes between information and recourse refute general
+supermodularity.
+\end{proof}
+
+\section{Transition and evidence boundary}
+
+The Draft's multi-crop architecture is retained.  The false general
+ranking-reversal equivalence is replaced by CT3, CT5, and CT6; global
+tail-dependence monotonicity by conditional CT7; a unique threshold by
+CT8; the pseudo-diversification proposition by CT9; and strict
+information--flexibility complementarity by CT10.  Every Draft result
+R01--R31 is dispositioned in the transition registry.  All teacher-Draft
+numbers remain illustrative and are inadmissible as paper evidence until
+their separate simulation or empirical contracts are executed.
+
+\section*{Method sources}
+
+The loss-CVaR representation and finite-scenario LP follow the full-text
+method foundations of Rockafellar and Uryasev (2000, 2002).  Dependence
+language is restricted to named, verified families, consistent with the
+family-specific analysis of Ansari and Rockel (2024).  Exact source URLs,
+DOIs, verification dates, roles, and limitations are recorded in the
+literature registry and method-source verification note.
+
+\end{document}
