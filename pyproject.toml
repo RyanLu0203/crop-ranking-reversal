@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crop-ranking-reversal"
+version = "0.1.0"
+description = "Auditable research pipeline for the crop-ranking-reversal paper rebuild."
+requires-python = ">=3.10,<3.12"
+dependencies = [
+  "numpy>=1.24,<2.0",
+  "pandas>=2.0,<2.1",
+  "scipy>=1.10,<1.11",
+  "PyYAML>=6.0,<7.0",
+]
+
+[project.optional-dependencies]
+data = ["pyarrow>=19.0,<20.0"]
+visualization = ["matplotlib>=3.7,<3.8", "seaborn>=0.13,<0.14"]
+test = ["pytest>=7,<9", "pyarrow>=19.0,<20.0", "matplotlib>=3.7,<3.8", "seaborn>=0.13,<0.14"]
+
+[tool.setuptools.packages.find]
+where = ["empirical/src", "simulation/src", "optimization/src", "visualization/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "theory/proofs/computational_checks"]
+addopts = "-q"

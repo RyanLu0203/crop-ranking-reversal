@@ -1,0 +1,6 @@
+claim_id,claim_summary,status,evidence_type,supporting_assets,pipeline_reproduced,result_reproduced,manuscript_admissible,qualification_required,notes
+C-BASE-001,Teacher Draft is preserved byte-for-byte as the architecture baseline,CANONICAL_BASELINE,baseline,"baselines/teacher_draft;provenance/checksums/teacher_draft_SHA256SUMS.txt",YES,NOT_APPLICABLE,NO,YES,"Not external evidence"
+C-BASE-002,Every major Draft content item is mapped to a dependent Issue,ISSUE_1_GOVERNANCE_VERIFIED,governance,audits/draft_content_completion_matrix.csv,YES,NOT_APPLICABLE,NO,YES,"Mapping does not complete dependent scientific work"
+C-CODE-001,Imported stochastic optimization components pass synthetic unit tests,SYNTHETIC_CHECK_ONLY,software,"optimization/src;simulation/src;tests",YES,YES,NO,YES,"No empirical or simulation-paper result is established"
+C-THEORY-001,A prior theorem audit is available as input to Issue 2,REQUIRES_ISSUE_2_REPAIR,theory_audit,theory/audit,YES,NOT_APPLICABLE,NO,YES,"Audit classifications are not yet the compiled canonical theorem set required by Issue 2"
+C-HIST-001,Historical and Draft numerical claims are inadmissible,INADMISSIBLE,historical,None,NO,NO,NO,YES,"Must be regenerated under Issues 4 through 7"

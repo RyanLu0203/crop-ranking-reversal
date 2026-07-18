@@ -1,0 +1,26 @@
+primary:
+  score_tie_tolerance_normalized: 0.01
+  acreage_tie_tolerance_acres: 1.0
+  near_zero_acreage_tolerance_acres: 1.0
+  feasibility_tolerance_acres: 0.0001
+  feasibility_tolerance_budget_dollars: 1.0
+  objective_equivalence_tolerance_dollars: 0.01
+
+sensitivity_grid:
+  score_tie_tolerance_normalized: [0.0, 0.005, 0.01, 0.05, 0.1]
+  acreage_tie_tolerance_acres: [0.00001, 1.0, 10.0, 100.0, 1000.0]
+  near_zero_acreage_tolerance_acres: [0.00001, 1.0, 10.0, 100.0]
+  objective_equivalence_tolerance_dollars: [0.000001, 0.01, 1.0, 100.0]
+
+definitions:
+  score_tie: "Two crop scores are tied when their normalized score difference is at most score_tie_tolerance_normalized."
+  acreage_tie: "Two acreage allocations are tied when their absolute acreage difference is at most acreage_tie_tolerance_acres."
+  near_zero_acreage: "A crop is treated as receiving zero operational acreage when acreage is at most near_zero_acreage_tolerance_acres."
+  pairwise_reversal: "A higher-ranked crop i and lower-ranked crop j form a pairwise reversal when j receives more acreage than i by more than acreage_tie_tolerance_acres and the score pair is not tied."
+  top_rank_reversal: "The top-ranked crop is reversed when some lower-ranked non-tied crop receives more acreage than the top crop by more than acreage_tie_tolerance_acres."
+  strong_reversal: "A top-ranked crop receives near-zero acreage while at least one lower-ranked non-tied crop receives more than near_zero_acreage_tolerance_acres."
+  objective_equivalent_optimum: "An allocation is objective-equivalent when it is feasible and its expected-profit objective is at least z_star minus objective_equivalence_tolerance_dollars."
+
+rationale:
+  selected_primary_value: "The one-acre primary acreage tolerance is operationally negligible relative to the selected county acreages, while avoiding solver-basis and floating-point artifacts."
+  not_result_driven: "The grid was specified symmetrically around machine-level, one-acre, and material acreage thresholds before inspecting v7.1 classifications."

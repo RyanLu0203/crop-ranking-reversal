@@ -1,0 +1,21 @@
+gap_id,result_id,gap,severity,blocking_evidence_or_assumption,repair_priority,owner,next_action,status
+G01,R03,Wrong profit-tail orientation,critical,Direct two-point counterexample,P0,THEORY_AUDIT,Repair specification,OPEN_FOR_REPAIR
+G02,R05,Wrong cutoff plus differentiability at atoms,high,No-atom assumption or subgradient,P0,THEORY_AUDIT,Repair specification,OPEN_FOR_REPAIR
+G03,R06,Missing budget/rotation dual terms,critical,Full constraint matrix and duals,P0,THEORY_AUDIT,Repair theory,OPEN_FOR_REPAIR
+G04,R07,Stationarity-to-level-ordering leap,critical,No general implication; counterexample,P0,THEORY_AUDIT,Replace theorem,OPEN_FOR_REPAIR
+G05,R07,Undefined gap_ij term,high,Exact normal-cone terms,P0,THEORY_AUDIT,Replace notation,OPEN_FOR_REPAIR
+G06,R07,Active CVaR assumed without proof,high,Complementary slackness and slack test,P0,THEORY_AUDIT,Conditionalize,OPEN_FOR_REPAIR
+G07,R09,Scalar tail coefficient treated as full dependence order,critical,Named copula order required,P0,THEORY_AUDIT,Replace proposition,OPEN_FOR_REPAIR
+G08,R10,Existence of crossing not established,critical,Endpoint sign change,P0,THEORY_AUDIT,Conditionalize,OPEN_FOR_REPAIR
+G09,R10,Uniqueness of crossing not established,critical,Strict monotonicity plus unique selection,P0,THEORY_AUDIT,Conditionalize,OPEN_FOR_REPAIR
+G10,R10,LP basis changes/multiple optima ignored,high,Optimal-face and basis audit,P1,THEORY_AUDIT,Test,OPEN_FOR_REPAIR
+G11,R13,Correlation interpreted as optimizer inclusion rule,critical,Means/constraints/risk tradeoff counterexample,P0,THEORY_AUDIT,Replace proposition,OPEN_FOR_REPAIR
+G12,R13,Objective suboptimality interpreted as higher CVaR,critical,Separate objective and constraint comparisons,P0,THEORY_AUDIT,Replace proposition,OPEN_FOR_REPAIR
+G13,R14,Inconsistent information timing/expectation,critical,Common prior/posterior value definition,P0,THEORY_AUDIT,Repair definition,OPEN_FOR_REPAIR
+G14,R16,Topkis conditions absent,critical,Lattice; supermodularity; increasing differences; monotone selection,P0,THEORY_AUDIT,Remove strict claim,OPEN_FOR_REPAIR
+G15,R19,Single slack optimizer confused with solution-set invariance,medium,Uniqueness or all optima feasible,P1,THEORY_AUDIT,Conditionalize,DOCUMENTED
+G16,R23,Illustrative values have no admissible evidence,critical,Registered source or preregistered synthetic design,P0,THEORY_AUDIT,Quarantine numbers,OPEN_FOR_REPAIR
+G17,R24,No empirical validation protocol/results,critical,Frozen design and admissible holdout evidence,P0,THEORY_AUDIT,Defer,OPEN_FOR_REPAIR
+G18,R27,Proportional mapping assumes cardinal ratio-scale scores and feasibility,high,Score measurement model plus operational feasibility audit,P1,THEORY_AUDIT,Restrict mapping and test feasibility,OPEN_FOR_REPAIR
+G19,R28,Winner-take-all mapping lacks tie rule and feasibility check,medium,Declared deterministic tie/split rule plus constraint diagnostics,P1,THEORY_AUDIT,Repair benchmark definition,DOCUMENTED
+G20,R26,Multivariate copula validity and pairwise-versus-joint tail distinction unstated,high,Valid n-copula family and parameter domain,P1,THEORY_AUDIT,Complete dependence specification,OPEN_FOR_REPAIR
