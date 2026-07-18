@@ -1,0 +1,32 @@
+draft_result_id,draft_claim,transition,canonical_result_id,canonical_status,reason,proof_location,supervisor_confirmation_required
+R01,Suitability ranking,RETAIN_WITH_REPAIR,DEF-RANK,DEFINITION,Ties and ordinal scale are now explicit,canonical_theorem_set.md §2,NO
+R02,Ranking reversal,REPLACE,DEF-REV,DEFINITION,Multiple optima and numerical tolerance require possible universal and selected variants,canonical_theorem_set.md §2,YES
+R03,Negative upper-profit-tail equals loss CVaR,REJECT_AND_REPLACE,CT1,FALSE_DRAFT_REPAIRED,The displayed Draft identity averages the wrong profit tail,proofs.md counterexamples,NO
+R04,Finite equal-weight CVaR LP,RETAIN_WITH_REPAIR,CT1,PROVED,Correct after linking L=-Pi v free and normalized weights,proofs.md CT1,NO
+R05,Marginal CVaR conditional mean,RESTRICT,CT5,PROVED_WITH_ATOM_SAFE_FORM,Atoms require subgradients and the profit cutoff is 1-alpha,proofs.md CT5,NO
+R06,Displayed KKT is complete,REPLACE,CT5,FALSE_DRAFT_REPAIRED,Budget shared constraints bounds and signs were omitted,proofs.md CT5,NO
+R07,KKT inequality iff acreage reversal,REJECT_AND_REPLACE,CT3|CT5|CT6,FALSE_IN_GENERAL,Marginal stationarity cannot order decision levels under constraints or multiplicity,proofs.md CT3 CT5 CT6 and counterexamples,YES
+R08,Profit suitability corollary inherits threshold,RESTRICT,DEF-RANK,CONDITIONAL_RANK_EQUIVALENCE,Only ordinal rank equivalence may be assumed,canonical_theorem_set.md §5,YES
+R09,Tail coefficient monotonically raises marginal-CVaR gap,REJECT_AND_REPLACE,CT7,FALSE_IN_GENERAL,A scalar tail coefficient does not order joint laws,proofs.md CT7 and counterexamples,YES
+R10,Unique reversal threshold exists,REJECT_AND_REPLACE,CT8,FALSE_IN_GENERAL,Crossings may be absent multiple or intervals,proofs.md CT8 and counterexamples,YES
+R11,Threshold comparative statics have fixed signs,QUARANTINE,H-SIM-01,NUMERICAL_HYPOTHESIS,Signs depend on the full joint law constraints and selection,theory_to_simulation_map.csv,NO
+R12,Pseudo-diversifier definition,RETAIN_AS_DIAGNOSTIC,CT9,DEFINITION_ONLY,Thresholds must be named and no causal value follows,proofs.md CT9,YES
+R13,Pseudo-diversifier guarantees exclusion and higher CVaR,REJECT_AND_REPLACE,CT9,FALSE_IN_GENERAL,Correlation and tail dependence do not determine optimal inclusion,proofs.md counterexamples,YES
+R14,Displayed value-of-information equation,REPLACE,CT10,PROVED_REPAIR,Terms used inconsistent timing and expectations,proofs.md CT10,NO
+R15,Information has zero value without flexibility,RESTRICT,CT10,PROVED_RESTRICTED,Zero follows from a common optimal policy or singleton action set,proofs.md CT10,NO
+R16,Information-flexibility value is strictly increasing and supermodular,REJECT_AND_REPLACE,CT10,FALSE_IN_GENERAL,Nested sets imply weak value monotonicity only,proofs.md CT10 and counterexamples,YES
+R17,Ordinal suitability cannot identify cardinal acreage,RETAIN,CT2,PROVED,Ordinal rankings are invariant to transformations that do not identify cardinal allocations,proofs.md CT2,NO
+R18,Feasibility can force universal reversal,RETAIN,CT3,PROVED,Separation of feasible coordinate ranges is sufficient,proofs.md CT3,NO
+R19,Slack risk limit leaves allocation unchanged,REPAIR,CT4,PROVED,Exact statement is an optimal-set intersection identity,proofs.md CT4,NO
+R20,Full KKT gives risk-adjusted optimality,RETAIN_WITH_ASSUMPTIONS,CT5,PROVED,Convexity feasibility and constraint qualification are stated,proofs.md CT5,NO
+R21,Dependence effect within verified ordered family,RETAIN_WITH_RESTRICTION,CT7,PROVED_CONDITIONAL,Marginals family domain and convex order must be fixed,proofs.md CT7,NO
+R22,Information has zero value when policies coincide,RETAIN,CT10,PROVED,Common policy attains both posterior and prior values,proofs.md CT10,NO
+R23,Threshold near 0.58 and welfare effects,QUARANTINE,H-SIM-02,UNSUPPORTED_NUMERICAL,Inputs and admissible run were absent,theory_to_simulation_map.csv,NO
+R24,Illustrative out-of-sample validation,DEFER,H-EMP-01,UNRESOLVED_EMPIRICAL,No provenance-qualified frozen validation design exists,theory_to_empirical_map.csv,NO
+R25,Stochastic per-acre profit decomposition,RETAIN,MODEL-01,VALID_WITH_SCOPE,Linear per-acre architecture is coherent when exclusions are stated,canonical_theorem_set.md §1,NO
+R26,Copula representation,RETAIN_WITH_ASSUMPTIONS,MODEL-02,VALID_WITH_SCOPE,Requires a valid n-copula and continuity caveat,canonical_theorem_set.md §1,NO
+R27,Proportional suitability recommendation,DEMOTE_TO_BENCHMARK,BENCH-01,CONDITIONAL_BENCHMARK,Ordinal scores do not justify ratios and constraints may fail,canonical_theorem_set.md §2,NO
+R28,Winner-take-all suitability recommendation,DEMOTE_TO_BENCHMARK,BENCH-02,CONDITIONAL_BENCHMARK,Ties and operational feasibility make the mapping set-valued,canonical_theorem_set.md §2,NO
+R29,Expected-profit maximization under operational and CVaR constraints,RETAIN_WITH_REPAIR,CT1,PROVED,Canonical X and correct loss-CVaR convention restore coherence,proofs.md CT1,NO
+R30,Lower-tail dependence coefficient,RETAIN_AS_DIAGNOSTIC,DEP-01,DEFINITION_ONLY,Limit existence and bivariate adverse-tail orientation are explicit,canonical_theorem_set.md §1,NO
+R31,Stronger tail dependence causes reversal,QUARANTINE,H-SIM-03,FAMILY_SPECIFIC_HYPOTHESIS,Observed reversal alone cannot identify a CVaR dependence mechanism,theory_to_simulation_map.csv,YES

@@ -30,6 +30,7 @@ SECRET_PATTERNS = {
     "aws_key": re.compile(r"AKIA[0-9A-Z]{16}"),
     "credential_assignment": re.compile(r"(?i)(?:api[_-]?key|secret|password|access[_-]?token)\s*[:=]\s*['\"][^'\"]{8,}"),
 }
+SYNC_COLLISION = re.compile(r" \d+$")
 
 
 def sha256(path: Path) -> str:
@@ -39,6 +40,10 @@ def sha256(path: Path) -> str:
 def iter_text_files():
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or ".venv" in path.parts:
+            continue
+        # Finder/iCloud collision copies such as "README 2.md" are not
+        # canonical repository assets and may belong to the local user.
+        if SYNC_COLLISION.search(path.stem):
             continue
         if path.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".parquet", ".lock"}:
             continue

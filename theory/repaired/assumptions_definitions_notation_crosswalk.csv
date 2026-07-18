@@ -1,0 +1,51 @@
+crosswalk_id,draft_object,source_location,canonical_symbol_or_definition,canonical_type,assumption_ids,repair,retained_component,notes
+XW001,Probability space,implicit,"(\Omega,\mathcal F,\mathbb P)",primitive,A01,Made explicit,YES,All random quantities share this space
+XW002,Crop index,Sec. 3,"i\in\mathcal I=\{1,\ldots,n\}",index,A02,Made finite and explicit,YES,Multi-crop scope retained
+XW003,Acreage decision,Sec. 3,"x=(x_1,\ldots,x_n)^\top",decision,A03,Declared ex ante,YES,Nonnegative hectares
+XW004,Price,Sec. 3,P_i,random primitive,A04,Units and integrability explicit,YES,Currency per yield unit
+XW005,Yield,Sec. 3,Y_i,random primitive,A04,Units and integrability explicit,YES,Yield units per hectare
+XW006,Cost,Sec. 3,c_i,deterministic primitive,A04,Scope limited to per-hectare cost,YES,Fixed costs excluded
+XW007,Per-acre profit,profit equation,"\pi_i=P_iY_i-c_i",random outcome,A04,Sign and units fixed,YES,Currency per hectare
+XW008,Portfolio profit,Sec. 3,"\Pi(x)=\pi^\top x",random outcome,A04,Vector notation fixed,YES,Linear-acreage scope
+XW009,Portfolio loss,Eq. 6,"L(x)=-\Pi(x)",random outcome,A04,Correct loss sign imposed,YES,CVaR always applied to loss
+XW010,Expected margin,implicit,"\mu=\mathbb E[\pi]",parameter,A04,Separated from suitability score,YES,Objective coefficient
+XW011,Land limit,Sec. 3,"\mathbf1^\top x\le A",constraint,A05,Included in canonical feasible set,YES,Equality allowed as special case
+XW012,Budget,Sec. 3,"a^\top x\le B",constraint,A05,Previously omitted dual restored,YES,a is per-hectare resource use
+XW013,Lower bounds,Sec. 3,"x\ge\ell",constraint,A05,Sign and dual convention fixed,YES,May encode minimum planting
+XW014,Upper bounds,Sec. 3,"x\le u",constraint,A05,Sign and dual convention fixed,YES,May encode capacity or rotation
+XW015,Shared operational constraints,Sec. 3,Gx\le g,constraint,A05,Rotations/groups collected explicitly,YES,Every row requires provenance
+XW016,Operational feasible set,implicit,"X=\{x:\mathbf1^\top x\le A,\ a^\top x\le B,\ \ell\le x\le u,\ Gx\le g\}",set,A05,Unified and assumed nonempty compact,YES,No silent constraint deletion
+XW017,Marginal laws,Sec. 3,F_i,distribution,A06,Profit rather than mixed price/yield tail fixed,YES,Must be registered
+XW018,Copula,Sec. 3,C_\theta,dependence model,A06,Valid n-copula and family scope required,YES,Pairwise summaries not full law
+XW019,Joint profit law,Sec. 3,"F_\pi(z)=C_\theta(F_1(z_1),\ldots,F_n(z_n))",distribution,A06,Continuity caveat added,YES,Sklar representation
+XW020,Lower-tail coefficient,Sec. 3,"\lambda_L=\lim_{q\downarrow0}C(q,q)/q",diagnostic,A07,Existence and bivariate scope explicit,YES,Not a global ordering parameter
+XW021,Risk level,Eq. 6,"\alpha\in(0,1)",parameter,A08,Defined as loss-CVaR confidence level,YES,Profit cutoff is 1-alpha
+XW022,Risk limit,Sec. 3,"\kappa\in\mathbb R",parameter,A08,Units declared as currency loss,YES,Constraint is r_alpha(x)<=kappa
+XW023,CVaR,Eq. 6,"r_\alpha(x)=\inf_v\{v+(1-\alpha)^{-1}\mathbb E[(L(x)-v)_+]\}",risk functional,A08,Wrong upper-profit-tail identity replaced,YES,Rockafellar-Uryasev loss convention
+XW024,VaR auxiliary,Eq. 8,v,decision auxiliary,A08,Declared free rather than nonnegative,YES,Finite LP
+XW025,Excess-loss auxiliary,Eq. 8,q_s,decision auxiliary,A09,"q_s\ge L_s(x)-v,\ q_s\ge0",YES,One per scenario
+XW026,Scenario weights,Eq. 8,w_s,parameter,A09,General positive normalized weights,YES,Equal weights are special case
+XW027,Tail weights,Eq. 9,\xi_s,dual/subgradient,A09,Atom-safe LP-dual definition,YES,"0<=xi_s<=w_s/(1-alpha), sum xi=1"
+XW028,CVaR subgradient,Eq. 9,"d=-\sum_s\xi_s\pi_s",subgradient,A09,Conditional mean replaced by atom-safe form,YES,Unique only away from VaR atoms
+XW029,Suitability score,Definition 1,s_i,ordinal input,A10,Strict weak order and ties declared,YES,No cardinal interpretation by default
+XW030,Proportional benchmark,Sec. 3,"x_i^{prop}=A s_i/\sum_j s_j",benchmark,A10,Ratio-scale and feasibility conditions added,YES,Not a normative theorem
+XW031,Winner-take-all benchmark,Sec. 3,argmax_i s_i,benchmark,A10,Tie and feasibility rules added,YES,Set-valued before selection
+XW032,Optimal solution set,implicit,"S(\kappa)=\arg\max\{\mu^\top x:x\in X,r_\alpha(x)\le\kappa\}",correspondence,A11,Multiplicity made explicit,YES,Central object
+XW033,Numerical tolerance,implicit,"\tau_x>0",parameter,A11,Added to separate strict inequalities from solver noise,NO,Reported with every selected reversal
+XW034,Possible reversal,Definition 2,"\exists x\in S(\kappa):x_j\ge x_i+\tau_x",definition,A11,Multiplicity-aware,YES,Requires s_i>s_j
+XW035,Universal reversal,Definition 2,"\forall x\in S(\kappa):x_j\ge x_i+\tau_x",definition,A11,Multiplicity-aware,YES,Strongest optimal-set claim
+XW036,Selected reversal,Definition 2,"x_j^\sigma\ge x_i^\sigma+\tau_x",definition,A11,Selection rule sigma must be declared,YES,Numerical solver output is selected
+XW037,Pairwise reversal,Definition 2,"(i,j)\text{ with }s_i>s_j\text{ and }x_j>x_i",definition,A11,Separated from top-rank claim,YES,Local ordering
+XW038,Top-rank reversal,Definition 2,"\exists j:s_{i^\star}>s_j,\ x_j>x_{i^\star}",definition,A11,Top score index explicit,YES,May be possible/universal/selected
+XW039,Strong reversal,Definition 2,x_i=0<x_j,definition,A11,Separated from weak acreage ordering,YES,Requires tolerance in computation
+XW040,Land dual,Sec. 4.2,\eta,dual variable,A12,Restored to full KKT,YES,Nonnegative
+XW041,Budget dual,Sec. 4.2,\beta,dual variable,A12,Previously omitted term restored,YES,Nonnegative
+XW042,Shared-constraint duals,Sec. 4.2,\gamma,dual vector,A12,Rotation/group terms restored,YES,Componentwise nonnegative
+XW043,Bound duals,Sec. 4.2,"(\underline\nu,\overline\nu)",dual vectors,A12,Signs and complementarity fixed,YES,Componentwise nonnegative
+XW044,Risk dual,Sec. 4.2,\rho,dual variable,A12,Complete CVaR subgradient stationarity,YES,Nonnegative
+XW045,Dependence parameter,Proposition 1,\theta,model parameter,A13,Claims restricted to verified convex-order families,YES,No inference from lambda_L alone
+XW046,Crossing set,Theorem 2,"\mathcal C_{ij}=\{\theta:0\in\Delta_{ij}(\theta)\}",set-valued result,A13,Unique threshold replaced,NO,Allows none one many or intervals
+XW047,Pseudo-diversifier,Definition 3,D_{\rho,\lambda},diagnostic,A14,Named thresholds and descriptive status required,YES,No optimization conclusion follows
+XW048,Signal,Eq. 22,Z,information structure,A15,Decision timing and posterior law explicit,YES,Signal precedes recourse
+XW049,Flexibility set,Theorem 3,\mathcal A_f(Z),action correspondence,A15,Nesting must be proved,YES,Singleton is no flexibility
+XW050,Value of information,Eq. 22,VOI(f),value functional,A15,Common outer expectation and timing repaired,YES,Nonnegative under admissible ignore-signal action
