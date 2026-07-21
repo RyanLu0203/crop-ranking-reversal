@@ -23,7 +23,7 @@ All arrays and constants are deliberately small and declared in the test file. P
 Run the full theory check set from the repository root:
 
 ```bash
-uv run --python 3.11 pytest -q theory/proofs/computational_checks
+uv run --python 3.11 pytest -q tests theory/proofs/computational_checks
 ```
 
 These remain `SYNTHETIC_CHECK_ONLY`; they do not estimate a crop parameter, establish an empirical mechanism or execute the confirmatory simulation.
