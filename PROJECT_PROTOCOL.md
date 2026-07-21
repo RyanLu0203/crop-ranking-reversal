@@ -36,3 +36,14 @@
 - `ILLUSTRATIVE_ONLY`: cannot support a substantive claim.
 - `INADMISSIBLE`: excluded from canonical evidence.
 - `MANUSCRIPT_ADMISSIBLE`: allowed only after claim-level lineage and relevant Issue acceptance checks pass.
+
+## Stage II reconstruction order
+
+1. GOAL-11 / Issue #21 audits the Stage I scientific gaps and freezes the reconstruction blueprint.
+2. GOAL-14 / Issue #24 strengthens theory and classifies every result before confirmatory computation.
+3. GOAL-12 / Issue #22 runs controlled confirmatory simulations with prospective precision gates.
+4. GOAL-13 / Issue #23 creates figures only from theory-accepted and validation-passing source data.
+5. GOAL-15 / Issue #25 expands model-linked empirical validation with explicit observability and identification status.
+6. The manuscript is reconstructed only after all preceding Stage II gates pass.
+
+Stage II designs supersede rather than overwrite Stage I designs and outputs. A mechanism claim requires an isolated contrast, a declared estimand, precision, optimal-face/selection treatment, complete lineage, and promotion approval. A KKT term is a local optimality pressure, not automatically an acreage-causal contribution. Observed model consistency is not causal identification.

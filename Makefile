@@ -31,6 +31,7 @@ validate:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manuscript.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_final_package.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_blueprint.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 
 test:

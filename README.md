@@ -61,4 +61,6 @@ make check
 
 ## Current milestone
 
-Issues #1--#10 are integrated in the milestone package labelled **“First compiled draft for supervisor review.”** It is ready for supervisor review, not direct submission; author metadata, funding, licensing, target-journal conversion and the scientific actions in `output/remaining_actions.md` remain open.
+Issues #1--#10 are integrated in the Stage I package labelled **“First compiled draft for supervisor review.”** Commit `4d6c14d` is the theory-repair and reproducibility foundation, not the final scientific manuscript.
+
+Stage II begins with GOAL-11 / Issue #21. Its evidence-gated reconstruction blueprint is in `audits/stage_ii/`. Later phases must execute in the fixed order GOAL-14 theory → GOAL-12 confirmatory simulation → GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all four scientific phases pass.
