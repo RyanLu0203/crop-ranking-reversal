@@ -17,3 +17,13 @@ pytest -q theory/proofs/computational_checks/test_theory_audit.py
 ```
 
 All arrays and constants are deliberately small and declared in the test file. Passing tests establish the counterexamples and implementation conventions only; they do not validate the teacher draft's numerical sections.
+
+`test_stage_ii_theory.py` adds deterministic GOAL-14 witnesses for the restricted top-rank anchor, exact KKT pressure accounting, all-subset Shapley efficiency, risk-limit value contraction, non-equivalent diversification criteria, information garbling and the flexibility-substitution boundary. Its helper is `stage_ii_mechanism_checks.py`.
+
+Run the full theory check set from the repository root:
+
+```bash
+uv run --python 3.11 pytest -q theory/proofs/computational_checks
+```
+
+These remain `SYNTHETIC_CHECK_ONLY`; they do not estimate a crop parameter, establish an empirical mechanism or execute the confirmatory simulation.
