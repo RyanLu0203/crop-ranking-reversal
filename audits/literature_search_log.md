@@ -96,3 +96,9 @@ The defensible novelty wording is relational: among the included close studies, 
 ## Reproducibility
 
 Automated validation is implemented in scripts/validate_literature_evidence.py. It checks registry completeness, DOI uniqueness, full-text status, claim mapping, BibTeX key/DOI alignment, and prohibited novelty wording.
+
+## GOAL-14 bounded methodological recheck
+
+Recheck date: 2026-07-21. This was a claim-scope verification, not a new literature review and not a change to the 2026-07-19 search freeze. Exact-title and DOI searches re-opened the already registered full texts for Rockafellar and Uryasev (2000, 2002), Ansari and Rockel (2024), and Merkhofer (1975/1977). The academic-search MCP endpoints were unavailable, so author-hosted, publisher and institutional copies were used under the documented fallback. Search snippets were discovery-only.
+
+The recheck supports only the loss-CVaR convex/LP foundation, atom-safe tail weighting, family-specific dependence-order boundaries, and historical information–flexibility context. It does not supply a general crop-level tail-dependence theorem, a strict information–flexibility complementarity theorem, parameters, thresholds or empirical results. The Blackwell record was consulted for terminology only; the Stage II garbling result is proved directly. Exact URLs, roles and limitations are recorded in `theory/stage_ii/source_verification.md`; no new global literature-registry row was required.

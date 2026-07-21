@@ -47,3 +47,5 @@
 6. The manuscript is reconstructed only after all preceding Stage II gates pass.
 
 Stage II designs supersede rather than overwrite Stage I designs and outputs. A mechanism claim requires an isolated contrast, a declared estimand, precision, optimal-face/selection treatment, complete lineage, and promotion approval. A KKT term is a local optimality pressure, not automatically an acreage-causal contribution. Observed model consistency is not causal identification.
+
+GOAL-11 was approved at its Issue #21 supervisor checkpoint. GOAL-14 is a versioned extension under `theory/stage_ii/`: it may refine assumptions, prove conditional results, retain counterexample boundaries and preregister numerical or empirical hypotheses, but it may not rewrite the Stage I repair or manuscript. Completion of GOAL-14 authorizes only a supervisor handoff and stop; GOAL-12 remains locked pending separate validation.

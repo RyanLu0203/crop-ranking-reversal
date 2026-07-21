@@ -63,4 +63,6 @@ make check
 
 Issues #1--#10 are integrated in the Stage I package labelled **“First compiled draft for supervisor review.”** Commit `4d6c14d` is the theory-repair and reproducibility foundation, not the final scientific manuscript.
 
-Stage II begins with GOAL-11 / Issue #21. Its evidence-gated reconstruction blueprint is in `audits/stage_ii/`. Later phases must execute in the fixed order GOAL-14 theory → GOAL-12 confirmatory simulation → GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all four scientific phases pass.
+GOAL-11 / Issue #21 is supervisor-approved, and its evidence-gated reconstruction blueprint is frozen in `audits/stage_ii/`. GOAL-14 / Issue #24 is the current Stage II checkpoint: its versioned theory extension, assumptions, proofs, mechanism decomposition and theory-to-evidence maps are in `theory/stage_ii/`. These artifacts do not alter the Stage I theorem repair or manuscript.
+
+Later phases remain locked in the fixed order GOAL-12 confirmatory simulation → GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all four scientific phases pass. Run `make check` to exercise both Stage II fail-closed validators with the canonical suite.
