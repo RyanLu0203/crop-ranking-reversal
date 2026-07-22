@@ -1,0 +1,20 @@
+{
+  "county_panel": "AUDITED_NOT_RECONSTRUCTED",
+  "design_id": "CRR-GOAL16-EMPIRICAL-2026-07-22",
+  "result_scope": "DESCRIPTIVE_ACCOUNTING_AND_MODEL_LINKED_SIGNATURES_ONLY",
+  "state_crop_rows": 744,
+  "state_years": 248,
+  "states": 31,
+  "transitions_per_definition": 217,
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ]
+}

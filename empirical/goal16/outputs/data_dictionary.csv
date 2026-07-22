@@ -1,0 +1,16 @@
+file,field,type,definition,provenance
+extended_state_crop_panel.csv,state,string,US state name,USDA NASS
+extended_state_crop_panel.csv,year,integer,crop year,USDA NASS
+extended_state_crop_panel.csv,crop,category,"corn, soybeans or winter wheat",USDA NASS
+extended_state_crop_panel.csv,planted_acres_1000,number,planted acreage in thousands,USDA NASS
+extended_state_crop_panel.csv,yield_bushels_per_acre,number,published state yield,USDA NASS
+extended_state_crop_panel.csv,relative_yield,number,state yield divided by national yield,derived
+extended_state_crop_panel.csv,standardized_revenue_real_2024_usd_per_acre,number,"state yield times national price, CPI-U deflated",derived
+extended_state_crop_panel.csv,standardized_operating_margin_real_2024_usd_per_acre,number,standardized revenue less national operating cost,derived
+extended_state_crop_panel.csv,standardized_total_cost_margin_real_2024_usd_per_acre,number,standardized revenue less national total cost,derived
+rank_metrics_state_year.csv,kendall_tau_b,number,within-state-year Kendall rank agreement with ties,derived
+rank_metrics_state_year.csv,spearman_rho,number,within-state-year Spearman rank agreement when defined,derived
+rank_metrics_state_year.csv,inversion_intensity,number,discordant pairs divided by three,derived
+rank_metrics_state_year.csv,top_rank_disagreement,boolean,score and acreage leader sets are disjoint,derived
+rank_share_transitions.csv,acreage_share_change,number,decision-year minus prior-year crop acreage share,derived
+temporal_model.csv,estimate,number,fixed-effect descriptive coefficient,derived

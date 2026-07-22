@@ -1,0 +1,5 @@
+ranking_definition,national_years,informative_years,national_mean_inversion_intensity,national_mean_kendall_tau_b,state_mean_inversion_intensity,aggregation_difference,relative_yield_national_status
+operating_margin,9,9,0.148148148148,0.703703703704,0.411290322581,-0.263142174432,INFORMATIVE
+relative_yield,9,0,0,,0.704301075269,-0.704301075269,ALL_SCORES_TIED_NONINFORMATIVE
+standardized_revenue,9,9,0.037037037037,0.925925925926,0.295698924731,-0.258661887694,INFORMATIVE
+total_cost_margin,9,9,0.481481481481,0.037037037037,0.620967741935,-0.139486260454,INFORMATIVE

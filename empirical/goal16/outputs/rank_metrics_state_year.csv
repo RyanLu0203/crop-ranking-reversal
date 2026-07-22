@@ -1,0 +1,993 @@
+state,year,ranking_definition,kendall_tau_b,spearman_rho,spearman_valid,pairwise_inversions,pairwise_ties,inversion_intensity,top_rank_disagreement,score_leader_unique,acreage_leader_unique,score_leaders,acreage_leaders,score_top_second_gap,claim_level
+Alabama,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.578537561442,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.588224677733,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.618777782512,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.465671641791,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.492718007029,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.732482499381,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.705301990391,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.55722753913,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.748656121323,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,0.00288958073116,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,0.000383516895047,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.122148372223,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2019,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,0.0110208451414,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.00703784618982,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.115830463457,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.0792724776939,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.0592885375494,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2024,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,0.00164047627223,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.237919170452,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.383968091394,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2018,relative_yield,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,0.660259232433,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.351722400655,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.473400362109,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.354874288158,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2022,relative_yield,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,0.636629119733,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.752191970466,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.438941035469,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2016,relative_yield,1,1,True,0,0,0,False,True,True,corn,corn,0.136828026406,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2017,relative_yield,1,1,True,0,0,0,False,True,True,corn,corn,0.174612986333,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2018,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,0.138456913733,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,0.113190780684,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2017,relative_yield,1,1,True,0,0,0,False,True,True,corn,corn,0.0603475114265,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2018,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.129616216702,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2019,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.089552238806,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2020,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.0303750690603,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2021,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.087289261035,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2022,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.224815332892,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2023,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,0.10556904289,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.214177530053,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.201353973945,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.337473634872,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.118180641194,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.110759493671,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.159482260488,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.328568992512,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2022,relative_yield,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,0.410689773507,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.474308300395,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2024,relative_yield,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,0.401115523865,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.35683798653,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.378768900059,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.348533767053,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.0807670508218,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.21838283447,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.535639542995,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.564130061771,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.612648221344,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.557761932557,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2016,relative_yield,1,1,True,0,0,0,False,True,True,corn,corn,0.00658813870184,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.198395060731,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.0997448387845,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.105885919159,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2017,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.195526211584,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,0.0497038403651,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2019,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.094621827571,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2020,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.0801648753804,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2021,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.250545839242,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2022,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.124027583499,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2023,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.0205208117369,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2024,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.112256885524,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.48326347441,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.458813831894,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.37011862569,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.408955223881,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.159289649062,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.64357356566,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.673901853123,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.652173913043,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.457927400885,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,0.0105277794331,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2017,relative_yield,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.0534320808419,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.349241798967,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.286762406037,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.379859870861,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.394697447848,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.438059701493,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.512616048384,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.542576774614,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.70801737466,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.749215839704,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.582826883973,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.636378206803,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.673365428433,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2018,relative_yield,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,0.656406272758,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.447014925373,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.532300936092,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.6213279179,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.797099315321,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.692769674231,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.673303983577,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,0.00230959320089,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2017,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,0.135038902506,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.220863571594,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,0.0258890676625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.0803277761166,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2018,relative_yield,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.00744871592048,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2019,relative_yield,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.0160463505259,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2020,relative_yield,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.00864850024024,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.124715147193,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.017673301304,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2023,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,0.0790513833992,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2024,relative_yield,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.0671689487168,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.321699470745,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.350524878175,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.359639753362,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.204908999307,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.218074656189,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.341513324135,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.348106702005,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.434782608696,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.43004117668,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.155864105569,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2017,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.141413538118,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2018,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0549754785635,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2019,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.147610051011,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2020,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0870798727893,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2021,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.129635736112,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2022,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0363461323808,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2023,relative_yield,1,1,True,0,0,0,False,True,True,corn,corn,0.00872218097996,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2024,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0856002578513,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.326854044067,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.329260534307,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.495043528894,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.305970149254,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.406154791352,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.413757399779,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.831922255761,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.673006828381,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.548174783193,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.421882449916,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.423059183376,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.16271490648,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.296660117878,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.502736137163,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.624656829101,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.592885375494,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.444759822829,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.00257887312566,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.284258503511,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.531064394491,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.30637949493,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.433683886128,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.273729939001,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.58549245024,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.554295994596,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.333283737539,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,0.0369327773739,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,0.050037674895,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.030356610285,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.20671641791,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.151703410948,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.0641501789452,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.526884095315,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.300176784397,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.21347794615,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.396558272098,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.470046790526,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.441730996423,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.0110208451414,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.316460572441,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.59400530175,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.561899450927,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.632411067194,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.656928243405,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2016,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.0122315227365,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.0361859470386,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.175086039983,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.0716417910448,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.00177665498277,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.0705651968398,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.107830867015,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.287023846944,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2024,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.188439676757,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.381872219144,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.460632116564,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.484900713696,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.328185024246,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.492931160676,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.502736137163,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.686256005491,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.573122529644,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.563103018095,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.0501999921287,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.205304542479,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.40739399448,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2019,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.262686567164,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.231836281816,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.270466157967,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.466798215511,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.300221370625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.373875987624,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.0950673676949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2017,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0511464006855,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.0950582042142,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.0735247811575,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.194331668245,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2021,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,0.0154982523247,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.340253946465,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.0592885375494,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.303900511445,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.453020309609,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.380223527796,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2018,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.404612784571,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.19328358209,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.167303587926,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.441579983568,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2022,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.585449553878,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2023,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.573122529644,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.602935766753,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2016,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.130074356581,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.0422448824885,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2018,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,0.0479034163551,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2019,relative_yield,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,winter_wheat,0.159701492537,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.0801244651886,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2021,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,0.00224781806626,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2022,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.0904316670348,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2023,relative_yield,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,0.0431260296632,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2024,relative_yield,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,0.00651228588935,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.110756904441,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.42224610685,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.419276270007,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.297014925373,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2020,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.355252513579,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.430706552322,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.483717391838,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,0.65599718215,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.408745646062,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.120415181511,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2017,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.279167306433,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,0.0764876761988,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2016,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.36884117809,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2017,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.369304210113,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2018,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.507198007944,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2019,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.202468669312,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2020,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.335991371008,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2021,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.423984993877,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2022,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.570864790666,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2023,relative_yield,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,0.494071146245,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2024,relative_yield,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.615632898625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,120.34837584,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,148.28324206,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2018,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,197.87724,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,280.89459177,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,210.78535467,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,315.8077384,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,128.88200952,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,250.0437456,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2024,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,51.3,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,154.18655406,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,155.44977486,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,224.74806975,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,304.73498804,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,201.482970695,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,372.6485007,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,449.71503588,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,218.1088107,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,196.79,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,217.88963658,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,180.40466586,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2018,standardized_revenue,0,0,True,1,1,0.333333333333,False,True,False,corn,corn;soybeans,157.38985775,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,260.07258844,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,125.77307949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,372.6485007,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2022,standardized_revenue,0,0,True,1,1,0.333333333333,False,True,False,corn,corn;soybeans,451.6872822,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,245.0609898,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,232.47,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,178.39215702,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,265.83997474,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,262.037436,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,338.5778319,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,233.21945312,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,321.700422,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,433.07803744,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,307.04533321,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,430.25331398,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,622.66174443,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,316.90944585,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,180.87,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,117.61675002,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,147.18266738,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,198.06462375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,280.10931881,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,132.48776447,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,298.00303526,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2022,standardized_revenue,0.816496580928,0.866025403784,True,0,1,0,False,True,False,corn,corn;soybeans,575.43502005,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,216.47191365,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2024,standardized_revenue,0.816496580928,0.866025403784,True,0,1,0,False,True,False,corn,corn;soybeans,226.61,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,32.96248956,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,107.34442344,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,178.258161375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,255.41003024,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,126.70634798,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,319.32700352,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,488.264948325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,227.52868995,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,200.78,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,131.05268946,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,163.21778452,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,224.29834875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2016,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,17.1216738,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2017,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,103.658778,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2018,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,83.254600125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2019,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,186.594352175,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2020,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,105.77446899,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2021,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,268.01982256,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,401.121673425,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,261.4711401,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2024,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,164.93,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,65.49366978,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,110.90209508,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,188.3581455,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,308.23190669,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,160.46157843,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,350.25949168,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,316.07391024,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,225.24321105,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,230.5,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,109.84011192,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,123.98101744,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,179.8134465,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,140.48921502,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,109.69914136,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,112.861232625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,291.76571431,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,127.33660722,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,292.08742843,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,397.7720703,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,177.690837,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,131.23,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,50.7115224,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,156.5759443,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2018,standardized_revenue,0.816496580928,0.866025403784,True,0,1,0,False,True,False,corn,corn;soybeans,137.3897655,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,262.949877645,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,106.86530229,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,313.9554936,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,370.64296467,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,208.369788,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,232.49,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,186.9660639,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,242.7662986,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,234.398332875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,120.32223588,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,156.65272858,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,204.192072375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,289.47124488,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,154.68016194,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,313.43454975,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,365.23000602,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,181.7264574,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,182.9,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,95.05796454,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,119.19479732,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,114.11670375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,242.44075651,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,150.46227318,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,259.52264954,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,460.353375405,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,144.9117162,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,240.43,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,11.18790288,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,69.9376817,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,185.69729625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,237.268997875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,107.79857078,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,264.91731252,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2022,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,437.52783987,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,245.858848425,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,175.96,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,178.39215702,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,160.1592107,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,172.1681895,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,337.52013412,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,143.43245858,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,318.73660049,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,120.28558806,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,216.1115904,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,47.7707769,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,135.2043197,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,114.622639875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,235.41010954,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,89.2059232,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,245.13302275,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,295.57969848,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,135.92422485,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,165.01,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,121.95598338,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,115.5603414,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2018,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,111.79314525,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,151.87669842,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,49.05113739,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,319.77848819,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,261.19401264,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,202.6457958,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,soybeans,soybeans,41.49,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,166.28935554,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,168.40072342,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,271.837606125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,282.839369335,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,209.69452137,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,262.62515958,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,327.3500142,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,258.336327825,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,219.53,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,9.85476492,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,148.30883682,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,175.091376,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,253.04194147,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,103.58068202,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,349.19445092,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,496.346870745,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,241.5812967,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,206.69,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2016,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,161.7410025,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2017,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,179.64962044,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2018,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,249.8200155,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2019,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,337.44651478,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2020,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,239.07429825,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2021,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,561.41539888,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,578.76854508,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2023,standardized_revenue,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,413.4246021,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2024,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,178.54,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,10.67817366,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,99.57641378,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,114.11670375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,201.3488949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,64.67429432,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,256.87162417,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2022,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,272.09496105,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,178.29823905,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,101.46,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,162.81274086,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,114.35738768,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2018,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,191.131425,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,223.45923668,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,167.34594859,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,288.82284697,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,300.56390793,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,247.85092125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,63.69,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,80.27581716,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,92.40988098,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,188.8078665,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,227.723023455,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,169.68518,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,237.60827825,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2022,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,367.37375202,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,192.3508458,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,224.52,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,92.91448782,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,117.4159615,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,222.9866625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,335.26247436,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,157.8072174,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,304.3469737,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,202.63759065,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2023,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,206.83584045,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,186.8,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2016,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,162.81274086,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2017,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,142.86995032,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2018,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,117.227274,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2019,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,329.21341859,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2020,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,161.5645321,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2021,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,224.26053916,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,370.6536834,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,289.79254755,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2024,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,127.2,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,191.29222728,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,59.73816984,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2018,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,161.26245525,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2019,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,317.52021342,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2020,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,41.54862836,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2021,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,301.12869836,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2022,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,507.59617788,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2023,standardized_revenue,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,191.3625306,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2024,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,16.1,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2016,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,7.07085918,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2017,standardized_revenue,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,9.11173456,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,73.960366125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2016,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,85.37310936,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2017,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,159.5833286,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2018,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,207.80857875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2019,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,283.56942779,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2020,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,147.49278253,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2021,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,293.6965661,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2022,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,469.41606162,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2023,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,222.03118665,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2024,standardized_revenue,1,1,True,0,0,0,False,True,True,corn,corn,214.62,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2016,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,31.22418222,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,28.26941242,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2018,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,56.92718325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,26.71155053,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2020,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,40.56687839,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,65.39581797,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,186.66668295,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,69.1614741,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,175.26,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,81.38676546,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,59.77656198,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,42.8983865,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,118.62529652,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,31.264494415,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,187.95654108,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,180.37478844,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,0.36032325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2024,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,5.69,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,17.68368294,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,34.82167098,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2018,operating_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,83.31081525,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,73.96289692,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,44.44539679,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,187.95654108,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2022,operating_margin,0,0,True,1,1,0.333333333333,False,True,False,corn,corn;soybeans,93.55307544,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,74.1442299,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,0.55,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,57.1811625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,50.6136379,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2018,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,80.18775275,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2016,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,103.00451238,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,17.99311628,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,139.85073875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,178.8949962,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,136.82685693,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,245.56135436,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2022,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,300.96050094,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,99.1609584,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2024,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,10.23,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,117.9565695,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,68.04366946,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2018,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,16.2149405,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,93.99962729,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,37.73071181,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,113.31107564,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2022,operating_margin,0.816496580928,0.866025403784,True,0,1,0,False,True,False,corn,corn;soybeans,306.09477261,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,1.2765738,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2024,operating_margin,0.816496580928,0.866025403784,True,0,1,0,False,True,False,corn,corn;soybeans,35.51,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,202.61082996,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,107.8819134,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2018,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,3.591521875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,69.30033872,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,43.5121283,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,134.6350439,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,184.50149949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,3.2326143,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2024,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,9.68,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,104.52063006,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,52.00855232,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2018,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,42.4486655,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2016,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,218.45164572,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,105.46320858,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2018,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,98.595083125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,0.484660655,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2020,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,64.44400729,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2021,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,83.32786294,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,winter_wheat,85.67480889,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,winter_wheat,12.5804289,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,19.54,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,139.96641582,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,104.32424176,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,6.50846225,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,107.32472783,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,9.75689785,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,165.56753206,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2022,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,42.06029652,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,53.3072511,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,10.62,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,125.7332076,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,91.2453194,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2018,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,2.03623675,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,95.0841045,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,105.52719548,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,27.913932625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,75.42301383,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,42.88186906,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,107.39546881,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,39.63786354,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,141.5143827,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,68.46,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2016,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,99.9199971,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,25.58196262,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2018,operating_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,51.318163,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,32.40477949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,63.35317399,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,129.26353398,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,12.50875791,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,110.8354317,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,43.95,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,48.60725562,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,27.53996176,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2018,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,52.548649625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,115.25108364,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,58.57360826,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,22.342389125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,103.36155336,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,15.53831434,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,128.74259013,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,95.88975858,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2023,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,36.02203005,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2024,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,8.2,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,140.51535498,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,96.03153952,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,27.0582135,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,56.33106499,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,19.7562031,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,74.83068992,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,184.53365568,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,13.33196025,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,30.47,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,224.38541664,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,145.28865514,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2018,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,3.847613,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,51.159306355,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,62.4199055,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,80.2253529,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2022,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,168.18759243,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2023,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,28.110360975,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2024,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,15.14,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,49.05163494,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,55.06712614,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,46.2463095,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,98.46586725,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,26.7860177,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,134.04464087,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2022,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,237.8486187,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,103.0936293,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2016,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,59.50761894,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,77.82086778,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,42.642295375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,49.30041802,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,81.01255308,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,60.44106313,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,62.55450828,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,59.1136029,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,0.98,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,113.61733614,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,92.15393338,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,78.23896175,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,17.14103633,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,42.15464686,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,135.08652857,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2022,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,96.94019412,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,116.5594239,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,18.34,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,69.28396398,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,46.82561342,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,89.987922875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,59.69301485,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,39.47604509,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,77.93319996,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2022,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,30.78419256,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,28.4346519,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,11.83,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,195.60532068,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,66.91750002,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2018,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,6.75830725,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,66.93224995,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,66.63779426,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,164.5024913,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,182.85081507,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,13.0745865,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2024,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,48.75,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2016,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,73.83231702,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,35.5767164,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2018,operating_margin,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,67.97033225,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2019,operating_margin,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,151.33682326,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2020,operating_margin,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,68.85582197,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2021,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,328.84291118,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,220.63433832,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,corn,winter_wheat,195.67611465,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2024,operating_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,101.56,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2016,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,127.41923502,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,82.7350617,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2018,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,11.99256,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,15.23920338,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2020,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,74.45543291,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,72.17966455,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,86.03924571,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,72.9088359,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2024,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,58.54,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,72.76057866,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,100.86894916,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2018,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,63.67299825,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,29.3250371,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,2.87252769,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,104.13088735,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2022,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,57.57029883,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,8.4624489,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,51.32,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,155.29750236,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,122.81645586,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,6.95818325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,41.613331935,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,0.53329628,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,52.91631863,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,59.85338832,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,25.39764165,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2024,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,21.52,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,114.1009254,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2017,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,97.81037534,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,39.9002465,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2019,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,149.15278284,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2020,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,12.41125888,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,119.65501408,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,95.04297891,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,51.3718005,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,88.3,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2016,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,72.76057866,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2017,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,72.35638652,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,62.96094,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,143.10372707,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2020,operating_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,8.65394418,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2021,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,39.56857954,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,winter_wheat,13.91291154,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2023,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,winter_wheat,12.2921703,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,56.26,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2016,operating_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,44.28109224,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,72.08764154,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2018,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,0.96190325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2019,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,69.54573652,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,89.03623802,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2021,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,116.43673874,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2022,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,149.46197112,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2023,operating_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,127.8426891,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,18.6,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,242.6441787,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2017,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,172.41910074,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,107.889317125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2016,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,150.20021016,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2017,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,55.64300824,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2018,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,17.938871,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2019,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,97.45973627,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2020,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,22.72569375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2021,operating_margin,1,1,True,0,0,0,False,True,True,corn,corn,109.00460648,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2022,operating_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,143.82391914,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2023,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,16.1218917,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2024,operating_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,44.04,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,150.1740702,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,101.68798148,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,244.18601075,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,167.76620597,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2020,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,130.33033861,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,125.75584539,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,340.61980194,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,276.94444995,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Alabama,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,345.68,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,117.47298024,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,111.26042172,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,25.98388,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,65.97519853,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2020,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,24.513448325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2021,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,137.15872744,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2022,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,128.60332254,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,5.9093013,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Arkansas,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,24.5,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2016,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,17.30465352,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,17.73716868,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2018,total_cost_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,226.92172125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,101.97505579,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2020,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,42.15464686,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2021,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,97.87956115,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2022,total_cost_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,112.17150945,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,281.92720575,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Delaware,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,207.35,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,104.74281972,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,soybeans,corn,1.51009084,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Florida,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,16.52724675,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,20.21925906,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,soybeans,corn,35.09041596,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,52.50492675,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,15.5827603,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2020,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,45.70591527,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2021,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,194.24259687,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2022,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,95.23591605,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2023,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,winter_wheat,corn,71.45724795,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Georgia,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,120.48,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,163.1133504,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,46.9663846,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,38.3512075,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,20.47844641,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,93.50865455,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2021,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,62.513262,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2022,total_cost_margin,0,0,True,1,1,0.333333333333,False,True,False,corn,corn;soybeans,164.66113026,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,120.02882205,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Illinois,2024,total_cost_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,101.42,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,108.6115338,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,11.74799484,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,49.450571625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,7.44782323,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,91.81180275,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,46.61868631,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,21.2230854,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,184.98995655,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Indiana,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,167.64,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,176.1179805,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,84.23235516,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Iowa,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,12.1174825,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,114.4276749,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,24.49418532,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,3.991273875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,67.527339615,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,20.53190678,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2021,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,27.25115162,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2022,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,120.049776,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2023,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,195.20254695,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kansas,2024,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,150.88,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,21.01652784,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,18.556201,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,86.8211375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,87.15302867,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2020,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,65.53484059,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,13.56769316,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,247.78488141,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,232.77911445,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Kentucky,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,196.18,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,182.24780112,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2017,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,161.1190142,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Louisiana,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,80.31267525,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,1.8951471,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,5.45168388,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,115.696973375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,119.05474267,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,65.59544244,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,24.43805483,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,166.08672135,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,314.56219725,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Maryland,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,238.88,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2016,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,19.02989088,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,155.53935652,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2018,total_cost_margin,-0.816496580928,-0.866025403784,True,2,1,0.666666666667,True,True,False,winter_wheat,corn;soybeans,194.929069,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,162.07297701,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2020,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,65.05002579,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,45.75044656,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,193.21582698,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,312.2046537,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Michigan,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,250.75,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,120.20460606,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2017,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,42.33373304,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Minnesota,2018,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,63.904104875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,160.65619416,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,98.1559046,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2018,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,32.223758875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,50.71145537,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2020,total_cost_margin,1,1,True,0,0,0,False,True,True,soybeans,soybeans,71.31625708,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2021,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,77.94477649,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2022,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,corn,soybeans,44.11829268,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2023,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,59.0518332,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Mississippi,2024,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,18.66,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,60.01734816,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,4.83740964,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,116.5526925,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,78.93220237,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,42.74854499,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,4.37592834,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,21.19092921,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,185.3091,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Missouri,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,176.33,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,290.57179536,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,215.16234994,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,50.718535,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,1.490791635,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,118.19784824,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2021,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,29.42753926,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2022,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,116.41612653,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2023,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,True,True,True,soybeans,corn,7.695475125,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Nebraska,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,22.46,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,69.89825304,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,33.70829892,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,189.8572155,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,96.01188925,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,43.79089681,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,2.21111723,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,443.57320359,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New Jersey,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,310.87660515,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2016,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,59.44226904,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,52.13652612,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2018,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,100.968610625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,61.48441879,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,20.39858271,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,55.94936949,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,268.27909317,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,231.09074265,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+New York,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,169.44,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,35.8770951,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,37.80346052,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,221.84986775,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,158.96869484,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,98.44164514,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,0.55567344,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,300.022612065,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,310.006681875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Carolina,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,188.76,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,80.28888714,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2017,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,7.44807516,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2018,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,79.1758805,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,134.78474165,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,83.86084003,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,80.09801107,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,236.50877745,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,236.21762775,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+North Dakota,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,187.02,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2016,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,76.6554327,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,41.69386404,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,80.86233425,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,3.21471118,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,39.34272102,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,34.88008489,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,22.87376982,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,208.8845355,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Ohio,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,234.76,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2016,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,28.0351071,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2017,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,39.44152516,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,62.72358725,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2019,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,32.57655795,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,67.37713683,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,137.69124782,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,14.90975343,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,winter_wheat,10.94353185,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Oklahoma,2024,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,271.98,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,8.46934704,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,47.2223322,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2018,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,155.603466,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,107.8523331,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2020,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,66.14085909,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,44.21076807,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,291.7638306,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,244.88597565,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Pennsylvania,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,228.96,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,23.8527135,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,24.6989434,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,250.725703625,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,208.50224077,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2020,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,83.31542338,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,34.97269713,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,254.55911877,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,210.54202245,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Carolina,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,221.74,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,127.83747438,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,89.9655814,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,34.2037805,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,56.962964325,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,6.49651832,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2021,total_cost_margin,1,1,True,0,0,0,False,True,True,corn,corn,2.11850499,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,145.87119657,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,59.7518898,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+South Dakota,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,182.32,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,4.84896258,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,11.18491012,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,144.84763875,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,1.68097493,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2020,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,soybeans,soybeans,47.79061891,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2021,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,corn,soybeans,7.9878057,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,248.9960979,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2023,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,223.34894025,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Tennessee,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,258.72,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,32.64881004,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,86.27993596,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2018,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,80.649966,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2019,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,17.21465567,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,winter_wheat,22.3014808,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,soybeans,winter_wheat,11.2292341,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2022,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,191.81167335,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2023,total_cost_margin,1,1,True,0,0,0,False,True,True,winter_wheat,winter_wheat,195.49080555,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Texas,2024,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,winter_wheat,winter_wheat,114.16,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,13.3967295,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,57.86975236,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,144.57280925,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2019,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,124.93201998,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,51.56005398,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2021,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,19.81901936,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2022,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,56.26261377,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,soybeans,335.62566495,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Virginia,2024,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,soybeans,189.02,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,130.97426958,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2017,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,42.46170684,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+West Virginia,2018,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,59.481848375,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2016,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,87.97403538,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2017,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,28.58934692,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2018,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,151.6309305,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2019,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,32.93238476,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2020,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,soybeans,corn,15.35650879,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2021,total_cost_margin,0.333333333333,0.5,True,1,0,0.333333333333,False,True,True,corn,corn,35.79463076,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2022,total_cost_margin,-0.333333333333,-0.5,True,2,0,0.666666666667,True,True,True,winter_wheat,corn,61.90066575,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2023,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,192.38173065,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
+Wisconsin,2024,total_cost_margin,-1,-1,True,3,0,1,True,True,True,winter_wheat,corn,237.98,DESCRIPTIVE_RANK_AGREEMENT_NOT_CAUSAL
