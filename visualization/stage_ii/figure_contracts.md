@@ -8,6 +8,9 @@
   PNG, 600-dpi TIFF.
 - Typography: Arial-compatible sans serif, 5.8--7.2 pt body, bold lowercase
   8-pt panel labels.
+- Colour: user-supplied six-colour journal card (`#3D3539`, `#0F9EA8`,
+  `#008B82`, `#45728F`, `#8CD1B2`, `#8B84A3`) with only documented light
+  tints and neutral grey for adverse/unidentified evidence.
 - Statistics: exact replication unit and n; declared family-wise intervals where
   inherited from GOAL-12; descriptive 95% t intervals only for closed
   attribution summaries; no unsupported p-values.
@@ -93,20 +96,25 @@ remain a non-promoted model-sensitivity boundary.
 - Source data: `figure5_information_summary.csv`,
   `figure5_information_interaction.csv`, `figure5_dependence_boundary.csv`.
 
-## Figure 6 — Observed discordance is heterogeneous and aggregation-dependent
+## Figure 6 — Observed transitions are weak while discordance remains heterogeneous
 
-Core conclusion: descriptive state-level rank–acreage discordance varies by
-definition and year, while national aggregation retains exact rank alignment;
-these facts do not reveal private objectives or constraints.
+Core conclusion: the registered lagged top-score transition contrast includes
+zero under every definition, whereas concurrent rank–acreage discordance varies
+by definition, state, year and aggregation; these facts do not reveal private
+objectives or constraints.
 
 - Archetype: asymmetric quantitative grid.
-- Panel a (hero): state × definition discordance heatmap.
-- Panel b: definition-level top and strong discordance rates, n=77 state-years.
-- Panel c: operating-margin year heterogeneity and leakage-free 2024 check.
-- Panel d: national 0/9 aggregation boundary.
-- Source data: existing admitted empirical outputs copied into the versioned
-  GOAL-13 source-data package. GOAL-15 may supersede this panel with stronger
-  transition evidence while preserving the current null and limitations.
+- Panel a (hero): prior-score-top versus other-crop mean acreage-share change
+  across 51 state-year transitions per definition, with 5,000-draw
+  state-cluster intervals.
+- Panel b: concurrent inversion intensity with state distributions and
+  state-cluster intervals, n=77 state-years.
+- Panel c: definition-by-year inversion-intensity heatmap.
+- Panel d: state versus national aggregation comparison, retaining national
+  relative-yield ties and definition-dependent nulls.
+- Source data: admitted GOAL-15 outputs copied into the versioned source-data
+  package; observed, model-generated and unidentified constructs remain
+  separate.
 
 ## Supplementary allocation
 
