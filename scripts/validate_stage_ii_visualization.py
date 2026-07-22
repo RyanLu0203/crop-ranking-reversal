@@ -14,7 +14,7 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
-FIGURES = [f"Figure{i}" for i in range(1, 7)] + [f"FigureS{i}" for i in range(1, 5)]
+FIGURES = [f"Figure{i}" for i in range(1, 7)] + [f"FigureS{i}" for i in range(1, 6)]
 
 
 def sha(path: Path) -> str:
@@ -37,8 +37,9 @@ def main() -> int:
     if config["typography"].get("svg_hashsalt") != config["style_id"]:
         errors.append("deterministic SVG hashsalt is not frozen to style_id")
     required_card = {"#3D3539", "#0F9EA8", "#008B82", "#45728F", "#8CD1B2", "#8B84A3"}
-    if not required_card.issubset(set(config["palette"].values())):
+    if set(config["palette"].values()) != required_card | {"#FFFFFF"}:
         errors.append("user-supplied six-colour card is incomplete")
+    allowed_svg = {value.lower() for value in required_card} | {"#ffffff"}
     for figure_id in FIGURES:
         section = "main" if not figure_id.startswith("FigureS") else "supplementary"
         width_mm, height_mm = config["dimensions_mm"][figure_id]
@@ -57,13 +58,23 @@ def main() -> int:
         svg_text = (ROOT / f"figures/stage_ii/{section}/{figure_id}.svg").read_text(encoding="utf-8")
         if "<text" not in svg_text or re.search(r"<image(?:\s|>)", svg_text):
             errors.append(f"{figure_id} SVG is not editable vector text")
-        for mode in ["grayscale", "deuteranopia"]:
+        used_hex = set(re.findall(r"#[0-9a-fA-F]{6}", svg_text.lower()))
+        unexpected = used_hex - allowed_svg
+        if unexpected:
+            errors.append(f"{figure_id} contains off-card colours: {sorted(unexpected)}")
+        for mode in ["grayscale", "deuteranopia", "protanopia", "183mm", "89mm"]:
             if not (ROOT / f"visualization/stage_ii/qa/{figure_id}_{mode}.png").exists():
                 errors.append(f"missing {mode} QA for {figure_id}")
+    for mode in ["full", "grayscale", "deuteranopia", "protanopia", "width89mm"]:
+        if not (ROOT / f"visualization/stage_ii/qa/contact_sheet_{mode}.png").exists():
+            errors.append(f"missing {mode} contact sheet")
 
     captions = pd.read_csv(ROOT / "visualization/stage_ii/captions.csv")
     if set(captions["figure_id"]) != set(FIGURES):
         errors.append("caption inventory is incomplete")
+    overlap = pd.read_csv(ROOT / "visualization/stage_ii/qa/overlap_audit.csv")
+    if set(overlap["figure_id"]) != set(FIGURES) or not overlap["status"].eq("PASS").all():
+        errors.append("text/mark overlap audit is incomplete or failed")
     lineage = pd.read_csv(ROOT / "visualization/stage_ii/source_data/lineage.csv")
     for _, row in lineage.iterrows():
         source = ROOT / row.source_data

@@ -1,11 +1,12 @@
 figure_id,caption
 Figure1,"Rankings become allocation claims only after cardinal payoffs, joint uncertainty, feasibility and a selection rule are added. Possible and universal reversal are properties of the full optimal face; selected reversal depends on a reported optimizer."
 Figure2,"Exact two-crop constructions distinguish margin, operational, risk-limited and set-valued mechanisms. Shading marks the Corn–Soybean ranking-reversal half-space; these are analytic cases rather than empirical estimates."
-Figure3,"Closed M0–M4 model path and auditable attribution. Panels a–c summarize 16 closed-domain seeds with descriptive 95% t intervals where shown; panel d reports validated E2 local KKT pressure terms (maximum stationarity residual 1.82×10⁻¹¹), not causal acreage shares."
-Figure4,Operational interventions identify reversal in E2 (n=16 per cell; 24/24 registered family-wise intervals passed). E3 risk-frontier results are retained as adverse evidence only: the experiment-level precision gate failed at the n=64 ceiling.
-Figure5,"E6 shows positive, exact-null and substitution relations between information and flexibility (n=16; 3/3 family-wise intervals passed), with exact ignore-signal and garbling checks. E5 cross-law risk diagnostics are non-promoted because the experiment precision gate failed at n=64."
-Figure6,"GOAL-15 admitted-data evidence covers 77 state-years in 26 states (2022–2024). Across 51 transitions per definition, every 95% state-cluster interval for the prior-score-top versus other-crop mean share change includes zero. Concurrent inversion intensity varies by definition, state, year and national aggregation. Relative yield is nationally tied; no private objective, constraint, CVaR, copula, causal, welfare or optimal-acreage inference is made."
-FigureS1,Final sequential precision outcomes for E1–E6. Only E2 and E6 passed every registered primary interval; failed experiments reached n=64 and remain non-promoted.
-FigureS2,Complete adverse inventory for failed experiments and all 206 registered infeasible rows (192 designed E3 rows and 14 certified E4/E5 rows). No feasible-only filtering enters positive claims.
-FigureS3,"Numerical diagnostics: reverse-order replay 12/12, solver sensitivity 9/9, maximum KKT residual 1.82×10⁻¹¹ and maximum Shapley efficiency residual 1.42×10⁻¹⁴."
-FigureS4,Order-path contribution ranges across all registered block orders. Dots show order means; ranges expose order sensitivity rather than assigning causal meaning to any single decomposition.
+Figure3,"Closed M0–M4 allocation, indexed outcomes, exact all-subset attribution and signed E2 KKT pressures. Intervals are descriptive; local pressure terms are not causal acreage effects."
+Figure4,"E2-only operational factorial. Allocation, optimal-face classifications, family-wise contrasts and mechanism-class summaries use n=16 per cell; all 24 registered intervals passed."
+Figure5,"E6-only information–flexibility evidence across three registered archetypes, with exact finite-state anchors, an interaction forest and archetype-specific complementarity. All three family-wise intervals passed."
+Figure6,"Official-data evidence covers 248 complete state-years in 31 states from 2016–2024. Concurrent inversion varies spatially, by definition and aggregation; every primary strictly lagged 95% state-cluster interval includes zero. These are descriptive accounting relations, not causal or optimal-acreage estimates."
+FigureS1,E1 cardinal-margin contrasts and experiment-level adverse boundary. The precision gate failed at n=64 and no E1 result is promoted.
+FigureS2,E3 risk-frontier contrasts and its complete precision ledger. The experiment-level gate failed at n=64; results remain adverse.
+FigureS3,E4/E5 precision inventory and E5 cross-law risk diagnostic. Both experiment-level gates failed at n=64 and remain non-promoted.
+FigureS4,"Numerical integrity and attribution-order sensitivity, including replay, solver, KKT, Shapley and all 206 registered infeasible rows."
+FigureS5,"Empirical robustness across years, leave-one-state-out ranges and the pre-specified complete-case sample flow."
