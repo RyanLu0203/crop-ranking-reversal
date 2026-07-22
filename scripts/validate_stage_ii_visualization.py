@@ -34,6 +34,11 @@ def check_checksum_file(base: Path, checksum_file: Path) -> list[str]:
 def main() -> int:
     errors: list[str] = []
     config = yaml.safe_load((ROOT / "visualization/configs/stage_ii_nature_style.yaml").read_text())
+    if config["typography"].get("svg_hashsalt") != config["style_id"]:
+        errors.append("deterministic SVG hashsalt is not frozen to style_id")
+    required_card = {"#3D3539", "#0F9EA8", "#008B82", "#45728F", "#8CD1B2", "#8B84A3"}
+    if not required_card.issubset(set(config["palette"].values())):
+        errors.append("user-supplied six-colour card is incomplete")
     for figure_id in FIGURES:
         section = "main" if not figure_id.startswith("FigureS") else "supplementary"
         width_mm, height_mm = config["dimensions_mm"][figure_id]

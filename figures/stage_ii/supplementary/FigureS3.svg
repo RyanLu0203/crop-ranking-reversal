@@ -35,7 +35,7 @@ L 505.882451 73.343232
 L 505.882451 43.269476
 L 32.724056 43.269476
 z
-" clip-path="url(#pb43a89ebdc)" style="fill: #8cc9b4"/>
+" clip-path="url(#pa401fd4849)" style="fill: #8cd1b2"/>
    </g>
    <g id="patch_3">
     <path d="M 32.724056 128.022788
@@ -43,7 +43,7 @@ L 505.882451 128.022788
 L 505.882451 97.949032
 L 32.724056 97.949032
 z
-" clip-path="url(#pb43a89ebdc)" style="fill: #8cc9b4"/>
+" clip-path="url(#pa401fd4849)" style="fill: #8cd1b2"/>
    </g>
    <g id="patch_4">
     <path d="M 32.724056 182.702344
@@ -51,7 +51,7 @@ L 505.882451 182.702344
 L 505.882451 152.628588
 L 32.724056 152.628588
 z
-" clip-path="url(#pb43a89ebdc)" style="fill: #8cc9b4"/>
+" clip-path="url(#pa401fd4849)" style="fill: #8cd1b2"/>
    </g>
    <g id="patch_5">
     <path d="M 32.724056 237.381901
@@ -59,7 +59,7 @@ L 505.882451 237.381901
 L 505.882451 207.308145
 L 32.724056 207.308145
 z
-" clip-path="url(#pb43a89ebdc)" style="fill: #8cc9b4"/>
+" clip-path="url(#pa401fd4849)" style="fill: #8cd1b2"/>
    </g>
    <g id="patch_6">
     <path d="M 32.724056 292.061457
@@ -67,7 +67,7 @@ L 505.882451 292.061457
 L 505.882451 261.987701
 L 32.724056 261.987701
 z
-" clip-path="url(#pb43a89ebdc)" style="fill: #8cc9b4"/>
+" clip-path="url(#pa401fd4849)" style="fill: #8cd1b2"/>
    </g>
    <g id="text_1">
     <text style="font: 700 8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="3.151656" y="8.773633" transform="rotate(-0 3.151656 8.773633)">a</text>
@@ -79,7 +79,7 @@ z
     <text style="font: 6.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="446.737652" y="59.088957" transform="rotate(-0 446.737652 59.088957)">12 / 12</text>
    </g>
    <g id="text_4">
-    <text style="fill: #0f8b8d; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="59.041473" transform="rotate(-0 486.167518 59.041473)">PASS</text>
+    <text style="fill: #008b82; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="59.041473" transform="rotate(-0 486.167518 59.041473)">PASS</text>
    </g>
    <g id="text_5">
     <text style="font: 600 6.4px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="47.510256" y="113.821717" transform="rotate(-0 47.510256 113.821717)">Solver Sensitivity</text>
@@ -88,7 +88,7 @@ z
     <text style="font: 6.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="446.737652" y="113.768514" transform="rotate(-0 446.737652 113.768514)">9 / 9</text>
    </g>
    <g id="text_7">
-    <text style="fill: #0f8b8d; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="113.721029" transform="rotate(-0 486.167518 113.721029)">PASS</text>
+    <text style="fill: #008b82; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="113.721029" transform="rotate(-0 486.167518 113.721029)">PASS</text>
    </g>
    <g id="text_8">
     <text style="font: 600 6.4px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="47.510256" y="168.504273" transform="rotate(-0 47.510256 168.504273)">Kkt Pressure Residual</text>
@@ -97,7 +97,7 @@ z
     <text style="font: 6.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="446.737652" y="168.44807" transform="rotate(-0 446.737652 168.44807)">1.82e-11 ≤ 1e-07</text>
    </g>
    <g id="text_10">
-    <text style="fill: #0f8b8d; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="168.400586" transform="rotate(-0 486.167518 168.400586)">PASS</text>
+    <text style="fill: #008b82; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="168.400586" transform="rotate(-0 486.167518 168.400586)">PASS</text>
    </g>
    <g id="text_11">
     <text style="font: 600 6.4px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="47.510256" y="223.180829" transform="rotate(-0 47.510256 223.180829)">Shapley Efficiency Residual</text>
@@ -106,7 +106,7 @@ z
     <text style="font: 6.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="446.737652" y="223.127626" transform="rotate(-0 446.737652 223.127626)">1.42e-14 ≤ 1e-08</text>
    </g>
    <g id="text_13">
-    <text style="fill: #0f8b8d; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="223.080142" transform="rotate(-0 486.167518 223.080142)">PASS</text>
+    <text style="fill: #008b82; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="223.080142" transform="rotate(-0 486.167518 223.080142)">PASS</text>
    </g>
    <g id="text_14">
     <text style="font: 600 6.4px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="47.510256" y="277.860386" transform="rotate(-0 47.510256 277.860386)">Registered Infeasible</text>
@@ -115,7 +115,7 @@ z
     <text style="font: 6.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="446.737652" y="277.807182" transform="rotate(-0 446.737652 277.807182)">206 / 206</text>
    </g>
    <g id="text_16">
-    <text style="fill: #0f8b8d; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="277.759698" transform="rotate(-0 486.167518 277.759698)">PASS</text>
+    <text style="fill: #008b82; font: 700 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="486.167518" y="277.759698" transform="rotate(-0 486.167518 277.759698)">PASS</text>
    </g>
    <g id="text_17">
     <text style="font: 600 7.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="269.303253" y="16.210471" transform="rotate(-0 269.303253 16.210471)">Independent replay, solver, KKT and attribution diagnostics</text>
@@ -123,7 +123,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pb43a89ebdc">
+  <clipPath id="pa401fd4849">
    <rect x="22.866589" y="19.210471" width="492.873328" height="295.269604"/>
   </clipPath>
  </defs>

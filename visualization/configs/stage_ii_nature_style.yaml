@@ -21,17 +21,18 @@ typography:
   legend_pt: 5.7
   panel_label_pt: 8.0
   svg_fonttype: none
+  svg_hashsalt: CRR-STAGEII-NATURE-VIS-2026-07-22
   pdf_fonttype: 42
 palette:
   charcoal: '#3D3539'
-  navy: '#484878'
-  steel: '#7884B4'
-  pale_blue: '#B4C0E4'
-  rose: '#C57B84'
-  pale_rose: '#E4CCD8'
-  teal: '#0F8B8D'
-  mint: '#8CC9B4'
-  amber: '#D39B3A'
+  navy: '#45728F'
+  steel: '#8B84A3'
+  pale_blue: '#D5E1E6'
+  rose: '#8B84A3'
+  pale_rose: '#E2E0E8'
+  teal: '#008B82'
+  mint: '#8CD1B2'
+  amber: '#0F9EA8'
   adverse: '#767676'
   light_grey: '#E6E6E6'
   paper: '#FFFFFF'

@@ -1,0 +1,205 @@
+ranking_definition,state,decision_year,lag_score_top_crops,current_score_top_crops,lag_acreage_top_crops,current_acreage_top_crops,score_top_changed,acreage_top_changed,lag_score_top_matches_current_acreage_top,lagged_pairwise_inversions,lagged_pairwise_ties,lagged_inversion_intensity,lagged_top_minus_other_share_change,claim_level
+operating_margin,Alabama,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0260290556901,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Alabama,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.124484654146,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Arkansas,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0549153212758,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Arkansas,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.110235061041,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Delaware,2023,corn,winter_wheat,corn;soybeans,corn,True,True,True,1,0,0.333333333333,0.0481481481481,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Delaware,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0270655270655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Georgia,2023,corn,corn,corn,corn,False,False,True,0,0,0,0.0679945054945,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Georgia,2024,corn,soybeans,corn,corn,True,False,True,0,0,0,-0.0508540372671,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Illinois,2023,corn,soybeans,corn;soybeans,corn,True,True,True,0,0,0,0.0222450833287,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Illinois,2024,soybeans,corn,corn,corn;soybeans,True,True,True,0,1,0,0.0307942690266,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Indiana,2023,corn,winter_wheat,soybeans,soybeans,True,False,False,2,0,0.666666666667,0.0285511984719,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Indiana,2024,winter_wheat,corn,soybeans,soybeans,True,False,False,3,0,1,-0.0123866021465,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Kansas,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,1,0,0.333333333333,0.00964225952963,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Kansas,2024,corn,soybeans,winter_wheat,winter_wheat,True,False,False,1,0,0.333333333333,0.0409238160596,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Kentucky,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0226389946687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Kentucky,2024,winter_wheat,corn,soybeans,soybeans,True,False,False,3,0,1,-0.0154298721329,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Maryland,2023,corn,winter_wheat,soybeans,corn,True,True,True,1,0,0.333333333333,0.0716530483972,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Maryland,2024,winter_wheat,winter_wheat,corn,soybeans,False,True,False,3,0,1,-0.00844407530454,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Michigan,2023,corn,winter_wheat,corn,corn,True,False,True,1,0,0.333333333333,0.0256629597947,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Michigan,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0548600883652,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Mississippi,2023,corn,soybeans,soybeans,soybeans,True,False,False,1,0,0.333333333333,0.0925252459655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Mississippi,2024,soybeans,soybeans,soybeans,soybeans,False,False,True,0,0,0,0.152273888605,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Missouri,2023,corn,winter_wheat,soybeans,soybeans,True,False,False,2,0,0.666666666667,0.0660042242704,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Missouri,2024,winter_wheat,corn,soybeans,soybeans,True,False,False,2,0,0.666666666667,-0.0140701002687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Nebraska,2023,corn,corn,corn,corn,False,False,True,0,0,0,0.0321494182486,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Nebraska,2024,corn,soybeans,corn,corn,True,False,True,0,0,0,0.00805631555588,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,New Jersey,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0540158371041,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,New York,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.0061038961039,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,New York,2024,winter_wheat,soybeans,corn,corn,True,False,False,3,0,1,-0.013317010858,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,North Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.00547231270358,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,North Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0246300763749,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,North Dakota,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.00435530626969,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,North Dakota,2024,winter_wheat,corn,soybeans,soybeans,True,False,False,3,0,1,-0.0047806236193,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Ohio,2023,corn,winter_wheat,soybeans,soybeans,True,False,False,2,0,0.666666666667,0.0339622641509,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Ohio,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0213768115942,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Oklahoma,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.00727462303497,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Oklahoma,2024,corn,winter_wheat,winter_wheat,winter_wheat,True,False,False,3,0,1,0.0189051209551,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Pennsylvania,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.00793650793651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Pennsylvania,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.0265700483092,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,South Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0233625790655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,South Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0396551724138,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,South Dakota,2023,corn,soybeans,corn,corn,True,False,True,1,0,0.333333333333,0.0286036737235,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,South Dakota,2024,soybeans,corn,corn,corn,True,False,False,1,0,0.333333333333,0.0485916110916,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Tennessee,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0214165009369,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Tennessee,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0376675449651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Texas,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,1,0,0.333333333333,-0.00855065099685,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Texas,2024,corn,soybeans,winter_wheat,winter_wheat,True,False,False,1,0,0.333333333333,0.000616566884103,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Virginia,2023,corn,winter_wheat,soybeans,soybeans,True,False,False,2,0,0.666666666667,0.0784466911765,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Virginia,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0508678881389,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Wisconsin,2023,corn,winter_wheat,corn,corn,True,False,True,1,0,0.333333333333,0.0191558153955,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+operating_margin,Wisconsin,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.00125081388575,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Alabama,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0260290556901,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Alabama,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.124484654146,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Arkansas,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.00468339865521,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Arkansas,2024,winter_wheat,soybeans,soybeans,soybeans,True,False,False,2,0,0.666666666667,-0.0319862390233,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Delaware,2023,winter_wheat,winter_wheat,corn;soybeans,corn,False,True,False,2,0,0.666666666667,-0.0037037037037,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Delaware,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0270655270655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Georgia,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,1,0,0.333333333333,-0.0364010989011,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Georgia,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0329968944099,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Illinois,2023,winter_wheat,winter_wheat,corn;soybeans,corn,False,True,False,3,0,1,0.0124548981036,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Illinois,2024,winter_wheat,winter_wheat,corn,corn;soybeans,False,True,False,2,1,0.666666666667,-0.00464347329207,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Indiana,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0153092645406,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Indiana,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0123866021465,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Kansas,2023,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,0.0512154533586,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Kansas,2024,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,-0.0461041304789,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Kentucky,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0226389946687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Kentucky,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0154298721329,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Maryland,2023,winter_wheat,winter_wheat,soybeans,corn,False,True,False,2,0,0.666666666667,-0.0158480739876,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Maryland,2024,winter_wheat,winter_wheat,corn,soybeans,False,True,False,3,0,1,-0.00844407530454,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Michigan,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.0408468776732,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Michigan,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0548600883652,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Mississippi,2023,winter_wheat,soybeans,soybeans,soybeans,True,False,False,2,0,0.666666666667,0.0080852031042,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Mississippi,2024,soybeans,soybeans,soybeans,soybeans,False,False,True,1,0,0.333333333333,0.152273888605,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Missouri,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0206195014663,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Missouri,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0140701002687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Nebraska,2023,soybeans,corn,corn,corn,True,False,False,1,0,0.333333333333,-0.0459277403552,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Nebraska,2024,corn,soybeans,corn,corn,True,False,True,0,0,0,0.00805631555588,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,New Jersey,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0540158371041,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,New York,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,0.0061038961039,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,New York,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.013317010858,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,North Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.00547231270358,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,North Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0246300763749,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,North Dakota,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.00435530626969,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,North Dakota,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0047806236193,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Ohio,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.023427672956,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Ohio,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0213768115942,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Oklahoma,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.00727462303497,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Oklahoma,2024,corn,winter_wheat,winter_wheat,winter_wheat,True,False,False,2,0,0.666666666667,0.0189051209551,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Pennsylvania,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,0.00793650793651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Pennsylvania,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.0265700483092,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,South Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0233625790655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,South Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0396551724138,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,South Dakota,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,0.00542052125956,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,South Dakota,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.00636188136188,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Tennessee,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0214165009369,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Tennessee,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0376675449651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Texas,2023,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,0.0183470198386,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Texas,2024,winter_wheat,soybeans,winter_wheat,winter_wheat,True,False,True,0,0,0,0.000804217674917,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Virginia,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0342371323529,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Virginia,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0508678881389,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Wisconsin,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.00502701745062,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+relative_yield,Wisconsin,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.00125081388575,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Alabama,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.023607748184,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Alabama,2024,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.012024736601,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Arkansas,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0549153212758,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Arkansas,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.110235061041,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Delaware,2023,corn,corn,corn;soybeans,corn,False,True,True,1,0,0.333333333333,0.0481481481481,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Delaware,2024,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,-0.0135327635328,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Georgia,2023,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,0.0679945054945,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Georgia,2024,corn,corn,corn,corn,False,False,True,0,0,0,-0.0508540372671,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Illinois,2023,corn,corn,corn;soybeans,corn,False,True,True,0,0,0,0.0222450833287,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Illinois,2024,corn,corn,corn,corn;soybeans,False,True,True,0,1,0,-0.0261507957345,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Indiana,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0285511984719,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Indiana,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.0302919874277,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Kansas,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.00964225952963,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Kansas,2024,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.0409238160596,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Kentucky,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0479055597867,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Kentucky,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.0777277476491,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Maryland,2023,corn,corn,soybeans,corn,False,True,True,1,0,0.333333333333,0.0716530483972,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Maryland,2024,corn,corn,corn,soybeans,False,True,False,2,0,0.666666666667,-0.0343300110742,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Michigan,2023,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,0.0256629597947,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Michigan,2024,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,-0.0184094256259,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Mississippi,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0925252459655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Mississippi,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.125600408789,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Missouri,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0660042242704,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Missouri,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.048049063164,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Nebraska,2023,corn,corn,corn,corn,False,False,True,0,0,0,0.0321494182486,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Nebraska,2024,corn,corn,corn,corn,False,False,True,0,0,0,0.00805631555588,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,New Jersey,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0336538461538,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,New York,2023,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,0.00298701298701,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,New York,2024,corn,corn,corn,corn,False,False,True,0,0,0,-0.00970832446242,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,North Carolina,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0541693811075,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,North Carolina,2024,corn,soybeans,soybeans,soybeans,True,False,False,2,0,0.666666666667,-0.00853798179009,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,North Dakota,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.078428445227,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,North Dakota,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.0288187875807,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Ohio,2023,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,0.0339622641509,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Ohio,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.0314381270903,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Oklahoma,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.00727462303497,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Oklahoma,2024,corn,corn,winter_wheat,winter_wheat,False,False,False,3,0,1,0.0189051209551,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Pennsylvania,2023,corn,corn,corn,corn,False,False,True,1,0,0.333333333333,0.015873015873,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Pennsylvania,2024,corn,corn,corn,corn,False,False,True,0,0,0,-0.0183316080055,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,South Carolina,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0612630075495,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,South Carolina,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.0105603448276,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,South Dakota,2023,corn,corn,corn,corn,False,False,True,0,0,0,0.0286036737235,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,South Dakota,2024,corn,corn,corn,corn,False,False,True,0,0,0,-0.0422297297297,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Tennessee,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0376426904551,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Tennessee,2024,corn,corn,soybeans,soybeans,False,False,False,1,0,0.333333333333,-0.106369572689,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Texas,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,-0.00855065099685,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Texas,2024,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.000616566884103,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Virginia,2023,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0784466911765,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Virginia,2024,corn,corn,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0167791706847,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Wisconsin,2023,corn,corn,corn,corn,False,False,True,0,0,0,0.0191558153955,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+standardized_revenue,Wisconsin,2024,corn,corn,corn,corn,False,False,True,0,0,0,-0.0265583770261,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Alabama,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0260290556901,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Alabama,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.124484654146,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Arkansas,2023,corn,winter_wheat,soybeans,soybeans,True,False,False,1,0,0.333333333333,0.0549153212758,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Arkansas,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0319862390233,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Delaware,2023,winter_wheat,winter_wheat,corn;soybeans,corn,False,True,False,2,0,0.666666666667,-0.0037037037037,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Delaware,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0270655270655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Georgia,2023,corn,winter_wheat,corn,corn,True,False,True,0,0,0,0.0679945054945,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Georgia,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.0329968944099,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Illinois,2023,corn,winter_wheat,corn;soybeans,corn,True,True,True,1,0,0.333333333333,0.0222450833287,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Illinois,2024,winter_wheat,winter_wheat,corn,corn;soybeans,False,True,False,2,1,0.666666666667,-0.00464347329207,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Indiana,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0153092645406,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Indiana,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0123866021465,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Kansas,2023,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,0.0512154533586,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Kansas,2024,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,-0.0461041304789,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Kentucky,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0226389946687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Kentucky,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0154298721329,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Maryland,2023,winter_wheat,winter_wheat,soybeans,corn,False,True,False,2,0,0.666666666667,-0.0158480739876,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Maryland,2024,winter_wheat,winter_wheat,corn,soybeans,False,True,False,2,0,0.666666666667,-0.00844407530454,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Michigan,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.0408468776732,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Michigan,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.0548600883652,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Mississippi,2023,corn,soybeans,soybeans,soybeans,True,False,False,1,0,0.333333333333,0.0925252459655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Mississippi,2024,soybeans,soybeans,soybeans,soybeans,False,False,True,1,0,0.333333333333,0.152273888605,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Missouri,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0206195014663,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Missouri,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0140701002687,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Nebraska,2023,corn,soybeans,corn,corn,True,False,True,0,0,0,0.0321494182486,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Nebraska,2024,soybeans,soybeans,corn,corn,False,False,False,1,0,0.333333333333,0.00399725838076,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,New Jersey,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.0540158371041,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,New York,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.0061038961039,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,New York,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.013317010858,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,North Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.00547231270358,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,North Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0246300763749,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,North Dakota,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.00435530626969,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,North Dakota,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0047806236193,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Ohio,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,0.023427672956,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Ohio,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0213768115942,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Oklahoma,2023,corn,corn,winter_wheat,winter_wheat,False,False,False,2,0,0.666666666667,0.00727462303497,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Oklahoma,2024,corn,winter_wheat,winter_wheat,winter_wheat,True,False,False,2,0,0.666666666667,0.0189051209551,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Pennsylvania,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.00793650793651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Pennsylvania,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.0265700483092,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,South Carolina,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0233625790655,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,South Carolina,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0396551724138,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,South Dakota,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,0.00542052125956,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,South Dakota,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.00636188136188,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Tennessee,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,0.0214165009369,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Tennessee,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,2,0,0.666666666667,-0.0376675449651,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Texas,2023,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,0.0183470198386,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Texas,2024,winter_wheat,winter_wheat,winter_wheat,winter_wheat,False,False,True,0,0,0,0.000804217674917,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Virginia,2023,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0342371323529,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Virginia,2024,winter_wheat,winter_wheat,soybeans,soybeans,False,False,False,3,0,1,-0.0508678881389,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Wisconsin,2023,winter_wheat,winter_wheat,corn,corn,False,False,False,2,0,0.666666666667,-0.00502701745062,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL
+total_cost_margin,Wisconsin,2024,winter_wheat,winter_wheat,corn,corn,False,False,False,3,0,1,-0.00125081388575,DESCRIPTIVE_RANK_TRANSITION_NOT_CAUSAL

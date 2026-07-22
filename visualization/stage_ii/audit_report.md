@@ -25,6 +25,10 @@ The same source renders were checked in grayscale and a deuteranopia
 simulation. Colour is redundant with labels, position, line style or explicit
 status text.
 
+After GOAL-15 superseded Figure 6, the revised figure and contact sheet were
+inspected again. A fixed SVG hash salt and deterministic metadata produce
+byte-identical repeated figure exports.
+
 ## Scientific limits
 
 KKT terms are labelled local pressures, not causal effects. M0–M4 and Shapley

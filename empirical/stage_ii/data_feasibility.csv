@@ -1,0 +1,9 @@
+data_layer,required_resolution,admitted_source,availability,use,status,limitation
+official planted acreage,state-year-crop,USDA NASS 2024 Crop Production Summary,AVAILABLE,"directly observed allocation outcome",ADMITTED,"aggregate acreage; not farm allocation"
+official realized yield,state-year-crop,USDA NASS 2024 Crop Production Summary,AVAILABLE,"relative-yield and accounting score input",ADMITTED,"realized yield is concurrent unless lagged"
+price and cost,national-year-crop,USDA ERS governed panel,AVAILABLE,"standardized accounting definitions",ADMITTED_WITH_MISMATCH,"not state-specific realized profit"
+county acreage and yield,county-year-crop,,UNAVAILABLE,"county heterogeneity",NOT_ADMITTED,"no governed county snapshot in repository"
+public operational constraints,state/farm-year,,UNAVAILABLE,"constraint-consistency validation",NOT_ADMITTED,"no authoritative rotation, contract, budget or capacity field"
+private operational constraints,farm-year,,UNAVAILABLE,"mechanism identification",UNIDENTIFIED,"private budgets, contracts and rotation limits absent"
+farmer risk preferences,farm-year,,UNAVAILABLE,"CVaR validation",UNIDENTIFIED,"risk limit, beliefs and decision loss distribution absent"
+archived signals and flexibility,farm/pre-decision,,UNAVAILABLE,"information-flexibility validation",UNIDENTIFIED,"no timestamped signal or exogenous action-set variation"

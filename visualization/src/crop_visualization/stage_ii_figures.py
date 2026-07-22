@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 plt.rcParams["font.family"] = "sans-serif"
 plt.rcParams["font.sans-serif"] = ["Arial", "DejaVu Sans", "Liberation Sans"]
 plt.rcParams["svg.fonttype"] = "none"
+plt.rcParams["svg.hashsalt"] = "CRR-STAGEII-NATURE-VIS-2026-07-22"
 
 from matplotlib import colors as mpl_colors
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
@@ -108,6 +109,7 @@ def _apply_style() -> None:
             "font.family": "sans-serif",
             "font.sans-serif": ["Arial", "DejaVu Sans", "Liberation Sans"],
             "svg.fonttype": "none",
+            "svg.hashsalt": "CRR-STAGEII-NATURE-VIS-2026-07-22",
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
             "font.size": 6.8,
@@ -355,6 +357,17 @@ def _extract_source_data(root: Path, out: Path) -> dict[str, pd.DataFrame]:
         empirical[name] = register(
             f"figure6_{name}", _read(root, f"empirical/outputs/{name}.csv"),
             [f"empirical/outputs/{name}.csv"], "verbatim admitted empirical output",
+        )
+    stage2_empirical_names = [
+        "inversion_intensity_summary", "transition_summary", "rank_transition_events",
+        "state_heterogeneity", "year_heterogeneity", "aggregation_summary",
+        "observed_model_unidentified", "claim_boundaries",
+    ]
+    for name in stage2_empirical_names:
+        empirical[f"stage2_{name}"] = register(
+            f"figure6_stage2_{name}", _read(root, f"empirical/stage_ii/outputs/{name}.csv"),
+            [f"empirical/stage_ii/outputs/{name}.csv"],
+            "verbatim GOAL-15 admitted-data output",
         )
 
     stopping = _read(root, "simulation/stage_ii/outputs/sequential_stopping.csv")
@@ -630,7 +643,10 @@ def _figure3(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
     pressure = data["pressures"].pivot(index="mechanism_class", columns="pressure_term", values="mean")
     pressure = pressure.loc[:, [x for x in ["margin_pressure", "tail_risk_pressure", "budget_pressure",
                                              "shared_pressure", "boundary_pressure"] if x in pressure]]
-    image = _vector_heatmap(ax, pressure.to_numpy(), cmap="RdBu_r",
+    card_diverging = mpl_colors.LinearSegmentedColormap.from_list(
+        "card_diverging", [palette["rose"], "white", palette["teal"]]
+    )
+    image = _vector_heatmap(ax, pressure.to_numpy(), cmap=card_diverging,
                             norm=mpl_colors.TwoSlopeNorm(vcenter=0))
     ax.set(yticks=np.arange(len(pressure)), yticklabels=pressure.index.str.replace("_", " ").str.title(),
            xticks=np.arange(len(pressure.columns)),
@@ -813,61 +829,81 @@ def _figure5(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
 def _figure6(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("Figure6")
     grid = fig.add_gridspec(2, 2)
-    state = data["state_heterogeneity"]
-    pivot = state.pivot(index="state", columns="ranking_definition", values="top_reversal_rate").reindex(
-        columns=DEFINITION_ORDER)
-    order = pivot.mean(axis=1).sort_values(ascending=False).index
-    pivot = pivot.loc[order]
-    ax = fig.add_subplot(grid[:, 0])
-    _panel(ax, "a", x=-0.08)
-    image = _vector_heatmap(ax, pivot.to_numpy(), cmap="Blues", vmin=0, vmax=1)
-    ax.set(yticks=np.arange(len(pivot)), yticklabels=pivot.index,
-           xticks=np.arange(4), xticklabels=[DEFINITION_LABELS[x] for x in DEFINITION_ORDER],
-           title="State heterogeneity in top-rank reversal")
-    cbar = fig.colorbar(image, ax=ax, fraction=0.037, pad=0.03)
-    cbar.solids.set_rasterized(False)
-    cbar.set_label("Rate across 2022–2024")
+    transition = data["stage2_transition_summary"]
+    transition = transition.loc[transition["metric"].eq("lagged_top_minus_other_share_change")].set_index(
+        "ranking_definition").reindex(DEFINITION_ORDER)
+    ax = fig.add_subplot(grid[0, 0])
+    _panel(ax, "a")
+    y = np.arange(4)
+    ax.axvline(0, color=palette["charcoal"], lw=0.7)
+    ax.errorbar(transition["estimate"], y,
+                xerr=[transition["estimate"] - transition["ci_low"],
+                      transition["ci_high"] - transition["estimate"]],
+                fmt="o", ms=4.2, capsize=2, color=palette["navy"], ecolor=palette["steel"])
+    ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
+           xlabel="Prior-score-top minus other crop\nacreage-share change",
+           title="Lagged rank-to-acreage transitions")
+    ax.text(0.98, 0.05, "51 transitions per definition\nall 95% intervals include zero",
+            transform=ax.transAxes, ha="right", fontsize=5.3, color=palette["adverse"])
+    _quiet(ax)
 
+    inversion = data["stage2_inversion_intensity_summary"]
+    inversion = inversion.loc[inversion["metric"].eq("inversion_intensity")].set_index(
+        "ranking_definition").reindex(DEFINITION_ORDER)
+    states = data["stage2_state_heterogeneity"]
     ax = fig.add_subplot(grid[0, 1])
     _panel(ax, "b")
-    definition = data["definition_summary"].set_index("ranking_definition").reindex(DEFINITION_ORDER)
+    rng = np.random.default_rng(20260722)
+    for yy, definition in enumerate(DEFINITION_ORDER):
+        values = states.loc[states["ranking_definition"].eq(definition), "mean_inversion_intensity"].to_numpy(float)
+        ax.scatter(values, yy + rng.uniform(-0.10, 0.10, len(values)), s=6, alpha=0.35,
+                   color=palette["steel"], edgecolors="none")
+    ax.errorbar(inversion["estimate"], y,
+                xerr=[inversion["estimate"] - inversion["ci_low"],
+                      inversion["ci_high"] - inversion["estimate"]],
+                fmt="o", ms=4.4, capsize=2, color=palette["navy"], ecolor=palette["navy"], zorder=3)
+    ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
+           xlim=(-0.03, 1.03), xlabel="Mean discordant pairs / 3",
+           title="Definition and state heterogeneity")
+    ax.text(0.98, 0.96, "dots: 26 states (one has 2 years)\nintervals: state-cluster bootstrap",
+            transform=ax.transAxes, ha="right", va="top", fontsize=5.1, color=palette["steel"],
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9, "pad": 1.2})
+    _quiet(ax)
+
+    year = data["stage2_year_heterogeneity"].pivot(
+        index="ranking_definition", columns="year", values="mean_inversion_intensity"
+    ).reindex(DEFINITION_ORDER)
+    ax = fig.add_subplot(grid[1, 0])
+    _panel(ax, "c")
+    card_blue = mpl_colors.LinearSegmentedColormap.from_list(
+        "card_blue", ["white", palette["pale_blue"], palette["navy"]]
+    )
+    image = _vector_heatmap(ax, year.to_numpy(), cmap=card_blue, vmin=0, vmax=1)
+    ax.set(yticks=np.arange(4), yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
+           xticks=np.arange(3), xticklabels=[str(x) for x in year.columns],
+           xlabel="Year", title="Temporal robustness")
+    for i in range(len(year)):
+        for j in range(len(year.columns)):
+            value = year.iloc[i, j]
+            ax.text(j, i, f"{value:.2f}", ha="center", va="center", fontsize=5.5,
+                    color="white" if value > 0.58 else palette["charcoal"])
+    cbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
+    cbar.solids.set_rasterized(False)
+    cbar.set_label("Inversion intensity")
+
+    aggregation = data["stage2_aggregation_summary"].set_index("ranking_definition").reindex(DEFINITION_ORDER)
+    ax = fig.add_subplot(grid[1, 1])
+    _panel(ax, "d")
     x = np.arange(4)
-    ax.bar(x - 0.17, definition["top_rank_reversal_rate"], width=0.34,
-           color=palette["navy"], label="Top-rank")
-    ax.bar(x + 0.17, definition["strong_reversal_rate"], width=0.34,
-           color=palette["rose"], label="Strong")
+    ax.bar(x - 0.18, inversion["estimate"], width=0.36, color=palette["navy"], label="State mean")
+    ax.bar(x + 0.18, aggregation["national_mean_inversion_intensity"], width=0.36,
+           color=palette["rose"], label="National")
     ax.set(xticks=x, xticklabels=[DEFINITION_LABELS[z] for z in DEFINITION_ORDER],
-           ylabel="State-year frequency", ylim=(0, 1), title="Definition sensitivity (77 state-years)")
-    ax.legend(loc="upper right")
-    _quiet(ax)
-
-    sub = grid[1, 1].subgridspec(1, 2)
-    ax = fig.add_subplot(sub[0, 0])
-    _panel(ax, "c", x=-0.25)
-    year = data["year_heterogeneity"]
-    year = year.loc[year["ranking_definition"].eq("operating_margin")].sort_values("year")
-    ax.plot(year["year"], year["top_reversal_rate"], marker="o", ms=3.8,
-            color=palette["navy"], label="Concurrent")
-    lag = data["lagged_2024_validation"]
-    lag_rate = lag["top_rank_reversal"].mean()
-    ax.plot([2024], [lag_rate], marker="D", ms=4.3, color=palette["adverse"], label="Lagged 2024")
-    ax.set(xticks=[2022, 2023, 2024], ylim=(0, 1), ylabel="Top-reversal rate",
-           title="Temporal check")
-    ax.legend(loc="lower left")
-    _quiet(ax)
-
-    ax = fig.add_subplot(sub[0, 1])
-    _panel(ax, "d", x=-0.25)
-    national = data["national_check"]
-    aligned = int((~national["rank_reversal"].astype(bool)).sum())
-    reversed_n = int(national["rank_reversal"].astype(bool).sum())
-    ax.bar([0, 1], [aligned, reversed_n], color=[palette["steel"], palette["rose"]], width=0.65)
-    ax.set(xticks=[0, 1], xticklabels=["Aligned", "Reversed"], ylabel="Crop–year rows",
-           title="National aggregation")
-    for xx, value in enumerate([aligned, reversed_n]):
-        ax.text(xx, value + 0.12, str(value), ha="center", fontsize=6.2)
-    ax.text(0.98, 0.94, "descriptive only", transform=ax.transAxes, ha="right",
-            fontsize=5.2, color=palette["steel"])
+           ylabel="Inversion intensity", ylim=(0, 1), title="Aggregation changes the pattern")
+    ax.legend(loc="upper left")
+    ax.text(0.98, 0.96, "relative yield nationally tied\nobserved ≠ model optimum · mechanisms unidentified",
+            transform=ax.transAxes, ha="right", va="top", fontsize=5.1, color=palette["adverse"],
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9, "pad": 1.2})
     _quiet(ax)
     return fig
 
@@ -1085,7 +1121,7 @@ def _caption_rows() -> pd.DataFrame:
         "Figure3": "Closed M0–M4 model path and auditable attribution. Panels a–c summarize 16 closed-domain seeds with descriptive 95% t intervals where shown; panel d reports validated E2 local KKT pressure terms (maximum stationarity residual 1.82×10⁻¹¹), not causal acreage shares.",
         "Figure4": "Operational interventions identify reversal in E2 (n=16 per cell; 24/24 registered family-wise intervals passed). E3 risk-frontier results are retained as adverse evidence only: the experiment-level precision gate failed at the n=64 ceiling.",
         "Figure5": "E6 shows positive, exact-null and substitution relations between information and flexibility (n=16; 3/3 family-wise intervals passed), with exact ignore-signal and garbling checks. E5 cross-law risk diagnostics are non-promoted because the experiment precision gate failed at n=64.",
-        "Figure6": "Admitted descriptive evidence covers 77 state-years in 26 states (2022–2024). Rank–acreage discordance varies across four ranking definitions and time, whereas all nine national crop–year comparisons are rank aligned. These patterns do not identify private objectives, constraints or optimal allocations.",
+        "Figure6": "GOAL-15 admitted-data evidence covers 77 state-years in 26 states (2022–2024). Across 51 transitions per definition, every 95% state-cluster interval for the prior-score-top versus other-crop mean share change includes zero. Concurrent inversion intensity varies by definition, state, year and national aggregation. Relative yield is nationally tied; no private objective, constraint, CVaR, copula, causal, welfare or optimal-acreage inference is made.",
         "FigureS1": "Final sequential precision outcomes for E1–E6. Only E2 and E6 passed every registered primary interval; failed experiments reached n=64 and remain non-promoted.",
         "FigureS2": "Complete adverse inventory for failed experiments and all 206 registered infeasible rows (192 designed E3 rows and 14 certified E4/E5 rows). No feasible-only filtering enters positive claims.",
         "FigureS3": "Numerical diagnostics: reverse-order replay 12/12, solver sensitivity 9/9, maximum KKT residual 1.82×10⁻¹¹ and maximum Shapley efficiency residual 1.42×10⁻¹⁴.",
@@ -1110,7 +1146,7 @@ def _register_figures(root: Path, output_dir: Path, rendered: dict[str, dict[str
         "Figure3": "figure3_nested_summary.csv;figure3_shapley_summary.csv;figure3_pressure_summary.csv",
         "Figure4": "figure4_e2_cells.csv;figure4_e2_contrasts.csv;figure4_e3_adverse.csv",
         "Figure5": "figure5_information_summary.csv;figure5_information_interaction.csv;figure5_dependence_boundary.csv",
-        "Figure6": "figure6_definition_summary.csv;figure6_state_heterogeneity.csv;figure6_year_heterogeneity.csv;figure6_lagged_2024_validation.csv;figure6_national_check.csv",
+        "Figure6": "figure6_stage2_inversion_intensity_summary.csv;figure6_stage2_transition_summary.csv;figure6_stage2_state_heterogeneity.csv;figure6_stage2_year_heterogeneity.csv;figure6_stage2_aggregation_summary.csv;figure6_stage2_observed_model_unidentified.csv",
         "FigureS1": "supplementary_stopping_summary.csv",
         "FigureS2": "supplementary_adverse_inventory.csv;supplementary_infeasible_summary.csv",
         "FigureS3": "supplementary_numerical_diagnostics.csv",
