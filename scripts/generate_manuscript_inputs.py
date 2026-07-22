@@ -19,6 +19,10 @@ def main() -> None:
     trans_path = ROOT / "empirical/goal16/outputs/temporal_model.csv"
     persistence_path = ROOT / "empirical/goal16/outputs/persistence_transition_summary.csv"
     agg_path = ROOT / "empirical/goal16/outputs/aggregation_boundary.csv"
+    sample_flow_path = ROOT / "empirical/goal16/outputs/sample_flow.csv"
+    coverage_path = ROOT / "empirical/goal16/outputs/coverage.csv"
+    missingness_path = ROOT / "empirical/goal16/outputs/missingness.csv"
+    loso_path = ROOT / "empirical/goal16/outputs/leave_one_state_out.csv"
     e2_cells_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_cells.csv"
     e2_contrasts_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_contrasts.csv"
     e6_path = ROOT / "visualization/stage_ii/source_data/figure5_information_interaction.csv"
@@ -29,6 +33,10 @@ def main() -> None:
     trans = pd.read_csv(trans_path).set_index(["ranking_definition", "specification"])
     persistence = pd.read_csv(persistence_path)
     agg = pd.read_csv(agg_path).set_index("ranking_definition")
+    sample_flow = pd.read_csv(sample_flow_path).set_index("stage")
+    coverage = pd.read_csv(coverage_path).set_index("year")
+    missingness = pd.read_csv(missingness_path)
+    loso = pd.read_csv(loso_path)
     e2_cells = pd.read_csv(e2_cells_path).set_index("cell_id")
     e2_contrasts = pd.read_csv(e2_contrasts_path)
     e6 = pd.read_csv(e6_path).set_index("contrast_id")
@@ -53,6 +61,15 @@ def main() -> None:
         "TransitionsPerDefinition": item(emp["transitions_per_definition"], "state-year transitions", emp_path, "transitions_per_definition"),
         "CropTransitionRows": item(12 * emp["transitions_per_definition"], "crop-transition rows", emp_path, "12 * transitions_per_definition"),
         "BootstrapReplications": item(5000, "bootstrap draws", trans_path, "bootstrap_replications"),
+        "ParsedCropRows": item(int(sample_flow.loc["parsed state-crop-year rows", "retained"]), "parsed crop rows", sample_flow_path, "parsed state-crop-year rows.retained"),
+        "NonmissingCropRows": item(int(sample_flow.loc["nonmissing acreage and yield", "retained"]), "nonmissing crop rows", sample_flow_path, "nonmissing acreage and yield.retained"),
+        "EarlyCoverageStates": item(int(coverage.loc[2016, "states"]), "states", coverage_path, "2016.states"),
+        "MiddleCoverageStates": item(int(coverage.loc[2019, "states"]), "states", coverage_path, "2019.states"),
+        "FinalCoverageStates": item(int(coverage.loc[2024, "states"]), "states", coverage_path, "2024.states"),
+        "MissingAcreageRows": item(int(missingness.loc[missingness.variable.eq("planted_acres_1000"), "missing_rows"].sum()), "missing acreage values", missingness_path, "sum planted_acres_1000.missing_rows"),
+        "MissingYieldRows": item(int(missingness.loc[missingness.variable.eq("yield_bushels_per_acre"), "missing_rows"].sum()), "missing yield values", missingness_path, "sum yield_bushels_per_acre.missing_rows"),
+        "LosoOperatingMin": item(f"{loso.loc[loso.ranking_definition.eq('operating_margin'), 'mean_inversion_intensity'].min():.3f}", "proportion", loso_path, "operating_margin.min mean_inversion_intensity"),
+        "LosoOperatingMax": item(f"{loso.loc[loso.ranking_definition.eq('operating_margin'), 'mean_inversion_intensity'].max():.3f}", "proportion", loso_path, "operating_margin.max mean_inversion_intensity"),
         "OperatingInversion": item(f"{op_inv.estimate:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.estimate"),
         "OperatingInversionLow": item(f"{op_inv.ci_low:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_low"),
         "OperatingInversionHigh": item(f"{op_inv.ci_high:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_high"),

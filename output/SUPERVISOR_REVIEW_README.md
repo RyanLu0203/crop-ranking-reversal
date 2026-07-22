@@ -1,6 +1,6 @@
 # Stage II final scientific package
 
-This package closes the authorized Stage II reconstruction from theory through confirmatory simulation, the official-data GOAL-16 empirical extension, eleven-figure visualization and results-led manuscript integration. It is a final scientific draft for author review; it is not a journal-submission archive until author-owned metadata and journal formatting are completed.
+This package closes the authorized Stage II reconstruction and GOAL-17 scientific deepening from theory through confirmatory simulation, the official-data empirical extension, six redesigned main figures, seven supplementary figures and results-led manuscript integration. It is a final scientific draft for author review; it is not a journal-submission archive until author-owned metadata and journal formatting are completed.
 
 ## Review files
 
@@ -12,6 +12,8 @@ This package closes the authorized Stage II reconstruction from theory through c
 - `../audits/visual_page_review.md` — page-by-page rendering review
 - `../audits/goal16_post_visual_qa.md` — full-width, 89-mm, grayscale, colour-vision and overlap audit
 - `../audits/goal16_before_after_audit.md` — pre/post reconstruction comparison
+- `../audits/goal17_visual_exploration.md` — two final-size concepts for each main figure and the selection record
+- `../visualization/goal17/qa/validation_report.json` — vector, palette, size, font and collision validation
 - `remaining_actions.md` — author and submission actions still required
 
 ## Reproduction
@@ -33,6 +35,6 @@ canonical test.
 
 ## Evidence boundary
 
-E2 operational reversal and E6 information--flexibility sign heterogeneity are the only promoted confirmatory simulation results. E1, E3, E4 and E5 remain adverse because their experiment-level precision gates fail. The empirical results are descriptive and accounting-identified only. Observed acreage optimality, private constraints, CVaR binding, copula mechanism, causal effects and welfare are not identified.
+E2 operational reversal and E6 information--flexibility sign heterogeneity are the only supported confirmatory simulation results. E1, E3, E4 and E5 remain inconclusive because they do not meet their experiment-level precision criteria. The empirical results are descriptive and accounting-identified only. Observed acreage optimality, private constraints, CVaR binding, copula mechanism, causal effects and welfare are not identified.
 
-All figures use the frozen colour card `#3D3539`, `#0F9EA8`, `#008B82`, `#45728F`, `#8CD1B2`, `#8B84A3`, with redundant non-colour encodings and accessibility proofs. Text--text, text--mark and legend--data overlap checks pass at both full and 89-mm widths for all eleven figures.
+All figures use the frozen colour card `#3D3539`, `#0F9EA8`, `#008B82`, `#45728F`, `#8CD1B2`, `#8B84A3`, with redundant non-colour encodings and accessibility proofs. The eight new GOAL-17 compositions are designed at 183 mm; their editable SVG and vector PDF colours, 5.5-pt minimum text, bounds and title lanes validate without failures. Full-colour, grayscale, deuteranopia and protanopia contact sheets are included.

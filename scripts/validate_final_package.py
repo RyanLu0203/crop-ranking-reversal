@@ -69,15 +69,18 @@ def main()->None:
     for line in (ROOT/"output/reproducibility/SHA256SUMS").read_text().splitlines():
         digest,rel=line.split("  ",1); p=ROOT/rel
         if not p.exists() or sha(p)!=digest: errors.append(f"release checksum mismatch: {rel}")
-    acceptance=["audits/issue_1_acceptance_report.md","audits/issue_2_theory_acceptance_report.md","audits/issue_3_literature_acceptance_report.md","audits/issue_4_data_acceptance_report.md","audits/issue_5_acceptance_report.md","audits/issue_6_acceptance_report.md","audits/issue_7_acceptance_report.md","audits/nature_visual_qa.md","audits/manuscript_claim_audit.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/goal16_before_after_audit.md","audits/goal16_post_visual_qa.md","audits/goal16_narrative_after.md"]
+    acceptance=["audits/issue_1_acceptance_report.md","audits/issue_2_theory_acceptance_report.md","audits/issue_3_literature_acceptance_report.md","audits/issue_4_data_acceptance_report.md","audits/issue_5_acceptance_report.md","audits/issue_6_acceptance_report.md","audits/issue_7_acceptance_report.md","audits/nature_visual_qa.md","audits/manuscript_claim_audit.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/goal16_before_after_audit.md","audits/goal16_post_visual_qa.md","audits/goal16_narrative_after.md","audits/goal17_baseline_audit.md","audits/goal17_visual_contracts.md","audits/goal17_visual_exploration.md","audits/goal17_acceptance_report.md"]
     for rel in acceptance:
         if not (ROOT/rel).exists(): errors.append(f"missing milestone audit: {rel}")
     readme=(ROOT/"output/SUPERVISOR_REVIEW_README.md").read_text()
     if "not a journal-submission archive" not in readme or "make paper" not in readme: errors.append("Stage II README boundary/build command missing")
     usage=rows(ROOT/"manuscript/registries/figure_table_usage.csv")
-    if len(usage)!=11: errors.append("GOAL-16 figure-use registry must contain eleven figures")
+    if len(usage)!=13: errors.append("GOAL-17 figure-use registry must contain six main and seven supplementary figures")
     overlap=rows(ROOT/"visualization/stage_ii/qa/overlap_audit.csv")
     if len(overlap)!=11 or any(row.get("status")!="PASS" for row in overlap): errors.append("all eleven figures must pass the overlap audit")
+    goal17_visual=json.loads((ROOT/"visualization/goal17/qa/validation_report.json").read_text())
+    if not goal17_visual.get("passed") or goal17_visual.get("renderer_bounds_failures") or goal17_visual.get("renderer_title_collisions"):
+        errors.append("GOAL-17 final-size visual validation failed")
     if not (ROOT/"audits/stage_ii_final_claim_evidence.csv").exists(): errors.append("missing Stage II claim-evidence lineage")
     archive=ROOT/"output/stage_ii_final_scientific_package.zip"
     archive_sum=ROOT/"output/stage_ii_final_scientific_package.zip.sha256"
@@ -88,11 +91,11 @@ def main()->None:
         if name!=archive.name or digest!=sha(archive): errors.append("Stage II archive checksum mismatch")
         with zipfile.ZipFile(archive) as zf:
             names=set(zf.namelist())
-            required={"PACKAGE_MANIFEST.csv","manuscript/main.tex","supplementary/supplementary.tex","figures/stage_ii/main/Figure6.pdf","figures/stage_ii/supplementary/FigureS5.pdf","visualization/stage_ii/source_data/figure6_goal16_temporal_model.csv","visualization/stage_ii/qa/overlap_audit.csv","empirical/goal16/outputs/validation_report.json","audits/stage_ii_final_claim_evidence.csv","audits/goal16_before_after_audit.md","audits/goal16_post_visual_qa.md"}
+            required={"PACKAGE_MANIFEST.csv","manuscript/main.tex","manuscript/sections/conclusion.tex","supplementary/supplementary.tex","figures/stage_ii/supplementary/FigureS5.pdf","figures/goal17/main/Figure1.svg","figures/goal17/main/Figure6.pdf","figures/goal17/supplementary/FigureS7.tiff","visualization/goal17/qa/validation_report.json","visualization/stage_ii/source_data/figure6_goal16_temporal_model.csv","visualization/stage_ii/qa/overlap_audit.csv","empirical/goal16/outputs/validation_report.json","audits/stage_ii_final_claim_evidence.csv","audits/goal16_before_after_audit.md","audits/goal17_visual_exploration.md","data/goal17/source_registry.csv"}
             if required-names: errors.append(f"Stage II archive missing entries: {sorted(required-names)}")
     if len((ROOT/"output/remaining_actions.md").read_text().splitlines())<10: errors.append("remaining-actions list is incomplete")
     if errors: raise SystemExit("Final package validation failed:\n- "+"\n- ".join(errors))
-    print(f"Final package validation passed: pdfs=2 pages={expected_pages} logs=2 contacts={expected_contacts} release_rows={len(manifest)} figures=11 milestone_audits={len(acceptance)}")
+    print(f"Final package validation passed: pdfs=2 pages={expected_pages} logs=2 contacts={expected_contacts} release_rows={len(manifest)} figures=13 milestone_audits={len(acceptance)}")
 
 
 if __name__=="__main__": main()

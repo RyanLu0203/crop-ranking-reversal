@@ -96,6 +96,7 @@ def export(fig: plt.Figure, figure_id: str, section: str) -> dict[str, object]:
     target.mkdir(parents=True, exist_ok=True)
     paths = {ext: target / f"{figure_id}.{ext}" for ext in ["svg", "pdf", "png", "tiff"]}
     fig.savefig(paths["svg"], format="svg", metadata={"Date": "2026-07-22"})
+    concepts.normalize_svg(paths["svg"])
     fig.savefig(paths["pdf"], format="pdf", metadata={"CreationDate": None, "ModDate": None})
     fig.savefig(paths["png"], format="png", dpi=300, metadata={"Software": "crop-ranking-reversal GOAL17"})
     fig.savefig(paths["tiff"], format="tiff", dpi=600, pil_kwargs={"compression": "tiff_lzw"})
@@ -152,10 +153,10 @@ def main() -> int:
         plt.close(fig)
 
     with (OUT / "figure_manifest.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(records[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(records[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(records)
     with (QA / "renderer_qa.csv").open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(renderer_rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(renderer_rows[0]), lineterminator="\n")
         writer.writeheader(); writer.writerows(renderer_rows)
 
     contacts = {mode: str(contact_sheet(records, mode).relative_to(ROOT)) for mode in ["full", "grayscale", "deuteranopia", "protanopia"]}

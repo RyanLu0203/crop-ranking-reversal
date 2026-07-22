@@ -1,11 +1,11 @@
-# GOAL-16 final claim--evidence audit
+# GOAL-17 final claim--evidence audit
 
 ## Result
 
 The results-led manuscript closes the theorem, simulation, official-data,
 visualization and reproducibility chain. Every displayed manuscript number is
-generated from a named output; all six main and five supplementary figures have
-tidy source data, checksums and accessibility proofs.
+generated from a named output; all six main and seven supplementary figures have
+source data, checksums and accessibility proofs.
 
 ## Evidence decisions
 
@@ -29,9 +29,12 @@ tidy source data, checksums and accessibility proofs.
 
 ## Closure
 
-- 49 generated numeric macros with file- and field-level provenance.
+- 58 generated numeric macros with file- and field-level provenance.
 - 20 manuscript claims with resolved evidence assets.
-- 11 figures in SVG, PDF, PNG and TIFF with fixed-card and overlap validation.
+- 13 figures in SVG, PDF, PNG and TIFF; the eight GOAL-17 figures additionally
+  pass final-size font, vector, embedded SVG/PDF colour and collision validation.
+- 12 meaningfully different main-figure candidates were rendered at 183 mm and
+  compared in full colour, grayscale, deuteranopia and protanopia.
 - 44/44 inherited draft-content dispositions remain closed.
 - Two independent empirical reruns are byte-identical.
 - Main and Supplementary PDFs are byte-identical across isolated builds.

@@ -36,15 +36,25 @@ def collect() -> list[Path]:
         "scripts/verify_stage_ii_empirical_reproducibility.py",
         "scripts/run_goal16_empirical.py", "empirical/goal16/EMPIRICAL_AUDIT.md",
         "scripts/build_goal16_post_visual_audit.py",
+        "scripts/fetch_goal17_census_geometry.py",
+        "scripts/generate_goal17_visual_candidates.py",
+        "scripts/generate_goal17_figures.py",
+        "scripts/validate_goal17_visualization.py",
+        "audits/goal17_baseline_audit.md",
+        "audits/goal17_visual_contracts.md",
+        "audits/goal17_visual_exploration.md",
+        "audits/goal17_candidate_visual_qa.csv",
+        "audits/goal17_acceptance_report.md",
+        "data/goal17/source_registry.csv",
     ]
     trees = [
-        "manuscript", "supplementary", "figures/stage_ii",
-        "visualization/stage_ii", "visualization/src/crop_visualization", "visualization/style",
+        "manuscript", "supplementary", "figures/stage_ii", "figures/goal17",
+        "visualization/stage_ii", "visualization/goal17", "visualization/src/crop_visualization", "visualization/style",
         "theory/repaired", "theory/stage_ii",
         "simulation/configs", "simulation/stage_ii/outputs", "simulation/src/crop_simulation",
         "empirical/configs", "empirical/stage_ii/outputs", "empirical/goal16", "empirical/src/crop_empirical",
         "evidence_registry", "output/pdf", "output/logs", "output/reproducibility",
-        "audits/goal16_visual_comparison",
+        "audits/goal16_visual_comparison", "audits/goal17_visual_candidates", "data/goal17/raw",
     ]
     paths = {ROOT / rel for rel in exact if (ROOT / rel).is_file()}
     for rel in trees:

@@ -99,6 +99,26 @@ def arrow(ax: plt.Axes, a: tuple[float, float], b: tuple[float, float], color: s
                                 color=color or CARD["charcoal"]))
 
 
+def vector_matrix(ax: plt.Axes, values: np.ndarray, colours) -> None:
+    """Draw a small matrix as editable vector rectangles instead of raster imshow."""
+    nrows, ncols = values.shape
+    for row in range(nrows):
+        for col in range(ncols):
+            face = colours(values[row, col]) if callable(colours) else colours[int(values[row, col])]
+            ax.add_patch(Rectangle((col - 0.5, row - 0.5), 1, 1, facecolor=face,
+                                   edgecolor=CARD["charcoal"], linewidth=0.45))
+    ax.set_xlim(-0.5, ncols - 0.5)
+    ax.set_ylim(nrows - 0.5, -0.5)
+
+
+def allocation_colour(value: float) -> tuple[float, float, float]:
+    """White-blended card colour for a Corn-share response cell."""
+    base_hex = CARD["soybean"] if value <= 0.5 else CARD["corn"]
+    alpha = 1 - 2 * value if value <= 0.5 else 2 * value - 1
+    base = np.array(matplotlib.colors.to_rgb(base_hex))
+    return tuple(alpha * base + (1 - alpha) * np.ones(3))
+
+
 def base_figure(group: int, concept: str, subtitle: str) -> plt.Figure:
     apply_nature_style()
     fig = plt.figure(figsize=mm(WIDTH_MM, HEIGHT_MM[group]), constrained_layout=False)
@@ -163,11 +183,9 @@ def fig1b() -> plt.Figure:
     rows = ["Rank disagreement", "Possible reversal", "Universal reversal", "Selected reversal"]
     cols = ["Ordinal\nrank", "Cardinal\npayoff", "Joint\nrisk", "Feasible\nset", "Optimal\nface", "Selection\nrule"]
     matrix = np.array([[1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0], [1, 1, 1, 1, 1, 0], [1, 1, 1, 1, 1, 1]])
-    ax.imshow(matrix, cmap=matplotlib.colors.ListedColormap(["white", CARD["promoted"]]), vmin=0, vmax=1, aspect="auto")
+    vector_matrix(ax, matrix, ["white", CARD["promoted"]])
     ax.set_xticks(range(6), cols); ax.set_yticks(range(4), rows)
     ax.tick_params(length=0, pad=4)
-    ax.set_xticks(np.arange(-0.5, 6, 1), minor=True); ax.set_yticks(np.arange(-0.5, 4, 1), minor=True)
-    ax.grid(which="minor", color=CARD["charcoal"], linewidth=0.45); ax.tick_params(which="minor", length=0)
     for y in range(4):
         for x in range(6):
             ax.text(x, y, "●" if matrix[y, x] else "—", ha="center", va="center", fontsize=6.6,
@@ -354,12 +372,10 @@ def fig4a() -> plt.Figure:
 
     factors = fig.add_subplot(gs[0, :3]); panel(factors, "a", "Interventions")
     fmat = cells[["budget", "rotation", "contract", "corn_bound"]].to_numpy()
-    factors.imshow(fmat, aspect="auto", cmap=matplotlib.colors.ListedColormap(["white", CARD["winter_wheat"]]), vmin=0, vmax=1)
+    vector_matrix(factors, fmat, ["white", CARD["winter_wheat"]])
     factors.set(yticks=y, yticklabels=cells.label, xticks=np.arange(4),
                 xticklabels=["Budget", "Rotation", "Soy\ncontract", "Corn\ncap"])
     factors.tick_params(length=0, pad=3)
-    factors.set_xticks(np.arange(-.5, 4, 1), minor=True); factors.set_yticks(np.arange(-.5, len(cells), 1), minor=True)
-    factors.grid(which="minor", color=CARD["charcoal"], lw=0.35); factors.tick_params(which="minor", length=0)
 
     alloc = fig.add_subplot(gs[0, 3:7], sharey=factors); alloc.set_title("Selected allocation and universal reversal", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
     alloc.axvspan(0, 0.5, color=CARD["promoted"], alpha=0.13); alloc.axvline(0.5, color=CARD["charcoal"], lw=0.7, ls="--")
@@ -443,14 +459,14 @@ def fig4b() -> plt.Figure:
         ax = fig.add_subplot(gs[0, j*4:(j+1)*4]); panel(ax, chr(97+j), "No budget intervention" if budget == 0 else "Budget intervention")
         d = factorial[factorial.budget.eq(budget)].sort_values(["rotation", "contract"])
         mat = d.pivot(index="rotation", columns="contract", values="allocation_Corn").loc[[1,0],[0,1]]
-        ax.imshow(mat, cmap=matplotlib.colors.LinearSegmentedColormap.from_list("alloc", [CARD["soybean"], "white", CARD["corn"]]), vmin=0, vmax=1)
+        vector_matrix(ax, mat.to_numpy(), allocation_colour)
         ax.set(xticks=[0,1], xticklabels=["No contract", "Soy contract"], yticks=[0,1], yticklabels=["Rotation", "No rotation"])
         ax.tick_params(length=0)
         for iy in range(2):
             for ix in range(2):
                 value=float(mat.iloc[iy,ix]); row=d[(d.rotation.eq([1,0][iy])) & (d.contract.eq(ix))].iloc[0]
                 ax.text(ix, iy-.08, f"Corn {value:.3f}", ha="center", va="center", fontsize=5.7, fontweight="semibold")
-                ax.text(ix, iy+.15, f"Δmargin {row.expected_profit-base:.2f}", ha="center", va="center", fontsize=5.3)
+                ax.text(ix, iy+.15, f"Δmargin {row.expected_profit-base:.2f}", ha="center", va="center", fontsize=5.5)
     anchor = fig.add_subplot(gs[0, 8:]); panel(anchor, "c", "Corn-bound anchor")
     anchor.axvspan(0,.5,color=CARD["promoted"],alpha=.13); anchor.axvline(.5,color=CARD["charcoal"],ls="--",lw=.7)
     anchor.plot([0,.45],[0,0],color=CARD["charcoal"],lw=6,solid_capstyle="butt"); anchor.scatter([.45],[0],s=30,color=CARD["promoted"],edgecolor=CARD["charcoal"],zorder=3)
@@ -661,12 +677,19 @@ def sha(path: Path) -> str:
     h=hashlib.sha256(); h.update(path.read_bytes()); return h.hexdigest()
 
 
+def normalize_svg(path: Path) -> None:
+    """Remove renderer-only line-end spaces so generated vectors are diff-clean."""
+    text = path.read_text(encoding="utf-8")
+    path.write_text("\n".join(line.rstrip() for line in text.splitlines()) + "\n", encoding="utf-8")
+
+
 def save(fig: plt.Figure, group: int, concept: str) -> dict[str,str]:
     stem=f"Figure{group}_concept{concept}"
     paths={ext:OUT/f"{stem}.{ext}" for ext in ["png","pdf","svg"]}
     fig.savefig(paths["png"],dpi=300,metadata={"Software":"crop-ranking-reversal GOAL17 candidate"})
     fig.savefig(paths["pdf"],metadata={"CreationDate":None,"ModDate":None})
     fig.savefig(paths["svg"],metadata={"Date":"2026-07-22"})
+    normalize_svg(paths["svg"])
     plt.close(fig)
     return {k:str(v.relative_to(ROOT)) for k,v in paths.items()}
 
@@ -705,7 +728,7 @@ def main() -> int:
     for mode in ["full", "grayscale", "deuteranopia", "protanopia"]:
         contact_sheet(records, mode)
     with (OUT/"candidate_manifest.csv").open("w",newline="",encoding="utf-8") as handle:
-        writer=csv.DictWriter(handle,fieldnames=list(records[0])); writer.writeheader(); writer.writerows(records)
+        writer=csv.DictWriter(handle,fieldnames=list(records[0]),lineterminator="\n"); writer.writeheader(); writer.writerows(records)
     files=sorted(p for p in OUT.iterdir() if p.is_file() and p.name!="SHA256SUMS.txt")
     (OUT/"SHA256SUMS.txt").write_text("".join(f"{sha(p)}  {p.name}\n" for p in files),encoding="utf-8")
     print(json.dumps({"candidates":len(records),"contact_sheet":str((OUT/'contact_sheet.png').relative_to(ROOT))},indent=2))

@@ -13,6 +13,17 @@ Review views:
 
 All comparisons were performed at final physical size, not on an enlarged design canvas. Titles and annotations use reserved bands. Long treatment labels and adjacent-panel labels were reflowed after full-size inspection. The first Figure 4A draft was explicitly rejected because a repeated 3-by-8 classification matrix and three prose cards consumed space without adding comparisons; it is not the selected design and was replaced in the versioned candidate set.
 
+## Rendered final-size candidate thumbnails
+
+| Scientific question | Concept A | Concept B |
+|---|---|---|
+| 1. Ordinal rank versus cardinal allocation | ![Figure 1 concept A](goal17_visual_candidates/Figure1_conceptA.png) | ![Figure 1 concept B](goal17_visual_candidates/Figure1_conceptB.png) |
+| 2. Mechanisms with the same disagreement | ![Figure 2 concept A](goal17_visual_candidates/Figure2_conceptA.png) | ![Figure 2 concept B](goal17_visual_candidates/Figure2_conceptB.png) |
+| 3. Model-component path and pressures | ![Figure 3 concept A](goal17_visual_candidates/Figure3_conceptA.png) | ![Figure 3 concept B](goal17_visual_candidates/Figure3_conceptB.png) |
+| 4. Assigned operational interventions | ![Figure 4 concept A](goal17_visual_candidates/Figure4_conceptA.png) | ![Figure 4 concept B](goal17_visual_candidates/Figure4_conceptB.png) |
+| 5. Information--flexibility archetypes | ![Figure 5 concept A](goal17_visual_candidates/Figure5_conceptA.png) | ![Figure 5 concept B](goal17_visual_candidates/Figure5_conceptB.png) |
+| 6. Empirical place, time and definition | ![Figure 6 concept A](goal17_visual_candidates/Figure6_conceptA.png) | ![Figure 6 concept B](goal17_visual_candidates/Figure6_conceptB.png) |
+
 ## Candidate comparison and selection
 
 | Group | Concept A | Concept B | Density and accessibility comparison | Selected direction |
@@ -45,4 +56,3 @@ All comparisons were performed at final physical size, not on an enlarged design
 ## Final implementation freeze
 
 The final six groups will implement the selected/hybrid directions above. Candidate files remain immutable evidence of exploration. Final figures must additionally export 300-dpi PNG, 600-dpi TIFF, SVG and vector PDF; validate embedded colours; pass full/grayscale/deuteranopia/protanopia review; and report zero clipping or text--mark collisions.
-

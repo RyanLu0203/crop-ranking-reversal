@@ -37,7 +37,7 @@ def main() -> None:
         "Introduction", "Ranking does not identify allocation",
         "Operational constraints identify reversal",
         "Information value depends on available actions",
-        "Empirical patterns are definition-dependent", "Discussion", "Methods",
+        "Empirical patterns are definition-dependent", "Discussion", "Conclusion", "Methods",
     ]
     positions = []
     for section in required:
@@ -86,9 +86,9 @@ def main() -> None:
         errors.append("teacher-Draft completion matrix is not 44/44 closed for Stage II")
 
     usage = csv_rows(ROOT / "manuscript/registries/figure_table_usage.csv")
-    expected_assets = {f"Figure{i}" for i in range(1, 7)} | {f"FigureS{i}" for i in range(1, 6)}
+    expected_assets = {f"Figure{i}" for i in range(1, 7)} | {f"FigureS{i}" for i in range(1, 8)}
     if {row["asset_id"] for row in usage} != expected_assets:
-        errors.append("figure usage registry must contain six main and five supplementary figures")
+        errors.append("figure usage registry must contain six main and seven supplementary figures")
     for row in usage:
         if not (ROOT / row["source_path"]).exists():
             errors.append(f"missing manuscript asset: {row['source_path']}")
@@ -96,11 +96,14 @@ def main() -> None:
             errors.append(f"missing source registry: {row['source_registry']}")
 
     for i in range(1, 7):
-        if f"../figures/stage_ii/main/Figure{i}.pdf" not in main_text:
-            errors.append(f"main manuscript does not include Stage II Figure{i}")
+        if f"../figures/goal17/main/Figure{i}.pdf" not in main_text:
+            errors.append(f"main manuscript does not include GOAL-17 Figure{i}")
     for i in range(1, 6):
         if f"../figures/stage_ii/supplementary/FigureS{i}.pdf" not in supp_text:
             errors.append(f"supplement does not include Stage II FigureS{i}")
+    for i in range(6, 8):
+        if f"../figures/goal17/supplementary/FigureS{i}.pdf" not in supp_text:
+            errors.append(f"supplement does not include GOAL-17 FigureS{i}")
 
     forbidden = ["8,150", "42,300", "19--34\\%", "unique reversal threshold", "CVaR-optimal policy achieves"]
     for phrase in forbidden:
@@ -108,7 +111,7 @@ def main() -> None:
             errors.append(f"inadmissible teacher-Draft phrase: {phrase}")
 
     abstract = (ROOT / "manuscript/sections/abstract.tex").read_text()
-    if "E1, E3, E4 and E5 do not meet" not in abstract:
+    if "Four other pre-specified experiments do not meet" not in abstract:
         errors.append("abstract must retain the failed-experiment boundary")
     for token in ["EtwoPassedIntervals", "EsixPositive", "OperatingInversion"]:
         if token not in abstract:
@@ -130,7 +133,7 @@ def main() -> None:
 
     if errors:
         raise SystemExit("Manuscript validation failed:\n- " + "\n- ".join(errors))
-    print(f"Manuscript validation passed: main_words={len(words)} supplement_words={len(supp_words)} citations={len(cited)} claims={len(claim_rows)} numbers={len(numbers)} figures=11 completion=44/44")
+    print(f"Manuscript validation passed: main_words={len(words)} supplement_words={len(supp_words)} citations={len(cited)} claims={len(claim_rows)} numbers={len(numbers)} figures=13 completion=44/44")
 
 
 if __name__ == "__main__":
