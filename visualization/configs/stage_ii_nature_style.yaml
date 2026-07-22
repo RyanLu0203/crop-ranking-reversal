@@ -1,0 +1,66 @@
+style_id: CRR-STAGEII-NATURE-VIS-2026-07-22
+target_journal: Nature Food
+backend: python_matplotlib_only
+status: FROZEN_BEFORE_RENDERING
+authorization: https://github.com/RyanLu0203/crop-ranking-reversal/pull/28#issuecomment-5040939632
+dimensions_mm:
+  Figure1: [183, 128]
+  Figure2: [183, 128]
+  Figure3: [183, 145]
+  Figure4: [183, 145]
+  Figure5: [183, 145]
+  Figure6: [183, 150]
+  FigureS1: [183, 118]
+  FigureS2: [183, 138]
+  FigureS3: [183, 112]
+  FigureS4: [183, 128]
+typography:
+  family: [Arial, Helvetica, DejaVu Sans, sans-serif]
+  body_pt: 6.8
+  ticks_pt: 5.8
+  legend_pt: 5.7
+  panel_label_pt: 8.0
+  svg_fonttype: none
+  pdf_fonttype: 42
+palette:
+  charcoal: '#3D3539'
+  navy: '#484878'
+  steel: '#7884B4'
+  pale_blue: '#B4C0E4'
+  rose: '#C57B84'
+  pale_rose: '#E4CCD8'
+  teal: '#0F8B8D'
+  mint: '#8CC9B4'
+  amber: '#D39B3A'
+  adverse: '#767676'
+  light_grey: '#E6E6E6'
+  paper: '#FFFFFF'
+semantic_mapping:
+  corn: navy
+  soybean: teal
+  winter_wheat: amber
+  positive_supported: teal
+  exact_null: charcoal
+  substitution: rose
+  adverse_non_promoted: adverse
+  observed_acreage: charcoal
+  calibrated_model: steel
+  unidentified: pale_rose
+exports:
+  primary: svg
+  vector: [svg, pdf]
+  raster: [png_300dpi, tiff_600dpi]
+  deterministic_metadata_date: '2026-07-22'
+accessibility:
+  minimum_text_contrast_ratio: 4.5
+  grayscale_required: true
+  deuteranopia_simulation_required: true
+prohibitions:
+  - rainbow_colormap
+  - decorative_gradient
+  - hidden_precision_failure
+  - smoothing_across_active_set_changes
+  - manually_adjusted_plot_data
+  - rasterized_chart_text
+  - causal_language_for_kkt_pressure
+  - empirical_optimum_inference

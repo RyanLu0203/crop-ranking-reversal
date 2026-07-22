@@ -9,6 +9,8 @@ install:
 figures:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_nature_figures.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_stage_ii_figures.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_visualization.py
 
 manuscript:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_manuscript_inputs.py
@@ -34,6 +36,7 @@ validate:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_blueprint.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_theory.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_confirmatory.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_visualization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 
 test:
