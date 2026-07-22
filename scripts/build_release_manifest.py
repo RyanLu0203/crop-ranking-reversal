@@ -15,7 +15,7 @@ def sha(path:Path)->str: return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main()->None:
     paths=[]
-    for pattern in ["output/pdf/*.pdf","output/logs/*.txt","output/qa/*.png","output/qa/*.json","output/*.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/stage_ii_final_claim_evidence.csv"]:
+    for pattern in ["output/pdf/*.pdf","output/logs/*.txt","output/qa/*.png","output/qa/*.json","output/*.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/stage_ii_final_claim_evidence.csv","audits/goal16_*.md","audits/goal16_visual_comparison/*"]:
         paths.extend(ROOT.glob(pattern))
     paths=sorted(set(p for p in paths if p.is_file()))
     role=lambda p: "review_pdf" if p.suffix==".pdf" else "compile_log" if "logs" in p.parts else "page_qa" if "qa" in p.parts else "review_documentation"

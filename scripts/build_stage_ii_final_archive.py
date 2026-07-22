@@ -24,6 +24,8 @@ def collect() -> list[Path]:
         "output/SUPERVISOR_REVIEW_README.md", "output/remaining_actions.md",
         "audits/first_compile_qa.md", "audits/final_claim_evidence_audit.md",
         "audits/stage_ii_final_claim_evidence.csv", "audits/visual_page_review.md",
+        "audits/goal16_narrative_after.md", "audits/goal16_post_visual_qa.md",
+        "audits/goal16_before_after_audit.md", "audits/goal16_title_and_terminology_audit.md",
         "visualization/configs/stage_ii_nature_style.yaml",
         "scripts/generate_manuscript_inputs.py", "scripts/validate_manuscript.py",
         "scripts/build_paper.py", "scripts/render_pdf_qa.py",
@@ -32,14 +34,17 @@ def collect() -> list[Path]:
         "scripts/run_stage_ii_confirmatory.py", "scripts/validate_stage_ii_confirmatory.py",
         "scripts/run_stage_ii_empirical.py", "scripts/validate_stage_ii_empirical.py",
         "scripts/verify_stage_ii_empirical_reproducibility.py",
+        "scripts/run_goal16_empirical.py", "empirical/goal16/EMPIRICAL_AUDIT.md",
+        "scripts/build_goal16_post_visual_audit.py",
     ]
     trees = [
         "manuscript", "supplementary", "figures/stage_ii",
-        "visualization/stage_ii", "visualization/src/crop_visualization",
+        "visualization/stage_ii", "visualization/src/crop_visualization", "visualization/style",
         "theory/repaired", "theory/stage_ii",
         "simulation/configs", "simulation/stage_ii/outputs", "simulation/src/crop_simulation",
-        "empirical/configs", "empirical/stage_ii/outputs", "empirical/src/crop_empirical",
+        "empirical/configs", "empirical/stage_ii/outputs", "empirical/goal16", "empirical/src/crop_empirical",
         "evidence_registry", "output/pdf", "output/logs", "output/reproducibility",
+        "audits/goal16_visual_comparison",
     ]
     paths = {ROOT / rel for rel in exact if (ROOT / rel).is_file()}
     for rel in trees:

@@ -69,13 +69,15 @@ def main()->None:
     for line in (ROOT/"output/reproducibility/SHA256SUMS").read_text().splitlines():
         digest,rel=line.split("  ",1); p=ROOT/rel
         if not p.exists() or sha(p)!=digest: errors.append(f"release checksum mismatch: {rel}")
-    acceptance=["audits/issue_1_acceptance_report.md","audits/issue_2_theory_acceptance_report.md","audits/issue_3_literature_acceptance_report.md","audits/issue_4_data_acceptance_report.md","audits/issue_5_acceptance_report.md","audits/issue_6_acceptance_report.md","audits/issue_7_acceptance_report.md","audits/nature_visual_qa.md","audits/manuscript_claim_audit.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md"]
+    acceptance=["audits/issue_1_acceptance_report.md","audits/issue_2_theory_acceptance_report.md","audits/issue_3_literature_acceptance_report.md","audits/issue_4_data_acceptance_report.md","audits/issue_5_acceptance_report.md","audits/issue_6_acceptance_report.md","audits/issue_7_acceptance_report.md","audits/nature_visual_qa.md","audits/manuscript_claim_audit.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/goal16_before_after_audit.md","audits/goal16_post_visual_qa.md","audits/goal16_narrative_after.md"]
     for rel in acceptance:
         if not (ROOT/rel).exists(): errors.append(f"missing milestone audit: {rel}")
     readme=(ROOT/"output/SUPERVISOR_REVIEW_README.md").read_text()
     if "not a journal-submission archive" not in readme or "make paper" not in readme: errors.append("Stage II README boundary/build command missing")
     usage=rows(ROOT/"manuscript/registries/figure_table_usage.csv")
-    if len(usage)!=10: errors.append("Stage II figure-use registry must contain ten figures")
+    if len(usage)!=11: errors.append("GOAL-16 figure-use registry must contain eleven figures")
+    overlap=rows(ROOT/"visualization/stage_ii/qa/overlap_audit.csv")
+    if len(overlap)!=11 or any(row.get("status")!="PASS" for row in overlap): errors.append("all eleven figures must pass the overlap audit")
     if not (ROOT/"audits/stage_ii_final_claim_evidence.csv").exists(): errors.append("missing Stage II claim-evidence lineage")
     archive=ROOT/"output/stage_ii_final_scientific_package.zip"
     archive_sum=ROOT/"output/stage_ii_final_scientific_package.zip.sha256"
@@ -86,11 +88,11 @@ def main()->None:
         if name!=archive.name or digest!=sha(archive): errors.append("Stage II archive checksum mismatch")
         with zipfile.ZipFile(archive) as zf:
             names=set(zf.namelist())
-            required={"PACKAGE_MANIFEST.csv","manuscript/main.tex","supplementary/supplementary.tex","figures/stage_ii/main/Figure6.pdf","figures/stage_ii/supplementary/FigureS4.pdf","visualization/stage_ii/source_data/figure6_stage2_transition_summary.csv","audits/stage_ii_final_claim_evidence.csv"}
+            required={"PACKAGE_MANIFEST.csv","manuscript/main.tex","supplementary/supplementary.tex","figures/stage_ii/main/Figure6.pdf","figures/stage_ii/supplementary/FigureS5.pdf","visualization/stage_ii/source_data/figure6_goal16_temporal_model.csv","visualization/stage_ii/qa/overlap_audit.csv","empirical/goal16/outputs/validation_report.json","audits/stage_ii_final_claim_evidence.csv","audits/goal16_before_after_audit.md","audits/goal16_post_visual_qa.md"}
             if required-names: errors.append(f"Stage II archive missing entries: {sorted(required-names)}")
     if len((ROOT/"output/remaining_actions.md").read_text().splitlines())<10: errors.append("remaining-actions list is incomplete")
     if errors: raise SystemExit("Final package validation failed:\n- "+"\n- ".join(errors))
-    print(f"Final package validation passed: pdfs=2 pages={expected_pages} logs=2 contacts={expected_contacts} release_rows={len(manifest)} figures=10 milestone_audits={len(acceptance)}")
+    print(f"Final package validation passed: pdfs=2 pages={expected_pages} logs=2 contacts={expected_contacts} release_rows={len(manifest)} figures=11 milestone_audits={len(acceptance)}")
 
 
 if __name__=="__main__": main()
