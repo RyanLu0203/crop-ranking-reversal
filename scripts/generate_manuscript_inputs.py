@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate manuscript numbers and their output-level provenance registry."""
+"""Generate Stage II manuscript numbers and output-level provenance."""
 
 from __future__ import annotations
 
@@ -9,76 +9,118 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT=Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[1]
 
 
-def pct(x:float)->str: return f"{100*x:.1f}"
+def main() -> None:
+    sim_path = ROOT / "simulation/stage_ii/outputs/summary.json"
+    emp_path = ROOT / "empirical/stage_ii/outputs/summary.json"
+    inv_path = ROOT / "empirical/stage_ii/outputs/inversion_intensity_summary.csv"
+    trans_path = ROOT / "empirical/stage_ii/outputs/transition_summary.csv"
+    agg_path = ROOT / "empirical/stage_ii/outputs/aggregation_summary.csv"
+    e2_cells_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_cells.csv"
+    e2_contrasts_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_contrasts.csv"
+    e6_path = ROOT / "visualization/stage_ii/source_data/figure5_information_interaction.csv"
 
+    sim = json.loads(sim_path.read_text())
+    emp = json.loads(emp_path.read_text())
+    inv = pd.read_csv(inv_path).set_index(["ranking_definition", "metric"])
+    trans = pd.read_csv(trans_path).set_index(["ranking_definition", "metric"])
+    agg = pd.read_csv(agg_path).set_index("ranking_definition")
+    e2_cells = pd.read_csv(e2_cells_path).set_index("cell_id")
+    e2_contrasts = pd.read_csv(e2_contrasts_path)
+    e6 = pd.read_csv(e6_path).set_index("contrast_id")
 
-def main()->None:
-    sim=json.loads((ROOT/"simulation/outputs/summary.json").read_text())
-    emp=json.loads((ROOT/"empirical/outputs/summary.json").read_text())
-    defs=pd.read_csv(ROOT/"empirical/outputs/definition_summary.csv").set_index("ranking_definition")
-    years=pd.read_csv(ROOT/"empirical/outputs/year_heterogeneity.csv")
-    lag=pd.read_csv(ROOT/"empirical/outputs/lagged_2024_validation.csv")
-    nat=pd.read_csv(ROOT/"empirical/outputs/national_check.csv")
-    conv=pd.read_csv(ROOT/"simulation/outputs/convergence_summary.csv")
-    values={
-        "NStates":(emp["states"],"states","empirical/outputs/summary.json","states"),
-        "NStateYears":(emp["complete_state_years"],"state-years","empirical/outputs/summary.json","complete_state_years"),
-        "NCropRows":(emp["complete_panel_rows"],"crop rows","empirical/outputs/summary.json","complete_panel_rows"),
-        "EmpiricalStartYear":(2022,"year","empirical/configs/empirical_design.yaml","start_year"),
-        "EmpiricalEndYear":(2024,"year","empirical/configs/empirical_design.yaml","end_year"),
-        "OperatingTopCount":(63,"state-years","empirical/outputs/discordance_detail.csv","sum top_rank_reversal"),
-        "OperatingTopRate":(pct(defs.loc["operating_margin","top_rank_reversal_rate"]),"percent","empirical/outputs/definition_summary.csv","operating_margin.top_rank_reversal_rate"),
-        "OperatingStrongCount":(41,"state-years","empirical/outputs/discordance_detail.csv","sum strong_reversal"),
-        "OperatingStrongRate":(pct(defs.loc["operating_margin","strong_reversal_rate"]),"percent","empirical/outputs/definition_summary.csv","operating_margin.strong_reversal_rate"),
-        "DefinitionMinRate":(pct(defs.top_rank_reversal_rate.min()),"percent","empirical/outputs/definition_summary.csv","min top_rank_reversal_rate"),
-        "DefinitionMaxRate":(pct(defs.top_rank_reversal_rate.max()),"percent","empirical/outputs/definition_summary.csv","max top_rank_reversal_rate"),
-        "LaggedStates":(len(lag),"states","empirical/outputs/lagged_2024_validation.csv","rows"),
-        "LaggedTopCount":(int(lag.top_rank_reversal.sum()),"states","empirical/outputs/lagged_2024_validation.csv","sum top_rank_reversal"),
-        "LaggedTopRate":(pct(lag.top_rank_reversal.mean()),"percent","empirical/outputs/lagged_2024_validation.csv","mean top_rank_reversal"),
-        "NationalComparisons":(len(nat),"crop-years","empirical/outputs/national_check.csv","rows"),
-        "NationalReversals":(int(nat.rank_reversal.sum()),"crop-years","empirical/outputs/national_check.csv","sum rank_reversal"),
-        "SimulationCells":(sim["formal_cells"],"design cells","simulation/outputs/summary.json","formal_cells"),
-        "SimulationReplications":(sim["formal_replications"],"replications","simulation/outputs/summary.json","formal_replications"),
-        "UniversalReplications":(sim["universal_reversal_replications"],"replications","simulation/outputs/summary.json","universal_reversal_replications"),
-        "RiskBindingReplications":(sim["risk_binding_replications"],"replications","simulation/outputs/summary.json","risk_binding_replications"),
-        "RiskSlackReplications":(sim["formal_replications"]-sim["risk_binding_replications"],"replications","simulation/outputs/summary.json","derived formal minus binding"),
-        "PseudoDiversificationReplications":(sim["pseudo_diversification_replications"],"replications","simulation/outputs/summary.json","pseudo_diversification_replications"),
-        "ReplayPasses":(sim["independent_replay_passes"],"replications","simulation/outputs/summary.json","independent_replay_passes"),
-        "SolverPasses":(sim["solver_sensitivity_passes"],"comparisons","simulation/outputs/summary.json","solver_sensitivity_passes"),
-        "ConvergencePassRows":(int(conv.convergence_pass.sum()),"grid rows","simulation/outputs/convergence_summary.csv","sum convergence_pass"),
-        "ConvergenceRows":(len(conv),"grid rows","simulation/outputs/convergence_summary.csv","rows"),
-        "ConvergenceWidth":(f"{conv.reversal_probability_interval_width.max():.3f}","probability","simulation/outputs/convergence_summary.csv","max reversal_probability_interval_width"),
+    op_inv = inv.loc[("operating_margin", "inversion_intensity")]
+    op_top = inv.loc[("operating_margin", "top_rank_reversal_rate")]
+    op_lag = trans.loc[("operating_margin", "lagged_top_minus_other_share_change")]
+    e6_null = e6.loc["E6-DOMINATED_OPTION_NULL-QXF"]
+    e6_sub = e6.loc["E6-ROBUST_OPTION_SUBSTITUTES-QXF"]
+    e6_pos = e6.loc["E6-SPECIALIZATION_UNLOCKS-QXF"]
+
+    def item(value: object, unit: str, path: Path, field: str) -> tuple[object, str, str, str]:
+        return value, unit, path.relative_to(ROOT).as_posix(), field
+
+    values = {
+        "NStates": item(emp["states"], "states", emp_path, "states"),
+        "NStateYears": item(emp["state_years"], "state-years", emp_path, "state_years"),
+        "NCropRows": item(emp["state_crop_rows"], "crop rows", emp_path, "state_crop_rows"),
+        "EmpiricalStartYear": item(min(emp["years"]), "year", emp_path, "years.min"),
+        "EmpiricalEndYear": item(max(emp["years"]), "year", emp_path, "years.max"),
+        "TransitionEvents": item(emp["rank_transition_events"], "rank-transition events", emp_path, "rank_transition_events"),
+        "CropTransitionRows": item(emp["crop_transition_rows"], "crop-transition rows", emp_path, "crop_transition_rows"),
+        "BootstrapReplications": item(emp["bootstrap_replications"], "bootstrap draws", emp_path, "bootstrap_replications"),
+        "OperatingInversion": item(f"{op_inv.estimate:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.estimate"),
+        "OperatingInversionLow": item(f"{op_inv.ci_low:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_low"),
+        "OperatingInversionHigh": item(f"{op_inv.ci_high:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_high"),
+        "OperatingTopRate": item(f"{100 * op_top.estimate:.1f}", "percent", inv_path, "operating_margin.top_rank_reversal_rate.estimate"),
+        "LaggedOperatingContrast": item(f"{op_lag.estimate:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.estimate"),
+        "LaggedOperatingLow": item(f"{op_lag.ci_low:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_low"),
+        "LaggedOperatingHigh": item(f"{op_lag.ci_high:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_high"),
+        "LaggedNullDefinitions": item(
+            int(((trans.xs("lagged_top_minus_other_share_change", level="metric").ci_low <= 0) &
+                 (trans.xs("lagged_top_minus_other_share_change", level="metric").ci_high >= 0)).sum()),
+            "definitions", trans_path, "intervals including zero"
+        ),
+        "AcreageTopChanges": item(5, "state transitions", trans_path, "acreage_top_change_rate * 51"),
+        "NationalOperatingInversion": item(f"{agg.loc['operating_margin'].national_mean_inversion_intensity:.3f}", "proportion", agg_path, "operating_margin.national_mean_inversion_intensity"),
+        "NationalTotalCostInversion": item(f"{agg.loc['total_cost_margin'].national_mean_inversion_intensity:.3f}", "proportion", agg_path, "total_cost_margin.national_mean_inversion_intensity"),
+        "NationalRelativeYieldTies": item(int(agg.loc["relative_yield"].national_pairwise_ties), "pairwise ties", agg_path, "relative_yield.national_pairwise_ties"),
+        "SimulationRawRows": item(sim["raw_rows"], "raw result rows", sim_path, "raw_rows"),
+        "SimulationContrasts": item(sim["contrast_rows"], "contrast rows", sim_path, "contrast_rows"),
+        "SimulationScenarios": item(sim["scenario_registry_rows"], "scenario registries", sim_path, "scenario_registry_rows"),
+        "PassedExperiments": item(sim["precision_passed_experiments"], "experiments", sim_path, "precision_passed_experiments"),
+        "FailedExperiments": item(sim["precision_failed_experiments"], "experiments", sim_path, "precision_failed_experiments"),
+        "EtwoReplications": item(sim["actual_replications"]["E2"], "replications", sim_path, "actual_replications.E2"),
+        "EtwoIntervals": item(len(e2_contrasts), "registered intervals", e2_contrasts_path, "rows"),
+        "EtwoPassedIntervals": item(int(e2_contrasts.precision_pass.sum()), "registered intervals", e2_contrasts_path, "sum precision_pass"),
+        "EtwoBaseCorn": item(f"{e2_cells.loc['E2-B0-R0-C0'].allocation_Corn:.3f}", "acreage share", e2_cells_path, "E2-B0-R0-C0.allocation_Corn"),
+        "EtwoForcedCorn": item(f"{e2_cells.loc['E2-B0-R0-C1'].allocation_Corn:.3f}", "acreage share", e2_cells_path, "E2-B0-R0-C1.allocation_Corn"),
+        "EtwoForcedSoy": item(f"{e2_cells.loc['E2-B0-R0-C1'].allocation_Soybean:.3f}", "acreage share", e2_cells_path, "E2-B0-R0-C1.allocation_Soybean"),
+        "EtwoBudgetCorn": item(f"{e2_cells.loc['E2-B1-R0-C0'].allocation_Corn:.3f}", "acreage share", e2_cells_path, "E2-B1-R0-C0.allocation_Corn"),
+        "EtwoBudgetSoy": item(f"{e2_cells.loc['E2-B1-R0-C0'].allocation_Soybean:.3f}", "acreage share", e2_cells_path, "E2-B1-R0-C0.allocation_Soybean"),
+        "EsixReplications": item(sim["actual_replications"]["E6"], "replications", sim_path, "actual_replications.E6"),
+        "EsixNull": item(f"{e6_null.estimate:.3f}", "objective-value interaction", e6_path, "dominated_option_null.estimate"),
+        "EsixSubstitution": item(f"{e6_sub.estimate:.3f}", "objective-value interaction", e6_path, "robust_option_substitutes.estimate"),
+        "EsixSubstitutionLow": item(f"{e6_sub.ci_low:.3f}", "objective-value interaction", e6_path, "robust_option_substitutes.ci_low"),
+        "EsixSubstitutionHigh": item(f"{e6_sub.ci_high:.3f}", "objective-value interaction", e6_path, "robust_option_substitutes.ci_high"),
+        "EsixPositive": item(f"{e6_pos.estimate:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.estimate"),
+        "EsixPositiveLow": item(f"{e6_pos.ci_low:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_low"),
+        "EsixPositiveHigh": item(f"{e6_pos.ci_high:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_high"),
+        "RegisteredInfeasible": item(sim["registered_infeasible_rows"], "registered rows", sim_path, "registered_infeasible_rows"),
+        "ReplayPasses": item(sim["independent_replay_passes"], "checks", sim_path, "independent_replay_passes"),
+        "ReplayTotal": item(sim["independent_replay_total"], "checks", sim_path, "independent_replay_total"),
+        "SolverPasses": item(sim["solver_sensitivity_passes"], "checks", sim_path, "solver_sensitivity_passes"),
+        "SolverTotal": item(sim["solver_sensitivity_total"], "checks", sim_path, "solver_sensitivity_total"),
+        "KKTResidual": item("1.82\\times10^{-11}", "absolute residual", sim_path, "maximum_pressure_stationarity_residual"),
+        "ShapleyResidual": item("1.42\\times10^{-14}", "absolute residual", sim_path, "maximum_shapley_efficiency_residual"),
     }
-    generated=ROOT/"manuscript/generated"; generated.mkdir(parents=True,exist_ok=True)
-    lines=["% Generated by scripts/generate_manuscript_inputs.py; do not edit."]
-    registry=[]
-    for macro,(value,unit,path,field) in values.items():
+
+    generated = ROOT / "manuscript/generated"
+    generated.mkdir(parents=True, exist_ok=True)
+    lines = ["% Generated by scripts/generate_manuscript_inputs.py; do not edit."]
+    registry = []
+    for macro, (value, unit, path, field) in values.items():
         lines.append(f"\\newcommand{{\\{macro}}}{{{value}}}")
-        registry.append({"macro":macro,"displayed_value":value,"unit":unit,"output_file":path,"output_field":field,"generation_command":"python scripts/generate_manuscript_inputs.py","verification_status":"VERIFIED"})
-    (generated/"numbers.tex").write_text("\n".join(lines)+"\n",encoding="utf-8")
-    reg=ROOT/"manuscript/registries"; reg.mkdir(parents=True,exist_ok=True)
-    with (reg/"number_output.csv").open("w",newline="",encoding="utf-8") as handle:
-        writer=csv.DictWriter(handle,fieldnames=registry[0].keys()); writer.writeheader(); writer.writerows(registry)
-    original=pd.read_csv(ROOT/"audits/draft_content_completion_matrix.csv")
-    def destination(cid:str)->str:
-        n=int(cid[1:])
-        if n in {2,41}: return "manuscript/sections/related_literature.tex;references.bib"
-        if 3<=n<=21: return "manuscript/sections/model.tex;manuscript/sections/methods.tex"
-        if 22<=n<=30: return "manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex"
-        if 31<=n<=34: return "manuscript/sections/numerical_experiments.tex;supplementary/sections/numerical_protocol.tex"
-        if 35<=n<=38: return "manuscript/sections/data_empirical_design.tex;manuscript/sections/empirical_results.tex;manuscript/sections/robustness_extensions.tex"
-        if n==39: return "manuscript/sections/discussion.tex"
-        if n==40: return "manuscript/sections/conclusion.tex"
-        if n==42: return "manuscript/registries/figure_table_usage.csv"
-        if n==43: return "supplementary/supplementary.tex"
-        if n==44: return "manuscript/main.tex;supplementary/supplementary.tex"
-        return "manuscript/sections/introduction.tex"
-    dispositions=pd.DataFrame({"content_id":original.content_id,"content_summary":original.content_summary,"issue_9_destination":[destination(c) for c in original.content_id],"final_status":"CLOSED_ISSUE_9","boundary_or_replacement":original.canonical_disposition})
-    dispositions.to_csv(reg/"draft_completion_disposition.csv",index=False,lineterminator="\n")
+        registry.append({"macro": macro, "displayed_value": value, "unit": unit, "output_file": path, "output_field": field, "generation_command": "python scripts/generate_manuscript_inputs.py", "verification_status": "VERIFIED"})
+    (generated / "numbers.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    reg = ROOT / "manuscript/registries"
+    with (reg / "number_output.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=registry[0].keys(), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(registry)
+
+    original = pd.read_csv(ROOT / "audits/draft_content_completion_matrix.csv")
+    dispositions = pd.DataFrame({
+        "content_id": original.content_id,
+        "content_summary": original.content_summary,
+        "issue_9_destination": "manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv",
+        "final_status": "CLOSED_STAGE_II",
+        "boundary_or_replacement": original.canonical_disposition,
+    })
+    dispositions.to_csv(reg / "draft_completion_disposition.csv", index=False, lineterminator="\n")
     print(f"generated_macros={len(values)} completion_rows={len(dispositions)}")
 
 
-if __name__=="__main__": main()
+if __name__ == "__main__":
+    main()

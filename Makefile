@@ -20,6 +20,7 @@ paper:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_paper.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/render_pdf_qa.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_release_manifest.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/build_stage_ii_final_archive.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_final_package.py
 
 validate:

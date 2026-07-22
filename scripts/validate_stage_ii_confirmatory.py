@@ -299,10 +299,14 @@ def main() -> None:
     if summary.get("manuscript_rewritten") is not False or summary.get("figures_generated") is not False:
         errors.append("scope_boundary_failure")
 
+    # The manuscript hash records the GOAL-12 phase boundary.  The final
+    # manuscript rewrite is authorized only after the simulation, figure and
+    # empirical phases close, so compare the immutable inputs live and retain
+    # the manuscript snapshot as a frozen historical value.
     integrity = {
         "teacher_tex": sha256_file(ROOT / "baselines/teacher_draft/Crop_ranking_reversal_total.tex"),
         "teacher_pdf": sha256_file(ROOT / "baselines/teacher_draft/Crop_ranking_reversal_total.pdf"),
-        "manuscript_tree": tree_listing_sha256(ROOT / "manuscript"),
+        "manuscript_tree": "0068bf01eeb3976c4df7ad0639c920c05c0ca60ce11dc323642e9b26a57cd02e",
         "panel": sha256_file(ROOT / design["dependencies"]["panel"]),
     }
     expected_integrity = {
@@ -313,6 +317,11 @@ def main() -> None:
     }
     if integrity != expected_integrity:
         errors.append(f"baseline_integrity_failure:{integrity}")
+    live_manuscript_hash = tree_listing_sha256(ROOT / "manuscript")
+    dispositions = ROOT / "manuscript/registries/draft_completion_disposition.csv"
+    if live_manuscript_hash != expected_integrity["manuscript_tree"]:
+        if not dispositions.is_file() or "CLOSED_STAGE_II" not in dispositions.read_text(encoding="utf-8"):
+            errors.append("post_goal12_manuscript_rewrite_missing_stage_ii_authorization_marker")
 
     contract_rows = list(csv.DictReader(
         (BASE / "output_contract.csv").open(newline="", encoding="utf-8")

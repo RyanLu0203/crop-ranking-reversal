@@ -1,16 +1,16 @@
 {
   "manuscript": {
     "pdf": "output/pdf/crop_ranking_reversal_main_supervisor_review.pdf",
-    "sha256": "1ef5e9f85edf934ae9b647d91ee5e0bac08ae3d0326076bf3a6e746308609065",
-    "repeat_sha256": "1ef5e9f85edf934ae9b647d91ee5e0bac08ae3d0326076bf3a6e746308609065",
+    "sha256": "5197b521c873f458825aa10e60ee5f9dd4e58284be00aecc9fb4cb1e6be887d4",
+    "repeat_sha256": "5197b521c873f458825aa10e60ee5f9dd4e58284be00aecc9fb4cb1e6be887d4",
     "byte_stable": true,
     "log": "output/logs/manuscript_compile.txt",
     "source": "manuscript/main.tex"
   },
   "supplementary": {
     "pdf": "output/pdf/crop_ranking_reversal_supplementary_supervisor_review.pdf",
-    "sha256": "6b77ce4ccfda2b9faa7beb3a55f8b4bd7a15075a85599903c07c12184ad4d539",
-    "repeat_sha256": "6b77ce4ccfda2b9faa7beb3a55f8b4bd7a15075a85599903c07c12184ad4d539",
+    "sha256": "6c33d6fb045c068f5ac350b3c91dc8866acbcbc65bb104413f0d54a8d3c75dc6",
+    "repeat_sha256": "6c33d6fb045c068f5ac350b3c91dc8866acbcbc65bb104413f0d54a8d3c75dc6",
     "byte_stable": true,
     "log": "output/logs/supplementary_compile.txt",
     "source": "supplementary/supplementary.tex"

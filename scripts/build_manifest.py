@@ -11,7 +11,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "provenance/canonical_asset_manifest.csv"
 CHECKSUMS = ROOT / "provenance/checksums/canonical_SHA256SUMS.txt"
-EXCLUDED_NAMES = {MANIFEST.name, CHECKSUMS.name, ".DS_Store"}
+EXCLUDED_NAMES = {
+    MANIFEST.name,
+    CHECKSUMS.name,
+    ".DS_Store",
+    # The deterministic delivery archive contains a snapshot of canonical
+    # assets and therefore has its own checksum; including it here would make
+    # the repository manifest self-referential after every package rebuild.
+    "stage_ii_final_scientific_package.zip",
+    "stage_ii_final_scientific_package.zip.sha256",
+}
 EXCLUDED_TOP_LEVEL = {"build", "dist", "scratch", "tmp"}
 SYNC_COLLISION = re.compile(r" \d+$")
 

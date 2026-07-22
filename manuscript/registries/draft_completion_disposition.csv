@@ -1,45 +1,45 @@
 content_id,content_summary,issue_9_destination,final_status,boundary_or_replacement
-D001,Suitability rankings may diverge from operational acreage allocation,manuscript/sections/introduction.tex,CLOSED_ISSUE_9,PRESERVE
-D002,"Agricultural planning, CVaR, copulas, information, and recommendation literatures",manuscript/sections/related_literature.tex;references.bib,CLOSED_ISSUE_9,REBUILD
-D003,Multi-crop acreage decision vector,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D004,Stochastic price and yield with deterministic per-acre cost,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE_AND_CLARIFY
-D005,Per-acre and total portfolio profit,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D006,Joint profit distribution represented by a copula,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE_AND_RESTRICT
-D007,Lower-tail-dependence coefficient,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,REPAIR_AND_RESTRICT
-D008,Suitability scores and strict/weak crop rankings,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE_AND_CLARIFY
-D009,Proportional score-to-acreage heuristic,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,RESTRICT_TO_BENCHMARK
-D010,Winner-take-all heuristic,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,RESTRICT_TO_BENCHMARK
-D011,Maximize expected multi-crop profit,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D012,CVaR downside-risk limit,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,REPAIR_SIGN_AND_TAIL
-D013,Total land constraint and possible idle land,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE_AND_CLARIFY
-D014,Crop-specific lower and upper acreage bounds,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D015,Rotation/agronomic group caps,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D016,Liquidity/input budget,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE
-D017,Contractual and other operational restrictions,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,COMPLETE
-D018,Continuous profit-quantile CVaR expression,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,REPLACE_WITH_CORRECT_LOSS_FORM
-D019,Finite-scenario Rockafellar–Uryasev LP,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,PRESERVE_AFTER_DERIVATION
-D020,Marginal crop contribution to portfolio CVaR,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,REPAIR_TO_SUBGRADIENT
-D021,Pairwise and strong ranking reversal,manuscript/sections/model.tex;manuscript/sections/methods.tex,CLOSED_ISSUE_9,EXPAND
-D022,Risk-adjusted stationarity condition,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REPAIR_AND_COMPLETE
-D023,If-and-only-if ranking-reversal condition,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REFORMULATE
-D024,Profit-based suitability reversal,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REFORMULATE
-D025,Tail dependence monotonically changes marginal-CVaR gap,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,RESTRICT_OR_SIMULATION_HYPOTHESIS
-D026,Unique reversal threshold and comparative statics,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REPLACE_WITH_CROSSING_SET
-D027,Low Pearson correlation with adverse tail dependence,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,RETAIN_AS_DIAGNOSTIC
-D028,Pseudo-diversifier inclusion/exclusion and higher CVaR,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REPLACE_WITH_CONDITIONAL_DIAGNOSTICS
-D029,"Signal, precision, flexibility, and value of information",manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,REPAIR_TIMING
-D030,Zero value at rigidity and strict information–flexibility complementarity,manuscript/sections/structural_results.tex;supplementary/sections/theory_proofs.tex,CLOSED_ISSUE_9,RESTRICT
-D031,Multi-crop scenario experiment and calibration,manuscript/sections/numerical_experiments.tex;supplementary/sections/numerical_protocol.tex,CLOSED_ISSUE_9,REBUILD_FROM_FROZEN_DESIGN
-D032,Gaussian/Clayton and tail-dependence comparisons,manuscript/sections/numerical_experiments.tex;supplementary/sections/numerical_protocol.tex,CLOSED_ISSUE_9,REBUILD_AND_EXTEND
-D033,"Allocation, reversal, diversification, threshold, and welfare results",manuscript/sections/numerical_experiments.tex;supplementary/sections/numerical_protocol.tex,CLOSED_ISSUE_9,REGENERATE
-D034,Information–flexibility value results,manuscript/sections/numerical_experiments.tex;supplementary/sections/numerical_protocol.tex,CLOSED_ISSUE_9,REGENERATE_AS_HYPOTHESIS_TEST
-D035,Illustrative out-of-sample exercise,manuscript/sections/data_empirical_design.tex;manuscript/sections/empirical_results.tex;manuscript/sections/robustness_extensions.tex,CLOSED_ISSUE_9,REBUILD_OR_REPORT_UNAVAILABLE
-D036,Observed acreage and ranking comparison,manuscript/sections/data_empirical_design.tex;manuscript/sections/empirical_results.tex;manuscript/sections/robustness_extensions.tex,CLOSED_ISSUE_9,BUILD_FROM_OFFICIAL_DATA
-D037,"Profit, cost-aware, and suitability ranking construction",manuscript/sections/data_empirical_design.tex;manuscript/sections/empirical_results.tex;manuscript/sections/robustness_extensions.tex,CLOSED_ISSUE_9,BUILD_FROM_OFFICIAL_DATA
-D038,"Feasibility, near-optimality, multiple-optimum, and downside outcomes",manuscript/sections/data_empirical_design.tex;manuscript/sections/empirical_results.tex;manuscript/sections/robustness_extensions.tex,CLOSED_ISSUE_9,BUILD_WITH_IDENTIFICATION_BOUNDARY
-D039,"Managerial, agricultural, and policy implications",manuscript/sections/discussion.tex,CLOSED_ISSUE_9,REWRITE_TO_EVIDENCE_BOUNDARY
-D040,General conclusions and contribution claims,manuscript/sections/conclusion.tex,CLOSED_ISSUE_9,REWRITE_AFTER_EVIDENCE
-D041,Draft bibliography,manuscript/sections/related_literature.tex;references.bib,CLOSED_ISSUE_9,REVERIFY_FROM_ZERO
-D042,Draft simulation tables and conceptual figures,manuscript/registries/figure_table_usage.csv,CLOSED_ISSUE_9,REGENERATE
-D043,"Proof, robustness, and reproducibility support",supplementary/supplementary.tex,CLOSED_ISSUE_9,ADD_AND_COMPILE
-D044,Clean modular LaTeX and supervisor-review PDFs,manuscript/main.tex;supplementary/supplementary.tex,CLOSED_ISSUE_9,REBUILD
+D001,Suitability rankings may diverge from operational acreage allocation,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D002,"Agricultural planning, CVaR, copulas, information, and recommendation literatures",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REBUILD
+D003,Multi-crop acreage decision vector,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D004,Stochastic price and yield with deterministic per-acre cost,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE_AND_CLARIFY
+D005,Per-acre and total portfolio profit,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D006,Joint profit distribution represented by a copula,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE_AND_RESTRICT
+D007,Lower-tail-dependence coefficient,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPAIR_AND_RESTRICT
+D008,Suitability scores and strict/weak crop rankings,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE_AND_CLARIFY
+D009,Proportional score-to-acreage heuristic,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,RESTRICT_TO_BENCHMARK
+D010,Winner-take-all heuristic,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,RESTRICT_TO_BENCHMARK
+D011,Maximize expected multi-crop profit,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D012,CVaR downside-risk limit,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPAIR_SIGN_AND_TAIL
+D013,Total land constraint and possible idle land,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE_AND_CLARIFY
+D014,Crop-specific lower and upper acreage bounds,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D015,Rotation/agronomic group caps,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D016,Liquidity/input budget,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE
+D017,Contractual and other operational restrictions,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,COMPLETE
+D018,Continuous profit-quantile CVaR expression,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPLACE_WITH_CORRECT_LOSS_FORM
+D019,Finite-scenario Rockafellar–Uryasev LP,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,PRESERVE_AFTER_DERIVATION
+D020,Marginal crop contribution to portfolio CVaR,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPAIR_TO_SUBGRADIENT
+D021,Pairwise and strong ranking reversal,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,EXPAND
+D022,Risk-adjusted stationarity condition,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPAIR_AND_COMPLETE
+D023,If-and-only-if ranking-reversal condition,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REFORMULATE
+D024,Profit-based suitability reversal,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REFORMULATE
+D025,Tail dependence monotonically changes marginal-CVaR gap,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,RESTRICT_OR_SIMULATION_HYPOTHESIS
+D026,Unique reversal threshold and comparative statics,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPLACE_WITH_CROSSING_SET
+D027,Low Pearson correlation with adverse tail dependence,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,RETAIN_AS_DIAGNOSTIC
+D028,Pseudo-diversifier inclusion/exclusion and higher CVaR,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPLACE_WITH_CONDITIONAL_DIAGNOSTICS
+D029,"Signal, precision, flexibility, and value of information",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REPAIR_TIMING
+D030,Zero value at rigidity and strict information–flexibility complementarity,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,RESTRICT
+D031,Multi-crop scenario experiment and calibration,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REBUILD_FROM_FROZEN_DESIGN
+D032,Gaussian/Clayton and tail-dependence comparisons,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REBUILD_AND_EXTEND
+D033,"Allocation, reversal, diversification, threshold, and welfare results",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REGENERATE
+D034,Information–flexibility value results,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REGENERATE_AS_HYPOTHESIS_TEST
+D035,Illustrative out-of-sample exercise,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REBUILD_OR_REPORT_UNAVAILABLE
+D036,Observed acreage and ranking comparison,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,BUILD_FROM_OFFICIAL_DATA
+D037,"Profit, cost-aware, and suitability ranking construction",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,BUILD_FROM_OFFICIAL_DATA
+D038,"Feasibility, near-optimality, multiple-optimum, and downside outcomes",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,BUILD_WITH_IDENTIFICATION_BOUNDARY
+D039,"Managerial, agricultural, and policy implications",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REWRITE_TO_EVIDENCE_BOUNDARY
+D040,General conclusions and contribution claims,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REWRITE_AFTER_EVIDENCE
+D041,Draft bibliography,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REVERIFY_FROM_ZERO
+D042,Draft simulation tables and conceptual figures,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REGENERATE
+D043,"Proof, robustness, and reproducibility support",manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,ADD_AND_COMPILE
+D044,Clean modular LaTeX and supervisor-review PDFs,manuscript/main.tex;supplementary/supplementary.tex;audits/stage_ii/reconstruction_traceability.csv,CLOSED_STAGE_II,REBUILD
