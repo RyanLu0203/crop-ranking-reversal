@@ -299,11 +299,13 @@ def solve_cvar_allocation(
         tail_weight_sum = float(tail_weights.sum())
         tail_weight_min = float(tail_weights.min())
         tail_weight_max = float(tail_weights.max())
+        cvar_subgradient = -(tail_weights @ scenarios)
         tail_weight_cap = float(1.0 / ((1.0 - alpha) * n_scenarios))
         tail_weight_violation = float(
             max(0.0, -tail_weight_min, tail_weight_max - tail_weight_cap)
         )
     else:
+        cvar_subgradient = np.zeros(n_crops)
         tail_weight_sum = np.nan
         tail_weight_min = np.nan
         tail_weight_max = np.nan
@@ -355,6 +357,8 @@ def solve_cvar_allocation(
     diagnostics.update(raw_marginals)
     diagnostics.update(shadow_prices)
     diagnostics.update(bounds_diagnostics)
+    for crop, value in zip(crop_names, cvar_subgradient):
+        diagnostics[f"cvar_subgradient_{crop}"] = float(value)
     return AllocationResult(
         allocation=allocation,
         expected_profit=float(np.mean(profits)),

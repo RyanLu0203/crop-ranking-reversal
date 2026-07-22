@@ -1,0 +1,7 @@
+{
+  "measurement": "parent_process_ru_maxrss",
+  "parallel_workers": 1,
+  "peak_parent_rss_bytes": 178831360,
+  "peak_parent_rss_limit_bytes": 750000000,
+  "status": "PASS"
+}

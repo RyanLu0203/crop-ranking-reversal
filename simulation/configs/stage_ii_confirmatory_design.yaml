@@ -1,0 +1,237 @@
+design_id: CRR-STAGEII-CONFIRM-2026-07-22
+design_version: 1.0.0
+frozen_at: 2026-07-22T09:00:00+08:00
+status: FROZEN_BEFORE_RESULTS
+owner_issue: 22
+parent_commit: 0979025b5b45725ab286d81edb1f29331ea97e84
+supervisor_approval:
+  url: https://github.com/RyanLu0203/crop-ranking-reversal/pull/27#issuecomment-5040606456
+  statement: GOAL-14 accepted and GOAL-12 authorized
+
+dependencies:
+  stage_ii_blueprint: audits/stage_ii/simulation_redesign_plan.md
+  theory_map: theory/stage_ii/theory_to_simulation_mapping.csv
+  theory_extension: theory/stage_ii/canonical_theory_extension.md
+  panel: data/processed/canonical_crop_year_panel.csv
+  panel_sha256: ddaf1a2aec05966c284865897b98d09371e015f9ca61ff302b85b787dca7be76
+  numerical_tolerances: optimization/configs/numerical_tolerances.yaml
+
+scope:
+  crops: [Corn, Soybean, Winter Wheat]
+  geography: United States aggregate calibration
+  panel_years: [1998, 2024]
+  land_unit: normalized_share
+  monetary_unit: real_2024_USD_per_normalized_acre
+  evidence_class: CONFIRMATORY_SIMULATION_NOT_EMPIRICAL_EVIDENCE
+  old_stage_i_outputs: PILOT_NONHEADLINE_DO_NOT_OVERWRITE
+  manuscript_rewrite_allowed: false
+  figure_generation_allowed: false
+
+calibration:
+  means:
+    Corn: 376.2899999259259
+    Soybean: 369.2417991481482
+    Winter Wheat: 139.2815967777778
+  standard_deviations:
+    Corn: 168.30756092223254
+    Soybean: 117.56177258058196
+    Winter Wheat: 59.29552855571264
+  operating_costs_2024_real:
+    Corn: 434.66
+    Soybean: 243.56
+    Winter Wheat: 154.12
+  score_order: [Corn, Soybean, Winter Wheat]
+  calibration_status: DATA_ESTIMATED_NATIONAL_AGGREGATE
+  farm_interpretation_allowed: false
+
+randomness:
+  generator: numpy_PCG64
+  seed_rule: experiment_root_plus_replication_index_1_through_64
+  seed_roots:
+    E1: 202607221000
+    E2: 202607222000
+    E3: 202607223000
+    E4: 202607224000
+    E5: 202607225000
+    E6: 202607226000
+    ATTRIBUTION: 202607227000
+  optimization_scenarios: 512
+  evaluation_scenarios: 4096
+  common_random_numbers_within_contrast: true
+  independent_evaluation_stream_offset: 500000
+  replay_replications_per_experiment: 2
+
+sequential_replication:
+  check_schedule: [16, 32, 48, 64]
+  minimum_replications: 16
+  maximum_replications: 64
+  nominal_familywise_coverage: 0.95
+  interval_method: Bonferroni_adjusted_t_and_Wilson_within_experiment
+  power: 0.80
+  prospective_sample_size_basis:
+    allocation_l1:
+      smallest_meaningful_effect: 0.08
+      conservative_paired_standard_deviation: 0.16
+      normal_approximation_required_n: 32
+    cvar_loss:
+      smallest_meaningful_effect: 12.0
+      conservative_paired_standard_deviation: 24.0
+      normal_approximation_required_n: 32
+    feasible_regret:
+      smallest_meaningful_effect: 10.0
+      conservative_paired_standard_deviation: 20.0
+      normal_approximation_required_n: 32
+    information_interaction:
+      smallest_meaningful_effect: 1.0
+      conservative_paired_standard_deviation: 2.0
+      normal_approximation_required_n: 32
+  precision_targets:
+    allocation_l1_half_width: 0.08
+    expected_profit_half_width: 8.0
+    cvar_loss_half_width: 12.0
+    feasible_regret_half_width: 10.0
+    information_interaction_half_width: 1.0
+    reversal_probability_interval_width: 0.38
+  stop_rule: stop_at_first_scheduled_check_where_all_registered_primary_intervals_pass
+  maximum_rule: retain_PRECISION_FAILED_without_design_change
+
+optimization:
+  total_land: 1.0
+  alpha_primary: 0.95
+  dependence_kendall_tau_primary: 0.25
+  marginal_family: student_t_df5
+  solver_primary: highs
+  solver_sensitivity: [highs, highs-ds, highs-ipm]
+  selection_rule: highs_deterministic_solution_plus_optimal_face_audit
+  feasibility_tolerance: 1.0e-8
+  cvar_tolerance: 1.0e-7
+  stationarity_tolerance: 1.0e-7
+  allocation_tie_tolerance: 1.0e-4
+  objective_equivalence_relative: 1.0e-8
+
+resource_budget:
+  parallel_workers_max: 1
+  peak_parent_rss_bytes_max: 750000000
+  expected_primary_solves_upper_bound: 6000
+  no_unregistered_parallelism: true
+
+experiments:
+  E1_margin:
+    theory_results: [S2-P01, S2-P02, S2-C01, S2-H01]
+    fixed_score_order: [Corn, Soybean, Winter Wheat]
+    corn_minus_soybean_margin_gaps: [-25.0, 0.0, 5.0, 25.0, 100.0]
+    corn_soybean_midpoint: 372.76589953703705
+    wheat_margin: 139.2815967777778
+    operational_regime: unrestricted
+    risk_regime: slack
+  E2_operations:
+    theory_results: [S2-T01, S2-P03]
+    budget_ratios: {loose: 1.10, tight: 0.70}
+    corn_rotation_caps: {loose: 1.0, tight: 0.45}
+    soybean_contract_minimums: {none: 0.0, active: 0.55}
+    corn_upper_bound_anchor: 0.45
+    factorial_blocks: [budget, rotation, contract]
+    include_all_eight_factorial_cells: true
+    include_crop_bound_anchor: true
+  E3_risk:
+    theory_results: [S2-P04]
+    alpha_grid: [0.90, 0.95, 0.99]
+    risk_regimes: [slack, just_binding, binding_mid, strongly_binding, infeasible]
+    frontier_rules:
+      slack: expected_profit_CVaR_plus_5_percent_scale
+      just_binding: expected_profit_CVaR_minus_5_percent_frontier
+      binding_mid: midpoint_of_minimum_and_expected_profit_CVaR
+      strongly_binding: minimum_CVaR_plus_5_percent_frontier
+      infeasible: minimum_CVaR_minus_5_percent_scale
+  E4_dependence:
+    theory_results: [S2-P06, S2-H02]
+    families: [gaussian, student_t_df4, clayton, empirical_copula]
+    parametric_kendall_tau_grid: [0.0, 0.25, 0.50]
+    empirical_copula_parameter: observed_rank_rows_1998_2024
+    cvar_limit: -60.0
+    cross_family_status: MODEL_SENSITIVITY_NOT_SCALAR_ORDER
+  E5_diversification:
+    theory_results: [S2-P07, S2-P08]
+    assumed_families: [gaussian, student_t_df4, clayton, empirical_copula]
+    true_families: [gaussian, student_t_df4, clayton, empirical_copula]
+    matched_kendall_tau: 0.25
+    cvar_limit: -60.0
+    frontier_limits: [-105.0, -90.0, -75.0, -60.0, -45.0, -30.0]
+    frontier_true_law: empirical_copula
+    pseudo_diversification_rule: theory/stage_ii/diversification_framework.md
+  E6_information_flexibility:
+    theory_results: [S2-T02, S2-T03, S2-B01]
+    signal_accuracies: [0.50, 0.70, 0.90]
+    prior_state_probabilities: [0.50, 0.50]
+    crop_state_payoff_archetypes:
+      specialization_unlocks:
+        payoff_by_crop_state: [[10.0, 0.0], [0.0, 10.0], [5.0, 5.0]]
+        low_flex_actions: [2]
+        high_flex_actions: [0, 1, 2]
+      robust_option_substitutes:
+        payoff_by_crop_state: [[10.0, 0.0], [0.0, 10.0], [9.0, 9.0]]
+        low_flex_actions: [0, 1]
+        high_flex_actions: [0, 1, 2]
+      dominated_option_null:
+        payoff_by_crop_state: [[9.0, 9.0], [0.0, 0.0], [5.0, 5.0]]
+        low_flex_actions: [0]
+        high_flex_actions: [0, 1]
+    payoff_noise_standard_deviation: 1.0
+    exact_anchor_required: true
+
+attribution:
+  theory_result: S2-P05
+  blocks: [margins, operations, risk, dependence]
+  all_subsets: 16
+  all_orders: 24
+  replications: 16
+  common_feasibility_domain_required: true
+  base_fallbacks:
+    margins: equal_Corn_Soybean_cardinal_means
+    operations: unrestricted
+    risk: slack
+    dependence: independent_gaussian
+  treated_blocks:
+    margins: official_panel_means
+    operations: tight_budget_rotation_and_contract
+    risk: cvar_limit_minus_60
+    dependence: student_t_df4_tau_0_25
+
+required_outputs:
+  - raw_replications.csv
+  - paired_contrasts.csv
+  - sequential_stopping.csv
+  - mechanism_summary.csv
+  - nested_model_path.csv
+  - block_subset_values.csv
+  - block_attribution.csv
+  - kkt_pressures.csv
+  - optimal_faces.csv
+  - risk_frontier.csv
+  - dependence_evaluation.csv
+  - diversification_metrics.csv
+  - information_flexibility.csv
+  - scenario_registry.csv
+  - independent_replay.csv
+  - solver_sensitivity.csv
+  - figure_source_data.csv
+  - claim_assessment.csv
+  - summary.json
+  - run_log.json
+  - resource_audit.json
+  - SHA256SUMS.txt
+
+claim_boundaries:
+  - Simulation results are conditional on the declared national aggregate calibration and design controls.
+  - Budget rotation contract bounds and CVaR limits are not observed farmer constraints.
+  - Cross-family copula comparisons are model sensitivity not a general dependence ordering.
+  - KKT pressure is not additive acreage causality.
+  - True-law regret is not farmer welfare.
+  - Observed acreage is never treated as an optimizer solution.
+  - Null adverse infeasible and precision-failed results remain in outputs.
+  - No historical teacher-draft threshold percentage or welfare number is targeted.
+
+immutable_baseline:
+  teacher_tex_sha256: e8885aa89be6a6010f0d3e6f8e40b4b8192a91fc90f6ca4fb16ae9b0aa9dd26c
+  teacher_pdf_sha256: 52ac1b4ef21c8d406fd6d722c877935a24d2cc6ea68520a6f35470ba8b334b44
+  manuscript_tree_sha256: 0068bf01eeb3976c4df7ad0639c920c05c0ca60ce11dc323642e9b26a57cd02e
