@@ -1,26 +1,29 @@
-# Stage II visual page review
+# GOAL-16 compiled-page visual review
 
-## Review method
+Both final PDFs were rendered at 144 dpi. All 21 pages were inspected through
+six contact sheets and are nonblank. The 11 underlying figures were separately
+reviewed at full size and 89 mm in colour, grayscale, deuteranopia and
+protanopia.
 
-Both final PDFs were rendered at 144 dpi with Poppler after the deterministic build. All 26 pages were inspected through eight contact sheets; automated metrics confirm that every page is nonblank. The ten underlying figures also retain separate grayscale and deuteranopia proofs.
+## Main manuscript: 12 pages
 
-## Main manuscript: 17 pages
-
-- Pages 1--4: title, abstract, introduction, related literature and model render with a consistent hierarchy; equations and citations are unclipped.
-- Pages 3 and 5: Figures 1 and 2 are full-width, readable and use the frozen six-colour card with redundant labels and geometry.
-- Pages 7--9: Figures 3--5 preserve panel labels, uncertainty intervals, adverse grey regions and promoted teal/green evidence at journal width.
-- Pages 10--11: empirical design and results remain adjacent to their evidence narrative.
-- Page 12: Figure 6 occupies a dedicated page before robustness and discussion; it is no longer deferred beyond the references.
-- Pages 13--15: robustness, discussion, conclusion, methods and declarations have no clipping, overlap or stranded heading.
-- Pages 16--17: all 19 references render with selectable URLs and no overfull lines.
+- Title, abstract and exactly five Introduction paragraphs have a consistent
+  hierarchy and no stranded heading.
+- Figures 1--6 occur beside the corresponding results-led sections.
+- Equations, citations, captions and bibliography entries are unclipped.
+- No figure title, legend, label or annotation overlaps text or plotted marks.
+- The Methods and declarations close before the references without a blank page.
 
 ## Supplementary Information: 9 pages
 
-- Pages 1--3: theorem, proposition and proof hierarchy is clear; mathematical symbols and proof endings render correctly.
-- Pages 4--7: Figures S1--S3 appear beside the corresponding stopping, adverse and numerical-integrity records.
-- Page 7: Figure S4 precedes the empirical section and its order-sensitivity boundary remains legible.
-- Pages 8--9: empirical limitations, reproducibility, palette contract and references render without collision or missing glyphs.
+- The theorem/proof hierarchy and mathematical symbols render correctly.
+- Figures S1--S5 occur beside E1, E3, E4/E5, numerical-integrity and empirical
+  robustness material, respectively.
+- No contact-sheet panel shows clipping, overlapping text, missing glyphs or
+  an unreadable 89-mm figure element.
 
-## Final visual decision
+## Decision
 
-No clipping, overlap, missing glyph, black box, abnormal blank page, missing page number or unreadable figure label was observed. The exact palette `#3D3539 / #0F9EA8 / #008B82 / #45728F / #8CD1B2 / #8B84A3` is visibly consistent across the Stage II figure system. Neutral grey remains reserved for adverse or unidentified evidence.
+PASS. No clipping, text--image overlap, missing glyph, black box, abnormal blank
+page, missing page number or unresolved reference was observed. The exact
+six-colour card is consistent throughout and no off-card SVG colour is present.

@@ -1,19 +1,18 @@
-# Stage II deterministic compile QA
+# GOAL-16 deterministic compile QA
 
-## Acceptance contract
+The main manuscript and Supplementary Information compile twice in isolated
+directories with identical hashes. pdfLaTeX, BibTeX and `latexmk` report no
+LaTeX error, undefined citation, undefined reference, missing asset, overfull
+box or fatal warning. An independent LaTeX-plugin build also succeeds.
 
-The main manuscript and Supplementary Information must compile without LaTeX errors, undefined citations or references, missing assets, overfull boxes or fatal warnings. Each document is built twice in isolated directories under a fixed source date and UTC timezone; the two hashes for a document must match exactly.
+- Main manuscript: 12 pages, SHA-256
+  `cbc98e41acb0bb96b94aaaa8dcc9655679d122515e5dfd07ca991a2fed00ecad`.
+- Supplementary Information: 9 pages, SHA-256
+  `1fb522520c6071eed20e807254fd71475aadb6c6291624b08e51e84646c423a8`.
+- Combined page review: 21 nonblank pages across six contact sheets.
+- Figure assets: six main and five supplementary figures; all references
+  resolve and all fonts are embedded.
 
-## Build controls
-
-- Entry points: `manuscript/main.tex` and `supplementary/supplementary.tex`.
-- Engine: pdfLaTeX through `latexmk`, with BibTeX.
-- Determinism: fixed `SOURCE_DATE_EPOCH`, UTC timezone and disabled variable trailer ID.
-- Bibliography: one canonical root `references.bib` resolved through `BIBINPUTS`.
-- Figures: six Stage II main PDFs and four Stage II supplementary PDFs.
-- Command: `make paper`; full scientific validation: `make check`.
-- Portable compile records: `output/logs/`; transient engine logs: ignored `build/paper/`.
-
-## PDF checks
-
-The package validator checks byte stability, embedded fonts, selectable text, metadata, nonblank rendered pages, citations, references, missing assets and package checksums. Page counts and contact-sheet counts are derived from the compiled documents rather than hard-coded. The final visual decision is recorded separately in `audits/visual_page_review.md` after rendering.
+The build uses a fixed source date, UTC timezone and disabled variable trailer
+identifier. Portable compile records are in `output/logs/`; full transient logs
+remain under the ignored `build/paper/` directory.

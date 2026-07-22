@@ -1,29 +1,40 @@
-# Stage II final claim-evidence audit
+# GOAL-16 final claim--evidence audit
 
 ## Result
 
-The final scientific draft closes the authorized Stage II chain from theorem to confirmatory simulation, admitted-data empirical analysis, visualization and manuscript. Every displayed number is generated from a registered output, all six main and four supplementary figures resolve to tidy source data and checksums, and all citations resolve to the audited bibliography.
+The results-led manuscript closes the theorem, simulation, official-data,
+visualization and reproducibility chain. Every displayed manuscript number is
+generated from a named output; all six main and five supplementary figures have
+tidy source data, checksums and accessibility proofs.
 
 ## Evidence decisions
 
-- **Theory:** ordinal insufficiency, solution-set-aware reversal, feasibility-forced reversal, complete KKT pressure terms, restricted dependence ordering, crossing sets and information actionability are proved within explicit assumptions.
-- **Promoted confirmatory simulation:** E2 passes 24/24 family-wise primary intervals and identifies operationally induced reversal in its declared domain. E6 passes 3/3 intervals and establishes positive, exact-null and substitution information--flexibility interactions.
-- **Adverse simulation:** E1, E3, E4 and E5 fail experiment-level precision at the registered ceiling. All estimates and 206 registered infeasible rows remain visible and non-promoted.
-- **Numerical integrity:** reverse-order replay passes 12/12, solver sensitivity passes 9/9, maximum KKT residual is $1.82\times10^{-11}$ and maximum Shapley efficiency residual is $1.42\times10^{-14}$.
-- **Descriptive empirical:** 231 crop rows, 77 state-years, 26 states and four definitions support score--acreage order descriptions. Operating-margin inversion intensity is 0.597 [0.494, 0.697].
-- **Temporal and aggregation boundaries:** every lagged top-minus-other share-change interval includes zero; acreage leadership changes in 5/51 transitions; national results depend on definition and relative yield is tied.
-- **Not identified:** observed acreage as optimal, private constraints or objectives, a binding CVaR limit, copula causality, welfare, causal effects and field prevalence of the simulated mechanisms.
+- Ordinal insufficiency, optimal-face reversal definitions, the
+  feasibility-forcing certificate and the complete KKT identity remain proved
+  under explicit assumptions.
+- E2 meets 24/24 family-wise interval criteria and supports operationally
+  induced reversal within its simulation domain.
+- E6 meets 3/3 criteria and supports positive, exact-null and substitutive
+  information--flexibility interactions across the registered archetypes.
+- E1, E3, E4 and E5 do not meet their experiment-level precision criteria.
+  Their complete results remain in Supplementary Figures S1--S3; numerical
+  integrity and all 206 infeasible rows are retained separately in Figure S4.
+- The official 2016--2024 panel contains 744 crop rows, 248 complete
+  state-years and 31 states. Operating-margin inversion intensity is 0.411
+  [0.346, 0.475].
+- All four primary strictly lagged intervals include zero. National results
+  depend on score definition, and national relative yield is tied.
+- Public data do not identify private objectives, constraints, downside-risk
+  limits, dependence mechanisms, causal effects, welfare or optimal acreage.
 
-## Registry closure
+## Closure
 
-- 19 verified bibliography entries and 19 cited keys.
-- 48 generated numeric macros with file- and field-level provenance.
-- 20 Stage II manuscript claims with resolved evidence assets.
-- Six main and four supplementary figures, each in SVG, PDF, PNG and TIFF with source data, colour/accessibility QA and checksums.
-- 44 of 44 teacher-Draft content rows have closed Stage II dispositions.
-- Two isolated empirical runs reproduce 19 artifacts byte for byte.
-- Main and Supplementary PDFs compile byte-identically across isolated builds.
+- 49 generated numeric macros with file- and field-level provenance.
+- 20 manuscript claims with resolved evidence assets.
+- 11 figures in SVG, PDF, PNG and TIFF with fixed-card and overlap validation.
+- 44/44 inherited draft-content dispositions remain closed.
+- Two independent empirical reruns are byte-identical.
+- Main and Supplementary PDFs are byte-identical across isolated builds.
 
-## Submission boundary
-
-The scientific reconstruction is complete. Author names, affiliations, ORCID identifiers, funding, contributions, acknowledgements, competing interests and target-journal conversion remain author-owned pre-submission tasks listed in `output/remaining_actions.md`.
+Author identities, affiliations, ORCID identifiers, contributions, funding,
+acknowledgements and competing interests remain author-owned submission tasks.

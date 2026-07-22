@@ -34,10 +34,10 @@ def main() -> None:
     all_text = main_text + "\n" + supp_text
 
     required = [
-        "Introduction", "Related literature", "Integrated multi-crop stochastic model",
-        "Structural results and mechanism decomposition", "Confirmatory mechanism experiments",
-        "Data and empirical design", "Empirical patterns and aggregation boundaries",
-        "Robustness and extensions", "Discussion", "Conclusion", "Methods",
+        "Introduction", "Ranking does not identify allocation",
+        "Operational constraints identify reversal",
+        "Information value depends on available actions",
+        "Empirical patterns are definition-dependent", "Discussion", "Methods",
     ]
     positions = []
     for section in required:
@@ -86,9 +86,9 @@ def main() -> None:
         errors.append("teacher-Draft completion matrix is not 44/44 closed for Stage II")
 
     usage = csv_rows(ROOT / "manuscript/registries/figure_table_usage.csv")
-    expected_assets = {f"Figure{i}" for i in range(1, 7)} | {f"FigureS{i}" for i in range(1, 5)}
+    expected_assets = {f"Figure{i}" for i in range(1, 7)} | {f"FigureS{i}" for i in range(1, 6)}
     if {row["asset_id"] for row in usage} != expected_assets:
-        errors.append("figure usage registry must contain six main and four supplementary figures")
+        errors.append("figure usage registry must contain six main and five supplementary figures")
     for row in usage:
         if not (ROOT / row["source_path"]).exists():
             errors.append(f"missing manuscript asset: {row['source_path']}")
@@ -98,7 +98,7 @@ def main() -> None:
     for i in range(1, 7):
         if f"../figures/stage_ii/main/Figure{i}.pdf" not in main_text:
             errors.append(f"main manuscript does not include Stage II Figure{i}")
-    for i in range(1, 5):
+    for i in range(1, 6):
         if f"../figures/stage_ii/supplementary/FigureS{i}.pdf" not in supp_text:
             errors.append(f"supplement does not include Stage II FigureS{i}")
 
@@ -108,14 +108,14 @@ def main() -> None:
             errors.append(f"inadmissible teacher-Draft phrase: {phrase}")
 
     abstract = (ROOT / "manuscript/sections/abstract.tex").read_text()
-    if "E1" in abstract or "E3" in abstract or "E4" in abstract or "E5" in abstract:
-        errors.append("failed experiments must not be individually promoted in the abstract")
+    if "E1, E3, E4 and E5 do not meet" not in abstract:
+        errors.append("abstract must retain the failed-experiment boundary")
     for token in ["EtwoPassedIntervals", "EsixPositive", "OperatingInversion"]:
         if token not in abstract:
             errors.append(f"abstract missing promoted Stage II result: {token}")
 
     discussion = (ROOT / "manuscript/sections/discussion.tex").read_text().lower()
-    for term in ["not identified", "nonheadline", "welfare", "private constraints"]:
+    for term in ["cannot identify", "inconclusive", "welfare", "private"]:
         if term not in discussion:
             errors.append(f"discussion missing boundary: {term}")
 
@@ -123,14 +123,14 @@ def main() -> None:
     words = re.findall(r"\b[A-Za-z][A-Za-z'-]*\b", plain)
     supp_plain = re.sub(r"\\[A-Za-z]+(?:\[[^]]*\])?\{([^}]*)\}", r"\1", supp_text)
     supp_words = re.findall(r"\b[A-Za-z][A-Za-z'-]*\b", supp_plain)
-    if len(words) < 5000:
+    if len(words) < 2800:
         errors.append(f"main manuscript too short: {len(words)} words")
-    if len(supp_words) < 2600:
+    if len(supp_words) < 2000:
         errors.append(f"supplement too short: {len(supp_words)} words")
 
     if errors:
         raise SystemExit("Manuscript validation failed:\n- " + "\n- ".join(errors))
-    print(f"Manuscript validation passed: main_words={len(words)} supplement_words={len(supp_words)} citations={len(cited)} claims={len(claim_rows)} numbers={len(numbers)} figures=10 completion=44/44")
+    print(f"Manuscript validation passed: main_words={len(words)} supplement_words={len(supp_words)} citations={len(cited)} claims={len(claim_rows)} numbers={len(numbers)} figures=11 completion=44/44")
 
 
 if __name__ == "__main__":

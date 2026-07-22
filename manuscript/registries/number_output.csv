@@ -1,24 +1,25 @@
 macro,displayed_value,unit,output_file,output_field,generation_command,verification_status
-NStates,26,states,empirical/stage_ii/outputs/summary.json,states,python scripts/generate_manuscript_inputs.py,VERIFIED
-NStateYears,77,state-years,empirical/stage_ii/outputs/summary.json,state_years,python scripts/generate_manuscript_inputs.py,VERIFIED
-NCropRows,231,crop rows,empirical/stage_ii/outputs/summary.json,state_crop_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-EmpiricalStartYear,2022,year,empirical/stage_ii/outputs/summary.json,years.min,python scripts/generate_manuscript_inputs.py,VERIFIED
-EmpiricalEndYear,2024,year,empirical/stage_ii/outputs/summary.json,years.max,python scripts/generate_manuscript_inputs.py,VERIFIED
-TransitionEvents,204,rank-transition events,empirical/stage_ii/outputs/summary.json,rank_transition_events,python scripts/generate_manuscript_inputs.py,VERIFIED
-CropTransitionRows,612,crop-transition rows,empirical/stage_ii/outputs/summary.json,crop_transition_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-BootstrapReplications,5000,bootstrap draws,empirical/stage_ii/outputs/summary.json,bootstrap_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingInversion,0.597,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingInversionLow,0.494,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingInversionHigh,0.697,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingTopRate,81.8,percent,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.top_rank_reversal_rate.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedOperatingContrast,0.0089,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedOperatingLow,-0.0018,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedOperatingHigh,0.0213,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedNullDefinitions,4,definitions,empirical/stage_ii/outputs/transition_summary.csv,intervals including zero,python scripts/generate_manuscript_inputs.py,VERIFIED
-AcreageTopChanges,5,state transitions,empirical/stage_ii/outputs/transition_summary.csv,acreage_top_change_rate * 51,python scripts/generate_manuscript_inputs.py,VERIFIED
-NationalOperatingInversion,0.000,proportion,empirical/stage_ii/outputs/aggregation_summary.csv,operating_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
-NationalTotalCostInversion,0.667,proportion,empirical/stage_ii/outputs/aggregation_summary.csv,total_cost_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
-NationalRelativeYieldTies,9,pairwise ties,empirical/stage_ii/outputs/aggregation_summary.csv,relative_yield.national_pairwise_ties,python scripts/generate_manuscript_inputs.py,VERIFIED
+NStates,31,states,empirical/goal16/outputs/summary.json,states,python scripts/generate_manuscript_inputs.py,VERIFIED
+NStateYears,248,state-years,empirical/goal16/outputs/summary.json,state_years,python scripts/generate_manuscript_inputs.py,VERIFIED
+NCropRows,744,crop rows,empirical/goal16/outputs/summary.json,state_crop_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalStartYear,2016,year,empirical/goal16/outputs/summary.json,years.min,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalEndYear,2024,year,empirical/goal16/outputs/summary.json,years.max,python scripts/generate_manuscript_inputs.py,VERIFIED
+TransitionEvents,868,rank-transition events,empirical/goal16/outputs/summary.json,4 * transitions_per_definition,python scripts/generate_manuscript_inputs.py,VERIFIED
+TransitionsPerDefinition,217,state-year transitions,empirical/goal16/outputs/summary.json,transitions_per_definition,python scripts/generate_manuscript_inputs.py,VERIFIED
+CropTransitionRows,2604,crop-transition rows,empirical/goal16/outputs/summary.json,12 * transitions_per_definition,python scripts/generate_manuscript_inputs.py,VERIFIED
+BootstrapReplications,5000,bootstrap draws,empirical/goal16/outputs/temporal_model.csv,bootstrap_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversion,0.411,proportion,empirical/goal16/outputs/rank_metric_summary.csv,operating_margin.inversion_intensity.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversionLow,0.346,proportion,empirical/goal16/outputs/rank_metric_summary.csv,operating_margin.inversion_intensity.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversionHigh,0.475,proportion,empirical/goal16/outputs/rank_metric_summary.csv,operating_margin.inversion_intensity.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingTopRate,62.5,percent,empirical/goal16/outputs/rank_metric_summary.csv,operating_margin.top_rank_disagreement.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingContrast,0.0021,share change,empirical/goal16/outputs/temporal_model.csv,operating_margin.lagged_top_minus_other_share_change.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingLow,-0.0041,share change,empirical/goal16/outputs/temporal_model.csv,operating_margin.lagged_top_minus_other_share_change.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingHigh,0.0084,share change,empirical/goal16/outputs/temporal_model.csv,operating_margin.lagged_top_minus_other_share_change.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedNullDefinitions,4,definitions,empirical/goal16/outputs/temporal_model.csv,intervals including zero,python scripts/generate_manuscript_inputs.py,VERIFIED
+AcreageTopChanges,24,state transitions,empirical/goal16/outputs/persistence_transition_summary.csv,operating_margin acreage_only + both,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalOperatingInversion,0.148,proportion,empirical/goal16/outputs/aggregation_boundary.csv,operating_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalTotalCostInversion,0.481,proportion,empirical/goal16/outputs/aggregation_boundary.csv,total_cost_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalRelativeYieldTies,9,tied years,empirical/goal16/outputs/aggregation_boundary.csv,relative_yield.national_years,python scripts/generate_manuscript_inputs.py,VERIFIED
 SimulationRawRows,2320,raw result rows,simulation/stage_ii/outputs/summary.json,raw_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
 SimulationContrasts,5360,contrast rows,simulation/stage_ii/outputs/summary.json,contrast_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
 SimulationScenarios,1632,scenario registries,simulation/stage_ii/outputs/summary.json,scenario_registry_rows,python scripts/generate_manuscript_inputs.py,VERIFIED

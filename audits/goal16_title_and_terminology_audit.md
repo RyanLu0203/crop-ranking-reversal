@@ -11,8 +11,8 @@
 | Set-valued crop allocation from ordinal rankings | Mathematically specific. | Narrow and jargon-heavy. | Depends on internal technical terminology and underplays E2/E6. | Reject. |
 
 The preferred title is not a cosmetic change: it matches the central scientific
-question and the redesigned mechanism-led Results. It will be adopted only with
-that structural rewrite.
+question and the redesigned mechanism-led Results. It is adopted in the final
+main manuscript and Supplementary Information after completion of that rewrite.
 
 ## Canonical terminology
 
@@ -46,4 +46,3 @@ that structural rewrite.
 
 Registry and audit files may retain machine-facing status vocabulary. Main
 scientific prose, titles and figure legends may not.
-

@@ -7,9 +7,9 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 133,
+      "left": 132,
       "top": 218,
-      "right": 130,
+      "right": 132,
       "bottom": 74
     },
     "blank": false
@@ -23,7 +23,7 @@
     ],
     "ink_margins_pixels": {
       "left": 132,
-      "top": 138,
+      "top": 141,
       "right": 131,
       "bottom": 74
     },
@@ -38,8 +38,8 @@
     ],
     "ink_margins_pixels": {
       "left": 133,
-      "top": 141,
-      "right": 130,
+      "top": 138,
+      "right": 131,
       "bottom": 73
     },
     "blank": false
@@ -52,9 +52,9 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 132,
-      "top": 138,
-      "right": 131,
+      "left": 133,
+      "top": 139,
+      "right": 130,
       "bottom": 74
     },
     "blank": false
@@ -67,8 +67,8 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 132,
-      "top": 141,
+      "left": 130,
+      "top": 138,
       "right": 130,
       "bottom": 73
     },
@@ -83,7 +83,7 @@
     ],
     "ink_margins_pixels": {
       "left": 132,
-      "top": 139,
+      "top": 138,
       "right": 131,
       "bottom": 73
     },
@@ -99,7 +99,7 @@
     "ink_margins_pixels": {
       "left": 133,
       "top": 138,
-      "right": 131,
+      "right": 130,
       "bottom": 73
     },
     "blank": false
@@ -127,9 +127,9 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 133,
-      "top": 138,
-      "right": 131,
+      "left": 132,
+      "top": 139,
+      "right": 130,
       "bottom": 73
     },
     "blank": false
@@ -143,7 +143,7 @@
     ],
     "ink_margins_pixels": {
       "left": 132,
-      "top": 139,
+      "top": 138,
       "right": 130,
       "bottom": 73
     },
@@ -157,9 +157,9 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 132,
+      "left": 133,
       "top": 139,
-      "right": 133,
+      "right": 129,
       "bottom": 74
     },
     "blank": false
@@ -172,85 +172,10 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 132,
-      "top": 334,
-      "right": 132,
-      "bottom": 74
-    },
-    "blank": false
-  },
-  {
-    "document": "main",
-    "page": 13,
-    "pixels": [
-      1224,
-      1584
-    ],
-    "ink_margins_pixels": {
-      "left": 132,
-      "top": 135,
-      "right": 131,
-      "bottom": 73
-    },
-    "blank": false
-  },
-  {
-    "document": "main",
-    "page": 14,
-    "pixels": [
-      1224,
-      1584
-    ],
-    "ink_margins_pixels": {
-      "left": 132,
+      "left": 133,
       "top": 139,
       "right": 130,
       "bottom": 74
-    },
-    "blank": false
-  },
-  {
-    "document": "main",
-    "page": 15,
-    "pixels": [
-      1224,
-      1584
-    ],
-    "ink_margins_pixels": {
-      "left": 132,
-      "top": 139,
-      "right": 131,
-      "bottom": 73
-    },
-    "blank": false
-  },
-  {
-    "document": "main",
-    "page": 16,
-    "pixels": [
-      1224,
-      1584
-    ],
-    "ink_margins_pixels": {
-      "left": 133,
-      "top": 139,
-      "right": 129,
-      "bottom": 73
-    },
-    "blank": false
-  },
-  {
-    "document": "main",
-    "page": 17,
-    "pixels": [
-      1224,
-      1584
-    ],
-    "ink_margins_pixels": {
-      "left": 133,
-      "top": 139,
-      "right": 129,
-      "bottom": 73
     },
     "blank": false
   },
@@ -307,7 +232,7 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 127,
+      "left": 130,
       "top": 135,
       "right": 128,
       "bottom": 71
@@ -322,8 +247,8 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 130,
-      "top": 137,
+      "left": 129,
+      "top": 135,
       "right": 129,
       "bottom": 70
     },
@@ -337,8 +262,8 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 130,
-      "top": 138,
+      "left": 129,
+      "top": 135,
       "right": 128,
       "bottom": 70
     },
@@ -353,7 +278,7 @@
     ],
     "ink_margins_pixels": {
       "left": 130,
-      "top": 135,
+      "top": 136,
       "right": 128,
       "bottom": 70
     },
@@ -367,7 +292,7 @@
       1584
     ],
     "ink_margins_pixels": {
-      "left": 129,
+      "left": 130,
       "top": 136,
       "right": 128,
       "bottom": 70

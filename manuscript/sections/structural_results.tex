@@ -1,35 +1,48 @@
-\section{Structural results and mechanism decomposition}
+\section{Ranking does not identify allocation}
 
-The first result is an identification theorem: a weak or strict suitability order alone does not determine a cardinal acreage vector. Strictly increasing transformations preserve the order but can change a proportional mapping, and neither transformation nor ranking supplies the objective, feasible set, risk convention or optimizer selection. Ordinal insufficiency is therefore structural rather than a numerical failure.
+A crop ranking and an acreage allocation are different mathematical objects. Let a suitability vector $s$ induce a weak order and let $x\in\mathbb{R}^n_+$ denote acreage. Strictly increasing transformations preserve the order in $s$ but can change any proportional score-to-acreage rule. The ranking also supplies neither an objective nor a feasible set. Consequently, even a strict order cannot identify a cardinal acreage vector.
 
-Existence and tractability follow under conventional conditions. If $X$ is non-empty and compact, per-acre profits are integrable, and the risk-feasible subset is non-empty, an optimizer exists. The risk-feasible subset is convex and the finite-scenario problem is linear. These assumptions retain the original multi-crop architecture while making its domain explicit.
+The distinction becomes sharper when the optimum is set-valued. Let
+\begin{equation}
+X=\{x:\ell\leq x\leq u,\;\mathbf 1^\top x\leq A,\;c^\top x\leq B,\;Gx\leq g\}
+\end{equation}
+and let $r_\alpha(x)=\operatorname{CVaR}_\alpha[-\widetilde\pi^\top x]$ be loss-CVaR. The optimal face is
+\begin{equation}
+S_\kappa=\arg\max\{\mu^\top x:x\in X,\;r_\alpha(x)\leq\kappa\}.
+\end{equation}
+For a ranked pair $s_i>s_j$, reversal is \emph{possible} if $x_j>x_i$ at some $x\in S_\kappa$, \emph{universal} if it holds at every $x\in S_\kappa$, and \emph{selected} if it holds at the allocation returned by a declared deterministic rule. These definitions prevent one solver vertex from being mistaken for the entire optimal face.
 
-Operational feasibility can force universal reversal without a risk mechanism. If $s_i>s_j$ and
+Four exact two-crop constructions share the same coordinate system (Fig.~\ref{fig:geometry}). Cardinal margins can point against the external crop ranking. A bound or contract can place the entire feasible set in the reversal half-space. A binding downside-risk constraint can move the optimum without implying monotone crop-wise comparative statics. A flat optimal face can cross the rank boundary, making reversal possible but not universal. Identical-looking allocations can thus encode different claims.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure2.pdf}
+\caption{\textbf{A four-mechanism atlas on shared coordinates.} Cardinal-margin, operational, downside-risk and set-valued cases use the same corn-share axis and reversal boundary. The cases are exact analytic constructions, not empirical estimates.}
+\label{fig:geometry}
+\end{figure}
+
+Operational feasibility supplies a transparent universal certificate. If $s_i>s_j$ and
 \begin{equation}
 \sup_{x\in X}x_i+\tau_x<\inf_{x\in X}x_j,
 \end{equation}
-then every feasible allocation reverses the pair; $u_i+\tau_x<\ell_j$ is a transparent sufficient certificate. Conversely, if an unconstrained expected-profit optimum is risk-feasible, the risk-constrained optimal value is unchanged and the constrained optimum is the intersection of the unconstrained optimal set with the risk-feasible set. One observed slack solution does not prove equality of solution sets when optima are multiple.
+then every feasible allocation reverses the pair; $u_i+\tau_x<\ell_j$ is a simple sufficient condition. This result needs no downside-risk channel. Conversely, if an unconstrained expected-margin optimum is risk-feasible, the risk constraint leaves the optimal value unchanged, but one slack selected solution does not establish equality of optimal faces when optima are multiple.
 
-The complete first-order characterization blocks a second shortcut. At an optimum $x^*$, non-negative multipliers and a subgradient $d\in\partial r_\alpha(x^*)$ satisfy
+The complete first-order identity blocks a second shortcut. At an optimum, non-negative multipliers and a subgradient $d\in\partial r_\alpha(x)$ satisfy
 \begin{equation}
-0=-\mu+\lambda d+\gamma\mathbf 1+\beta c+G^\top\eta-a+b,
+0=-\mu+\lambda d+\gamma\mathbf 1+\beta c+G^\top\eta-a+b.
 \end{equation}
-together with primal feasibility, dual feasibility and complementary slackness. For crops $i$ and $j$,
+For crops $i$ and $j$,
 \begin{equation}
 \mu_i-\mu_j=\lambda(d_i-d_j)+\beta(c_i-c_j)+(G^\top\eta)_i-(G^\top\eta)_j-(a_i-a_j)+(b_i-b_j).
 \label{eq:kktpair}
 \end{equation}
 The common land multiplier cancels, whereas budget, shared-constraint and bound terms remain. Equation~\ref{eq:kktpair} describes local marginal balance; it does not rank acreage levels.
 
-Dependence comparative statics require a distributional premise. If fixed marginals within a named family give $L_{\theta_1}(x)\preceq_{\mathrm{cx}}L_{\theta_2}(x)$ for every allocation in a declared domain, loss-CVaR is weakly ordered there. When the domain is all of $X$, risk-feasible sets are nested and optimal expected profit is weakly non-increasing. No crop-specific acreage ordering follows without further uniqueness and selection assumptions. Similarly, possible and universal reversal regions defined by the maximum and minimum optimal-face acreage gaps may be empty, disconnected, multiple or interval-valued. A unique dependence threshold requires continuity, strict monotonicity and an endpoint crossing; it is not generic.
-
-The nested M0--M4 audit makes these distinctions computationally inspectable (Fig.~\ref{fig:decomposition}). M0 begins with a closed benchmark; successive stages add margins, operational restrictions, downside risk and dependence. Across the closed-domain seeds, the operations block shifts corn share downward and soybean share upward, whereas dependence and risk contributions have intervals that cross zero for crop shares. The all-subset Shapley decomposition closes to a maximum efficiency residual of $\ShapleyResidual$. These are exact accounting contributions over registered block orders, not causal effects.
-
-The local pressure audit then evaluates Eq.~\ref{eq:kktpair} in E2. Margin pressure is balanced by budget, shared-constraint or boundary terms according to the intervention class, while the tail-risk term is zero in those cells. The maximum registered stationarity residual is $\KKTResidual$. This connects the theorem to a positive operational mechanism without attributing acreage shares to an omitted private farm process. Full proofs, assumptions, optimal-face constructions and order-sensitivity ranges are in the Supplementary Information.
+The closed M0--M4 path makes these distinctions auditable (Fig.~\ref{fig:decomposition}). Successive stages add cardinal margins, operations, downside risk and dependence to a common benchmark. Allocation and indexed outcome panels retain the actual registered outputs; an all-subset Shapley decomposition reports attribution intervals and closes with maximum efficiency residual $\ShapleyResidual$. Signed E2 pressure terms show how margin pressure is balanced locally by budget, shared or boundary terms, with maximum stationarity residual $\KKTResidual$. These are accounting decompositions over a controlled model, not causal effects in observed acreage.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure3.pdf}
-\caption{\textbf{Nested model path and closed mechanism attribution.} Panels a--c summarize 16 closed-domain seeds with descriptive 95\% $t$ intervals where shown. All-subset attribution closes with maximum efficiency residual $\ShapleyResidual$. Panel d reports validated E2 local KKT pressure terms (maximum stationarity residual $\KKTResidual$), not causal acreage shares.}
+\caption{\textbf{Nested allocation and mechanism decomposition.} The M0--M4 path reports crop allocation, indexed outcomes, all-subset Shapley contributions and signed E2 KKT pressures. Intervals summarize registered closed-domain repetitions; pressure terms are local accounting identities rather than causal acreage effects.}
 \label{fig:decomposition}
 \end{figure}
