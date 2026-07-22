@@ -1,16 +1,39 @@
-\section{Numerical experiments}
+\section{Confirmatory mechanism experiments}
 
-The numerical experiment probes the repaired propositions rather than calibrating a representative farmer. A preregistered mixed-factor design combines named copula and marginal families with Kendall dependence, a CVaR frontier quantile, budget tightness, a dominant-crop cap and a contract minimum. It contains \SimulationCells{} cells and five fixed replications per cell, yielding \SimulationReplications{} primary optimizations. Parameters not identified by public aggregate data are labelled illustrative and are varied over frozen ranges.
+Six experiments were frozen before execution, each with named estimands, family-wise intervals, sequential checks and a maximum replication ceiling. The resulting evidence graph contains \SimulationRawRows{} raw rows, \SimulationContrasts{} contrasts and \SimulationScenarios{} scenario-registry rows. Promotion is experiment-level: every registered primary interval must meet its precision target. Under this rule \PassedExperiments{} experiments pass and \FailedExperiments{} fail. Feasible-only filtering is prohibited; all \RegisteredInfeasible{} registered infeasible rows remain in the adverse ledger.
 
-Every primary solve reached an optimal status. Reverse-order independent replay passed for \ReplayPasses{} replications, and all \SolverPasses{} solver-method comparisons passed. Direct CVaR evaluation, tail-weight identities and KKT residuals were checked against frozen tolerances. These results support implementation integrity, not the substantive prevalence of reversal.
+\subsection{Operational interventions identify reversal}
 
-The substantive landscape is deliberately supplementary. Universal reversal occurs in \UniversalReplications{} replications; the CVaR constraint binds in \RiskBindingReplications{} and is slack in \RiskSlackReplications{}; and the preregistered pseudo-diversification diagnostic is flagged in \PseudoDiversificationReplications{}. These variations refute any blanket assertion that reversal requires a binding CVaR constraint or that dependence produces one monotone threshold.
+E2 isolates budget, rotation, contract and dominant-crop-bound interventions while holding the ranking and scenario law fixed (Fig.~\ref{fig:operations}). The unconstrained base assigns share \EtwoBaseCorn{} to corn. Every treated cell instead assigns a soybean majority: contract or rotation interventions produce corn/soybean shares \EtwoForcedCorn{}/\EtwoForcedSoy{}, while the tighter budget produces \EtwoBudgetCorn{}/\EtwoBudgetSoy{}. Possible, selected and universal reversal equal one in every treated cell, including the bound anchor.
 
-Most importantly, the convergence audit fails. Across \ConvergenceRows{} scenario-count rows, only \ConvergencePassRows{} satisfy the joint numeric-pass and interval-width rule; the largest Wilson interval width remains \ConvergenceWidth{}. The simulation figures and substantive counts are therefore marked \textsc{nonheadline}. We report this adverse result because passing solver diagnostics and failing inferential precision are different facts.
+All \EtwoPassedIntervals{} of \EtwoIntervals{} registered family-wise intervals pass at \EtwoReplications{} replications. Allocation $L_1$ changes are 1.10 or 1.365 relative to the base, and the selected-reversal change is one in each contrast. Because the intervention is assigned by design and the risk term is inactive in the audited cells, the experiment identifies an operational displacement mechanism within its declared simulation domain. It does not estimate the prevalence of that mechanism in observed agriculture.
+
+E3 asks a different question: whether moving along a CVaR frontier changes allocation and reversal. Some individual contrasts appear numerically sharp, but the experiment-level gate fails at its 64-replication ceiling. The full E3 inventory is therefore shown as adverse evidence in Fig.~\ref{fig:operations} and Supplementary Fig.~S2; it is not used to claim an empirical risk effect or a general monotone frontier.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{../figures/supplementary/FigureS2.pdf}
-\caption{Predeclared convergence and numerical diagnostics. None of the five scenario-count rows passes both gates; the panel is supplementary and nonheadline.}
-\label{fig:convergence}
+\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure4.pdf}
+\caption{\textbf{Operational interventions identify reversal in E2.} Each E2 cell has $n=\EtwoReplications{}$; \EtwoPassedIntervals{}/\EtwoIntervals{} registered family-wise intervals pass. E3 risk-frontier results are displayed as adverse evidence only because its experiment-level precision gate fails at the $n=64$ ceiling.}
+\label{fig:operations}
 \end{figure}
+
+\subsection{Information value depends on what flexibility enables}
+
+E6 tests a quadrant interaction between signal information and feasible-action flexibility. Define the interaction as the objective-value difference-in-differences between informative versus uninformative signals under flexible versus restricted action sets. Ignoring a signal remains feasible, so information value is non-negative in each action set; exact ignore-signal and garbling checks verify that implementation invariant.
+
+The interaction has all three theoretically admissible signs (Fig.~\ref{fig:information}). When flexibility unlocks state-contingent specialization, the estimate is \EsixPositive{} with 95\% family-wise interval [\EsixPositiveLow{}, \EsixPositiveHigh{}]. When flexibility adds a robust fallback option, the estimate is \EsixSubstitution{} [\EsixSubstitutionLow{}, \EsixSubstitutionHigh{}], because flexibility is already valuable without the signal. When the added option is dominated, the interaction is exactly \EsixNull{}. All three intervals pass at \EsixReplications{} replications.
+
+This sign pattern is stronger than a single positive example: it shows why information and flexibility cannot be assumed to be universally complementary. Information is actionable when it changes the state-contingent decision, but the incremental value of the signal depends on the alternatives that flexibility adds. E5 dependence-misspecification contrasts remain adjacent as adverse evidence. Their experiment-level precision gate fails at 64 replications, so they cannot support a promoted claim about copula misspecification, regret or downside risk.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure5.pdf}
+\caption{\textbf{Information--flexibility interaction is positive, null or substitutive.} E6 reports three registered interaction estimands ($n=\EsixReplications{}$ each) with exact ignore-signal and garbling checks. E5 cross-law diagnostics remain non-promoted because the experiment-level precision gate fails at $n=64$.}
+\label{fig:information}
+\end{figure}
+
+\subsection{Adverse evidence and numerical integrity}
+
+E1, E3, E4 and E5 reach the registered ceiling without satisfying every primary precision interval. Their estimates, intervals, stopping reasons and infeasible cells remain visible in Supplementary Figs.~S1 and S2. Failed experiments are not pooled with E2 or E6, and passing sub-contrasts do not rescue a failed experiment. This rule prevents selective promotion after looking at the results.
+
+Numerical diagnostics support implementation integrity across both promoted and adverse experiments. Reverse-order replay passes \ReplayPasses{}/\ReplayTotal{} checks, solver sensitivity passes \SolverPasses{}/\SolverTotal{}, the maximum KKT residual is $\KKTResidual$, and the maximum Shapley efficiency residual is $\ShapleyResidual$ (Supplementary Fig.~S3). These checks show that the recorded results are reproducible and internally consistent; they do not turn imprecise estimands into evidence.

@@ -1,4 +1,4 @@
-FIRST COMPILED DRAFT FOR SUPERVISOR REVIEW
+STAGE II FINAL SCIENTIFIC DRAFT
 document=supplementary
 source=supplementary/supplementary.tex
 engine=pdfLaTeX via latexmk and BibTeX
@@ -6,8 +6,8 @@ isolated_build_passes=2
 pass1_exit_code=0
 pass2_exit_code=0
 byte_stable=YES
-pdf_sha256=6b77ce4ccfda2b9faa7beb3a55f8b4bd7a15075a85599903c07c12184ad4d539
-pdf_bytes=345832
+pdf_sha256=6c33d6fb045c068f5ac350b3c91dc8866acbcbc65bb104413f0d54a8d3c75dc6
+pdf_bytes=473782
 diagnostic_scan=PASS
 latex_errors=0
 undefined_citations=0

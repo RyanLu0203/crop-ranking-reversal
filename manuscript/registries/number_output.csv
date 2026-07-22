@@ -1,28 +1,49 @@
 macro,displayed_value,unit,output_file,output_field,generation_command,verification_status
-NStates,26,states,empirical/outputs/summary.json,states,python scripts/generate_manuscript_inputs.py,VERIFIED
-NStateYears,77,state-years,empirical/outputs/summary.json,complete_state_years,python scripts/generate_manuscript_inputs.py,VERIFIED
-NCropRows,231,crop rows,empirical/outputs/summary.json,complete_panel_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-EmpiricalStartYear,2022,year,empirical/configs/empirical_design.yaml,start_year,python scripts/generate_manuscript_inputs.py,VERIFIED
-EmpiricalEndYear,2024,year,empirical/configs/empirical_design.yaml,end_year,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingTopCount,63,state-years,empirical/outputs/discordance_detail.csv,sum top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingTopRate,81.8,percent,empirical/outputs/definition_summary.csv,operating_margin.top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingStrongCount,41,state-years,empirical/outputs/discordance_detail.csv,sum strong_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
-OperatingStrongRate,53.2,percent,empirical/outputs/definition_summary.csv,operating_margin.strong_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
-DefinitionMinRate,62.3,percent,empirical/outputs/definition_summary.csv,min top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
-DefinitionMaxRate,87.0,percent,empirical/outputs/definition_summary.csv,max top_rank_reversal_rate,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedStates,25,states,empirical/outputs/lagged_2024_validation.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedTopCount,22,states,empirical/outputs/lagged_2024_validation.csv,sum top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
-LaggedTopRate,88.0,percent,empirical/outputs/lagged_2024_validation.csv,mean top_rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
-NationalComparisons,9,crop-years,empirical/outputs/national_check.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-NationalReversals,0,crop-years,empirical/outputs/national_check.csv,sum rank_reversal,python scripts/generate_manuscript_inputs.py,VERIFIED
-SimulationCells,90,design cells,simulation/outputs/summary.json,formal_cells,python scripts/generate_manuscript_inputs.py,VERIFIED
-SimulationReplications,450,replications,simulation/outputs/summary.json,formal_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
-UniversalReplications,150,replications,simulation/outputs/summary.json,universal_reversal_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
-RiskBindingReplications,245,replications,simulation/outputs/summary.json,risk_binding_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
-RiskSlackReplications,205,replications,simulation/outputs/summary.json,derived formal minus binding,python scripts/generate_manuscript_inputs.py,VERIFIED
-PseudoDiversificationReplications,84,replications,simulation/outputs/summary.json,pseudo_diversification_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
-ReplayPasses,450,replications,simulation/outputs/summary.json,independent_replay_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
-SolverPasses,9,comparisons,simulation/outputs/summary.json,solver_sensitivity_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
-ConvergencePassRows,0,grid rows,simulation/outputs/convergence_summary.csv,sum convergence_pass,python scripts/generate_manuscript_inputs.py,VERIFIED
-ConvergenceRows,5,grid rows,simulation/outputs/convergence_summary.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
-ConvergenceWidth,0.278,probability,simulation/outputs/convergence_summary.csv,max reversal_probability_interval_width,python scripts/generate_manuscript_inputs.py,VERIFIED
+NStates,26,states,empirical/stage_ii/outputs/summary.json,states,python scripts/generate_manuscript_inputs.py,VERIFIED
+NStateYears,77,state-years,empirical/stage_ii/outputs/summary.json,state_years,python scripts/generate_manuscript_inputs.py,VERIFIED
+NCropRows,231,crop rows,empirical/stage_ii/outputs/summary.json,state_crop_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalStartYear,2022,year,empirical/stage_ii/outputs/summary.json,years.min,python scripts/generate_manuscript_inputs.py,VERIFIED
+EmpiricalEndYear,2024,year,empirical/stage_ii/outputs/summary.json,years.max,python scripts/generate_manuscript_inputs.py,VERIFIED
+TransitionEvents,204,rank-transition events,empirical/stage_ii/outputs/summary.json,rank_transition_events,python scripts/generate_manuscript_inputs.py,VERIFIED
+CropTransitionRows,612,crop-transition rows,empirical/stage_ii/outputs/summary.json,crop_transition_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+BootstrapReplications,5000,bootstrap draws,empirical/stage_ii/outputs/summary.json,bootstrap_replications,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversion,0.597,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversionLow,0.494,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingInversionHigh,0.697,proportion,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.inversion_intensity.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+OperatingTopRate,81.8,percent,empirical/stage_ii/outputs/inversion_intensity_summary.csv,operating_margin.top_rank_reversal_rate.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingContrast,0.0089,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingLow,-0.0018,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedOperatingHigh,0.0213,share change,empirical/stage_ii/outputs/transition_summary.csv,operating_margin.lagged_top_minus_other_share_change.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+LaggedNullDefinitions,4,definitions,empirical/stage_ii/outputs/transition_summary.csv,intervals including zero,python scripts/generate_manuscript_inputs.py,VERIFIED
+AcreageTopChanges,5,state transitions,empirical/stage_ii/outputs/transition_summary.csv,acreage_top_change_rate * 51,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalOperatingInversion,0.000,proportion,empirical/stage_ii/outputs/aggregation_summary.csv,operating_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalTotalCostInversion,0.667,proportion,empirical/stage_ii/outputs/aggregation_summary.csv,total_cost_margin.national_mean_inversion_intensity,python scripts/generate_manuscript_inputs.py,VERIFIED
+NationalRelativeYieldTies,9,pairwise ties,empirical/stage_ii/outputs/aggregation_summary.csv,relative_yield.national_pairwise_ties,python scripts/generate_manuscript_inputs.py,VERIFIED
+SimulationRawRows,2320,raw result rows,simulation/stage_ii/outputs/summary.json,raw_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+SimulationContrasts,5360,contrast rows,simulation/stage_ii/outputs/summary.json,contrast_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+SimulationScenarios,1632,scenario registries,simulation/stage_ii/outputs/summary.json,scenario_registry_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+PassedExperiments,2,experiments,simulation/stage_ii/outputs/summary.json,precision_passed_experiments,python scripts/generate_manuscript_inputs.py,VERIFIED
+FailedExperiments,4,experiments,simulation/stage_ii/outputs/summary.json,precision_failed_experiments,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoReplications,16,replications,simulation/stage_ii/outputs/summary.json,actual_replications.E2,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoIntervals,24,registered intervals,visualization/stage_ii/source_data/figure4_e2_contrasts.csv,rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoPassedIntervals,24,registered intervals,visualization/stage_ii/source_data/figure4_e2_contrasts.csv,sum precision_pass,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoBaseCorn,1.000,acreage share,visualization/stage_ii/source_data/figure4_e2_cells.csv,E2-B0-R0-C0.allocation_Corn,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoForcedCorn,0.450,acreage share,visualization/stage_ii/source_data/figure4_e2_cells.csv,E2-B0-R0-C1.allocation_Corn,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoForcedSoy,0.550,acreage share,visualization/stage_ii/source_data/figure4_e2_cells.csv,E2-B0-R0-C1.allocation_Soybean,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoBudgetCorn,0.318,acreage share,visualization/stage_ii/source_data/figure4_e2_cells.csv,E2-B1-R0-C0.allocation_Corn,python scripts/generate_manuscript_inputs.py,VERIFIED
+EtwoBudgetSoy,0.682,acreage share,visualization/stage_ii/source_data/figure4_e2_cells.csv,E2-B1-R0-C0.allocation_Soybean,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixReplications,16,replications,simulation/stage_ii/outputs/summary.json,actual_replications.E6,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixNull,0.000,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,dominated_option_null.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixSubstitution,-3.114,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,robust_option_substitutes.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixSubstitutionLow,-3.476,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,robust_option_substitutes.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixSubstitutionHigh,-2.751,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,robust_option_substitutes.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixPositive,3.258,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,specialization_unlocks.estimate,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixPositiveLow,2.788,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,specialization_unlocks.ci_low,python scripts/generate_manuscript_inputs.py,VERIFIED
+EsixPositiveHigh,3.728,objective-value interaction,visualization/stage_ii/source_data/figure5_information_interaction.csv,specialization_unlocks.ci_high,python scripts/generate_manuscript_inputs.py,VERIFIED
+RegisteredInfeasible,206,registered rows,simulation/stage_ii/outputs/summary.json,registered_infeasible_rows,python scripts/generate_manuscript_inputs.py,VERIFIED
+ReplayPasses,12,checks,simulation/stage_ii/outputs/summary.json,independent_replay_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
+ReplayTotal,12,checks,simulation/stage_ii/outputs/summary.json,independent_replay_total,python scripts/generate_manuscript_inputs.py,VERIFIED
+SolverPasses,9,checks,simulation/stage_ii/outputs/summary.json,solver_sensitivity_passes,python scripts/generate_manuscript_inputs.py,VERIFIED
+SolverTotal,9,checks,simulation/stage_ii/outputs/summary.json,solver_sensitivity_total,python scripts/generate_manuscript_inputs.py,VERIFIED
+KKTResidual,1.82\times10^{-11},absolute residual,simulation/stage_ii/outputs/summary.json,maximum_pressure_stationarity_residual,python scripts/generate_manuscript_inputs.py,VERIFIED
+ShapleyResidual,1.42\times10^{-14},absolute residual,simulation/stage_ii/outputs/summary.json,maximum_shapley_efficiency_residual,python scripts/generate_manuscript_inputs.py,VERIFIED

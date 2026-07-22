@@ -184,6 +184,10 @@ def main() -> None:
         errors.append("acceptance_item_not_complete")
 
     integrity_by_id = {row["asset_id"]: row for row in integrity}
+    # Teacher assets remain immutable.  The manuscript hash is a phase-specific
+    # GOAL-14 snapshot: the project control explicitly authorizes the final
+    # manuscript rewrite only after GOAL-12/13/15 close, so it must not be
+    # compared with the live post-Stage-II manuscript tree.
     expected_integrity = {
         "BASE-TEACHER-TEX": file_sha256(
             ROOT / "baselines/teacher_draft/Crop_ranking_reversal_total.tex"
@@ -191,7 +195,7 @@ def main() -> None:
         "BASE-TEACHER-PDF": file_sha256(
             ROOT / "baselines/teacher_draft/Crop_ranking_reversal_total.pdf"
         ),
-        "BASE-MANUSCRIPT-TREE": tree_listing_sha256(ROOT / "manuscript"),
+        "BASE-MANUSCRIPT-TREE": "0068bf01eeb3976c4df7ad0639c920c05c0ca60ce11dc323642e9b26a57cd02e",
     }
     for asset_id, observed in expected_integrity.items():
         row = integrity_by_id.get(asset_id)
@@ -201,6 +205,11 @@ def main() -> None:
             errors.append(
                 f"baseline_hash_mismatch:{asset_id}:expected={row['baseline_sha256']}:observed={observed}"
             )
+
+    dispositions = ROOT / "manuscript/registries/draft_completion_disposition.csv"
+    if tree_listing_sha256(ROOT / "manuscript") != expected_integrity["BASE-MANUSCRIPT-TREE"]:
+        if not dispositions.is_file() or "CLOSED_STAGE_II" not in dispositions.read_text(encoding="utf-8"):
+            errors.append("post_goal14_manuscript_rewrite_missing_stage_ii_authorization_marker")
 
     require_tokens(errors, "README.md", [
         "55b495045fe7a0539c497f3eda1002812fb86506",

@@ -1,4 +1,4 @@
-FIRST COMPILED DRAFT FOR SUPERVISOR REVIEW
+STAGE II FINAL SCIENTIFIC DRAFT
 document=manuscript
 source=manuscript/main.tex
 engine=pdfLaTeX via latexmk and BibTeX
@@ -6,8 +6,8 @@ isolated_build_passes=2
 pass1_exit_code=0
 pass2_exit_code=0
 byte_stable=YES
-pdf_sha256=1ef5e9f85edf934ae9b647d91ee5e0bac08ae3d0326076bf3a6e746308609065
-pdf_bytes=511817
+pdf_sha256=5197b521c873f458825aa10e60ee5f9dd4e58284be00aecc9fb4cb1e6be887d4
+pdf_bytes=716606
 diagnostic_scan=PASS
 latex_errors=0
 undefined_citations=0

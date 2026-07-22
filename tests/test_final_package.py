@@ -2,6 +2,7 @@ import json
 import csv
 import re
 from pathlib import Path
+from pypdf import PdfReader
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -14,14 +15,16 @@ def test_final_build_is_byte_stable():
 
 def test_all_final_pages_were_rendered():
     metrics=json.loads((ROOT/"output/qa/page_metrics.json").read_text())
-    assert len(metrics)==17
+    pdfs=list((ROOT/"output/pdf").glob("*.pdf"))
+    assert len(pdfs)==2
+    assert len(metrics)==sum(len(PdfReader(str(path)).pages) for path in pdfs)
     assert not any(row["blank"] for row in metrics)
 
 
 def test_package_is_review_not_submission_labelled():
     text=(ROOT/"output/SUPERVISOR_REVIEW_README.md").read_text()
-    assert "first complete end-to-end compilation" in text
-    assert "not a submission-ready package" in text
+    assert "closes the authorized Stage II reconstruction" in text
+    assert "not a journal-submission archive" in text
 
 
 def test_exported_compile_records_are_portable():

@@ -1,16 +1,23 @@
-\section{Empirical sample, definitions and robustness}
+\section{Empirical sample, estimands and robustness}
 
-The sample flow begins with all parsed state and US-total rows in the frozen official summary. US totals are retained only for the national check. State rows are restricted to complete planted acreage and yield for corn, soybeans and winter wheat in a common state-year. No missing values are inferred. The resulting \NCropRows{} crop rows form \NStateYears{} state-years.
+\subsection{Admitted panel and score definitions}
+The sample begins with state and US-total rows parsed from the frozen official crop summary. State rows are restricted to complete planted acreage and yield for corn, soybeans and winter wheat in a common state-year. Missing codes are not inferred. The resulting \NCropRows{} crop rows form \NStateYears{} state-years in \NStates{} states. US totals are retained only for aggregation checks.
 
-Relative yield normalizes each state crop yield by its national same-year value. Standardized revenue multiplies yield by national price. Operating and total-cost margins further subtract corresponding national cost measures. These accounting definitions hold price and cost geography constant, allowing state-yield variation to be examined transparently, but they omit state marketing bases and local costs.
+Relative yield normalizes each state crop yield by its same-year national value. Standardized revenue multiplies yield by national price. Operating- and total-cost margins subtract corresponding national cost measures after conversion to real 2024 dollars. Holding price and cost geography constant exposes state-yield variation transparently but omits local basis, marketing arrangements, heterogeneous costs and private expectations.
 
-Figure~\ref{fig:s3} reports the three main robustness checks. Leave-one-year-out rates remain definition-dependent. The lagged check uses only 2022--2023 relative yields to rank 2024 crops and yields \LaggedTopCount{} disagreements among \LaggedStates{} states. National margin and acreage ranks align in every comparison. These outcomes are retained together because selective reporting of only the state-level positive pattern would overstate the evidence.
+Concurrent inversion intensity counts discordant informative pairs divided by all informative pairs. A top-rank reversal requires a unique score leader and compares it with the acreage leader; strong reversal requires the score leader to fall below every lower-scored crop in acreage. Tied score pairs are non-informative. State-cluster bootstrap intervals resample the 26 states and recompute the full estimand \BootstrapReplications{} times.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/supplementary/FigureS3.pdf}
-\caption{Empirical robustness checks: leave-one-year-out summaries, low-powered lagged validation and national rank alignment.}
-\label{fig:s3}
-\end{figure}
+Operating-margin inversion intensity is \OperatingInversion{} [\OperatingInversionLow{}, \OperatingInversionHigh{}]. Across the four definitions, concurrent intensity ranges from 0.351 for standardized revenue to 0.706 for relative yield. Top-rank reversal ranges from 62.3\% to 87.0\%, illustrating that a reported reversal rate is conditional on the score construction.
 
-The claim boundary is fixed: state discordance is descriptively identified; accounting consequences are not welfare; geographic patterns are associative; observed-acreage optimality, CVaR binding or causality, copula mechanism, state downside risk and private constraints are not identified. Table S2 in the repository records these statements in machine-readable form.
+\subsection{Rolling-origin transitions}
+The rolling-origin design yields 51 transitions per definition. For each crop, the indicator for being the prior score leader is paired with its next-year acreage-share change. The top-minus-other contrast averages within the registered state-cluster procedure. Operating margin gives \LaggedOperatingContrast{} [\LaggedOperatingLow{}, \LaggedOperatingHigh{}]; the other three intervals also include zero. Hence none of the four score definitions provides a precision-qualified positive share-response result.
+
+The acreage leader changes in \AcreageTopChanges{} of 51 transitions under every definition because the acreage ordering is common to the score definitions. Score leaders change at definition-specific rates, from 1 of 51 for standardized revenue to 23 of 51 for operating margin. The contrast is consistent with slower acreage movement than score movement, but prior acreage is only an inertia proxy. Rotation, adjustment cost, capacity and contract explanations are not observed.
+
+\subsection{State, year and aggregation checks}
+Leave-one-state-out estimates assess influence without asserting that states are sampled from a target superpopulation. Operating-margin inversion intensity ranges from 0.586 to 0.617 across those omissions. Year-specific estimates range from 0.547 to 0.692. Corresponding ranges for the other definitions remain separated enough to preserve definition sensitivity.
+
+At national aggregation, operating-margin and standardized-revenue inversion intensity are zero. Total-cost margin is 0.667. Relative-yield comparisons contain \NationalRelativeYieldTies{} pairwise ties because both numerator and denominator collapse to the national yield. They are marked non-informative, not counted as agreement or reversal. Aggregation therefore changes the empirical statement and can create definitional degeneracy.
+
+\subsection{Identification ledger}
+The data identify descriptive score--acreage order relations, accounting constructions, their temporal ordering and their sensitivity to definition and aggregation. They do not identify observed acreage as optimal; private land, budget, rotation or contract constraints; beliefs or objective weights; a binding CVaR limit; a copula or tail-risk mechanism; causal responses; state welfare; or regret relative to a latent optimum. No such interpretation is promoted in the figures, tables or number registry.
