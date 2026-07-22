@@ -63,6 +63,6 @@ make check
 
 Issues #1--#10 are integrated in the Stage I package labelled **“First compiled draft for supervisor review.”** Commit `4d6c14d` is the theory-repair and reproducibility foundation, not the final scientific manuscript.
 
-GOAL-11 / Issue #21 is supervisor-approved, and its evidence-gated reconstruction blueprint is frozen in `audits/stage_ii/`. GOAL-14 / Issue #24 is the current Stage II checkpoint: its versioned theory extension, assumptions, proofs, mechanism decomposition and theory-to-evidence maps are in `theory/stage_ii/`. These artifacts do not alter the Stage I theorem repair or manuscript.
+GOAL-11 / Issue #21 and GOAL-14 / Issue #24 are supervisor-approved. The GOAL-12 / Issue #22 confirmatory package is now frozen under `simulation/stage_ii/` for supervisor review. E2 and E6 passed all prospective precision gates; E1, E3, E4 and E5 reached the replication ceiling with explicit precision failures. These artifacts do not alter the Stage I theorem repair or manuscript.
 
-Later phases remain locked in the fixed order GOAL-12 confirmatory simulation → GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all four scientific phases pass. Run `make check` to exercise both Stage II fail-closed validators with the canonical suite.
+Later phases remain locked in the fixed order GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all scientific phases pass. Run `make check` to exercise all three Stage II fail-closed validators with the canonical suite.
