@@ -1,0 +1,10 @@
+claim_domain,status,reason
+ranking discordance,DESCRIPTIVE_IDENTIFIED,official state acreage and yield in the same NASS snapshot
+economic consequences,ACCOUNTING_ONLY,state yield combined with national price and cost
+geographic heterogeneity,ASSOCIATIVE_DESCRIPTION,three years and no causal design
+observed acreage optimality,NOT_IDENTIFIED,private feasible sets and objectives are absent
+CVaR binding or causality,NOT_IDENTIFIED,no farmer risk limit or decision-level loss distribution
+copula mechanism,NOT_IDENTIFIED,aggregate observed acreage cannot identify dependence causality
+state realized downside/CVaR,NOT_IDENTIFIED,only three annual observations
+data revision robustness,NOT_IDENTIFIED,one fixed NASS vintage only
+optimizer selection robustness,NOT_APPLICABLE,observed acreage is not treated as an optimizer output

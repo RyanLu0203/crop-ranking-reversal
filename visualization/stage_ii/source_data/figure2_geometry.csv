@@ -1,0 +1,6 @@
+case_id,case_label,feasible_xcorn_min,feasible_xcorn_max,optimal_xcorn_min,optimal_xcorn_max,reversal_class,mechanism
+common,Common domain,0,1,0,1,domain,ranking boundary at 0.5
+margin,Cardinal margin,0,1,0,0,universal,Soybean payoff dominates
+operations,Operational forcing,0,0.45,0.45,0.45,universal,Corn cap + Soybean contract
+risk,Risk-limited,0,0.35,0.35,0.35,universal,CVaR boundary truncates optimum
+set_valued,Set-valued optimum,0.2,0.8,0.2,0.8,possible_not_universal,optimal face crosses rank boundary
