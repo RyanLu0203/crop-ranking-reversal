@@ -44,7 +44,7 @@ E4 tests dependence intensity within named families; E5 evaluates policies under
 \end{figure}
 
 \subsection{Numerical integrity and attribution order}
-Reverse-order replay passes \ReplayPasses{}/\ReplayTotal{} checks and solver-method sensitivity passes \SolverPasses{}/\SolverTotal{}. The maximum KKT stationarity residual is $\KKTResidual$ and the maximum Shapley efficiency residual is $\ShapleyResidual$. The ledger includes all \RegisteredInfeasible{} registered infeasible rows. Order-path ranges expose the dependence of sequential attribution on block order; the all-subset Shapley value is an accounting average rather than a causal decomposition.
+Reverse-order replay passes \ReplayPasses{}/\ReplayTotal{} checks and solver-method sensitivity passes \SolverPasses{}/\SolverTotal{}. The maximum KKT stationarity residual is $\KKTResidual$ and the maximum Shapley efficiency residual is $\ShapleyResidual$. The complete record includes all \InfeasibleOutcomes{} infeasible rows. Order-path ranges expose the dependence of sequential attribution on block order; the all-subset Shapley value is an accounting average rather than a causal decomposition.
 
 \begin{figure}[t]
 \centering

@@ -74,9 +74,9 @@ def main() -> None:
         "OperatingInversionLow": item(f"{op_inv.ci_low:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_low"),
         "OperatingInversionHigh": item(f"{op_inv.ci_high:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_high"),
         "OperatingTopRate": item(f"{100 * op_top.estimate:.1f}", "percent", inv_path, "operating_margin.top_rank_disagreement.estimate"),
-        "LaggedOperatingContrast": item(f"{op_lag.estimate:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.estimate"),
-        "LaggedOperatingLow": item(f"{op_lag.ci_low:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_low"),
-        "LaggedOperatingHigh": item(f"{op_lag.ci_high:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_high"),
+        "LaggedOperatingContrast": item(f"{100 * op_lag.estimate:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.estimate"),
+        "LaggedOperatingLow": item(f"{100 * op_lag.ci_low:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.ci_low"),
+        "LaggedOperatingHigh": item(f"{100 * op_lag.ci_high:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.ci_high"),
         "LaggedNullDefinitions": item(
             int(((trans.xs("primary_top", level="specification").ci_low <= 0) &
                  (trans.xs("primary_top", level="specification").ci_high >= 0)).sum()),
@@ -111,7 +111,7 @@ def main() -> None:
         "EsixPositive": item(f"{e6_pos.estimate:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.estimate"),
         "EsixPositiveLow": item(f"{e6_pos.ci_low:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_low"),
         "EsixPositiveHigh": item(f"{e6_pos.ci_high:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_high"),
-        "RegisteredInfeasible": item(sim["registered_infeasible_rows"], "registered rows", sim_path, "registered_infeasible_rows"),
+        "InfeasibleOutcomes": item(sim["registered_infeasible_rows"], "infeasible result rows", sim_path, "registered_infeasible_rows"),
         "ReplayPasses": item(sim["independent_replay_passes"], "checks", sim_path, "independent_replay_passes"),
         "ReplayTotal": item(sim["independent_replay_total"], "checks", sim_path, "independent_replay_total"),
         "SolverPasses": item(sim["solver_sensitivity_passes"], "checks", sim_path, "solver_sensitivity_passes"),

@@ -15,7 +15,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle
+from matplotlib.patches import Ellipse, FancyArrowPatch, FancyBboxPatch, Polygon, Rectangle
 import numpy as np
 import pandas as pd
 from PIL import Image, ImageDraw, ImageOps
@@ -176,39 +176,77 @@ def fig1a() -> plt.Figure:
 
 
 def fig1b() -> plt.Figure:
-    fig = base_figure(1, "B", "claim matrix + optimal-face strip")
-    gs = fig.add_gridspec(2, 12, left=0.15, right=0.965, bottom=0.09, top=0.87,
-                          height_ratios=[1.4, 0.8], hspace=0.45, wspace=0.7)
-    ax = fig.add_subplot(gs[0, :8]); panel(ax, "a", "Which objects are needed for each allocation claim?")
-    rows = ["Rank disagreement", "Possible reversal", "Universal reversal", "Selected reversal"]
-    cols = ["Ordinal\nrank", "Cardinal\npayoff", "Joint\nrisk", "Feasible\nset", "Optimal\nface", "Selection\nrule"]
-    matrix = np.array([[1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0], [1, 1, 1, 1, 1, 0], [1, 1, 1, 1, 1, 1]])
-    vector_matrix(ax, matrix, ["white", CARD["promoted"]])
-    ax.set_xticks(range(6), cols); ax.set_yticks(range(4), rows)
-    ax.tick_params(length=0, pad=4)
-    for y in range(4):
-        for x in range(6):
-            ax.text(x, y, "●" if matrix[y, x] else "—", ha="center", va="center", fontsize=6.6,
-                    color="white" if matrix[y, x] else CARD["adverse"])
+    fig = base_figure(1, "B", "inference architecture + optimal-face geometry")
+    gs = fig.add_gridspec(2, 12, left=0.072, right=0.965, bottom=0.085, top=0.87,
+                          height_ratios=[1.45, 0.82], hspace=0.48, wspace=0.9)
 
-    ax2 = fig.add_subplot(gs[0, 8:]); quiet(ax2); panel(ax2, "b", "Observability is not identification")
+    ax = fig.add_subplot(gs[0, :8]); quiet(ax)
+    panel(ax, "a", "Observed discordance and the hidden decision system are different objects")
+    ax.set(xlim=(0, 1), ylim=(0, 1))
+    ax.add_patch(Rectangle((0.01, 0.10), 0.20, 0.78, facecolor=CARD["corn"] + "18", edgecolor="none"))
+    ax.add_patch(Rectangle((0.25, 0.10), 0.43, 0.78, facecolor=CARD["winter_wheat"] + "28", edgecolor="none"))
+    ax.add_patch(Rectangle((0.72, 0.10), 0.27, 0.78, facecolor=CARD["promoted"] + "18", edgecolor="none"))
+    ax.text(0.03, 0.82, "OBSERVED", fontsize=6.0, fontweight="bold", color=CARD["corn"])
+    ax.text(0.27, 0.82, "DECISION SYSTEM", fontsize=6.0, fontweight="bold", color=CARD["charcoal"])
+    ax.text(0.74, 0.82, "MODEL-IMPLIED", fontsize=6.0, fontweight="bold", color=CARD["promoted"])
+
+    ax.scatter([0.10, 0.10], [0.61, 0.31], s=[180, 180], facecolor="white",
+               edgecolor=CARD["charcoal"], linewidth=0.8)
+    ax.text(0.10, 0.61, "crop\nrank", ha="center", va="center", fontsize=6.0)
+    ax.text(0.10, 0.31, "acreage\norder", ha="center", va="center", fontsize=6.0)
+    ax.plot([0.10, 0.10], [0.43, 0.49], color=CARD["adverse"], lw=1.0, ls="--")
+    ax.text(0.10, 0.15, "discordance is\ndescriptive", ha="center", fontsize=5.6, color=CARD["adverse"])
+
+    system_items = [(0.35, 0.62, "cardinal\nmargins", CARD["corn"]),
+                    (0.56, 0.62, "joint\nuncertainty", CARD["adverse"]),
+                    (0.35, 0.32, "feasible\nset", CARD["soybean"]),
+                    (0.56, 0.32, "selection\nrule", CARD["winter_wheat"])]
+    for x0, y0, label, colour in system_items:
+        ax.add_patch(Ellipse((x0, y0), 0.17, 0.19, facecolor="white", edgecolor=colour, lw=1.1))
+        ax.text(x0, y0, label, ha="center", va="center", fontsize=5.8)
+    ax.text(0.465, 0.15, "assumed, assigned or estimated", ha="center", fontsize=5.6,
+            color=CARD["adverse"])
+    arrow(ax, (0.675, 0.49), (0.75, 0.49), CARD["charcoal"])
+
+    ax.plot([0.77, 0.94], [0.62, 0.62], color=CARD["charcoal"], lw=5.5, solid_capstyle="butt")
+    ax.scatter([0.85], [0.62], s=28, facecolor=CARD["promoted"], edgecolor=CARD["charcoal"], lw=0.6, zorder=3)
+    ax.text(0.855, 0.75, "optimal face", ha="center", fontsize=6.1, fontweight="semibold")
+    ax.text(0.855, 0.47, "selected optimizer", ha="center", fontsize=5.8)
+    ax.text(0.855, 0.24, "possible / universal\n/ selected claims", ha="center", fontsize=5.8,
+            color=CARD["promoted"])
+
+    ax2 = fig.add_subplot(gs[0, 8:]); quiet(ax2)
+    panel(ax2, "b", "Claim strength is nested")
     ax2.set(xlim=(0, 1), ylim=(0, 1))
-    for y, name, tag in [(0.72, "ranking", "observed / predicted"), (0.45, "acreage", "observed"),
-                         (0.18, "private objective + constraints", "unobserved")]:
-        box(ax2, 0.05, y - 0.08, 0.9, 0.16, name, "white", fontsize=5.8)
-        ax2.text(0.5, y - 0.13, tag, ha="center", va="top", fontsize=5.5, color=CARD["adverse"])
+    ax2.add_patch(Ellipse((0.50, 0.48), 0.88, 0.73, facecolor=CARD["winter_wheat"] + "28",
+                          edgecolor=CARD["adverse"], lw=0.8))
+    ax2.add_patch(Ellipse((0.50, 0.48), 0.62, 0.50, facecolor="white",
+                          edgecolor=CARD["corn"], lw=0.9, ls="--"))
+    ax2.add_patch(Ellipse((0.50, 0.48), 0.35, 0.27, facecolor=CARD["promoted"] + "44",
+                          edgecolor=CARD["promoted"], lw=1.0))
+    ax2.text(0.50, 0.80, "POSSIBLE", ha="center", fontsize=6.2, fontweight="bold")
+    ax2.text(0.50, 0.65, "SELECTED", ha="center", fontsize=6.1, fontweight="bold", color=CARD["corn"])
+    ax2.text(0.50, 0.48, "UNIVERSAL", ha="center", va="center", fontsize=6.1,
+             fontweight="bold", color=CARD["promoted"])
+    ax2.text(0.50, 0.08, "universal  >  selected  >  possible", ha="center", fontsize=5.7)
 
-    ax3 = fig.add_subplot(gs[1, :]); quiet(ax3); panel(ax3, "c", "The full optimal face, not one solver output, determines set-valued reversal")
+    ax3 = fig.add_subplot(gs[1, :]); quiet(ax3)
+    panel(ax3, "c", "The full optimal face determines set-valued reversal")
     ax3.set(xlim=(0, 1), ylim=(0, 1))
-    ax3.add_patch(Rectangle((0.08, 0.22), 0.42, 0.14, facecolor="white", edgecolor=CARD["charcoal"], lw=0.7))
-    ax3.add_patch(Rectangle((0.50, 0.22), 0.42, 0.14, facecolor=CARD["promoted"] + "44", edgecolor=CARD["charcoal"], lw=0.7))
-    ax3.plot([0.25, 0.78], [0.58, 0.58], color=CARD["charcoal"], lw=5, solid_capstyle="butt")
-    ax3.scatter([0.34, 0.69], [0.58, 0.58], s=26, facecolor="white", edgecolor=CARD["charcoal"], zorder=3)
-    ax3.text(0.29, 0.78, "possible: yes", ha="center", fontsize=6.2)
-    ax3.text(0.53, 0.78, "universal: no", ha="center", fontsize=6.2)
-    ax3.text(0.74, 0.78, "selected: rule-dependent", ha="center", fontsize=6.2)
-    ax3.text(0.29, 0.11, "rank-consistent", ha="center", fontsize=5.8)
-    ax3.text(0.71, 0.11, "reversal", ha="center", fontsize=5.8)
+    ax3.add_patch(Rectangle((0.07, 0.21), 0.43, 0.15, facecolor="white",
+                            edgecolor=CARD["charcoal"], lw=0.7))
+    ax3.add_patch(Rectangle((0.50, 0.21), 0.43, 0.15, facecolor=CARD["promoted"] + "44",
+                            edgecolor=CARD["charcoal"], lw=0.7))
+    ax3.plot([0.24, 0.80], [0.58, 0.58], color=CARD["charcoal"], lw=5.2, solid_capstyle="butt")
+    ax3.scatter([0.35, 0.70], [0.58, 0.58], s=28, facecolors=["white", CARD["promoted"]],
+                edgecolor=CARD["charcoal"], linewidth=0.7, zorder=3)
+    ax3.text(0.29, 0.79, "possible  YES", ha="center", fontsize=6.2, fontweight="semibold")
+    ax3.text(0.52, 0.79, "universal  NO", ha="center", fontsize=6.2, fontweight="semibold")
+    ax3.text(0.76, 0.79, "selected  RULE-DEPENDENT", ha="center", fontsize=6.2, fontweight="semibold")
+    ax3.text(0.29, 0.10, "rank-consistent allocations", ha="center", fontsize=5.8)
+    ax3.text(0.72, 0.10, "reversal allocations", ha="center", fontsize=5.8)
+    ax3.plot([0.50, 0.50], [0.16, 0.70], color=CARD["charcoal"], lw=0.8, ls="--")
+    ax3.text(0.50, 0.03, "common rank boundary", ha="center", fontsize=5.6, color=CARD["adverse"])
     return fig
 
 
@@ -244,23 +282,92 @@ def fig2a() -> plt.Figure:
 
 
 def fig2b() -> plt.Figure:
-    fig = base_figure(2, "B", "common domain + mechanism fingerprints")
-    data = read("figure2_geometry.csv").query("case_id != 'common'").reset_index(drop=True)
-    gs = fig.add_gridspec(4, 12, left=0.06, right=0.97, bottom=0.09, top=0.87, hspace=0.68, wspace=0.55)
-    hero = fig.add_subplot(gs[:, :5]); quiet(hero); panel(hero, "a", "One ranking boundary; four distinct mechanisms")
-    hero.set(xlim=(0, 1), ylim=(0, 1))
-    tri = Polygon([[0.10, 0.12], [0.90, 0.12], [0.50, 0.84]], closed=True, facecolor="white", edgecolor=CARD["charcoal"], lw=1)
-    hero.add_patch(tri)
-    hero.add_patch(Polygon([[0.10, 0.12], [0.50, 0.12], [0.50, 0.84]], closed=True,
-                           facecolor=CARD["promoted"] + "33", edgecolor="none"))
-    hero.plot([0.50, 0.50], [0.12, 0.84], ls="--", lw=0.8, color=CARD["charcoal"])
-    hero.text(0.29, 0.06, "reversal half-space", ha="center", fontsize=6.1)
-    hero.text(0.72, 0.06, "rank-consistent", ha="center", fontsize=6.1)
-    hero.text(0.5, 0.91, "common feasible domain", ha="center", fontsize=6.2)
-    for i, row in enumerate(data.itertuples()):
-        ax = fig.add_subplot(gs[i, 6:]); panel(ax, chr(98 + i), row.case_label); draw_geometry(ax, row, "strip")
-        ax.set_xlabel("Corn share" if i == 3 else "")
-        ax.tick_params(labelbottom=i == 3)
+    fig = base_figure(2, "B", "shared-coordinate mechanism atlas")
+    gs = fig.add_gridspec(2, 2, left=0.095, right=0.97, bottom=0.11, top=0.84,
+                          hspace=0.54, wspace=0.32)
+    fig.text(0.50, 0.915,
+             "Shared encoding: pale teal = reversal region   ·   dashed = rank boundary   ·   arrow = objective   ·   point / thick edge = optimum",
+             ha="center", va="center", fontsize=5.7, color=CARD["adverse"])
+    specs = [
+        ("a", "Cardinal margin", "Objective rotates toward Soybean"),
+        ("b", "Operational displacement", "Corn cap + Soybean floor clip the domain"),
+        ("c", "Downside-risk displacement", "Risk boundary removes the Corn-heavy corner"),
+        ("d", "Set-valued optimum", "An optimal face crosses the rank boundary"),
+    ]
+
+    def simplex_axes(ax: plt.Axes, letter: str, title: str, subtitle: str) -> None:
+        panel(ax, letter, title)
+        ax.set(xlim=(-0.03, 1.03), ylim=(-0.04, 1.04), aspect="equal",
+               xticks=[0, .5, 1], yticks=[0, .5, 1])
+        ax.add_patch(Polygon([[0, 0], [1, 0], [0, 1]], closed=True,
+                             facecolor="white", edgecolor=CARD["charcoal"], lw=0.9, zorder=0))
+        ax.add_patch(Polygon([[0, 0], [0, 1], [.5, .5]], closed=True,
+                             facecolor=CARD["promoted"] + "22", edgecolor="none", zorder=0.1))
+        ax.plot([0, .5], [0, .5], color=CARD["charcoal"], lw=0.75, ls="--", zorder=2)
+        ax.text(.97, .92, subtitle.replace(" toward ", "\ntoward ")
+                .replace(" + ", " +\n").replace(" removes ", "\nremoves ")
+                .replace(" crosses ", "\ncrosses "), transform=ax.transAxes,
+                ha="right", va="top", fontsize=5.6, color=CARD["adverse"], linespacing=1.25)
+        ax.spines[:].set_visible(False)
+        ax.tick_params(length=2, pad=2)
+
+    axes = [fig.add_subplot(gs[i // 2, i % 2]) for i in range(4)]
+    for ax, (letter, title, subtitle) in zip(axes, specs):
+        simplex_axes(ax, letter, title, subtitle)
+
+    # Cardinal margins: the feasible simplex is unchanged; only the objective rotates.
+    a = axes[0]
+    a.add_patch(FancyArrowPatch((.72, .18), (.30, .70), arrowstyle="-|>", mutation_scale=8,
+                                color=CARD["corn"], lw=1.2, zorder=4))
+    a.scatter([0], [1], s=44, color=CARD["promoted"], edgecolor=CARD["charcoal"], lw=.7, zorder=5)
+
+    # Operations: the same simplex is clipped by transparent, directly interpretable bounds.
+    b = axes[1]
+    operational = np.array([[0, .35], [.42, .35], [.42, .58], [0, 1]])
+    b.add_patch(Polygon(operational, closed=True, facecolor=CARD["winter_wheat"] + "66",
+                        edgecolor=CARD["soybean"], lw=1.2, zorder=1.5))
+    b.plot([.42, .42], [.35, .58], color=CARD["soybean"], lw=1.5)
+    b.plot([0, .42], [.35, .35], color=CARD["soybean"], lw=1.5)
+    b.add_patch(FancyArrowPatch((.18, .70), (.68, .28), arrowstyle="-|>", mutation_scale=8,
+                                color=CARD["corn"], lw=1.2, zorder=4))
+    b.scatter([.42], [.58], s=44, color=CARD["promoted"], edgecolor=CARD["charcoal"], lw=.7, zorder=5)
+    b.annotate("forced optimum", xy=(.42, .58), xytext=(.58, .72), fontsize=5.6,
+               arrowprops=dict(arrowstyle="-", color=CARD["charcoal"], lw=.6))
+
+    # Risk: a curved loss-CVaR boundary truncates the objective's preferred corner.
+    c = axes[2]
+    xcurve = np.linspace(0, .48, 80)
+    ycurve = .30 + .95 * xcurve ** 2
+    feasible = np.column_stack([np.r_[xcurve, 0], np.r_[ycurve, 1]])
+    c.add_patch(Polygon(feasible, closed=True, facecolor=CARD["adverse"] + "38",
+                        edgecolor=CARD["adverse"], lw=1.1, zorder=1.5))
+    c.plot(xcurve, ycurve, color=CARD["adverse"], lw=1.4, zorder=3)
+    c.add_patch(FancyArrowPatch((.17, .70), (.70, .22), arrowstyle="-|>", mutation_scale=8,
+                                color=CARD["corn"], lw=1.2, zorder=4))
+    c.scatter([.48], [1 - .48], s=44, color=CARD["promoted"], edgecolor=CARD["charcoal"], lw=.7, zorder=5)
+    c.annotate("boundary optimum", xy=(.48, .52), xytext=(.60, .68), fontsize=5.6,
+               arrowprops=dict(arrowstyle="-", color=CARD["charcoal"], lw=.6))
+
+    # Set-valued: a flat objective exposes the full face and the selector's role.
+    d = axes[3]
+    d.add_patch(FancyArrowPatch((.20, .18), (.53, .51), arrowstyle="-|>", mutation_scale=8,
+                                color=CARD["corn"], lw=1.2, zorder=4))
+    d.plot([0, .5], [1, .5], color=CARD["promoted"], lw=4.2, solid_capstyle="butt", zorder=4)
+    d.plot([.5, 1], [.5, 0], color=CARD["adverse"], lw=4.2, solid_capstyle="butt", zorder=4)
+    d.scatter([.35, .65], [.65, .35], s=[28, 38], facecolors=[CARD["promoted"], "white"],
+              edgecolor=CARD["charcoal"], lw=.7, zorder=5)
+    for y0, claim in [(.73, "possible  YES"), (.65, "universal  NO"),
+                      (.57, "selected"), (.49, "rule-dependent")]:
+        d.text(.97, y0, claim, transform=d.transAxes, ha="right", va="top",
+               fontsize=5.5, fontweight="semibold")
+
+    for i, ax in enumerate(axes):
+        ax.set_xlabel("Corn share" if i >= 2 else "")
+        ax.set_ylabel("Soybean share" if i % 2 == 0 else "")
+        if i < 2:
+            ax.tick_params(labelbottom=False)
+        if i % 2:
+            ax.tick_params(labelleft=False)
     return fig
 
 
@@ -360,39 +467,39 @@ def treatment_label(row: pd.Series) -> str:
 
 
 def fig4a() -> plt.Figure:
-    fig = base_figure(4, "A", "integrated experiment ledger + 24-interval evidence")
+    fig = base_figure(4, "A", "assigned design + allocation response + confirmatory effects")
     cells = read("figure4_e2_cells.csv"); cells["label"] = [
         "Baseline", "Soy contract", "Rotation", "Rotation + contract", "Budget",
         "Budget + contract", "Budget + rotation", "Budget + both", "Corn cap",
     ]
     cells["profit_delta"] = cells.expected_profit - float(cells.iloc[0].expected_profit)
     y = np.arange(len(cells))
-    gs = fig.add_gridspec(3, 12, left=0.135, right=0.96, bottom=0.075, top=0.88,
-                          height_ratios=[1.45, 1.05, 0.88], hspace=0.62, wspace=1.1)
+    gs = fig.add_gridspec(3, 12, left=0.145, right=0.965, bottom=0.075, top=0.87,
+                          height_ratios=[1.58, 1.00, 0.82], hspace=0.72, wspace=1.18)
 
-    factors = fig.add_subplot(gs[0, :3]); panel(factors, "a", "Interventions")
+    factors = fig.add_subplot(gs[0, :3]); panel(factors, "a", "Assigned intervention design")
     fmat = cells[["budget", "rotation", "contract", "corn_bound"]].to_numpy()
     vector_matrix(factors, fmat, ["white", CARD["winter_wheat"]])
     factors.set(yticks=y, yticklabels=cells.label, xticks=np.arange(4),
                 xticklabels=["Budget", "Rotation", "Soy\ncontract", "Corn\ncap"])
     factors.tick_params(length=0, pad=3)
 
-    alloc = fig.add_subplot(gs[0, 3:7], sharey=factors); alloc.set_title("Selected allocation and universal reversal", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
-    alloc.axvspan(0, 0.5, color=CARD["promoted"], alpha=0.13); alloc.axvline(0.5, color=CARD["charcoal"], lw=0.7, ls="--")
+    alloc = fig.add_subplot(gs[0, 3:7], sharey=factors); alloc.set_title("Allocation response", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
+    alloc.axvspan(0, 0.5, color=CARD["promoted"], alpha=0.16); alloc.axvline(0.5, color=CARD["charcoal"], lw=0.8, ls="--")
     alloc.hlines(y, cells.allocation_Corn, 1, color=CARD["adverse"], lw=0.65)
     alloc.scatter(cells.allocation_Corn, y, c=[CARD["corn"] if i == 0 else CARD["promoted"] for i in range(len(cells))],
-                  s=24, edgecolor=CARD["charcoal"], lw=0.45, zorder=3)
+                  s=30, edgecolor=CARD["charcoal"], lw=0.5, zorder=3)
     for yy, u in zip(y, cells.universal_reversal):
         alloc.text(1.03, yy, "U" if u else "—", ha="left", va="center", fontsize=5.6,
                    color=CARD["promoted"] if u else CARD["adverse"])
-    alloc.set(xlim=(0, 1.11), xticks=[0, .5, 1], xlabel="Corn share  (U = universal)")
+    alloc.set(xlim=(0, 1.11), xticks=[0, .5, 1], xlabel="Corn share   ·   shaded = reversal   ·   U = universal")
     alloc.tick_params(axis="y", labelleft=False, length=0); clean(alloc)
 
-    profit = fig.add_subplot(gs[0, 7:9], sharey=factors); profit.set_title("Margin change", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
+    profit = fig.add_subplot(gs[0, 7:9], sharey=factors); profit.set_title("Δ margin", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
     profit.axvline(0, color=CARD["charcoal"], lw=0.7); profit.scatter(cells.profit_delta, y, s=22, color=CARD["soybean"], edgecolor=CARD["charcoal"], lw=.4)
     profit.set(xlim=(-5.4, .45), xticks=[-5, -2.5, 0], xlabel="Value units"); profit.tick_params(axis="y", labelleft=False, length=0); clean(profit)
 
-    mech = fig.add_subplot(gs[0, 9:], sharey=factors); mech.set_title("Local mechanism", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
+    mech = fig.add_subplot(gs[0, 9:], sharey=factors); mech.set_title("Local balance", loc="left", pad=8, fontsize=7.2, fontweight="semibold")
     mechanism = []
     for row in cells.itertuples():
         if row.corn_bound: mechanism.append("Boundary")
@@ -405,8 +512,8 @@ def fig4a() -> plt.Figure:
                    "Direct": CARD["promoted"], "Boundary": CARD["soybean"]}
     mech.scatter(mx, y, s=25, color=[mech_colors[v] for v in mechanism],
                  edgecolor=CARD["charcoal"], lw=.4)
-    mech.set(xlim=(-.45, 3.45), xticks=np.arange(4), xticklabels=cats, xlabel="Pressure class")
-    mech.tick_params(axis="x", rotation=24); mech.tick_params(axis="y", labelleft=False, length=0); clean(mech)
+    mech.set(xlim=(-.45, 3.45), xticks=np.arange(4), xticklabels=["Base", "Margin", "Forcing", "Bound"], xlabel="Pressure class")
+    mech.tick_params(axis="x", rotation=0, labelsize=5.5); mech.tick_params(axis="y", labelleft=False, length=0); clean(mech)
 
     contrasts = read("figure4_e2_contrasts.csv").copy()
     treated_labels = ["Contract", "Rotation", "Both", "Budget", "Budget + contract", "Budget + rotation", "Budget + both", "Corn cap"]
@@ -416,7 +523,7 @@ def fig4a() -> plt.Figure:
     for j, (metric, title, xlabel) in enumerate(metrics):
         ax = fig.add_subplot(gs[1, j * 4:(j + 1) * 4]);
         if j == 0:
-            panel(ax, "b", title)
+            panel(ax, "b", "Family-wise contrasts · " + title)
         else:
             ax.set_title(title, loc="left", pad=8, fontsize=7.2, fontweight="semibold")
         d = contrasts[contrasts.metric.eq(metric)].reset_index(drop=True); yy = np.arange(8)
@@ -430,7 +537,7 @@ def fig4a() -> plt.Figure:
     pclasses = ["INACTIVE_IN_CELL", "MARGINAL_PRESSURE", "DIRECT_FORCING"]
     pterms = ["margin_pressure", "budget_pressure", "shared_pressure", "boundary_pressure", "tail_risk_pressure"]
     p = pressure.pivot(index="mechanism_class", columns="pressure_term", values="mean").loc[pclasses, pterms]
-    axp = fig.add_subplot(gs[2, :8]); panel(axp, "c", "KKT pressure fingerprint (local balance, not causal attribution)")
+    axp = fig.add_subplot(gs[2, :8]); panel(axp, "c", "Local KKT pressure fingerprint (accounting, not causal)")
     for iy, cls in enumerate(pclasses):
         for ix, term in enumerate(pterms):
             value = float(p.loc[cls, term]); axp.scatter(ix, iy, s=10 + 95 * value / max(1, p.to_numpy().max()),
@@ -440,12 +547,12 @@ def fig4a() -> plt.Figure:
             yticks=np.arange(3), yticklabels=["Baseline / bound", "Marginal pressure", "Direct forcing"], xlim=(-.5,4.5), ylim=(2.5,-.5))
     axp.tick_params(length=0); axp.spines[:].set_visible(False)
 
-    summary = fig.add_subplot(gs[2, 8:]); quiet(summary); panel(summary, "d", "Information retained")
+    summary = fig.add_subplot(gs[2, 8:]); quiet(summary); panel(summary, "d", "Confirmatory facts")
     summary.set(xlim=(0, 1), ylim=(0, 1))
     for i, (value, label) in enumerate([("24 / 24", "intervals met precision criterion"), ("n = 16", "seeds in every cell"),
                                         ("0", "tail-risk pressure in the intervention")]):
-        yy = .76 - i*.29; summary.text(.03, yy, value, fontsize=8.0, fontweight="bold", color=CARD["promoted"])
-        summary.text(.31, yy, label, fontsize=5.8, va="center")
+        yy = .76 - i*.29; summary.text(.03, yy, value, fontsize=8.2, fontweight="bold", color=CARD["promoted"])
+        summary.text(.31, yy, label, fontsize=5.7, va="center")
     return fig
 
 
@@ -501,13 +608,21 @@ def fig5a() -> plt.Figure:
     order = ["specialization_unlocks", "dominated_option_null", "robust_option_substitutes"]
     gs = fig.add_gridspec(2, 12, left=0.065, right=0.975, bottom=0.09, top=0.87,
                           height_ratios=[1.25, 0.9], hspace=0.62, wspace=0.7)
+    display_tolerance = 1e-12
     for i, arch in enumerate(order):
         ax = fig.add_subplot(gs[0, i * 4:(i + 1) * 4]); panel(ax, chr(97+i), ARCH_LABELS[arch])
-        d = data[data.archetype.eq(arch)]
+        d = data[data.archetype.eq(arch)].copy()
+        d["display_mean"] = np.where(d["mean"].abs() < display_tolerance, 0.0, d["mean"])
         for level, col, marker, style in [("low", CARD["corn"], "o", "--"), ("high", CARD["soybean"], "s", "-")]:
             s = d[d.flexibility_level.eq(level)].sort_values("signal_accuracy")
-            ax.plot(s.signal_accuracy, s["mean"], color=col, marker=marker, linestyle=style, ms=3, lw=1.1, label=f"{level.title()} flexibility")
+            ax.plot(s.signal_accuracy, s["display_mean"], color=col, marker=marker, linestyle=style, ms=3, lw=1.1, label=f"{level.title()} flexibility")
         ax.set(xlabel="Signal accuracy", ylabel="Value of information" if i == 0 else "", xticks=[0.5, 0.7, 0.9])
+        if arch == "dominated_option_null":
+            ax.set_ylim(-0.05, 0.05)
+            ax.set_yticks([0], ["0"])
+            ax.axhline(0, color=CARD["charcoal"], lw=0.75, zorder=0)
+            ax.text(0.52, 0.82, "exact null (|v| < 1e-12)", transform=ax.transAxes,
+                    fontsize=5.6, color=CARD["adverse"])
         clean(ax)
         if i == 0: ax.legend(loc="upper left")
     inter = read("figure5_information_interaction.csv").copy()
@@ -515,13 +630,17 @@ def fig5a() -> plt.Figure:
     inter["label"] = inter.arch.map(ARCH_LABELS)
     inter = inter.set_index("arch").loc[order].reset_index()
     ax4 = fig.add_subplot(gs[1, :8]); panel(ax4, "d", "Information × flexibility interaction")
+    inter[["estimate", "ci_low", "ci_high"]] = inter[["estimate", "ci_low", "ci_high"]].mask(
+        inter[["estimate", "ci_low", "ci_high"]].abs() < display_tolerance, 0.0)
     y = np.arange(3); ax4.errorbar(inter.estimate, y, xerr=[inter.estimate-inter.ci_low, inter.ci_high-inter.estimate], fmt="o",
                                    color=CARD["promoted"], capsize=2)
     ax4.axvline(0, color=CARD["charcoal"], lw=0.7); ax4.set(yticks=y, yticklabels=["Unlocks", "Dominated", "Robust"], xlabel="Interaction in value units")
+    ax4.text(0.02, 0.06, "Dominated option = exact zero at display tolerance 1e-12",
+             transform=ax4.transAxes, fontsize=5.6, color=CARD["adverse"])
     clean(ax4)
     ax5 = fig.add_subplot(gs[1, 8:]); quiet(ax5); panel(ax5, "e", "Exact finite-state checks")
     ax5.set(xlim=(0, 1), ylim=(0, 1))
-    for i, text in enumerate(["Signal can be ignored", "Action sets are nested", "0.90 garbles to 0.70 / 0.50"]):
+    for i, text in enumerate(["Signal can be ignored", "Action sets are nested", "Exact-null tolerance  1e-12"]):
         y0 = 0.73 - i*0.27; ax5.scatter([0.10], [y0], s=24, color=CARD["promoted"], marker="o")
         ax5.text(0.20, y0, text, va="center", fontsize=5.9)
     return fig

@@ -40,11 +40,17 @@ def collect() -> list[Path]:
         "scripts/generate_goal17_visual_candidates.py",
         "scripts/generate_goal17_figures.py",
         "scripts/validate_goal17_visualization.py",
+        "scripts/build_goal17_final_editorial_qa.py",
         "audits/goal17_baseline_audit.md",
         "audits/goal17_visual_contracts.md",
         "audits/goal17_visual_exploration.md",
         "audits/goal17_candidate_visual_qa.csv",
         "audits/goal17_acceptance_report.md",
+        "audits/goal17_final_editorial_contract.md",
+        "audits/goal17_unit_consistency_audit.csv",
+        "audits/goal17_unit_consistency_audit.md",
+        "audits/goal17_editorial_terminology_audit.md",
+        "audits/goal17_final_page_qa.md",
         "data/goal17/source_registry.csv",
     ]
     trees = [
@@ -54,7 +60,8 @@ def collect() -> list[Path]:
         "simulation/configs", "simulation/stage_ii/outputs", "simulation/src/crop_simulation",
         "empirical/configs", "empirical/stage_ii/outputs", "empirical/goal16", "empirical/src/crop_empirical",
         "evidence_registry", "output/pdf", "output/logs", "output/reproducibility",
-        "audits/goal16_visual_comparison", "audits/goal17_visual_candidates", "data/goal17/raw",
+        "audits/goal16_visual_comparison", "audits/goal17_visual_candidates",
+        "audits/goal17_final_editorial_before_after", "output/qa", "data/goal17/raw",
     ]
     paths = {ROOT / rel for rel in exact if (ROOT / rel).is_file()}
     for rel in trees:

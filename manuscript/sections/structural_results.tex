@@ -65,7 +65,7 @@ Four exact two-crop constructions share the same coordinate system (Fig.~\ref{fi
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/goal17/main/Figure2.pdf}
-\caption{\textbf{A four-mechanism atlas on shared coordinates.} Cardinal-margin, operational, downside-risk and set-valued cases use the same corn-share axis and reversal boundary. The cases are exact analytic constructions, not empirical estimates.}
+\caption{\textbf{A four-mechanism atlas on shared coordinates.} Each panel uses the same Corn--Soybean simplex and rank boundary but distinguishes the feasible region, objective direction and optimal point or face. Cardinal margins rotate the objective; operational restrictions clip the domain; downside risk truncates a preferred corner; and a set-valued optimum crosses the boundary. These are exact analytic constructions, not empirical estimates.}
 \label{fig:geometry}
 \end{figure}
 
@@ -90,11 +90,11 @@ The common land multiplier cancels, whereas budget, shared-constraint and bound 
 
 The identity nevertheless identifies pressure channels inside a declared model. The first term is the local loss-CVaR subgradient difference, the second is crop-specific budget pressure, the third collects shared operational restrictions, and the last two are lower- and upper-bound pressures. A non-zero term explains how stationarity is balanced at the solution. It is neither a global decomposition of planted acres nor evidence that the corresponding private restriction exists in an observational state-year.
 
-The closed M0--M4 path makes these distinctions auditable (Fig.~\ref{fig:decomposition}). Successive stages add cardinal margins, operations, downside risk and dependence to a common benchmark. Allocation and indexed outcome panels retain the actual registered outputs; an all-subset Shapley decomposition reports attribution intervals and closes with maximum efficiency residual $\ShapleyResidual$. Signed E2 pressure terms show how margin pressure is balanced locally by budget, shared or boundary terms, with maximum stationarity residual $\KKTResidual$. These are accounting decompositions over a controlled model, not causal effects in observed acreage.
+The nested model path makes these distinctions explicit (Fig.~\ref{fig:decomposition}). Successive stages add cardinal margins, operations, downside risk and dependence to a common benchmark. Allocation shares, expected margin and loss-CVaR are shown in their native units; an all-subset Shapley decomposition reports attribution intervals and closes with maximum efficiency residual $\ShapleyResidual$. Signed pressure terms from the operational intervention show how margin pressure is balanced locally by budget, shared or boundary terms, with maximum stationarity residual $\KKTResidual$. These are accounting decompositions over a controlled model, not causal effects in observed acreage.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/goal17/main/Figure3.pdf}
-\caption{\textbf{Nested allocation and mechanism decomposition.} The M0--M4 path reports crop allocation, indexed outcomes, all-subset Shapley contributions and signed E2 KKT pressures. Intervals summarize registered closed-domain repetitions; pressure terms are local accounting identities rather than causal acreage effects.}
+\caption{\textbf{Nested allocation and mechanism decomposition.} The staged path reports crop allocation, expected margin and loss-CVaR in native units, all-subset Shapley contributions and signed KKT pressures from the operational intervention. Intervals summarize repeated simulations; pressure terms are local accounting identities rather than causal acreage effects.}
 \label{fig:decomposition}
 \end{figure}

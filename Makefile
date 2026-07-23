@@ -8,11 +8,12 @@ install:
 
 figures:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_nature_figures.py
-	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_stage_ii_figures.py
-	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_visualization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_goal17_visual_candidates.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/generate_goal17_figures.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/refresh_legacy_visual_checksums.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_nature_visualization.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_stage_ii_visualization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_goal17_visualization.py
 
 manuscript:
@@ -22,6 +23,7 @@ manuscript:
 paper:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_paper.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/render_pdf_qa.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/build_goal17_final_editorial_qa.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_release_manifest.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_stage_ii_final_archive.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_final_package.py
