@@ -1,0 +1,105 @@
+\section{Stochastic crop-planning model}
+
+\subsection{Scores, margins and joint uncertainty}
+
+Let \(i=1,\ldots,n\) index crops and \(x_i\) denote planted area. A
+pre-decision score \(s_i\) induces a crop order. It is external to the
+optimization model: no cardinal transformation of \(s\) is used as a margin.
+For state \(\omega\), stochastic per-acre margin and portfolio profit are
+\begin{equation}
+\widetilde\pi_i(\omega)=\widetilde P_i(\omega)\widetilde
+Y_i(\omega)-\widetilde C_i(\omega),\qquad
+\widetilde\Pi(x,\omega)=\sum_i x_i\widetilde\pi_i(\omega).
+\end{equation}
+The joint distribution includes within-crop price--yield dependence and
+cross-crop co-movement. Let \(\mu_i=\E[\widetilde\pi_i]\) and define loss
+\(L(x,\omega)=-\widetilde\Pi(x,\omega)\). A larger loss-CVaR is worse; because
+profitable portfolios can have negative loss-CVaR, ``more negative'' means
+safer under this convention.
+
+\subsection{Operational feasibility}
+
+The operational set is
+\begin{equation}
+\mathcal X=\left\{x\in\R_+^n:
+\ind^\top x\le A,\quad c^\top x\le B,\quad
+Rx\le r,\quad Kx\ge k,\quad Gx\le h,\quad
+\ell\le x\le u\right\}.
+\label{eq:operations}
+\end{equation}
+Here \(A\) is available land, \(c\) and \(B\) describe pre-plant cash
+requirements, \(R\) contains rotation caps, \(K\) contains contract minimums,
+and \(G\) contains shared labour, equipment, irrigation or storage rows. Idle
+land is \(A-\ind^\top x\) and is reported even when it is not assigned a
+separate variable. These constraints are not post-hoc explanations of an
+observed acreage vector; they are registered components of the controlled
+decision problem.
+
+\subsection{Loss-CVaR ceiling}
+
+For confidence level \(\alpha\),
+\begin{equation}
+r_\alpha(x)=\CVaR_\alpha[L(x)]
+=\min_{v\in\R}\left\{v+\frac{1}{1-\alpha}
+\E[(L(x)-v)_+]\right\}.
+\end{equation}
+The producer solves
+\begin{equation}
+\max_{x\in\mathcal X}\ \mu^\top x
+\quad\text{subject to}\quad r_\alpha(x)\le\kappa.
+\label{eq:canonical}
+\end{equation}
+For scenarios \(m=1,\ldots,M\) with probabilities \(w_m\), free threshold
+\(v\) and excess variables \(q_m\ge0\), the risk restriction is
+\begin{align}
+v+\frac{1}{1-\alpha}\sum_m w_mq_m&\le\kappa,\\
+q_m&\ge-\pi_m^\top x-v.
+\end{align}
+The resulting programme is linear. The risk ceiling is indexed by
+\(\rho\in[0,1]\):
+\begin{equation}
+\kappa(\rho)=\kappa_{\min}+\rho
+\left(\kappa_{\mathrm{EP}}-\kappa_{\min}\right),
+\label{eq:riskpath}
+\end{equation}
+where \(\kappa_{\min}\) is minimum attainable loss-CVaR and
+\(\kappa_{\mathrm{EP}}\) is the loss-CVaR of the unconstrained
+expected-profit endpoint. This makes risk tolerance comparable across joint
+laws without transferring an arbitrary dollar ceiling.
+
+\subsection{Reversal and optimal faces}
+
+\begin{definition}[Pairwise and strong reversal]
+For a pair \(s_i>s_j\), an allocation reverses the ranking if \(x_i<x_j\).
+It strongly reverses if the highest-ranked crop has less area than every
+lower-ranked crop.
+\end{definition}
+
+Let
+\[
+\mathcal S_\kappa=\argmax\{\mu^\top x:x\in\mathcal X,\,
+r_\alpha(x)\le\kappa\}
+\]
+be the complete optimal set. Reversal is \emph{possible} if it occurs at some
+\(x\in\mathcal S_\kappa\), \emph{universal} if it occurs at every such point,
+and \emph{selected} if it occurs at the point returned by the registered
+selector. We audit a pair by minimizing and maximizing \(x_j-x_i\) on the
+objective-equivalent face. A single solver vertex is not sufficient evidence
+of universal reversal.
+
+\subsection{Full stationarity system}
+
+Let nonnegative multipliers \(\eta,\gamma,\beta,\rho,\chi,\lambda,a,b\)
+correspond to loss-CVaR, land, budget, rotation, sign-converted contract,
+shared capacity, lower bounds and upper bounds. For a CVaR subgradient
+\(d\in\partial r_\alpha(x^*)\), acreage stationarity is
+\begin{equation}
+-\mu+\eta d+\gamma\ind+\beta c+R^\top\rho-K^\top\chi+
+G^\top\lambda-a+b=0.
+\label{eq:kkt}
+\end{equation}
+Pairwise subtraction cancels the common land multiplier but retains budget,
+shared-resource and crop-bound pressures. Equation~\ref{eq:kkt} is a marginal
+balance, not an acreage-ordering formula. The finite-scenario implementation
+also verifies stationarity for \(v\) and every \(q_m\), including fractional
+tail weights when the loss distribution has atoms.

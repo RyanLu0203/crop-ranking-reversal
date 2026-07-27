@@ -1,0 +1,135 @@
+{
+  "bootstrap_reversal_probability": 0.96875,
+  "calibration": {
+    "crop_rows": 24,
+    "geography": "Kansas",
+    "means": {
+      "Corn": 199.77344141,
+      "Soybean": 228.991153003125,
+      "Winter Wheat": 138.3417433825
+    },
+    "raw_effective_years": 8,
+    "score_order": [
+      "Winter Wheat",
+      "Soybean",
+      "Corn"
+    ],
+    "scores": {
+      "Corn": 0.748444337923125,
+      "Soybean": 0.755591099423625,
+      "Winter Wheat": 0.8936577554361249
+    },
+    "standard_deviations": {
+      "Corn": 94.85874818772504,
+      "Soybean": 103.97244465751336,
+      "Winter Wheat": 49.5503611189248
+    },
+    "years": [
+      2016,
+      2023
+    ]
+  },
+  "design_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
+  "design_sha256": "57e0689e388b533c59adc711c16ddfdb54e7df4f8e5ad9c00dbe7406b118c784",
+  "diversification_failure_identified": true,
+  "empirical_evidence_scope": "AGGREGATE_DESCRIPTIVE_NOT_CAUSAL",
+  "frontier": {
+    "cells": 165,
+    "infeasible_cells": 0,
+    "multiple_optimum_cells": 2,
+    "reversal_cells": 143,
+    "strong_reversal_cells": 96
+  },
+  "information_regions": {
+    "strict_complementarity": 25,
+    "substitution": 18,
+    "weak_or_boundary": 11,
+    "zero_interaction": 18
+  },
+  "primary_model": {
+    "active_set": "land;cvar",
+    "allocation": {
+      "Corn": 0.33026489324984265,
+      "Soybean": 0.42190376870361523,
+      "Winter Wheat": 0.2478313380465421
+    },
+    "alpha": 0.95,
+    "cvar_limit": -46.98501314938102,
+    "cvar_loss": -46.98501314938104,
+    "expected_profit": 198.48384568132502,
+    "expected_profit_endpoint_cvar": -34.51685845879014,
+    "idle_land": 0.0,
+    "kkt_complementarity_residual": 5.0591738837854656e-14,
+    "kkt_primal_residual": 1.4210854715202004e-14,
+    "kkt_stationarity_residual": 2.842170943040401e-14,
+    "minimum_cvar": -59.453167839971904,
+    "reversal": {
+      "classification": "strong_reversal",
+      "pairwise_reversal_count": 2,
+      "reversed_pairs": "Winter Wheat<Soybean;Winter Wheat<Corn",
+      "selected_reversal": true,
+      "strong_reversal": true,
+      "top_ranked_allocation": 0.2478313380465421,
+      "top_ranked_crop": "Winter Wheat"
+    },
+    "risk_tolerance": 0.5,
+    "solver_status": "optimal"
+  },
+  "primary_scenario_metadata": {
+    "copula_param": {
+      "corr": [
+        [
+          1.0,
+          0.3826834323650898,
+          0.3826834323650898
+        ],
+        [
+          0.3826834323650898,
+          1.0,
+          0.3826834323650898
+        ],
+        [
+          0.3826834323650898,
+          0.3826834323650898,
+          1.0
+        ]
+      ],
+      "df": 4
+    },
+    "copula_type": "Student-t",
+    "crop_names": [
+      "Corn",
+      "Soybean",
+      "Winter Wheat"
+    ],
+    "lower_tail_dependence": 0.1953801683718518,
+    "marginal_assumptions": {
+      "df": 5,
+      "type": "student_t"
+    },
+    "n_scenarios": 512,
+    "ordering_scope": "WITHIN_NAMED_FAMILY_ONLY; scalar tail dependence is not a cross-family order",
+    "sample_means": [
+      201.5711127479139,
+      231.38797579787652,
+      138.3542730948698
+    ],
+    "sample_stds": [
+      92.21151157579902,
+      109.71116801843665,
+      47.464380906928994
+    ],
+    "seed": 202607270034,
+    "target_means": [
+      199.77344141,
+      228.991153003125,
+      138.3417433825
+    ],
+    "target_stds": [
+      94.85874818772504,
+      103.97244465751336,
+      49.5503611189248
+    ]
+  },
+  "quick_mode": false
+}

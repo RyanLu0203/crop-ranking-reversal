@@ -1,7 +1,10 @@
 UV ?= uv
 PYTHON_VERSION ?= 3.11
+# Freeze generated PDF metadata so repeated raw-to-archive builds are
+# byte-for-byte reproducible.  This is 27 July 2026 00:00:00 Asia/Shanghai.
+export SOURCE_DATE_EPOCH ?= 1785081600
 
-.PHONY: install figures manuscript paper validate test check manifest
+.PHONY: install figures manuscript paper validate test check manifest issue34
 
 install:
 	$(UV) sync --locked --extra test --python $(PYTHON_VERSION)
@@ -54,3 +57,13 @@ check: validate test
 
 manifest:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_manifest.py
+
+issue34:
+	$(UV) run --python $(PYTHON_VERSION) python scripts/run_issue34_reconstruction.py
+	cd reconstruction/issue34/outputs && shasum -a 256 -c SHA256SUMS.txt
+	$(UV) run --python $(PYTHON_VERSION) python scripts/render_issue34_manuscript_numbers.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/make_issue34_figures.py
+	$(UV) run --python $(PYTHON_VERSION) pytest -q
+	latexmk -norc -pdf -interaction=nonstopmode -halt-on-error main_manuscript.tex
+	latexmk -norc -pdf -interaction=nonstopmode -halt-on-error supplementary_information.tex
+	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue34_archive.py

@@ -1,0 +1,31 @@
+palette_id: ISSUE34_NATURE_REFERENCE_2026_07_27
+source: user-provided reference screenshot
+status: AUTHORITATIVE_FOR_ISSUE34
+colors:
+  pale_green: "#D5EADA"
+  aqua: "#33C5B2"
+  cyan_teal: "#32A4B4"
+  near_white: "#F3F3F3"
+  light_grey: "#D9DBDD"
+  mid_grey: "#8F9092"
+  dark_teal: "#024E52"
+  pale_blue_grey: "#B2C9CE"
+  sage_grey: "#A3B1AE"
+  warm_grey: "#776F76"
+  muted_violet: "#8A83A0"
+  mint: "#9AD8C8"
+semantic_mapping:
+  text_and_axes: dark_teal
+  corn: cyan_teal
+  soybean: aqua
+  winter_wheat: muted_violet
+  no_reversal: light_grey
+  weak_reversal: mint
+  strong_reversal: dark_teal
+  uncertainty: mid_grey
+  boundary_or_warning: warm_grey
+rules:
+  - No unregistered base hue in Issue #34 scientific figures.
+  - Crop identity must be consistent across all panels.
+  - Shape position line style or luminance must duplicate categorical color encoding.
+  - Heatmaps interpolate only through registered palette colors.

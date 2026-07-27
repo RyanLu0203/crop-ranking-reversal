@@ -1,0 +1,168 @@
+design_id: CRR-ISSUE34-FULL-MODEL-2026-07-27
+design_version: 1.0.0
+frozen_at: 2026-07-27T15:00:00+08:00
+status: FROZEN_BEFORE_RESULTS
+owner_issue: 34
+parent_commit: 1262b19150fd1e63f549d3511ba478b003b08d9e
+
+scope:
+  geography: Kansas
+  geography_reason: >-
+    Kansas has complete public corn, soybean, and winter-wheat observations
+    for every 2016--2024 analysis year and is a decision-relevant diversified
+    crop geography. It was selected before running Issue #34 optimization.
+  crops: [Corn, Soybean, Winter Wheat]
+  calibration_years: [2016, 2023]
+  evaluation_year: 2024
+  raw_effective_margin_years: 8
+  evidence_class: OFFICIAL_DATA_CALIBRATED_STRUCTURAL_STRESS_TEST
+  farm_level_identification: false
+  monetary_unit: real_2024_USD_per_normalized_acre
+  land_unit: normalized_share
+
+score:
+  name: predecision_historical_relative_yield_potential
+  construction: >-
+    For each crop, average Kansas yield divided by the same-year national NASS
+    yield over 2016--2023. No 2024 realization enters the recommendation score.
+  interpretation: GENUINE_HISTORICAL_YIELD_POTENTIAL_NOT_REVENUE
+  tie_tolerance: 1.0e-6
+
+profit:
+  formula: harvest_price_times_state_yield_minus_national_operating_cost
+  state_yield_scope: Kansas
+  price_cost_scope: United_States
+  inflation_base: 2024_USD
+  timing: realized_annual_calibration_not_planting_time_forecast
+  marginal_primary: student_t_df5
+  marginal_sensitivity: [gaussian, student_t_df5, empirical_quantile]
+  limitation: >-
+    State yield is combined with national price and cost. These margins are
+    transparent calibration inputs, not farm-level realized profits.
+
+dependence:
+  primary_family: student_t
+  primary_df: 4
+  primary_kendall_tau: 0.25
+  families: [gaussian, student_t, clayton]
+  kendall_tau_grid: [0.0, 0.15, 0.30, 0.45, 0.60]
+  matched_measure: Kendall_tau
+  raw_effective_sample_size: 8
+  interpretation: PARAMETRIC_STRESS_PATH_NOT_ESTIMATED_FARM_COPULA
+
+optimization:
+  objective: maximize_expected_profit
+  alpha_primary: 0.95
+  alpha_grid: [0.90, 0.95, 0.99]
+  total_land: 1.0
+  idle_land: explicitly_reported_as_total_land_minus_planted_land
+  lower_bounds:
+    Corn: 0.05
+    Soybean: 0.10
+    Winter Wheat: 0.05
+  upper_bounds:
+    Corn: 0.55
+    Soybean: 0.65
+    Winter Wheat: 0.60
+  operating_budget_2024_usd_per_normalized_acre: 330.0
+  rotation_caps:
+    Corn: 0.50
+  contract_minimums:
+    Soybean: 0.10
+  shared_capacity_constraints:
+    planting_labour:
+      coefficients:
+        Corn: 1.00
+        Soybean: 0.72
+        Winter Wheat: 0.58
+      capacity: 0.82
+      unit: normalized_peak_season_labour
+    harvest_equipment:
+      coefficients:
+        Corn: 1.05
+        Soybean: 0.82
+        Winter Wheat: 0.62
+      capacity: 0.88
+      unit: normalized_harvest_equipment
+  risk_limit_rule: >-
+    kappa(rho) = minimum feasible loss-CVaR +
+    rho * (unrestricted expected-profit optimum loss-CVaR -
+    minimum feasible loss-CVaR).
+  risk_tolerance_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+  primary_risk_tolerance: 0.5
+  selection_rule: deterministic_HiGHS_solution_plus_optimal_face_audit
+  solver: highs
+  primal_feasibility_tolerance: 1.0e-9
+  dual_feasibility_tolerance: 1.0e-9
+  ipm_optimality_tolerance: 1.0e-10
+  allocation_tie_tolerance: 1.0e-4
+
+policies:
+  - suitability_proportional_repaired_to_operational_feasibility
+  - suitability_winner_take_all_repaired_to_operational_feasibility
+  - expected_profit_without_CVaR
+  - mean_variance
+  - full_CVaR_operational
+  - equal_share_repaired_to_operational_feasibility
+
+phase_diagram:
+  dimensions: [copula_family, kendall_tau, risk_tolerance]
+  classifications:
+    - no_reversal
+    - weak_reversal
+    - strong_reversal
+    - infeasible
+    - multiple_optima
+    - active_set_transition
+
+uncertainty:
+  historical_bootstrap_replications: 64
+  monte_carlo_replications: 32
+  optimization_scenarios: 512
+  evaluation_scenarios: 4096
+  base_seed: 202607270034
+  common_random_numbers_within_contrast: true
+  boundary_interval: percentile_95
+
+information_flexibility:
+  signal: preplant_relative_crop_yield_condition_forecast
+  state_proxy: annual_corn_minus_soybean_relative_yield_below_calibration_median
+  timeline:
+    - relative_crop_yield_state_drawn
+    - noisy_preplant_signal_generated
+    - fixed_share_already_committed
+    - signal_observed
+    - remaining_share_allocated_within_operational_set
+    - margin_realized
+  signal_accuracy_grid: [0.50, 0.60, 0.70, 0.80, 0.90, 1.00]
+  post_signal_adjustable_share_grid: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+  flexibility_paths:
+    - post_signal_acreage_reallocation
+    - state_shock_buffering_recourse
+  state_shock_buffering_share_grid: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+  risk_objective: expected_profit_subject_to_loss_CVaR_ceiling
+  regions: [strict_complementarity, zero_interaction, substitution]
+
+robustness:
+  sample_windows: [[2016, 2023], [2017, 2023], [2018, 2023]]
+  scenario_counts: [256, 512, 1024]
+  seeds: [202607270034, 202607270035, 202607270036]
+  solver_methods: [highs, highs-ds, highs-ipm]
+  selection_rules:
+    - deterministic_HiGHS
+    - pairwise_optimal_face_minimum
+    - pairwise_optimal_face_maximum
+  constraints:
+    - full
+    - no_budget
+    - no_rotation
+    - no_contract
+    - no_shared_capacity
+
+claim_boundaries:
+  - Calibration is aggregate and does not identify private farm constraints or risk preferences.
+  - Controlled copula parameters and operational capacities are not empirical estimates.
+  - Simulated scenarios are not independent empirical observations.
+  - State acreage is not treated as an optimizer solution.
+  - Reversal frontiers are conditional on the registered model and selection rule.
+  - Null, non-monotone, disconnected, infeasible, and multiple-optimum cells are retained.

@@ -7,6 +7,7 @@ import numpy as np
 from crop_optimization.cvar_optimizer import (
     solve_cvar_allocation,
     solve_expected_profit_allocation,
+    solve_minimum_cvar_allocation,
 )
 from crop_optimization.evaluation import empirical_var_cvar_losses
 from crop_optimization.oracles import rockafellar_uryasev_cvar_oracle, two_crop_grid_oracle
@@ -83,3 +84,72 @@ def test_infeasible_contract_is_reported_not_repaired_silently():
     )
     assert result.status == "infeasible_or_failed"
     assert result.allocation is None
+
+
+def test_shared_labour_capacity_enters_cvar_kkt_and_binds():
+    scenarios = np.array([[30.0, 10.0], [30.0, 10.0]])
+    shared = {
+        "planting_labour": {
+            "coefficients": {"A": 2.0, "B": 0.5},
+            "capacity": 1.0,
+        }
+    }
+    result = solve_cvar_allocation(
+        scenarios, [1.0, 1.0], 1.0, 10.0, 0.5, 0.0,
+        [0.0, 0.0], [1.0, 1.0], {}, ["A", "B"],
+        shared_capacity_constraints=shared,
+    )
+    assert result.status == "optimal"
+    assert np.isclose(2.0 * result.allocation[0] + 0.5 * result.allocation[1], 1.0)
+    assert result.diagnostics["shared_capacity_binds_planting_labour"] is True
+    assert result.diagnostics["shared_capacity_binds"] is True
+    assert "shadow_price_shared_capacity_planting_labour" in result.diagnostics
+    assert result.diagnostics["kkt_stationarity_residual"] <= 1e-8
+
+
+def test_shared_equipment_capacity_enters_expected_profit_problem():
+    shared = {
+        "harvest_equipment": {
+            "coefficients": [3.0, 1.0],
+            "capacity": 1.5,
+        }
+    }
+    result = solve_expected_profit_allocation(
+        [20.0, 10.0], [1.0, 1.0], 1.0, 10.0,
+        [0.0, 0.0], [1.0, 1.0], {}, ["A", "B"],
+        shared_capacity_constraints=shared,
+    )
+    assert result.status == "optimal"
+    assert np.isclose(3.0 * result.allocation[0] + result.allocation[1], 1.5)
+    assert "shadow_price_shared_capacity_harvest_equipment" in result.diagnostics
+
+
+def test_shared_capacity_rejects_unknown_crop():
+    with np.testing.assert_raises(ValueError):
+        solve_cvar_allocation(
+            [[10.0, 10.0]], [1.0, 1.0], 1.0, 10.0, 0.5, 0.0,
+            [0.0, 0.0], [1.0, 1.0], {}, ["A", "B"],
+            shared_capacity_constraints={
+                "labour": {
+                    "coefficients": {"A": 1.0, "C": 2.0},
+                    "capacity": 1.0,
+                }
+            },
+        )
+
+
+def test_minimum_cvar_endpoint_honours_shared_capacity():
+    scenarios = np.array([[40.0, 8.0], [-30.0, 8.0], [40.0, 8.0], [-30.0, 8.0]])
+    result = solve_minimum_cvar_allocation(
+        scenarios, [1.0, 1.0], 1.0, 10.0, 0.5,
+        [0.0, 0.0], [1.0, 1.0], {}, ["A", "B"],
+        shared_capacity_constraints={
+            "labour": {
+                "coefficients": {"A": 2.0, "B": 1.0},
+                "capacity": 1.0,
+            }
+        },
+    )
+    assert result.status == "optimal"
+    assert result.cvar_loss <= 1e-8
+    assert 2.0 * result.allocation[0] + result.allocation[1] <= 1.0 + 1e-8
