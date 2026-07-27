@@ -1,0 +1,10 @@
+metric,bootstrap_replications,finite_replications,estimate_mean,bootstrap_standard_error,percentile_95_low,percentile_95_high,exact_binomial_95_low,exact_binomial_95_high,interval_method,event_count
+allocation_Corn,64,64,0.276550436882,0.0769465874229,0.124805202207,0.368342616831,,,historical_resample_percentile,
+allocation_Soybean,64,64,0.527055156079,0.119413256264,0.257925588421,0.65,,,historical_resample_percentile,
+allocation_Winter_Wheat,64,64,0.196394407039,0.0840843215006,0.0700283487798,0.403587697204,,,historical_resample_percentile,
+expected_profit,64,64,205.138743815,31.481205664,152.353896889,261.833414513,,,historical_resample_percentile,
+cvar_loss,64,64,-59.7960880532,35.5019691421,-128.564207541,-5.50364499,,,historical_resample_percentile,
+first_reversal_risk_tolerance,64,64,0.065625,0.181893698242,0,0.5975,,,historical_resample_percentile,
+selected_pairwise_reversal_frequency,64,64,0.96875,0.0217490795423,,,0.891629477775,0.996192818618,exact_Clopper_Pearson_binomial,62
+selected_complete_rank_reversal_frequency,64,64,0.78125,0.0516748302942,,,0.660303688185,0.874931726285,exact_Clopper_Pearson_binomial,50
+selected_strong_reversal_frequency,64,64,0,0,,,0,0.0560090893866,exact_Clopper_Pearson_binomial,0

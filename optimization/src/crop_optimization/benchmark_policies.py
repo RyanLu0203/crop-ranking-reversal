@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 import numpy as np
 import pandas as pd
@@ -26,6 +26,7 @@ def repair_allocation_to_feasible(
     rotation_caps: Optional[Dict[str, float]],
     crop_names: List[str],
     contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
 ) -> Dict[str, object]:
     """Find the closest feasible allocation to a target using L1 distance."""
 
@@ -72,6 +73,18 @@ def repair_allocation_to_feasible(
             row[crop_names.index(crop)] = -1.0
             a_ub.append(row)
             b_ub.append(-float(minimum))
+    if shared_capacity_constraints:
+        for spec in shared_capacity_constraints.values():
+            raw = spec["coefficients"]
+            coefficients = (
+                np.asarray([float(raw.get(crop, 0.0)) for crop in crop_names])
+                if isinstance(raw, Mapping)
+                else np.asarray(list(raw), dtype=float)
+            )
+            row = np.zeros(3 * n)
+            row[:n] = coefficients
+            a_ub.append(row)
+            b_ub.append(float(spec["capacity"]))
 
     bounds = [(float(lb[i]), float(ub[i])) for i in range(n)]
     bounds.extend((0.0, None) for _ in range(2 * n))
@@ -99,6 +112,7 @@ def suitability_proportional_policy(
     rotation_caps: Optional[Dict[str, float]],
     crop_names: List[str],
     contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
 ) -> Dict[str, object]:
     scores = np.asarray(list(suitability_scores), dtype=float)
     target = total_acres * scores / scores.sum()
@@ -112,6 +126,7 @@ def suitability_proportional_policy(
         rotation_caps,
         crop_names,
         contract_minimums,
+        shared_capacity_constraints,
     )
     repaired["target_allocation"] = target
     return repaired
@@ -129,6 +144,8 @@ def mean_variance_policy(
     gamma: float,
     start: Optional[np.ndarray] = None,
     contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
+    full_investment: bool = False,
 ) -> Dict[str, object]:
     means = profit_scenarios.mean(axis=0)
     cov = np.cov(profit_scenarios, rowvar=False)
@@ -148,6 +165,7 @@ def mean_variance_policy(
             rotation_caps,
             crop_names,
             contract_minimums,
+            shared_capacity_constraints,
         )
         start = start_result.allocation if start_result.allocation is not None else np.maximum(lb, total_acres / n)
 
@@ -158,6 +176,11 @@ def mean_variance_policy(
         {"type": "ineq", "fun": lambda x: total_acres - np.sum(x)},
         {"type": "ineq", "fun": lambda x: budget - costs_arr @ x},
     ]
+    if full_investment:
+        constraints[0] = {
+            "type": "eq",
+            "fun": lambda x: np.sum(x) - total_acres,
+        }
     if rotation_caps:
         for crop, cap in rotation_caps.items():
             idx = crop_names.index(crop)
@@ -168,6 +191,20 @@ def mean_variance_policy(
             constraints.append({
                 "type": "ineq",
                 "fun": lambda x, idx=idx, minimum=minimum: x[idx] - float(minimum),
+            })
+    if shared_capacity_constraints:
+        for spec in shared_capacity_constraints.values():
+            raw = spec["coefficients"]
+            coefficients = (
+                np.asarray([float(raw.get(crop, 0.0)) for crop in crop_names])
+                if isinstance(raw, Mapping)
+                else np.asarray(list(raw), dtype=float)
+            )
+            capacity = float(spec["capacity"])
+            constraints.append({
+                "type": "ineq",
+                "fun": lambda x, coefficients=coefficients, capacity=capacity:
+                    capacity - coefficients @ x,
             })
 
     result = minimize(
@@ -195,6 +232,7 @@ def run_policy_comparison(
     upper_bounds = _array_by_crop(config["upper_bounds"], crop_names)
     rotation_caps = dict(config.get("rotation_caps") or {})
     contract_minimums = dict(config.get("contract_minimums") or {})
+    shared_capacity_constraints = dict(config.get("shared_capacity_constraints") or {})
     total_acres = float(config["total_acres"])
     budget = float(config["budget"])
     alpha = float(config["alpha"])
@@ -211,6 +249,7 @@ def run_policy_comparison(
         rotation_caps,
         crop_names,
         contract_minimums,
+        shared_capacity_constraints,
     )
     eo = solve_expected_profit_allocation(
         means,
@@ -222,6 +261,7 @@ def run_policy_comparison(
         rotation_caps,
         crop_names,
         contract_minimums,
+        shared_capacity_constraints,
     )
     policies["EO"] = {"status": eo.status, "message": eo.message, "allocation": eo.allocation}
     policies["MV"] = mean_variance_policy(
@@ -236,6 +276,7 @@ def run_policy_comparison(
         gamma=float(config.get("mean_variance_gamma", 1e-5)),
         start=eo.allocation,
         contract_minimums=contract_minimums,
+        shared_capacity_constraints=shared_capacity_constraints,
     )
     cvar = solve_cvar_allocation(
         profit_scenarios,
@@ -249,6 +290,7 @@ def run_policy_comparison(
         rotation_caps,
         crop_names,
         contract_minimums,
+        shared_capacity_constraints=shared_capacity_constraints,
     )
     policies["CVaR"] = {"status": cvar.status, "message": cvar.message, "allocation": cvar.allocation}
 
@@ -271,6 +313,7 @@ def run_policy_comparison(
                 upper_bounds,
                 rotation_caps,
                 contract_minimums,
+                shared_capacity_constraints,
             )
             row.update({"policy": policy_name, "status": policy["status"], "message": str(policy["message"])})
         rows.append(row)
@@ -281,6 +324,7 @@ def run_policy_comparison(
             "cvar_violation", "budget_violation", "acreage_violation",
             "lower_bound_violation", "upper_bound_violation",
             "rotation_violation", "contract_violation",
+            "shared_capacity_violation",
         ) if column in df.columns
     ]
     feasible_mask = ~df[violation_columns].fillna(True).any(axis=1)
@@ -307,6 +351,7 @@ def run_policy_comparison(
         "upper_bound_violation",
         "rotation_violation",
         "contract_violation",
+        "shared_capacity_violation",
         "budget_usage",
         "acreage_usage",
         "regret_vs_best_feasible",

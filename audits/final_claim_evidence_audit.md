@@ -1,37 +1,43 @@
-# Final claim-evidence audit
+# GOAL-17 final claim--evidence audit
 
 ## Result
 
-The compiled supervisor-review draft preserves the evidence hierarchy frozen
-across Issues #1--#9. All manuscript citations, generated numbers, figure/table
-uses and source-data lineages resolve to verified registries and checksums.
+The results-led manuscript closes the theorem, simulation, official-data,
+visualization and reproducibility chain. Every displayed manuscript number is
+generated from a named output; all six main and seven supplementary figures have
+source data, checksums and accessibility proofs.
 
-## Final evidence decisions
+## Evidence decisions
 
-- **Theorem:** ordinal insufficiency, set-valued reversal, feasibility-forced
-  reversal, complete subgradient KKT terms, restricted dependence ordering,
-  crossing sets and information actionability are supported by Issue #2.
-- **Numerical reproducibility:** 450 primary solves/replays and nine solver
-  comparisons support implementation integrity.
-- **Adverse numerical evidence:** zero of five convergence rows pass; all
-  substantive simulation landscapes remain supplementary `NONHEADLINE`.
-- **Descriptive empirical:** 26 states, 77 state-years and four frozen ranking
-  definitions support description of rank discordance only.
-- **Null evidence:** national ranks align in all nine crop-year comparisons and
-  are retained in the main empirical figure.
-- **Not identified:** observed acreage as optimal, private feasible sets, CVaR
-  binding, copula mechanism, state downside risk, causal effects and welfare.
+- Ordinal insufficiency, optimal-face reversal definitions, the
+  feasibility-forcing certificate and the complete KKT identity remain proved
+  under explicit assumptions.
+- E2 meets 24/24 family-wise interval criteria and supports operationally
+  induced reversal within its simulation domain.
+- E6 meets 3/3 criteria and supports positive, exact-null and substitutive
+  information--flexibility interactions across the registered archetypes.
+- E1, E3, E4 and E5 do not meet their experiment-level precision criteria.
+  Their complete results remain in Supplementary Figures S1--S3; numerical
+  integrity and all 206 infeasible rows are retained separately in Figure S4.
+- The official 2016--2024 panel contains 744 crop rows, 248 complete
+  state-years and 31 states. Operating-margin inversion intensity is 0.411
+  [0.346, 0.475].
+- All four primary strictly lagged intervals include zero. National results
+  depend on score definition, and national relative yield is tied.
+- Public data do not identify private objectives, constraints, downside-risk
+  limits, dependence mechanisms, causal effects, welfare or optimal acreage.
 
-## Registry closure
+## Closure
 
-- 19 verified bibliography entries; all cited keys resolve.
-- 27 generated manuscript numeric macros; all output files and fields resolve.
-- Five figures and three tables; all registry hashes resolve.
-- 44 of 44 teacher-Draft content rows have closed Issue #9 dispositions.
-- Canonical repository and release-package manifests validate with zero failures.
+- 58 generated numeric macros with file- and field-level provenance.
+- 20 manuscript claims with resolved evidence assets.
+- 13 figures in SVG, PDF, PNG and TIFF; the eight GOAL-17 figures additionally
+  pass final-size font, vector, embedded SVG/PDF colour and collision validation.
+- 12 meaningfully different main-figure candidates were rendered at 183 mm and
+  compared in full colour, grayscale, deuteranopia and protanopia.
+- 44/44 inherited draft-content dispositions remain closed.
+- Two independent empirical reruns are byte-identical.
+- Main and Supplementary PDFs are byte-identical across isolated builds.
 
-## Submission boundary
-
-Compilation success does not upgrade evidence. Author metadata, funding,
-licensing decisions, target-journal formatting and supervisor framing decisions
-remain open and are listed in `output/remaining_actions.md`.
+Author identities, affiliations, ORCID identifiers, contributions, funding,
+acknowledgements and competing interests remain author-owned submission tasks.

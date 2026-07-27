@@ -1,0 +1,12 @@
+figure_id,caption
+Figure1,"Rankings become allocation claims only after cardinal payoffs, joint uncertainty, feasibility and a selection rule are added. Possible and universal reversal are properties of the full optimal face; selected reversal depends on a reported optimizer."
+Figure2,"Exact two-crop constructions distinguish margin, operational, risk-limited and set-valued mechanisms. Shading marks the Corn–Soybean ranking-reversal half-space; these are analytic cases rather than empirical estimates."
+Figure3,"Closed M0–M4 allocation, indexed outcomes, exact all-subset attribution and signed E2 KKT pressures. Intervals are descriptive; local pressure terms are not causal acreage effects."
+Figure4,"E2-only operational factorial. Allocation, optimal-face classifications, family-wise contrasts and mechanism-class summaries use n=16 per cell; all 24 registered intervals passed."
+Figure5,"E6-only information–flexibility evidence across three registered archetypes, with exact finite-state anchors, an interaction forest and archetype-specific complementarity. All three family-wise intervals passed."
+Figure6,"Official-data evidence covers 248 complete state-years in 31 states from 2016–2024. Concurrent inversion varies spatially, by definition and aggregation; every primary strictly lagged 95% state-cluster interval includes zero. These are descriptive accounting relations, not causal or optimal-acreage estimates."
+FigureS1,E1 cardinal-margin contrasts and experiment-level adverse boundary. The precision gate failed at n=64 and no E1 result is promoted.
+FigureS2,E3 risk-frontier contrasts and its complete precision ledger. The experiment-level gate failed at n=64; results remain adverse.
+FigureS3,E4/E5 precision inventory and E5 cross-law risk diagnostic. Both experiment-level gates failed at n=64 and remain non-promoted.
+FigureS4,"Numerical integrity and attribution-order sensitivity, including replay, solver, KKT, Shapley and all 206 registered infeasible rows."
+FigureS5,"Empirical robustness across years, leave-one-state-out ranges and the pre-specified complete-case sample flow."

@@ -1,0 +1,180 @@
+\section{Theoretical results}
+
+\subsection{An exact two-crop reversal frontier}
+
+Consider two crops with \(s_1>s_2\), fixed planted land
+\(x_1+x_2=A\), and an operationally feasible interval
+\(I=[\underline z,\overline z]\) for \(z=x_1\). Under a declared
+joint-law path \(\theta\), write
+\[
+r_\theta(z)=\CVaR_\alpha[-z\widetilde\pi_1-(A-z)\widetilde\pi_2],
+\qquad
+\mathcal K_{\theta,\kappa}=\{z\in I:r_\theta(z)\le\kappa\}.
+\]
+
+\begin{theorem}[Necessary-and-sufficient restricted reversal]
+\label{thm:frontier}
+Suppose \(\mu_1>\mu_2\) and \(\mathcal K_{\theta,\kappa}\) is nonempty.
+Then the unique optimum is
+\[
+z^*(\theta,\kappa)=\sup\mathcal K_{\theta,\kappa}.
+\]
+Consequently,
+\[
+x_1^*<x_2^*
+\Longleftrightarrow
+\sup\mathcal K_{\theta,\kappa}<A/2
+\Longleftrightarrow
+\mathcal K_{\theta,\kappa}\cap[A/2,\overline z]=\varnothing .
+\]
+If \(r_\theta\) is nondecreasing on
+\([A/2,\overline z]\) and a risk-feasible point exists below \(A/2\),
+reversal is equivalent to \(r_\theta(A/2)>\kappa\).
+\end{theorem}
+
+\paragraph{Proof.}
+The objective is
+\(\mu_2A+(\mu_1-\mu_2)z\), which is strictly increasing in \(z\).
+Loss-CVaR is convex and continuous in \(z\), so its sublevel set intersected
+with compact \(I\) is compact. The strictly increasing objective is uniquely
+maximized at the right endpoint. The three reversal statements then follow
+from \(x_1<x_2\Longleftrightarrow z<A/2\). Under upper-half monotonicity,
+the lowest risk on that half is attained at \(A/2\), giving the last
+equivalence. \(\square\)
+
+The theorem is narrow by design. It characterizes acreage directly while
+retaining expected-margin ordering, operational bounds and the full joint
+loss law. If \(r_\theta(A/2)\) is continuous and strictly increasing along a
+named family and crosses \(\kappa\), there is a unique family-specific
+threshold \(\theta^*\) solving
+\(r_{\theta^*}(A/2)=\kappa\). Without strict monotonicity or crossing, the
+scientific object is the reversal set
+\(\{\theta:\sup\mathcal K_{\theta,\kappa}<A/2\}\); it may contain several
+components. This is why a universal ``higher tail dependence causes
+reversal'' statement is not valid.
+
+\subsection{Full-model optimality and selection}
+
+\begin{theorem}[Complete convex KKT certificate]
+\label{thm:kkt}
+Under a convex constraint qualification, or for the bounded finite-scenario
+linear programme, a feasible solution of Eq.~\ref{eq:canonical} is optimal if
+and only if there exist nonnegative multipliers for every inequality,
+together with the free-threshold and scenario-excess dual variables, that
+satisfy primal feasibility, dual feasibility, stationarity
+Eq.~\ref{eq:kkt} and complementarity.
+\end{theorem}
+
+The proof follows convex KKT sufficiency or, in the implemented model, linear
+programming strong duality. The theorem matters because incomplete
+stationarity can assign a residual margin difference to ``risk'' even when
+budget, contract or shared capacity is active. It also clarifies the role of
+multiple optima. KKT validates a point; the face audit determines whether the
+ranking relation holds throughout all equivalent optima.
+
+\subsection{Dependence paths}
+
+\begin{proposition}[Named-family feasible-set ordering]
+\label{prop:convexorder}
+Fix all crop marginals. If
+\(L_{\theta_1}(x)\preceq_{\mathrm{cx}}L_{\theta_2}(x)\) for every
+\(x\) in a declared domain, then
+\[
+\CVaR_{\alpha,\theta_1}[L(x)]
+\le \CVaR_{\alpha,\theta_2}[L(x)].
+\]
+If the domain is all of \(\mathcal X\), the risk-feasible set under
+\(\theta_2\) is contained in that under \(\theta_1\), so optimal expected
+profit cannot increase. Individual crop shares need not be monotone.
+\end{proposition}
+
+CVaR is monotone in convex order, yielding the risk and feasible-set
+inclusions. But set inclusion does not order coordinates of different
+optimizers. We therefore report Gaussian, Student-\(t\) and Clayton results
+family by family, and we retain active-set transitions, multiple optima and
+disconnected regions.
+
+\subsection{An executable diversification-failure criterion}
+
+Let \(x^{MV}\) be the policy chosen under a conventional Gaussian
+mean--variance assessment and \(x^T\) the full loss-CVaR optimum under the
+declared tail law.
+
+\begin{definition}[Diversification failure]
+Conventional diversification fails when
+\begin{align}
+\operatorname{Var}_G[\Pi(x^{MV})]&<
+\operatorname{Var}_G[\Pi(x^0)],\\
+\CVaR_{\alpha,T}[L(x^{MV})]&>
+\CVaR_{\alpha,T}[L(x^T)],\\
+x^{MV}&\ne x^T,
+\end{align}
+where \(x^0\) is the registered comparison policy. Failure is operationally
+strong when \(\CVaR_{\alpha,T}[L(x^{MV})]>\kappa\).
+\end{definition}
+
+\begin{proposition}
+If \(x^T\) is feasible and the preceding three conditions hold,
+\(x^{MV}\) is not tail-risk optimal. Under the strong inequality it also
+violates the declared risk ceiling.
+\end{proposition}
+
+This statement is logically modest but empirically useful. It separates
+variance reduction, matched Gaussian dependence, true-law loss-CVaR and
+allocation disagreement. It does not assert that every diversified portfolio
+fails or that tail dependence can be summarized by one coefficient.
+
+\subsection{Information, complementarity and substitution}
+
+Nature draws state \(\omega\), produces a noisy signal \(S\), and leaves a
+fraction of the plan adjustable. The producer observes \(S\), chooses a
+signal-contingent action and then realizes margin. Loss-CVaR is evaluated
+ex ante over the combined state--signal distribution.
+
+\begin{theorem}[Restricted information value]
+In a posterior-separable model, or when the shared ex-ante risk restriction is
+nonbinding, if ignoring the signal is admissible, optimized information value
+is nonnegative. It is zero when one common action is optimal for every
+posterior. If posterior optima are unique and differ on positive-probability
+signal events, with strict improvement on at least one event, information
+value is strictly positive.
+\end{theorem}
+
+The constant policy reproduces the no-information solution, proving
+nonnegativity. A common posterior optimum proves zero value. Strict posterior
+improvement integrates to positive value in the stated submodel. It does not
+establish strictness when signal-contingent actions share a binding ex-ante
+CVaR budget. Nested action sets raise both
+informed and uninformed optimized values, but their difference need not be
+monotone.
+
+\begin{proposition}[Restricted conditional complementarity]
+In the posterior-separable or nonbinding-risk submodel, if actions are nested
+and state--action payoff has increasing differences in
+signal precision and acreage flexibility, and posterior-optimal actions differ
+on events of positive probability, information and flexibility are strictly
+complementary.
+\end{proposition}
+
+\begin{proposition}[Substitution through shock buffering]
+Let flexibility \(\phi\) contract state-dependent margins toward a common
+vector,
+\[
+\pi_\omega(\phi)=(1-\phi)\pi_\omega+\phi\bar\pi.
+\]
+At \(\phi=1\), the state no longer changes margin and information has zero
+value. If information value is positive at \(\phi=0\) and the value function
+is continuous, it must decrease on at least one interval; shock-buffering
+flexibility substitutes for information there.
+\end{proposition}
+
+These results repair an unconditional supermodularity claim. For the complete
+shared-ex-ante-CVaR numerical programme we instead compute, on every adjacent
+grid rectangle,
+\[
+\Delta_{q,\phi}V=
+[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+Positive, zero/boundary and negative cross-differences are numerical
+classifications, not an extension of the restricted theorem.

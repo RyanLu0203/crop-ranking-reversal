@@ -1,16 +1,41 @@
-\section{Empirical sample, definitions and robustness}
+\section{Official-data extension and empirical robustness}
 
-The sample flow begins with all parsed state and US-total rows in the frozen official summary. US totals are retained only for the national check. State rows are restricted to complete planted acreage and yield for corn, soybeans and winter wheat in a common state-year. No missing values are inferred. The resulting \NCropRows{} crop rows form \NStateYears{} state-years.
+\subsection{Source reconstruction}
+USDA NASS Crop Production annual summaries are parsed in three non-overlapping blocks covering \EmpiricalStartYear--\EmpiricalEndYear{}. The \EmpiricalEndYear{} report reproduces the earlier frozen table exactly on state, year, crop, planted acreage and yield. USDA ERS crop-year prices and costs and the registered BLS CPI-U vintage provide national accounting inputs. Raw reports, URLs, retrieval timestamps and SHA-256 values are retained.
 
-Relative yield normalizes each state crop yield by its national same-year value. Standardized revenue multiplies yield by national price. Operating and total-cost margins further subtract corresponding national cost measures. These accounting definitions hold price and cost geography constant, allowing state-yield variation to be examined transparently, but they omit state marketing bases and local costs.
+The complete-case rule yields \NCropRows{} crop rows, \NStateYears{} state-years and \NStates{} states. A state-year enters only when corn, soybeans and winter wheat all have published planted acreage and yield. Missing and suppressed values are not imputed. The next state year was audited but excluded because the matching complete annual CPI-U construction was unavailable at the design freeze. County extraction was audited but not executed because no targeted credential-free official query was available; no county statement is made.
 
-Figure~\ref{fig:s3} reports the three main robustness checks. Leave-one-year-out rates remain definition-dependent. The lagged check uses only 2022--2023 relative yields to rank 2024 crops and yields \LaggedTopCount{} disagreements among \LaggedStates{} states. National margin and acreage ranks align in every comparison. These outcomes are retained together because selective reporting of only the state-level positive pattern would overstate the evidence.
+The parser reads \ParsedCropRows{} crop records, of which \NonmissingCropRows{} contain both acreage and yield. Requiring a complete three-crop state-year reduces the panel to \NCropRows{} crop observations in \NStateYears{} state-years. Coverage declines from \EarlyCoverageStates{} states in the early block to \MiddleCoverageStates{} in the middle block and \FinalCoverageStates{} in the final block; the raw reports contain \MissingAcreageRows{} missing acreage value and \MissingYieldRows{} missing yield values. These losses are displayed rather than repaired, and every retained map location is supported by the registered Census geometry.
+
+\subsection{Definitions and estimands}
+Relative yield normalizes each state yield by its same-year national value. Standardized revenue multiplies state yield by national price. Operating- and total-cost margins subtract the corresponding national cost after real-dollar conversion. These scores are transparent accounting constructions, not local realized margins.
+
+Concurrent metrics retain ties and include Kendall's tau-b, Spearman correlation when defined, inversion intensity and top-rank disagreement. The primary temporal model uses prior score-leader status and prior acreage share with crop, year and state fixed effects. All scores precede acreage-share change. Uncertainty uses \BootstrapReplications{} state-cluster draws.
+
+\subsection{Robustness and identification}
+Annual summaries show that definition sensitivity persists through the expanded period. Leave-one-state-out ranges show that no single retained state creates the aggregate pattern. The sample-flow display exposes every complete-case restriction. National relative yield is tied in all \NationalRelativeYieldTies{} years, illustrating a definitional aggregation boundary.
+
+For operating margin, leave-one-state-out mean inversion ranges from \LosoOperatingMin{} to \LosoOperatingMax{}. The temporal design contains \CropTransitionRows{} crop-level transitions and \TransitionEvents{} strictly ordered state-year transitions for each score definition. These estimates condition on prior acreage share and fixed effects, but they remain descriptive because both observed scores and acreage may respond to unmeasured local constraints, expectations and policy exposure.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{../figures/supplementary/FigureS3.pdf}
-\caption{Empirical robustness checks: leave-one-year-out summaries, low-powered lagged validation and national rank alignment.}
-\label{fig:s3}
+\includegraphics[width=\textwidth]{../figures/stage_ii/supplementary/FigureS5.pdf}
+\caption{\textbf{Empirical robustness and sample construction.} Annual inversion series, leave-one-state-out ranges and the complete pre-specified sample flow are shown for the \EmpiricalStartYear--\EmpiricalEndYear{} official-data panel.}
+\label{fig:s5}
 \end{figure}
 
-The claim boundary is fixed: state discordance is descriptively identified; accounting consequences are not welfare; geographic patterns are associative; observed-acreage optimality, CVaR binding or causality, copula mechanism, state downside risk and private constraints are not identified. Table S2 in the repository records these statements in machine-readable form.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/goal17/supplementary/FigureS6.pdf}
+\caption{\textbf{Expanded empirical diagnostics.} Ranked score--acreage distributions, yearly inversion paths, lagged leader estimates in percentage points, transition counts and the fixed-vintage state coverage map expose the magnitude, time structure and support of the official-data analysis. White map units are outside the complete-case panel and are not interpreted as zero.}
+\label{fig:s6}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/goal17/supplementary/FigureS7.pdf}
+\caption{\textbf{E2 factorial response surfaces and mechanism diagnostics.} The supplement expands the main-text intervention matrix into Corn-share response surfaces, the Corn-bound anchor, the budget slope, the margin--allocation frontier and estimand-level intervals. Thresholds, face classification and KKT channels are shown in aligned panels so that visual proximity is not mistaken for a shared mechanism.}
+\label{fig:s7}
+\end{figure}
+
+The data identify descriptive score--acreage relations and strictly ordered transitions. They do not identify observed acreage as optimal; private land, budget, rotation or contract restrictions; farmer beliefs or objective weights; a binding downside-risk limit; a dependence mechanism; causal responses; welfare; or regret relative to an unobserved optimum.

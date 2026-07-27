@@ -1,0 +1,4 @@
+asset_id,path,baseline_sha256,verification_method,allowed_change,stage_ii_status
+BASE-TEACHER-TEX,baselines/teacher_draft/Crop_ranking_reversal_total.tex,e8885aa89be6a6010f0d3e6f8e40b4b8192a91fc90f6ca4fb16ae9b0aa9dd26c,SHA-256 exact file hash,NO,IMMUTABLE_MATCH_REQUIRED
+BASE-TEACHER-PDF,baselines/teacher_draft/Crop_ranking_reversal_total.pdf,52ac1b4ef21c8d406fd6d722c877935a24d2cc6ea68520a6f35470ba8b334b44,SHA-256 exact file hash,NO,IMMUTABLE_MATCH_REQUIRED
+BASE-MANUSCRIPT-TREE,manuscript,0068bf01eeb3976c4df7ad0639c920c05c0ca60ce11dc323642e9b26a57cd02e,"SHA-256 of the sorted per-file SHA-256 listing",NO,NO_REWRITE_IN_GOAL14

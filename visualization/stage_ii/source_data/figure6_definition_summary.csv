@@ -1,0 +1,5 @@
+ranking_definition,state_years,states,mean_pairwise_inversions,median_pairwise_inversions,top_rank_reversal_rate,strong_reversal_rate,mean_observed_minus_equal_value,mean_observed_minus_score_top_value
+operating_margin,77,26,1.79220779221,2,0.818181818182,0.532467532468,0.247198966326,-74.7375984243
+relative_yield,77,26,2.11688311688,2,0.87012987013,0.818181818182,0.247198966326,-30.9284479651
+standardized_revenue,77,26,1.05194805195,1,0.623376623377,0.038961038961,0.247198966326,-26.5971146909
+total_cost_margin,77,26,2.03896103896,2,0.844155844156,0.779220779221,0.247198966326,-46.9458700663
