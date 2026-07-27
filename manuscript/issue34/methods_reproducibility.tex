@@ -1,0 +1,91 @@
+\section{Methods, data and reproducibility}
+
+\subsection{Official sources and transformations}
+
+State acreage and yield are parsed from registered USDA NASS annual reports.
+National crop yield, harvest price and operating and total cost series are
+from USDA NASS and ERS. BLS annual CPI-U converts monetary values to 2024
+dollars. Raw reports are retained unchanged with SHA-256 checksums. The
+canonical crop-year and extended state-crop panels are produced by scripted
+parsers and complete-case joins. No missing or suppressed agricultural value
+is imputed.
+
+The Kansas score uses only 2016--2023. For each crop and year, state yield is
+divided by the national yield of the same crop; the score is the eight-year
+mean. Margin is state yield times national harvest price minus national
+operating cost, then expressed in real 2024 dollars. Student-\(t\), Gaussian
+and empirical-quantile marginals are calibrated to the historical means and
+dispersion. The primary score intentionally does not use the 2024 evaluation
+year.
+
+\subsection{Scenario generation and optimization}
+
+Common random numbers are used within each model contrast. Primary
+optimization uses 512 equally weighted scenarios and seed 202607270034.
+Copula correlation is derived from the matched Kendall's \(\tau\). The
+Student-\(t\) copula uses four degrees of freedom and Student-\(t\) marginals
+five. Optimization is performed with SciPy/HiGHS through a dedicated solver
+layer. Every solution is re-evaluated from scenario profit, resource use and
+constraint violation, and the primal--dual certificate is checked.
+
+Minimum-CVaR and expected-profit endpoints are solved separately for each
+joint law. Equation~\ref{eq:riskpath} produces eleven risk ceilings. The
+optimal-face audit constrains expected profit to its optimal value within
+tolerance and solves pairwise min--max problems. A deterministic HiGHS
+solution is reported for selected reversal; universal and possible
+classifications use the face bounds.
+
+\subsection{Policy and robustness design}
+
+Score-proportional, score-winner and equal-share allocations are repaired to
+operational feasibility before outcome comparison. Expected-profit,
+mean--variance, full loss-CVaR and minimum-CVaR endpoints are solved from the
+same constraints. Robustness varies one dimension at a time: confidence level,
+dependence family and parameter, marginal model, historical window, scenario
+count, seed, solver and removal of each constraint group. Null,
+nonmonotone, multiple-optimum and infeasible cells are retained.
+
+Historical uncertainty resamples calibration years 64 times. Each replication
+reconstructs scores and margins, regenerates scenarios and resolves the
+frontier. Percentile intervals are reported without treating simulated
+scenarios as independent empirical observations. The small number of
+historical years is visible in every relevant figure and table.
+
+\subsection{Information--flexibility programme}
+
+The binary state is constructed from the corn-minus-soybean relative-yield
+advantage around its historical median. Signal accuracy ranges from 0.5 to
+1.0. A feasible constant policy is always available, which provides an exact
+signal-ignorability check. The acreage-recourse path changes the share
+adjustable after signal arrival. The buffering path contracts state-dependent
+margins toward their common mean while retaining signal-contingent actions.
+One loss-CVaR ceiling is applied to the full ex-ante state--signal loss
+distribution. Numerical information values below solver tolerance are
+classified as zero.
+
+\subsection{External evidence}
+
+For the 31-state panel, pairwise inversion intensity counts discordant pairs
+among the three crops. Top-rank disagreement equals one when the highest score
+crop is not the largest-acreage crop. Confidence intervals use state-cluster
+resampling. The lagged model predicts next-year acreage-share change from the
+previous relative-yield leader and previous acreage share with crop, state and
+decision-year fixed effects. It is descriptive and uses no contemporaneous
+score to predict the same year's acreage.
+
+\subsection{Software and reproducibility}
+
+The repository records the immutable design, raw checksums, processed data,
+source tables, figures and manuscript numbers. The main reconstruction is
+run with:
+\begin{verbatim}
+uv run python scripts/run_issue34_reconstruction.py
+uv run python scripts/render_issue34_manuscript_numbers.py
+uv run python scripts/make_issue34_figures.py
+uv run pytest -q
+\end{verbatim}
+The generated output manifest and \texttt{SHA256SUMS.txt} must verify before
+the manuscript is built. Figure text is editable in PDF/SVG; PNG and 600-dpi
+TIFF are secondary exports. Full mathematical proofs, additional phase tables,
+data dictionaries and validation results are supplied in Supplementary
+Information and the reproducibility archive.

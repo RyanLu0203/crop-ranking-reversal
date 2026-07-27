@@ -7,6 +7,7 @@ import csv
 import hashlib
 import re
 from pathlib import Path
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "provenance/canonical_asset_manifest.csv"
@@ -45,8 +46,23 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def tracked_files() -> list[Path]:
+    """Return repository-owned files without transient ignored build output."""
+    result = subprocess.run(
+        ["git", "ls-files", "-z"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    )
+    return [
+        ROOT / relative
+        for relative in result.stdout.decode("utf-8").split("\0")
+        if relative
+    ]
+
+
 def main() -> None:
-    files = sorted(path for path in ROOT.rglob("*") if included(path))
+    files = sorted(path for path in tracked_files() if included(path))
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     with MANIFEST.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(

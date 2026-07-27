@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple
 
 import numpy as np
 from scipy.optimize import linprog
@@ -23,13 +23,18 @@ def _cvar_feasible_system(
     crop_names: List[str],
     rotation_caps: Optional[Dict[str, float]],
     contract_minimums: Optional[Dict[str, float]],
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]],
 ) -> Tuple[csr_matrix, np.ndarray, list[tuple[float | None, float | None]]]:
     scenarios = np.asarray(scenarios, dtype=float)
     n_scenarios, n_crops = scenarios.shape
     n_vars = n_crops + 1 + n_scenarios
     v_idx = n_crops
     q_start = n_crops + 1
-    n_extra = len(rotation_caps or {}) + len(contract_minimums or {})
+    n_extra = (
+        len(rotation_caps or {})
+        + len(contract_minimums or {})
+        + len(shared_capacity_constraints or {})
+    )
     matrix = lil_matrix((3 + n_scenarios + n_extra, n_vars), dtype=float)
     rhs = np.zeros(3 + n_scenarios + n_extra, dtype=float)
     row_idx = 0
@@ -49,6 +54,15 @@ def _cvar_feasible_system(
     for crop, minimum in (contract_minimums or {}).items():
         matrix[row_idx, crop_names.index(crop)] = -1.0
         rhs[row_idx] = -float(minimum); row_idx += 1
+    for spec in (shared_capacity_constraints or {}).values():
+        raw = spec["coefficients"]
+        coefficients = (
+            np.asarray([float(raw.get(crop, 0.0)) for crop in crop_names])
+            if isinstance(raw, Mapping)
+            else np.asarray(list(raw), dtype=float)
+        )
+        matrix[row_idx, :n_crops] = coefficients
+        rhs[row_idx] = float(spec["capacity"]); row_idx += 1
     bounds: list[tuple[float | None, float | None]] = [
         (float(lower[i]), float(upper[i])) for i in range(n_crops)
     ]
@@ -72,6 +86,7 @@ def audit_pairwise_optimal_face(
     *,
     rotation_caps: Optional[Dict[str, float]] = None,
     contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
     allocation_tolerance: float = 1e-4,
     objective_relative_tolerance: float = 1e-8,
     primary_result: Optional[AllocationResult] = None,
@@ -87,6 +102,7 @@ def audit_pairwise_optimal_face(
         scenarios, costs_arr, total_land, budget, alpha, cvar_limit,
         lower, upper, rotation_caps, crop_names, contract_minimums,
         solver_method=solver_method,
+        shared_capacity_constraints=shared_capacity_constraints,
     )
     if primary.allocation is None:
         return {"status": "indeterminate", "solver_status": primary.solver_status}
@@ -96,6 +112,7 @@ def audit_pairwise_optimal_face(
     a_ub, b_ub, bounds = _cvar_feasible_system(
         scenarios, costs_arr, total_land, budget, alpha, cvar_limit,
         lower, upper, crop_names, rotation_caps, contract_minimums,
+        shared_capacity_constraints,
     )
     objective_floor = np.zeros(a_ub.shape[1])
     objective_floor[:len(crop_names)] = -means

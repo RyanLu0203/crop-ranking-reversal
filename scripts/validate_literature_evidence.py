@@ -14,6 +14,7 @@ QUALITY = ROOT / "audits/literature_quality_matrix.csv"
 NOVELTY = ROOT / "audits/novelty_comparison_matrix.csv"
 METADATA_AUDIT = ROOT / "audits/citation_metadata_audit.csv"
 BIB = ROOT / "references.bib"
+ISSUE34_REGISTRY = ROOT / "literature_registry.csv"
 REQUIRED = {
     REGISTRY,
     CLAIMS,
@@ -21,6 +22,7 @@ REQUIRED = {
     NOVELTY,
     METADATA_AUDIT,
     BIB,
+    ISSUE34_REGISTRY,
     ROOT / "audits/literature_search_log.md",
     ROOT / "literature/annotated_synthesis.md",
 }
@@ -77,6 +79,7 @@ for path in sorted(REQUIRED):
         errors.append(f"missing:{path.relative_to(ROOT)}")
 
 registry = read_rows(REGISTRY)
+issue34_registry = read_rows(ISSUE34_REGISTRY)
 quality = read_rows(QUALITY)
 claims = read_rows(CLAIMS)
 included = [row for row in quality if row["included"] == "YES"]
@@ -139,7 +142,7 @@ if len(bib_keys) != len(set(bib_keys)):
     errors.append("duplicate_bibtex_key")
 
 quality_keys = {row["citation_key"] for row in included}
-if set(bib_keys) != quality_keys:
+if not quality_keys.issubset(bib_keys):
     errors.append("bibtex_quality_key_mismatch")
 registry_dois = {doi.lower() for doi in dois}
 bib_dois: set[str] = set()
@@ -158,8 +161,27 @@ for key, fields in bib_entries.items():
     if not DOI.fullmatch(doi):
         errors.append(f"bibtex_invalid_doi:{key}")
     bib_dois.add(doi)
-if bib_dois != registry_dois:
+if not registry_dois.issubset(bib_dois):
     errors.append("bibtex_registry_doi_mismatch")
+
+# Issue #3's 19-record registry remains a strict canonical subset.  Later
+# manuscript extensions must be registered separately rather than weakening
+# that historical gate.  Issue #34 registers every canonical and added entry,
+# so the full bibliography must match its key/DOI mapping exactly.
+issue34_keys = [row["citation_key"] for row in issue34_registry]
+if len(issue34_keys) != len(set(issue34_keys)):
+    errors.append("duplicate_issue34_citation_key")
+issue34_by_key = {row["citation_key"]: row for row in issue34_registry}
+if set(bib_keys) != set(issue34_by_key):
+    errors.append("bibtex_issue34_registry_key_mismatch")
+for key, row in issue34_by_key.items():
+    doi = row["doi"].lower()
+    if row["verified_2026_07_27"] != "YES":
+        errors.append(f"issue34_reference_not_verified:{key}")
+    if not DOI.fullmatch(doi):
+        errors.append(f"invalid_issue34_doi:{key}")
+    if key in bib_entries and bib_entries[key].get("doi", "").lower() != doi:
+        errors.append(f"bibtex_issue34_doi_mismatch:{key}")
 
 novelty = read_rows(NOVELTY)
 if not any(row["study_id"] == "PROPOSED_PAPER" for row in novelty):
@@ -179,7 +201,8 @@ for row in metadata_audit:
 print(
     f"canonical_references={len(registry)} included_quality={len(included)} "
     f"excluded_quality={len(excluded)} literature_claims={len(claim_rows)} "
-    f"bibtex_entries={len(bib_entries)} metadata_audits={len(metadata_audit)} "
+    f"bibtex_entries={len(bib_entries)} issue34_registry={len(issue34_registry)} "
+    f"metadata_audits={len(metadata_audit)} "
     f"failures={len(errors)}"
 )
 for error in errors:

@@ -1,0 +1,79 @@
+{
+  "analysis_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
+  "design_sha256": "57e0689e388b533c59adc711c16ddfdb54e7df4f8e5ad9c00dbe7406b118c784",
+  "issue": 34,
+  "outputs": [
+    {
+      "bytes": 14603,
+      "path": "reconstruction/issue34/outputs/bootstrap_replications.csv",
+      "sha256": "8fd42b16ca73da8277c8a5cb75d9455bc36cd73da6c2cc5f6cbf5d5af58f8847"
+    },
+    {
+      "bytes": 1367,
+      "path": "reconstruction/issue34/outputs/dependence_diagnostics.csv",
+      "sha256": "a3252bd986f9fe3b9fae271273bdb89119c4ba09c6813bb6e9eb66feeac27a07"
+    },
+    {
+      "bytes": 1763,
+      "path": "reconstruction/issue34/outputs/diversification_failure.csv",
+      "sha256": "ccc850d1853bca9eb18eb53bdcd3f639562979f782bffec298ed0956cb7ac294"
+    },
+    {
+      "bytes": 1407,
+      "path": "reconstruction/issue34/outputs/external_descriptive_evidence.csv",
+      "sha256": "2d698cee33f2568a0db0088864af853e97722d445df43f8fd61877600c2321f7"
+    },
+    {
+      "bytes": 32380,
+      "path": "reconstruction/issue34/outputs/information_flexibility.csv",
+      "sha256": "74339c092f1b4a62001c633b896ebe35a1878f19b08d5bc9257fe734816d65a3"
+    },
+    {
+      "bytes": 11479,
+      "path": "reconstruction/issue34/outputs/kansas_calibration_panel.csv",
+      "sha256": "50bc3b7b5feee68838225bca6e709eadcadff53ecb041e41f08be9985523ed55"
+    },
+    {
+      "bytes": 2620,
+      "path": "reconstruction/issue34/outputs/policy_comparison.csv",
+      "sha256": "8da726f9472c6c1b743a6df1432052f71f2db5fb746a2655f9acff7eaa55c613"
+    },
+    {
+      "bytes": 863,
+      "path": "reconstruction/issue34/outputs/reversal_frontier_summary.csv",
+      "sha256": "d6cd11f701c91223ed50db5a8c519f241762e21d14ae5ea325f56a14623a9f0d"
+    },
+    {
+      "bytes": 44577,
+      "path": "reconstruction/issue34/outputs/reversal_phase_diagram.csv",
+      "sha256": "b8ecd6ce82fab8198cf2ef0f56bc7fe20f307e967ceecb0c8f26539bee181d6a"
+    },
+    {
+      "bytes": 10654,
+      "path": "reconstruction/issue34/outputs/robustness_results.csv",
+      "sha256": "462dfe84a868a471352553e5647c22decec919184f75eb06e323d25cde5787dd"
+    },
+    {
+      "bytes": 885,
+      "path": "reconstruction/issue34/outputs/score_and_margin_calibration.csv",
+      "sha256": "63be899c3fb4e0dc6ced0fca880c62e185c476e4ad5bcf0ae47fbd68cab9314b"
+    },
+    {
+      "bytes": 3439,
+      "path": "reconstruction/issue34/outputs/summary.json",
+      "sha256": "9a8a68c35b0af2cbf8ecac6ac3f637fbf07c39ba84e556efb427e2f00f3a3ea9"
+    },
+    {
+      "bytes": 684,
+      "path": "reconstruction/issue34/outputs/uncertainty_summary.csv",
+      "sha256": "3c1b548457ab9bfd537cd35e85fad0ea88c166bd04aaa139a589a0ac5c206f2c"
+    }
+  ],
+  "raw_effective_years": 8,
+  "raw_empirical_observations": 24,
+  "selection_rule": "deterministic_HiGHS_solution_plus_optimal_face_audit",
+  "simulated_scenarios_are_empirical_observations": false,
+  "solver": "scipy.optimize.linprog/HiGHS",
+  "source_panel": "empirical/goal16/outputs/extended_state_crop_panel.csv",
+  "source_panel_sha256": "45cecfbbaa2e5d3e6d43160afae1b4f7c4271cd9bd92bda0a12034164eb881f4"
+}

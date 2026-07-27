@@ -1,0 +1,16 @@
+copula_family,kendall_tau,first_selected_reversal_risk_tolerance,last_selected_reversal_risk_tolerance,first_strong_reversal_risk_tolerance,reversal_cells,strong_reversal_cells,infeasible_cells,multiple_optimum_cells,active_set_transition_count,reversal_region_connected_on_registered_grid
+clayton,0,0.2,1,0.6,9,5,0,2,2,True
+clayton,0.15,0,1,0.2,11,9,0,0,3,True
+clayton,0.3,0,1,0.4,10,7,0,0,4,False
+clayton,0.45,0.3,1,0.6,8,5,0,0,4,True
+clayton,0.6,0.2,1,0.8,9,3,0,0,4,True
+gaussian,0,0,1,0.1,11,10,0,0,3,True
+gaussian,0.15,0.1,1,0.6,10,5,0,0,3,True
+gaussian,0.3,0.1,1,0.3,10,8,0,0,3,True
+gaussian,0.45,0.3,1,0.9,8,2,0,0,4,True
+gaussian,0.6,0.1,1,0.6,10,5,0,0,3,True
+student_t,0,0.1,1,0.2,10,9,0,0,3,True
+student_t,0.15,0.1,1,0.2,10,9,0,0,3,True
+student_t,0.3,0,1,0.2,11,9,0,0,3,True
+student_t,0.45,0.3,1,0.4,8,7,0,0,4,True
+student_t,0.6,0.3,1,0.8,8,3,0,0,5,True
