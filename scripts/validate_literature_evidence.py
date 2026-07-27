@@ -39,6 +39,13 @@ REQUIRED_DOMAINS = {
     "Operational flexibility",
 }
 DOI = re.compile(r"^10\.\S+$", re.IGNORECASE)
+OFFICIAL_WITHOUT_DOI = {
+    "bls2026cpi",
+    "usdaers2026costs",
+    "usdanass2019crop",
+    "usdanass2022crop",
+    "usdanass2025crop",
+}
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
@@ -136,8 +143,14 @@ except ValueError as exc:
     errors.append(str(exc))
     bib_entries = {}
 bib_keys = list(bib_entries)
-if bib_keys != sorted(bib_keys):
-    errors.append("bibtex_keys_not_sorted")
+scholarly_keys = [key for key in bib_keys if key not in OFFICIAL_WITHOUT_DOI]
+official_keys = [key for key in bib_keys if key in OFFICIAL_WITHOUT_DOI]
+if (
+    scholarly_keys != sorted(scholarly_keys)
+    or official_keys != sorted(official_keys)
+    or bib_keys != scholarly_keys + official_keys
+):
+    errors.append("bibtex_keys_not_sorted_by_scholarly_then_official")
 if len(bib_keys) != len(set(bib_keys)):
     errors.append("duplicate_bibtex_key")
 
@@ -158,9 +171,15 @@ for key, fields in bib_entries.items():
     if missing:
         errors.append(f"bibtex_missing:{key}:{','.join(sorted(missing))}")
     doi = fields.get("doi", "").lower()
-    if not DOI.fullmatch(doi):
-        errors.append(f"bibtex_invalid_doi:{key}")
-    bib_dois.add(doi)
+    if key in OFFICIAL_WITHOUT_DOI:
+        if doi:
+            errors.append(f"official_source_should_not_invent_doi:{key}")
+        if not fields.get("url", "").startswith("https://"):
+            errors.append(f"official_source_missing_https_url:{key}")
+    else:
+        if not DOI.fullmatch(doi):
+            errors.append(f"bibtex_invalid_doi:{key}")
+        bib_dois.add(doi)
 if not registry_dois.issubset(bib_dois):
     errors.append("bibtex_registry_doi_mismatch")
 
@@ -178,7 +197,12 @@ for key, row in issue34_by_key.items():
     doi = row["doi"].lower()
     if row["verified_2026_07_27"] != "YES":
         errors.append(f"issue34_reference_not_verified:{key}")
-    if not DOI.fullmatch(doi):
+    if key in OFFICIAL_WITHOUT_DOI:
+        if doi:
+            errors.append(f"official_registry_should_not_invent_doi:{key}")
+        if not row["verification_source"].startswith("https://"):
+            errors.append(f"official_registry_missing_https_url:{key}")
+    elif not DOI.fullmatch(doi):
         errors.append(f"invalid_issue34_doi:{key}")
     if key in bib_entries and bib_entries[key].get("doi", "").lower() != doi:
         errors.append(f"bibtex_issue34_doi_mismatch:{key}")

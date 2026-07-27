@@ -103,7 +103,7 @@ declared tail law.
 \begin{definition}[Diversification failure]
 Conventional diversification fails when
 \begin{align}
-\operatorname{Var}_G[\Pi(x^{MV})]&\le
+\operatorname{Var}_G[\Pi(x^{MV})]&<
 \operatorname{Var}_G[\Pi(x^0)],\\
 \CVaR_{\alpha,T}[L(x^{MV})]&>
 \CVaR_{\alpha,T}[L(x^T)],\\
@@ -131,22 +131,26 @@ fraction of the plan adjustable. The producer observes \(S\), chooses a
 signal-contingent action and then realizes margin. Loss-CVaR is evaluated
 ex ante over the combined state--signal distribution.
 
-\begin{theorem}[Information value]
-If ignoring the signal is admissible, optimized information value is
-nonnegative. It is zero when one common action is optimal for every posterior.
-If posterior optima are unique and differ on positive-probability signal
-events, with strict improvement on at least one event, information value is
-strictly positive.
+\begin{theorem}[Restricted information value]
+In a posterior-separable model, or when the shared ex-ante risk restriction is
+nonbinding, if ignoring the signal is admissible, optimized information value
+is nonnegative. It is zero when one common action is optimal for every
+posterior. If posterior optima are unique and differ on positive-probability
+signal events, with strict improvement on at least one event, information
+value is strictly positive.
 \end{theorem}
 
 The constant policy reproduces the no-information solution, proving
 nonnegativity. A common posterior optimum proves zero value. Strict posterior
-improvement integrates to positive value. Nested action sets raise both
+improvement integrates to positive value in the stated submodel. It does not
+establish strictness when signal-contingent actions share a binding ex-ante
+CVaR budget. Nested action sets raise both
 informed and uninformed optimized values, but their difference need not be
 monotone.
 
-\begin{proposition}[Conditional complementarity]
-If actions are nested and state--action payoff has increasing differences in
+\begin{proposition}[Restricted conditional complementarity]
+In the posterior-separable or nonbinding-risk submodel, if actions are nested
+and state--action payoff has increasing differences in
 signal precision and acreage flexibility, and posterior-optimal actions differ
 on events of positive probability, information and flexibility are strictly
 complementary.
@@ -164,6 +168,13 @@ is continuous, it must decrease on at least one interval; shock-buffering
 flexibility substitutes for information there.
 \end{proposition}
 
-These results repair an unconditional supermodularity claim. Complementarity
-requires a particular action-set mechanism. Substitution is expected when
-flexibility neutralizes precisely the uncertainty that the signal resolves.
+These results repair an unconditional supermodularity claim. For the complete
+shared-ex-ante-CVaR numerical programme we instead compute, on every adjacent
+grid rectangle,
+\[
+\Delta_{q,\phi}V=
+[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+Positive, zero/boundary and negative cross-differences are numerical
+classifications, not an extension of the restricted theorem.

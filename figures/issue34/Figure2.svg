@@ -776,7 +776,7 @@ L 407.039906 81.124125
    </g>
   </g>
   <g id="text_62">
-   <text style="fill: #024e52; font: 6.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="178.272" y="219.114" transform="rotate(-0 178.272 219.114)">grey: none     mint: weak     dark teal: strong</text>
+   <text style="fill: #024e52; font: 6.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="178.272" y="219.114" transform="rotate(-0 178.272 219.114)">grey: none     mint: pairwise only     dark teal: complete     true strong (exclusion): 0</text>
   </g>
   <g id="text_63">
    <text style="fill: #024e52; font: 700 10px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="7.2" y="14.479687" transform="rotate(-0 7.2 14.479687)">Ranking reversal occupies a family- and risk-dependent phase</text>

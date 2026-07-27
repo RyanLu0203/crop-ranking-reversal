@@ -49,8 +49,12 @@ expected margin.
 ## 2. Definitions
 
 For \(s_i>s_j\), an allocation has a pairwise reversal when \(x_i<x_j\).
-The reversal is strong when the highest-ranked crop receives strictly less
-acreage than every lower-ranked crop.  Let \(S_\kappa\) denote the optimal set.
+A complete rank reversal (top-crop rank inversion) occurs when the
+highest-ranked crop receives strictly less acreage than every lower-ranked
+crop.  Retaining the supervisor Draft's exclusion definition, a strong
+reversal occurs when \(s_i>s_j\) and \(x_i=0<x_j\).  Numerical statements use
+separate documented tolerances for acreage ordering and operational zero.
+Let \(S_\kappa\) denote the optimal set.
 
 - possible reversal: some \(x\in S_\kappa\) reverses the pair;
 - universal reversal: every \(x\in S_\kappa\) reverses the pair;
@@ -147,7 +151,7 @@ failure occurs when
 
 \[
 \operatorname{Var}_G(\Pi(x^{MV}))
-\le \operatorname{Var}_G(\Pi(x^{0})),\qquad
+< \operatorname{Var}_G(\Pi(x^{0})),\qquad
 r_{\alpha,T}(x^{MV})>r_{\alpha,T}(x^{T}),\qquad
 x^{MV}\ne x^{T},
 \]
@@ -173,16 +177,21 @@ contingent allocation from a flexibility-indexed action set.  Profit is then
 realised.  The ex-ante CVaR constraint is applied to the combined
 state-signal-contingent loss distribution.
 
-**Theorem 3 (value, strictness, and zero interaction).**  If ignoring the
-signal is admissible, information value is non-negative.  It is zero when one
-common action is optimal for every posterior.  If posterior optima are unique
-and differ on signal events with positive probability, and the contingent
-policy is strictly better on at least one such event, information value is
-strictly positive.  Under nested acreage-recourse sets, the informed value and
-uninformed value are each weakly increasing, but their difference need not be
-monotone without increasing differences.
+**Theorem 3 (restricted value, strictness, and zero interaction).**  In the
+posterior-separable model, or when the common ex-ante risk restriction is
+nonbinding, if ignoring the signal is admissible, information value is
+non-negative.  It is zero when one common action is optimal for every
+posterior.  If posterior optima are unique and differ on signal events with
+positive probability, and the contingent policy is strictly better on at
+least one such event, information value is strictly positive.  The
+posterior-optimum strictness argument is not asserted when signal-contingent
+actions are coupled by a binding shared ex-ante CVaR budget.  Under nested
+acreage-recourse sets, the informed value and uninformed value are each weakly
+increasing, but their difference need not be monotone without increasing
+differences.
 
-**Proposition 3 (conditional complementarity).**  If the state-action payoff
+**Proposition 3 (restricted conditional complementarity).**  In the
+posterior-separable or nonbinding-risk submodel, if the state-action payoff
 has increasing differences in signal precision and flexibility, action sets
 are nested, and posterior-optimal actions change on events of positive
 probability, information and flexibility are strictly complementary.
@@ -196,7 +205,13 @@ flexibility reduces information value.  Information and flexibility are
 substitutes there.  This does not contradict Proposition 3 because payoff
 differences, rather than only the feasible action set, change with \(\phi\).
 
-The registered agricultural experiment reports all three regions: zero value
-at no actionability or no informativeness, strict complementarity under
-post-signal acreage reallocation, and substitution when irrigation/input-
-switching recourse buffers the state that the signal predicts.
+For the complete shared-ex-ante-CVaR programme, numerical interaction is
+classified directly.  For adjacent \(q_1<q_2\) and \(\phi_1<\phi_2\),
+\[
+\Delta_{q,\phi}V=
+[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+Positive, numerical-zero/boundary and negative cross-differences, plus zero
+information value, are reported as numerical evidence rather than as a
+theorem for the coupled model.

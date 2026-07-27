@@ -145,6 +145,7 @@ def mean_variance_policy(
     start: Optional[np.ndarray] = None,
     contract_minimums: Optional[Dict[str, float]] = None,
     shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
+    full_investment: bool = False,
 ) -> Dict[str, object]:
     means = profit_scenarios.mean(axis=0)
     cov = np.cov(profit_scenarios, rowvar=False)
@@ -175,6 +176,11 @@ def mean_variance_policy(
         {"type": "ineq", "fun": lambda x: total_acres - np.sum(x)},
         {"type": "ineq", "fun": lambda x: budget - costs_arr @ x},
     ]
+    if full_investment:
+        constraints[0] = {
+            "type": "eq",
+            "fun": lambda x: np.sum(x) - total_acres,
+        }
     if rotation_caps:
         for crop, cap in rotation_caps.items():
             idx = crop_names.index(crop)

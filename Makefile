@@ -4,7 +4,7 @@ PYTHON_VERSION ?= 3.11
 # byte-for-byte reproducible.  This is 27 July 2026 00:00:00 Asia/Shanghai.
 export SOURCE_DATE_EPOCH ?= 1785081600
 
-.PHONY: install figures manuscript paper validate test check manifest issue34
+.PHONY: install figures manuscript paper validate test check manifest issue34 issue36
 
 install:
 	$(UV) sync --locked --extra test --python $(PYTHON_VERSION)
@@ -58,7 +58,9 @@ check: validate test
 manifest:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_manifest.py
 
-issue34:
+issue34: issue36
+
+issue36:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/run_issue34_reconstruction.py
 	cd reconstruction/issue34/outputs && shasum -a 256 -c SHA256SUMS.txt
 	$(UV) run --python $(PYTHON_VERSION) python scripts/render_issue34_manuscript_numbers.py
@@ -66,4 +68,7 @@ issue34:
 	$(UV) run --python $(PYTHON_VERSION) pytest -q
 	latexmk -norc -pdf -interaction=nonstopmode -halt-on-error main_manuscript.tex
 	latexmk -norc -pdf -interaction=nonstopmode -halt-on-error supplementary_information.tex
+	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue36_visual_qa.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/build_manifest.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue34_archive.py

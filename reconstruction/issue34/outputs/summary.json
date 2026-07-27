@@ -1,5 +1,7 @@
 {
-  "bootstrap_reversal_probability": 0.96875,
+  "bootstrap_selected_complete_rank_reversal_frequency": 0.78125,
+  "bootstrap_selected_pairwise_reversal_frequency": 0.96875,
+  "bootstrap_selected_strong_reversal_frequency": 0.0,
   "calibration": {
     "crop_rows": 24,
     "geography": "Kansas",
@@ -30,21 +32,29 @@
     ]
   },
   "design_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
-  "design_sha256": "57e0689e388b533c59adc711c16ddfdb54e7df4f8e5ad9c00dbe7406b118c784",
+  "design_sha256": "23b19bacf6c38b6765865357e3b8b8876b947df31ac8a5e3b7576ebc62924173",
   "diversification_failure_identified": true,
   "empirical_evidence_scope": "AGGREGATE_DESCRIPTIVE_NOT_CAUSAL",
+  "first_operational_crossing_cap": 0.35,
   "frontier": {
     "cells": 165,
     "infeasible_cells": 0,
     "multiple_optimum_cells": 2,
-    "reversal_cells": 143,
-    "strong_reversal_cells": 96
+    "possible_complete_rank_reversal_cells": 96,
+    "possible_pairwise_reversal_cells": 143,
+    "possible_strong_reversal_cells": 0,
+    "selected_complete_rank_reversal_cells": 96,
+    "selected_pairwise_reversal_cells": 143,
+    "selected_strong_reversal_cells": 0,
+    "universal_complete_rank_reversal_cells": 96,
+    "universal_pairwise_reversal_cells": 143,
+    "universal_strong_reversal_cells": 0
   },
-  "information_regions": {
-    "strict_complementarity": 25,
-    "substitution": 18,
-    "weak_or_boundary": 11,
-    "zero_interaction": 18
+  "information_cross_difference_regions": {
+    "negative_cross_difference": 17,
+    "positive_cross_difference": 32,
+    "zero_information": 18,
+    "zero_or_boundary": 5
   },
   "primary_model": {
     "active_set": "land;cvar",
@@ -64,11 +74,15 @@
     "kkt_stationarity_residual": 2.842170943040401e-14,
     "minimum_cvar": -59.453167839971904,
     "reversal": {
-      "classification": "strong_reversal",
+      "acreage_order_tolerance": 0.0001,
+      "classification": "selected_complete_rank_reversal",
+      "near_zero_tolerance": 0.0001,
       "pairwise_reversal_count": 2,
       "reversed_pairs": "Winter Wheat<Soybean;Winter Wheat<Corn",
-      "selected_reversal": true,
-      "strong_reversal": true,
+      "selected_complete_rank_reversal": true,
+      "selected_pairwise_reversal": true,
+      "selected_strong_reversal": false,
+      "strong_reversal_pairs": "",
       "top_ranked_allocation": 0.2478313380465421,
       "top_ranked_crop": "Winter Wheat"
     },
@@ -131,5 +145,7 @@
       49.5503611189248
     ]
   },
-  "quick_mode": false
+  "quick_mode": false,
+  "risk_induced_crossing_identified": true,
+  "strong_diversification_failure_identified": true
 }

@@ -69,10 +69,12 @@ laws without transferring an arbitrary dollar ceiling.
 
 \subsection{Reversal and optimal faces}
 
-\begin{definition}[Pairwise and strong reversal]
+\begin{definition}[Pairwise, complete-rank and strong reversal]
 For a pair \(s_i>s_j\), an allocation reverses the ranking if \(x_i<x_j\).
-It strongly reverses if the highest-ranked crop has less area than every
-lower-ranked crop.
+A complete rank reversal, or top-crop rank inversion, occurs when the
+highest-ranked crop has less area than every lower-ranked crop. Retaining the
+supervisor Draft's exclusion definition, strong reversal requires
+\(s_i>s_j\) and \(x_i=0<x_j\).
 \end{definition}
 
 Let
@@ -85,7 +87,9 @@ be the complete optimal set. Reversal is \emph{possible} if it occurs at some
 and \emph{selected} if it occurs at the point returned by the registered
 selector. We audit a pair by minimizing and maximizing \(x_j-x_i\) on the
 objective-equivalent face. A single solver vertex is not sufficient evidence
-of universal reversal.
+of universal reversal. Ordering and operational zero use registered
+tolerances of \(10^{-4}\) normalized land share; sensitivity spans
+\(10^{-8}\) to \(10^{-2}\).
 
 \subsection{Full stationarity system}
 

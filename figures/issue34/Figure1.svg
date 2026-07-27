@@ -675,7 +675,7 @@ L 455.329688 304.74
     <text style="fill: #024e52; font: 6.5px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="428.127076" y="249.559367" transform="rotate(-0 428.127076 249.559367)">0.248</text>
    </g>
    <g id="text_47">
-    <text style="fill: #776f76; font: 700 7.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="303.277166" y="209.017415" transform="rotate(-0 303.277166 209.017415)">strong reversal</text>
+    <text style="fill: #024e52; font: 700 7.2px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="303.277166" y="209.017415" transform="rotate(-0 303.277166 209.017415)">selected complete rank reversal</text>
    </g>
    <g id="text_48">
     <text style="fill: #024e52; font: 8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="300.174053" y="192.554516" transform="rotate(-0 300.174053 192.554516)">Full-model allocation</text>

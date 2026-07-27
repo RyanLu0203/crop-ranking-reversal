@@ -2,10 +2,13 @@
 
 ## Status
 
-The final bibliography contains 31 records. Journal metadata has been checked
-against DOI registries, publisher pages, official proceedings, author
-manuscripts or institutional repositories. The detailed machine-readable
-record is `literature_registry.csv`; claim support is separated in
+The final bibliography contains 36 records: 31 scholarly/context records and
+five official USDA/BLS data-source records. Scholarly metadata has been
+checked against DOI registries, publisher pages, official proceedings, author
+manuscripts or institutional repositories. The institutional records do not
+have DOI identifiers and are instead verified by their official HTTPS URLs;
+no placeholder DOI is invented. The detailed machine-readable record is
+`literature_registry.csv`; claim support is separated in
 `claim_reference_matrix.csv`.
 
 ## Search process
@@ -38,5 +41,8 @@ only as changing discovery metadata.
 No citation used in the final manuscript is known to be nonexistent or
 metadata-incomplete. Full-text access was not required for every peripheral
 context source once DOI and claim scope were verified; such sources support
-only broad positioning. The author list and manuscript affiliation are not a
-literature issue and require supervisor confirmation separately.
+only broad positioning. USDA NASS annual reports, the USDA ERS Commodity Costs
+and Returns product and the BLS CPI data page are treated as primary data
+documentation, not as support for mechanism or causal claims. The author list
+and manuscript affiliation are not a literature issue and require supervisor
+confirmation separately.

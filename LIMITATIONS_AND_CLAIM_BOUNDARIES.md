@@ -23,12 +23,24 @@
 11. The theory does not assert cross-family monotonicity from one lower-tail
     coefficient or monotone individual crop shares under set contraction.
 12. The author order, affiliation wording and contribution statement require
-    confirmation before journal submission.
+confirmation before journal submission.
+13. The exclusion-based strong-reversal result is null in the registered
+frontier and bootstrap analyses.  Complete inversion must not be described as
+strong reversal.
+14. The risk-induced crossing is a registered structural perturbation, not an
+empirical estimate of soybean downside risk.
+15. The controlled operational crossing isolates one rotation-cap path; the
+registered full constraint sequence has no soybean--corn crossing.
+16. Information--flexibility cross-difference signs are numerical properties
+of the declared shared-CVaR grid, not a universal theorem.
 
 Permitted headline claim: the registered full model produces a robust
-conditional ranking reversal, conventional Gaussian mean--variance advice can
-fail the declared tail-risk ceiling, and the sign of information--flexibility
-interaction depends on the agricultural action mechanism.
+conditional complete ranking inversion but no exclusion-based strong
+reversal; a separate mean-preserving downside-risk path produces a genuine
+risk-induced crossing; conventional Gaussian mean--variance advice can fail
+the declared true-law tail-risk ceiling; and the sign of the numerical
+information--flexibility interaction depends on the agricultural action
+mechanism.
 
 Prohibited headline claim: public acreage proves farmers optimize loss-CVaR,
 the model estimates causal prevalence or welfare, or tail dependence always

@@ -2,10 +2,12 @@
 
 \subsection{Official sources and transformations}
 
-State acreage and yield are parsed from registered USDA NASS annual reports.
+State acreage and yield are parsed from registered USDA NASS annual reports
+\citep{usdanass2019crop,usdanass2022crop,usdanass2025crop}.
 National crop yield, harvest price and operating and total cost series are
-from USDA NASS and ERS. BLS annual CPI-U converts monetary values to 2024
-dollars. Raw reports are retained unchanged with SHA-256 checksums. The
+from USDA NASS and ERS \citep{usdaers2026costs}. BLS annual CPI-U converts
+monetary values to 2024 dollars \citep{bls2026cpi}. Raw reports are retained
+unchanged with SHA-256 checksums. The
 canonical crop-year and extended state-crop panels are produced by scripted
 parsers and complete-case joins. No missing or suppressed agricultural value
 is imputed.
@@ -31,9 +33,11 @@ constraint violation, and the primal--dual certificate is checked.
 Minimum-CVaR and expected-profit endpoints are solved separately for each
 joint law. Equation~\ref{eq:riskpath} produces eleven risk ceilings. The
 optimal-face audit constrains expected profit to its optimal value within
-tolerance and solves pairwise min--max problems. A deterministic HiGHS
-solution is reported for selected reversal; universal and possible
-classifications use the face bounds.
+tolerance and solves all three ranked-pair min--max problems plus complete-rank
+and exclusion feasibility checks. A deterministic HiGHS solution is reported
+for selected reversal; universal and possible classifications use the face
+bounds. Ordering and zero tolerances are \(10^{-4}\) normalized land share,
+with sensitivity from \(10^{-8}\) to \(10^{-2}\).
 
 \subsection{Policy and robustness design}
 
@@ -45,10 +49,20 @@ dependence family and parameter, marginal model, historical window, scenario
 count, seed, solver and removal of each constraint group. Null,
 nonmonotone, multiple-optimum and infeasible cells are retained.
 
+The risk-isolation path preserves the official Soybean--Corn score and mean
+orders, then applies a 10\% mean-preserving severe soybean downside event equal
+to one-third of its historical real gross revenue. The operational path fixes
+the margin scenarios and a provably nonbinding risk ceiling, adds the
+registered constraint sequence and then tightens only the soybean rotation
+cap. These are repository-registered structural stresses, not externally
+preregistered experiments or estimated private constraints.
+
 Historical uncertainty resamples calibration years 64 times. Each replication
 reconstructs scores and margins, regenerates scenarios and resolves the
-frontier. Percentile intervals are reported without treating simulated
-scenarios as independent empirical observations. The small number of
+frontier. Continuous outputs use historical-resample percentile intervals.
+Binary reversal frequencies use exact Clopper--Pearson binomial intervals and
+are labelled accordingly. Neither treats simulated scenarios as independent
+empirical observations. The small number of
 historical years is visible in every relevant figure and table.
 
 \subsection{Information--flexibility programme}
@@ -61,7 +75,10 @@ adjustable after signal arrival. The buffering path contracts state-dependent
 margins toward their common mean while retaining signal-contingent actions.
 One loss-CVaR ceiling is applied to the full ex-ante state--signal loss
 distribution. Numerical information values below solver tolerance are
-classified as zero.
+classified as zero. For each adjacent \(q_1<q_2\), \(\phi_1<\phi_2\)
+rectangle, interaction is the solved cross-difference
+\([V(q_2,\phi_2)-V(q_1,\phi_2)]-[V(q_2,\phi_1)-V(q_1,\phi_1)]\);
+the registered tolerance is \(10^{-7}\).
 
 \subsection{External evidence}
 

@@ -50,6 +50,10 @@ INFO_CMAP = LinearSegmentedColormap.from_list(
     "issue34_information",
     [LIGHT, PALE_GREEN, PALE_TEAL, SOY, CORNF, INK],
 )
+CROSS_CMAP = LinearSegmentedColormap.from_list(
+    "issue36_cross_difference",
+    [PURPLE, PALE_GREY, LIGHT, PALE_GREEN, TEAL],
+)
 
 
 def style() -> None:
@@ -177,7 +181,10 @@ def figure1() -> None:
     ax.tick_params(axis="x", rotation=18)
     for i, v in enumerate(alloc):
         ax.text(i, v + 0.012, f"{v:.3f}", ha="center", fontsize=6.5)
-    ax.text(0.02, 0.95, "strong reversal", transform=ax.transAxes, va="top", color=RED, weight="bold")
+    ax.text(
+        0.02, 0.95, "selected complete rank reversal",
+        transform=ax.transAxes, va="top", color=INK, weight="bold",
+    )
     fig.suptitle("From agronomic ranking to risk-constrained operational allocation", x=0.06, ha="left", fontsize=10, weight="bold")
     save(fig, "Figure1")
 
@@ -192,7 +199,12 @@ def figure2() -> None:
         ax = axes[j]
         sub = phase[phase["copula_family"] == fam]
         piv = sub.pivot(index="kendall_tau", columns="risk_tolerance", values="classification")
-        code = piv.replace({"no_reversal": 0, "weak_reversal": 1, "strong_reversal": 2}).to_numpy(dtype=float)
+        code = piv.replace({
+            "no_reversal": 0,
+            "selected_pairwise_reversal": 1,
+            "selected_complete_rank_reversal": 2,
+            "selected_strong_reversal": 2,
+        }).to_numpy(dtype=float)
         ax.imshow(code, origin="lower", aspect="auto", vmin=0, vmax=2, cmap=cmap)
         ax.set_xticks(np.arange(len(piv.columns))[::2], [f"{v:.1f}" for v in piv.columns[::2]])
         ax.set_yticks(np.arange(len(piv.index)), [f"{v:.2f}" for v in piv.index])
@@ -215,7 +227,13 @@ def figure2() -> None:
     ax.legend(title="Copula family", fontsize=6)
     ax.set_title("Conditional reversal frontier", fontsize=7.4)
     panel(ax, "d")
-    fig.text(0.39, 0.015, "grey: none     mint: weak     dark teal: strong", ha="center", fontsize=6.5)
+    true_strong = int(phase["selected_strong_reversal"].fillna(False).sum())
+    fig.text(
+        0.39, 0.015,
+        f"grey: none     mint: pairwise only     dark teal: complete     "
+        f"true strong (exclusion): {true_strong}",
+        ha="center", fontsize=6.5,
+    )
     fig.suptitle("Ranking reversal occupies a family- and risk-dependent phase", x=0.06, ha="left", fontsize=10, weight="bold")
     fig.subplots_adjust(top=0.8, bottom=0.23, wspace=0.42)
     save(fig, "Figure2")
@@ -223,91 +241,146 @@ def figure2() -> None:
 
 def figure3() -> None:
     div = copy_source("diversification_failure.csv")
-    rows = div.drop_duplicates(subset=["policy"]).copy()
-    keep = ["mean_variance_under_matched_gaussian", "full_CVaR_under_tail_law"]
-    rows = rows[rows["policy"].isin(keep)]
-    if len(rows) < 2:
-        rows = div.drop_duplicates(subset=["policy"]).iloc[[0, -1]]
-    fig, axes = plt.subplots(1, 3, figsize=(7.205, 2.9), gridspec_kw={"width_ratios": [1.25, 0.9, 0.9]})
+    policies = div[div["row_type"] == "registered_policy"].drop_duplicates("policy")
+    order = [
+        "x0_expected_profit_under_matched_gaussian",
+        "xMV_registered_Gaussian_frontier_point",
+        "xT_CVaR_under_matched_student_t",
+    ]
+    rows = policies.set_index("policy").loc[order].reset_index()
+    frontier = div[div["row_type"] == "mean_variance_frontier"].sort_values("gamma")
+    fig, axes = plt.subplots(
+        1, 3, figsize=(7.205, 3.05),
+        gridspec_kw={"width_ratios": [1.1, 1.15, 0.9]},
+    )
     ax = axes[0]
+    ax.plot(
+        frontier["gaussian_profit_variance"],
+        frontier["gaussian_expected_profit"],
+        color=GREY, marker="o", ms=3, lw=1,
+    )
+    x0 = rows.iloc[0]
+    xmv = rows.iloc[1]
+    ax.scatter(
+        [x0["gaussian_profit_variance"], xmv["gaussian_profit_variance"]],
+        [x0["gaussian_expected_profit"], xmv["gaussian_expected_profit"]],
+        color=[PURPLE, TEAL], edgecolor=INK, linewidth=0.4, s=35, zorder=4,
+    )
+    ax.annotate("$x^0$", (x0["gaussian_profit_variance"], x0["gaussian_expected_profit"]),
+                xytext=(3, 3), textcoords="offset points")
+    ax.annotate("$x^{MV}$", (xmv["gaussian_profit_variance"], xmv["gaussian_expected_profit"]),
+                xytext=(3, 3), textcoords="offset points")
+    ax.set_xlabel("Gaussian profit variance")
+    ax.set_ylabel("Expected profit (US$ per acre)")
+    ax.set_title("Registered mean–variance frontier")
+    panel(ax, "a")
+
+    ax = axes[1]
     bottom = np.zeros(len(rows))
     x = np.arange(len(rows))
+    hatches = {"Corn": "///", "Soybean": "\\\\\\", "Winter Wheat": "..."}
     for crop in ["Corn", "Soybean", "Winter Wheat"]:
         vals = rows[f"allocation_{crop.replace(' ', '_')}"].to_numpy()
-        ax.bar(x, vals, bottom=bottom, color=CROP_COLORS[crop], label=crop)
+        ax.bar(
+            x, vals, bottom=bottom, color=CROP_COLORS[crop], label=crop,
+            edgecolor=INK, linewidth=0.35, hatch=hatches[crop],
+        )
         bottom += vals
-    ax.set_xticks(x, ["Gaussian\nmean–variance", "tail-law\nCVaR"])
+    ax.set_xticks(x, ["benchmark\n$x^0$", "Gaussian\n$x^{MV}$", "tail-aware\n$x^T$"])
     ax.set_ylabel("Land share")
     ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.22))
-    ax.set_title("Same marginals and Kendall's $\\tau$")
-    panel(ax, "a")
-    ax = axes[1]
-    vals = rows["true_law_loss_CVaR"].to_numpy()
-    ax.bar(np.arange(len(vals)), vals, color=[GREY, TEAL][: len(vals)])
-    ax.set_xticks(np.arange(len(vals)), ["Gaussian\nadvice", "CVaR-aware"][: len(vals)])
-    ax.set_ylabel("True-law loss-CVaR\n(US$ per acre)")
-    ax.axhline(rows["risk_ceiling"].iloc[0], color=RED, ls="--", lw=1, label="risk ceiling")
-    ax.legend()
-    ax.set_title("Tail loss under Student-$t$")
+    ax.set_title("Policy allocations")
     panel(ax, "b")
+
     ax = axes[2]
-    tau = rows["matched_kendall_tau"].iloc[0]
-    lam = rows["lower_tail_dependence"].iloc[0]
-    ax.bar(["Kendall's $\\tau$", "Lower-tail\ncoefficient"], [tau, lam], color=[GREY, PURPLE])
-    ax.set_ylim(0, 0.32)
-    ax.set_ylabel("Dependence measure")
-    ax.set_title("Rank dependence differs\nfrom tail dependence", fontsize=7.4)
+    vals = rows["true_law_loss_CVaR"].to_numpy()
+    ax.bar(np.arange(len(vals)), vals, color=[PURPLE, TEAL, INK])
+    ax.set_xticks(np.arange(len(vals)), ["$x^0$", "$x^{MV}$", "$x^T$"])
+    ax.set_ylabel("True-law loss-CVaR\n(US$ per acre)")
+    ceiling = float(rows["risk_ceiling"].iloc[0])
+    ax.axhline(ceiling, color=RED, ls="--", lw=1)
+    ax.text(0.05, ceiling + 1.2, "true-law ceiling", fontsize=6, color=RED)
+    ax.set_title("Student-$t$ true-law test")
     panel(ax, "c")
-    fig.suptitle("Variance diversification can fail in the joint lower tail", x=0.06, ha="left", fontsize=10, weight="bold")
-    fig.subplots_adjust(top=0.76, bottom=0.27, wspace=0.48)
+    reduction = 100 * float(xmv["gaussian_variance_reduction_fraction"])
+    fig.suptitle(
+        f"Gaussian variance falls {reduction:.1f}%, yet the registered policy fails the true-law ceiling",
+        x=0.06, ha="left", fontsize=10, weight="bold",
+    )
+    fig.subplots_adjust(top=0.76, bottom=0.28, wspace=0.48)
     save(fig, "Figure3")
 
 
 def figure4() -> None:
-    pol = copy_source("policy_comparison.csv")
-    robust = copy_source("robustness_results.csv")
-    use = pol[pol["policy"].isin(["suitability_proportional", "winner_take_all", "equal_share",
-                                  "expected_profit_no_CVaR", "mean_variance", "full_CVaR_operational"])]
-    fig, axes = plt.subplots(1, 3, figsize=(7.205, 3.2), gridspec_kw={"width_ratios": [1.25, 1, 1]})
-    ax = axes[0]
-    bottom = np.zeros(len(use))
-    xx = np.arange(len(use))
-    for crop in ["Corn", "Soybean", "Winter Wheat"]:
-        vals = use[f"acres_{crop}"].to_numpy()
-        ax.bar(xx, vals, bottom=bottom, color=CROP_COLORS[crop], label=crop)
-        bottom += vals
-    labels = ["score", "winner", "equal", "profit", "mean–var", "full CVaR"]
-    ax.set_xticks(xx, labels, rotation=35, ha="right")
-    ax.set_ylabel("Land share")
-    ax.set_title("Benchmark policies")
-    panel(ax, "a")
-    ax = axes[1]
-    for _, r in use.iterrows():
-        highlight = r["policy"] == "full_CVaR_operational"
-        ax.scatter(r["cvar_loss"], r["expected_profit"], s=46 if highlight else 25,
-                   color=RED if highlight else GREY, edgecolor=INK, linewidth=0.35)
-        ax.annotate(labels[list(use["policy"]).index(r["policy"])],
-                    (r["cvar_loss"], r["expected_profit"]), xytext=(3, 3), textcoords="offset points", fontsize=5.7)
-    ax.axvline(use["cvar_limit"].iloc[0], color=RED, ls="--", lw=1)
-    ax.set_xlabel("Loss-CVaR (US$ per acre)")
-    ax.set_ylabel("Expected profit (US$ per acre)")
-    ax.set_title("Return–downside-risk plane")
-    panel(ax, "b")
-    ax = axes[2]
-    summary = robust.groupby("dimension", as_index=False).agg(
-        cells=("solver_status", "size"),
-        reversals=("selected_reversal", "sum"),
-        max_residual=("kkt_primal_residual", "max"),
+    margin = copy_source("margin_mechanism.csv")
+    risk = copy_source("risk_induced_reversal.csv")
+    operation = copy_source("operational_mechanism.csv")
+    fig, axes = plt.subplots(
+        1, 3, figsize=(7.205, 3.25),
+        gridspec_kw={"width_ratios": [1.05, 1.05, 1.2]},
     )
-    summary = summary[summary["dimension"] != "baseline"]
-    rate = summary["reversals"] / summary["cells"]
-    ax.barh(np.arange(len(summary)), rate, color=TEAL)
-    ax.set_yticks(np.arange(len(summary)), summary["dimension"].str.replace("_", " "))
-    ax.set_xlim(0, 1)
-    ax.set_xlabel("Share retaining selected reversal")
-    ax.set_title("One-at-a-time robustness")
+    ax = axes[0]
+    for _, row in margin.iterrows():
+        crop = row["crop"]
+        ax.scatter(
+            row["score"], row["mean_margin_real_2024_usd_per_acre"],
+            s=45, color=CROP_COLORS[crop], edgecolor=INK, linewidth=0.4,
+        )
+        ax.annotate(crop.replace("Winter ", ""), (
+            row["score"], row["mean_margin_real_2024_usd_per_acre"]
+        ), xytext=(4, 3), textcoords="offset points", fontsize=6)
+    ax.set_xlabel("Historical relative-yield score")
+    ax.set_ylabel("Mean margin (2024 US$ per acre)")
+    ax.set_title("Official score–margin separation")
+    panel(ax, "a")
+
+    ax = axes[1]
+    risk = risk.sort_values("risk_tolerance")
+    ax.plot(
+        risk["risk_tolerance"], risk["allocation_high"],
+        color=SOY, marker="o", ls="-", label="Soybean",
+    )
+    ax.plot(
+        risk["risk_tolerance"], risk["allocation_low"],
+        color=CORNF, marker="s", ls="--", label="Corn",
+    )
+    ax.fill_between(
+        risk["risk_tolerance"], risk["allocation_low"], risk["allocation_high"],
+        where=risk["allocation_high"] < risk["allocation_low"],
+        color=PALE_GREEN, alpha=0.8,
+    )
+    ax.set_xlabel("Risk-tolerance index (tight $\\rightarrow$ loose)")
+    ax.set_ylabel("Land share")
+    ax.set_title("Risk-induced crossing")
+    ax.legend()
+    panel(ax, "b")
+
+    ax = axes[2]
+    rotation = operation[
+        operation["operational_path"] == "soybean_rotation_tightening"
+    ].sort_values("soybean_rotation_cap", ascending=False)
+    ax.plot(
+        rotation["soybean_rotation_cap"], rotation["allocation_high"],
+        color=SOY, marker="o", ls="-", label="Soybean",
+    )
+    ax.plot(
+        rotation["soybean_rotation_cap"], rotation["allocation_low"],
+        color=CORNF, marker="s", ls="--", label="Corn",
+    )
+    ax.axvline(
+        rotation["first_operational_crossing_cap"].iloc[0],
+        color=GREY, ls="--", lw=0.9,
+    )
+    ax.invert_xaxis()
+    ax.set_xlabel("Soybean rotation cap (loose $\\rightarrow$ tight)")
+    ax.set_ylabel("Land share")
+    ax.set_title("Operational crossing")
+    ax.legend()
     panel(ax, "c")
-    fig.suptitle("The full model is compared with feasible policy benchmarks", x=0.06, ha="left", fontsize=10, weight="bold")
+    fig.suptitle(
+        "Margin, downside risk and operations produce distinct counterfactual signatures",
+        x=0.06, ha="left", fontsize=10, weight="bold",
+    )
     fig.subplots_adjust(top=0.8, bottom=0.25, wspace=0.48)
     save(fig, "Figure4")
 
@@ -315,45 +388,83 @@ def figure4() -> None:
 def figure5() -> None:
     info = copy_source("information_flexibility.csv")
     paths = ["post_signal_acreage_reallocation", "state_shock_buffering_recourse"]
-    fig, axes = plt.subplots(1, 3, figsize=(7.205, 3.15), gridspec_kw={"width_ratios": [1, 1, 1.05]})
+    fig, axes = plt.subplots(
+        1, 3, figsize=(7.205, 3.15),
+        gridspec_kw={"width_ratios": [1, 1, 1]},
+    )
     vmax = max(0.1, info["value_of_information"].max())
-    for j, path in enumerate(paths):
+    ax = axes[0]
+    sub = info[info["flexibility_path"] == paths[0]]
+    piv = sub.pivot(
+        index="signal_accuracy", columns="flexibility_level",
+        values="value_of_information",
+    )
+    im = ax.imshow(
+        piv.to_numpy(), origin="lower", aspect="auto",
+        cmap=INFO_CMAP, vmin=0, vmax=vmax,
+    )
+    ax.set_xticks(np.arange(len(piv.columns)), [f"{v:.1f}" for v in piv.columns])
+    ax.set_yticks(np.arange(len(piv.index)), [f"{v:.1f}" for v in piv.index])
+    ax.set_xlabel("Flexibility level")
+    ax.set_ylabel("Signal accuracy")
+    ax.set_title("Information value")
+    panel(ax, "a")
+    cb = fig.colorbar(im, ax=ax, shrink=0.7, pad=0.03)
+    cb.set_label("US$ per acre")
+    for spine in ax.spines.values():
+        spine.set_visible(True)
+        spine.set_linewidth(0.5)
+
+    finite_cross = info["discrete_cross_difference"].dropna()
+    cross_abs = max(0.01, float(finite_cross.abs().max()))
+    for j, path in enumerate(paths, start=1):
         ax = axes[j]
         sub = info[info["flexibility_path"] == path]
-        piv = sub.pivot(index="signal_accuracy", columns="flexibility_level", values="value_of_information")
-        im = ax.imshow(piv.to_numpy(), origin="lower", aspect="auto", cmap=INFO_CMAP, vmin=0, vmax=vmax)
+        piv = sub.pivot(
+            index="signal_accuracy", columns="flexibility_level",
+            values="discrete_cross_difference",
+        )
+        cross_im = ax.imshow(
+            piv.to_numpy(), origin="lower", aspect="auto",
+            cmap=CROSS_CMAP, vmin=-cross_abs, vmax=cross_abs,
+        )
         ax.set_xticks(np.arange(len(piv.columns)), [f"{v:.1f}" for v in piv.columns])
         ax.set_yticks(np.arange(len(piv.index)), [f"{v:.1f}" for v in piv.index])
-        ax.set_xlabel("Flexibility level")
-        ax.set_ylabel("Signal accuracy")
-        ax.set_title("Acreage reallocation" if j == 0 else "State-shock buffering")
+        ax.set_xlabel("Upper flexibility $\\phi_2$")
+        if j == 1:
+            ax.set_ylabel("Upper accuracy $q_2$")
+        ax.set_title("Reallocation $\\Delta_{q,\\phi}V$" if j == 1 else "Buffering $\\Delta_{q,\\phi}V$")
         panel(ax, chr(ord("a") + j))
+        values = piv.to_numpy()
+        for row_index in range(values.shape[0]):
+            for column_index in range(values.shape[1]):
+                value = values[row_index, column_index]
+                if not np.isfinite(value):
+                    continue
+                sign = "+" if value > 1e-7 else "−" if value < -1e-7 else "0"
+                ax.text(
+                    column_index, row_index, sign,
+                    ha="center", va="center", fontsize=6,
+                    color=INK if abs(value) < 0.65 * cross_abs else "white",
+                )
         for spine in ax.spines.values():
             spine.set_visible(True)
             spine.set_linewidth(0.5)
-    cb = fig.colorbar(im, ax=axes[:2], shrink=0.7, pad=0.03)
-    cb.set_label("Value of information\n(US$ per acre)")
-    ax = axes[2]
-    sub = info[(info["flexibility_path"] == "state_shock_buffering_recourse") &
-               np.isclose(info["signal_accuracy"], 1.0)]
-    ax.plot(sub["flexibility_level"], sub["value_of_information"], color=PURPLE, marker="o", lw=1.4)
-    ax.axhline(0, color=GREY, lw=0.7)
-    ax.set_xlabel("Buffering share")
-    ax.set_ylabel("Value of information\n(US$ per acre)")
-    ax.set_title("Substitution at perfect accuracy")
-    panel(ax, "c")
-    ax.annotate("signal becomes redundant", xy=(1, sub.iloc[-1]["value_of_information"]),
-                xytext=(0.43, max(sub["value_of_information"]) * 0.42),
-                arrowprops={"arrowstyle": "->", "color": GREY, "lw": 0.8}, fontsize=6)
-    fig.suptitle("Information value depends on what operational flexibility can do", x=0.06, ha="left", fontsize=10, weight="bold")
-    fig.subplots_adjust(top=0.78, bottom=0.2, wspace=0.55)
+    fig.subplots_adjust(top=0.78, bottom=0.2, left=0.08, right=0.90, wspace=0.62)
+    cross_cax = fig.add_axes([0.925, 0.28, 0.012, 0.44])
+    cb2 = fig.colorbar(cross_im, cax=cross_cax)
+    cb2.set_label("Adjacent-grid cross-difference")
+    fig.suptitle(
+        "The shared-CVaR model is classified by adjacent-grid cross-differences",
+        x=0.06, ha="left", fontsize=10, weight="bold",
+    )
     save(fig, "Figure5")
 
 
 def figure6() -> None:
     ext = copy_source("external_descriptive_evidence.csv")
     boot = copy_source("bootstrap_replications.csv")
-    dep = copy_source("dependence_diagnostics.csv")
+    uncertainty = copy_source("uncertainty_summary.csv")
     fig, axes = plt.subplots(1, 3, figsize=(7.205, 3.25), gridspec_kw={"width_ratios": [1.15, 1, 1]})
     ax = axes[0]
     rates = ext.dropna(subset=["top_rank_reversal_rate"]).copy()
@@ -367,7 +478,32 @@ def figure6() -> None:
     ax.set_xlabel("Top-rank disagreement rate")
     ax.set_title("31 states, 248 state-years")
     panel(ax, "a")
+
     ax = axes[1]
+    pair = uncertainty[
+        uncertainty["metric"] == "selected_pairwise_reversal_frequency"
+    ].iloc[0]
+    rate = float(pair["estimate_mean"])
+    low = float(pair["exact_binomial_95_low"])
+    high = float(pair["exact_binomial_95_high"])
+    ax.errorbar(
+        [rate], [0], xerr=[[rate - low], [high - rate]],
+        fmt="o", color=INK, ecolor=TEAL, capsize=3, markersize=6,
+    )
+    ax.set_xlim(0.8, 1.005)
+    ax.set_ylim(-0.6, 0.6)
+    ax.set_yticks([0], ["Selected pairwise\nreversal"])
+    ax.set_xlabel("Historical-resample frequency")
+    ax.set_title("Exact Clopper–Pearson 95% interval")
+    ax.text(
+        0.98, 0.15,
+        f"{int(pair['event_count'])}/{int(pair['bootstrap_replications'])}\n"
+        f"[{low:.3f}, {high:.3f}]",
+        transform=ax.transAxes, ha="right", va="top", fontsize=6.5,
+    )
+    panel(ax, "b")
+
+    ax = axes[2]
     vals = [boot[f"allocation_{c.replace(' ', '_')}"] for c in ["Corn", "Soybean", "Winter Wheat"]]
     bp = ax.boxplot(
         vals,
@@ -384,23 +520,12 @@ def figure6() -> None:
         patch.set_facecolor(c)
         patch.set_alpha(0.8)
     ax.set_ylabel("Bootstrap land share")
-    ax.set_title("Historical resampling, $B=64$")
-    panel(ax, "b")
-    ax.text(0.02, 0.96, "reversal probability 0.969", transform=ax.transAxes, va="top", fontsize=6.3)
-    ax = axes[2]
-    y = np.arange(len(dep))
-    est = dep["estimated_average_pairwise_kendall_tau"].to_numpy()
-    lo = dep["kendall_tau_bootstrap_low"].to_numpy()
-    hi = dep["kendall_tau_bootstrap_high"].to_numpy()
-    ax.errorbar(est, y, xerr=[est - lo, hi - est], fmt="o", color=PURPLE, ecolor=GREY, capsize=2)
-    ax.axvline(0, color=INK, lw=0.7)
-    ax.set_yticks(y, dep["copula_family"].str.replace("_", " "))
-    ax.set_xlim(-0.3, 0.9)
-    ax.set_xlabel("Average pairwise Kendall's $\\tau$")
-    ax.set_title("Calibration dependence, $n=8$")
+    ax.set_title("Continuous resample distributions")
     panel(ax, "c")
-    ax.text(0.02, 0.06, "stress path—not a farm-level\ntail estimate", transform=ax.transAxes, color=RED, fontsize=6)
-    fig.suptitle("External patterns support prevalence, not causal mechanism attribution", x=0.06, ha="left", fontsize=10, weight="bold")
+    fig.suptitle(
+        "Resampling quantifies short-record sensitivity, not farm-level prevalence",
+        x=0.06, ha="left", fontsize=10, weight="bold",
+    )
     fig.subplots_adjust(top=0.79, bottom=0.2, wspace=0.55)
     save(fig, "Figure6")
 

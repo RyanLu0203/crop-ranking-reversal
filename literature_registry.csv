@@ -30,3 +30,8 @@ L28,vanklompenburg2020crop,2020,yield prediction,10.1016/j.compag.2020.105709,pu
 L29,keisler2004value,2004,value of information,10.1287/deca.1040.0023,institutional manuscript,YES,portfolio information value,no crop-specific effect
 L30,merkhofer1975value,1975,value of information,10.21236/ADA016836,DTIC report,YES,information conditional on flexibility,no universal complementarity
 L31,vanmieghem1998investment,1998,operational flexibility,10.1287/mnsc.44.8.1071,author manuscript,YES,flexible action sets,no agricultural prevalence
+L32,usdanass2019crop,2019,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan19.pdf,YES,official 2018 crop production summary,no farm-level expectations or preferences
+L33,usdanass2022crop,2022,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan22.pdf,YES,official 2021 crop production summary,no farm-level expectations or preferences
+L34,usdanass2025crop,2025,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan25.pdf,YES,official 2024 crop production summary,no farm-level expectations or preferences
+L35,usdaers2026costs,2026,official agricultural cost data,,https://www.ers.usda.gov/data-products/commodity-costs-and-returns/,YES,official commodity costs and returns,no farm-specific costs
+L36,bls2026cpi,2026,official inflation data,,https://www.bls.gov/cpi/data.htm,YES,official CPI-U deflator,no agricultural mechanism evidence

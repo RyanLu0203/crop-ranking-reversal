@@ -41,6 +41,12 @@ information--flexibility complementarity was not unconditional. The main
 paper replaces these statements with restricted exact theorems and reports
 null, disconnected and multiple-optimum cases.
 
+Issue \#36 restores the supervisor Draft's exclusion terminology. Pairwise
+reversal is \(s_i>s_j,\ x_i<x_j\); complete rank reversal means that the
+top-ranked crop receives less than every lower-ranked crop; and strong
+reversal requires \(s_i>s_j,\ x_i=0<x_j\). The Kansas result is therefore a
+selected complete rank reversal, not a strong reversal.
+
 The previous repository manuscript centered the proposition that an ordinal
 ranking does not identify a cardinal allocation. That statement is correct but
 does not by itself answer the supervisor's mechanism question. In the
@@ -176,12 +182,15 @@ follow because the supporting face can change when the feasible set contracts.
 
 \subsection{Proofs for information and flexibility}
 
-Any no-information action defines a constant signal-contingent policy. If the
+In a posterior-separable model, or when the shared ex-ante risk restriction is
+nonbinding, any no-information action defines a constant signal-contingent policy. If the
 constant policy is feasible, optimization after observing a signal cannot
 lower value. When one common action is posterior-optimal for every signal, the
 constant policy also attains the informed optimum, proving zero value. If
 unique posterior optima differ on events with positive probability and at
-least one difference is strict, expected improvement is positive.
+least one difference is strict, expected improvement is positive. This
+posterior-optimum strictness step is not applied when contingent actions share
+a binding ex-ante CVaR budget.
 
 Increasing differences and nested action sets yield monotone posterior actions
 under standard monotone comparative statics. Strictness on a positive-
@@ -194,6 +203,14 @@ zero information value. If information value is positive at \(\phi=0\) and
 continuous along the contraction path, it must decline somewhere. Those
 intervals are substitutive. Total optimized value may still rise with
 \(\phi\).
+
+For the complete shared-CVaR numerical programme, interaction is classified
+without extending that theorem:
+\[
+\Delta_{q,\phi}V=[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+The sign is computed on each adjacent registered grid rectangle.
 
 \section{Calibration and constraint table}
 
@@ -255,76 +272,52 @@ Minimum-CVaR endpoint & 0.220 & 0.180 & 0.600 & 169.0 & -59.5 & yes\\
 \end{tabular}
 \end{table}
 
-The identical primary expected-profit and mean--variance allocations are not a
-coding shortcut: under the registered variance penalty and constraints, both
-select the same boundary point. The diversification-failure test evaluates
-that point under the Student-\(t\) tail law and compares it with the full
-loss-CVaR solution.
+The primary policy table retains the original low-penalty mean--variance
+diagnostic for comparability. The repaired diversification test is separate:
+its declared \(x^0\) is the matched-Gaussian expected-profit allocation, its
+full-investment frontier uses \(\gamma=\DiversificationGamma\), and its
+selected \(x^{MV}\) reduces Gaussian variance by
+\DiversificationVarianceReduction\% before being evaluated under the
+Student-\(t\) true law.
 
 \section{Phase-diagram summary}
 
-\begin{longtable}{lrrrrrr}
-\caption{Family-specific reversal counts on each Kendall-\(\tau\) path.}\\
-\toprule
-Family & \(\tau\) & reversal & strong & multiple & first reversal &
-first strong\\
-\midrule
-\endfirsthead
-\toprule
-Family & \(\tau\) & reversal & strong & multiple & first reversal &
-first strong\\
-\midrule
-\endhead
-Clayton & 0.00 & 9 & 5 & 2 & 0.2 & 0.6\\
-Clayton & 0.15 & 11 & 9 & 0 & 0.0 & 0.2\\
-Clayton & 0.30 & 10 & 7 & 0 & 0.0 & 0.4\\
-Clayton & 0.45 & 8 & 5 & 0 & 0.3 & 0.6\\
-Clayton & 0.60 & 9 & 3 & 0 & 0.2 & 0.8\\
-Gaussian & 0.00 & 11 & 10 & 0 & 0.0 & 0.1\\
-Gaussian & 0.15 & 10 & 5 & 0 & 0.1 & 0.6\\
-Gaussian & 0.30 & 10 & 8 & 0 & 0.1 & 0.3\\
-Gaussian & 0.45 & 8 & 2 & 0 & 0.3 & 0.9\\
-Gaussian & 0.60 & 10 & 5 & 0 & 0.1 & 0.6\\
-Student-\(t\) & 0.00 & 10 & 9 & 0 & 0.1 & 0.2\\
-Student-\(t\) & 0.15 & 10 & 9 & 0 & 0.1 & 0.2\\
-Student-\(t\) & 0.30 & 11 & 9 & 0 & 0.0 & 0.2\\
-Student-\(t\) & 0.45 & 8 & 7 & 0 & 0.3 & 0.4\\
-Student-\(t\) & 0.60 & 8 & 3 & 0 & 0.3 & 0.8\\
-\bottomrule
-\end{longtable}
+The mechanism-isolation outputs retain every registered cell. In the margin
+layer, top-ranked winter wheat has the lowest official-data mean margin and
+the expected-profit endpoint is already completely inverted; CVaR raises its
+share. In the risk layer, Soybean has the higher score and mean margin, while
+a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
+the loose-to-tight allocation crossing reported in the main text. In the
+operational layer, the observed constraint-addition sequence and its null
+crossing result precede the complete soybean rotation-cap grid; the first
+crossing is at \OperationalCrossingCap. These controlled paths do not estimate
+the prevalence of either mechanism.
 
-First-reversal and first-strong columns report the lowest risk-tolerance index
-on the registered grid. Clayton at \(\tau=0.30\) is the only disconnected
-selected-reversal path. The two multiple-optimum cells remain in all counts
-and are resolved by separate possible, universal and selected classifications.
+Across all \PhaseCells{} cells, selected pairwise reversal occurs in
+\PhaseReversal{}, selected complete rank reversal in \PhaseComplete{} and
+true strong exclusion reversal in \PhaseStrong{}. The complete
+family-by-\(\tau\) table, all three ranked-pair face extrema and possible,
+universal and selected flags are retained in
+\texttt{reversal\_phase\_diagram.csv}; no former ``strong'' count is silently
+relabelled.
 
 \section{Robustness and uncertainty}
 
-\begin{table}[h]
-\centering\small
-\caption{One-at-a-time robustness. ``Selected'' and ``strong'' are counts.}
-\begin{tabular}{lrrr}
-\toprule
-Dimension & cells & selected reversal & strong reversal\\
-\midrule
-Confidence level & 3 & 3 & 2\\
-Constraint regime & 5 & 5 & 3\\
-Dependence family & 3 & 3 & 2\\
-Dependence parameter & 5 & 5 & 4\\
-Marginal law & 3 & 3 & 3\\
-Sample window & 3 & 3 & 3\\
-Scenario count & 3 & 3 & 3\\
-Random seed & 3 & 3 & 2\\
-Solver & 3 & 3 & 3\\
-\bottomrule
-\end{tabular}
-\end{table}
+The one-at-a-time robustness file reports selected pairwise, selected complete
+and selected strong classifications separately for confidence level,
+constraint regime, dependence family and parameter, marginal law, sample
+window, scenario count, random seed and solver. With positive registered crop
+lower bounds, none of these cells can satisfy the restored exclusion
+definition.
 
 The 64 historical bootstrap replications produce mean shares 0.277 for corn,
 0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals
 are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. Reversal probability
-is \BootstrapProbability{} with interval
-[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]. The first-reversal
+is treated separately: selected pairwise reversal occurs in
+\BootstrapReversalCount{} of 64
+resamples. Its exact Clopper--Pearson binomial interval is
+[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]; this is not a
+percentile bootstrap interval. The first-reversal
 index mean is \BootstrapFirstMean{} with interval
 [\BootstrapFirstLow,\BootstrapFirstHigh]. The broad boundary interval is
 consistent with an eight-year calibration and is not hidden by the large
@@ -334,9 +327,10 @@ number of simulated scenarios.
 
 The state split contains four low and four high relative-yield-advantage
 years. Signal accuracy takes six values and flexibility takes six values on
-each path, producing 72 cells. The region counts are \InfoStrictCells{}
-strict-complementarity, \InfoSubCells{} substitution, \InfoZeroCells{} zero
-and \InfoBoundaryCells{} weak or boundary. Every signal-contingent problem is
+each path, producing 72 cells. Adjacent-grid classifications are
+\InfoPositiveCells{} positive cross-differences, \InfoNegativeCells{} negative
+cross-differences, \InfoZeroCells{} zero-information and
+\InfoBoundaryCells{} zero/boundary. Every signal-contingent problem is
 feasible and the minimum computed value of information differs from zero only
 at floating-point scale.
 

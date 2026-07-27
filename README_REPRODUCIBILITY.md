@@ -1,4 +1,4 @@
-# Reproducing Issue #34
+# Reproducing the Issue #36 repair of the Issue #34 reconstruction
 
 The reconstruction is deterministic under the registered design and seeds.
 Run commands from the repository root.
@@ -6,7 +6,7 @@ Run commands from the repository root.
 The complete raw-to-archive workflow is:
 
 ```bash
-make issue34
+make issue36
 ```
 
 The equivalent component commands are:
@@ -38,3 +38,8 @@ Key boundaries:
 - copula parameters and shared capacities are not farm-level estimates;
 - the 31-state panel is descriptive and non-causal;
 - no suppressed agricultural value is imputed.
+
+The deterministic release artifact is
+`release/crop-ranking-reversal-issue36-reproducibility.tar.gz`; its adjacent
+`.sha256` file is generated only after every preceding gate passes.  The legacy
+`make issue34` entry point remains as an alias to `make issue36`.

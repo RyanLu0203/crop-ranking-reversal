@@ -68,17 +68,21 @@ recommend it.
 
 Any uninformed action defines a constant signal-contingent policy.  When that
 policy is admissible, the informed optimisation is over a superset and cannot
-have lower value.  If one action is optimal for every posterior, selecting it
-after every signal attains the uninformed value, so information value is zero.
-If posterior optima are unique, differ on positive-probability signal events,
-and yield strict improvement on at least one event, integration gives strict
-positive value.  Nested flexibility sets weakly raise each of the informed
-and uninformed optimised values.  Their difference need not be monotone
-because it is the difference of two weakly increasing functions.
+have lower value.  In a posterior-separable problem, if one action is optimal
+for every posterior, selecting it after every signal attains the uninformed
+value, so information value is zero.  If posterior optima are unique, differ
+on positive-probability signal events, and yield strict improvement on at
+least one event, integration gives strict positive value.  The same strictness
+argument applies when a shared ex-ante CVaR restriction is nonbinding.  It is
+not used when signal-contingent actions are coupled by a binding common CVaR
+budget.  Nested flexibility sets weakly raise each of the informed and
+uninformed optimised values.  Their difference need not be monotone because
+it is the difference of two weakly increasing functions.
 
 ## Proposition 3
 
-Increasing differences and nested lattices imply monotone optimal policies
+In the restricted separable or nonbinding-risk submodel, increasing
+differences and nested lattices imply monotone optimal policies
 by standard monotone comparative statics.  If posterior-optimal actions
 change on a positive-probability event and the increasing-differences
 inequality is strict there, the gain from signal precision is strictly larger
@@ -92,3 +96,17 @@ induce the same optimisation problem, a common action is optimal, and Theorem
 \(\phi=0\) and the value function is continuous in the interpolated margins,
 it must decline somewhere along \([0,1]\).  On every interval with negative
 increment, shock-buffering flexibility substitutes for information.
+
+## Shared-CVaR numerical classification
+
+The complete numerical programme uses one VaR variable and one collection of
+excess variables across both signal blocks, so the two contingent allocations
+share one ex-ante CVaR budget.  No posterior-separability step is invoked.
+For every adjacent registered rectangle, the implementation evaluates
+\[
+[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+Its sign is a direct property of the solved value grid.  Positive, zero within
+the registered tolerance and negative results are numerical interaction
+classes; zero information is recorded separately.

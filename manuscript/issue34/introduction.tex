@@ -12,9 +12,11 @@ without rejecting the agronomic information contained in the ranking.
 
 This paper studies that event as \emph{crop-ranking reversal}. For a pair with
 score \(s_i>s_j\), reversal means \(x_i<x_j\) in the selected optimal acreage
-plan. Strong reversal occurs when the top-ranked crop receives less land than
-every lower-ranked crop. The question is not whether a ranking alone identifies
-acreage. It does not. The scientific question is sharper: under a declared
+plan. A complete inversion occurs when the top-ranked crop receives less land
+than every lower-ranked crop. Following the supervisor Draft, strong reversal
+is narrower: a higher-ranked crop is excluded, \(x_i=0<x_j\), while a
+lower-ranked crop is planted. The question is not whether a ranking alone
+identifies acreage. It does not. The scientific question is sharper: under a declared
 stochastic crop-planning model, which economic, risk and operational mechanisms
 move the optimum across the ranking boundary, where is the resulting
 frontier, and when do conventional diversification or additional information
@@ -65,21 +67,29 @@ The top-ranked winter wheat receives share \PrimaryWheat, less than corn
 \(\$\,\PrimaryProfit\) per normalized acre and loss-CVaR is
 \(\$\,\PrimaryCVaR\). KKT primal, stationarity and complementarity residuals
 are below \(6\times10^{-14}\).
+Because the no-CVaR endpoint is already inverted and assigns winter wheat
+only 0.070, this Kansas result is margin-induced; the risk ceiling raises the
+wheat share and moderates the inversion. Separate controlled paths identify
+risk- and operationally induced Soybean--Corn crossings while holding the
+relevant score and mean-margin orders fixed.
 
 The phase diagram is more informative than this one allocation. Across
 \PhaseCells{} registered cells spanning three copula families, five
 Kendall-\(\tau\) values and eleven risk tolerances, \PhaseReversal{} cells
-reverse and \PhaseStrong{} reverse strongly. Two cells contain multiple
+show selected pairwise reversal, \PhaseComplete{} show selected complete rank
+reversal and \PhaseStrong{} show true strong exclusion reversal. Two cells contain multiple
 optima, no cells are infeasible, and one Clayton path is disconnected on the
-registered grid. Historical resampling gives reversal probability
-\BootstrapProbability{} with percentile interval
+registered grid. Selected pairwise reversal occurs in
+\BootstrapReversalCount{} of 64 historical resamples, with exact
+Clopper--Pearson binomial interval
 \([\BootstrapProbabilityLow,\BootstrapProbabilityHigh]\). These quantities
 are uncertainty diagnostics for the registered structural stress test, not
 estimates of farm-level prevalence.
 
 Our third contribution separates diversification diagnostics that are often
-conflated. We define failure only when a conventional Gaussian or
-mean--variance policy looks diversified under its own variance criterion,
+conflated. We define \(x^0\) explicitly and claim failure only when a
+full-investment Gaussian mean--variance policy strictly reduces variance
+relative to that benchmark,
 differs from the tail-aware allocation and has worse loss-CVaR under the
 declared true law. At matched Kendall's \(\tau=0.25\), Gaussian advice has
 Student-\(t\) loss-CVaR \(\$\,\DiversificationGaussianCVaR\), exceeding the
@@ -90,14 +100,14 @@ executable rather than a rhetorical claim that ``correlation misses tails.''
 Finally, we reconstruct the relation between information and flexibility.
 The signal is an imperfect pre-plant indication of relative crop-yield
 conditions. In one path, flexibility expands the share that can be reallocated
-after observing the signal. This produces strict complementarity when the
-posterior-optimal acreage plans differ. In a second path, flexibility buffers
+after observing the signal. In a second path, flexibility buffers
 the state-dependent yield shock through recourse interpretable as irrigation,
 input switching or harvest timing. There, the information value necessarily
-falls to zero when the predicted state is fully buffered, producing
-substitution. The registered grid contains \InfoStrictCells{} strict,
-\InfoSubCells{} substitutive, \InfoZeroCells{} zero and \InfoBoundaryCells{}
-boundary cells.
+falls to zero when the predicted state is fully buffered. For the complete
+shared-CVaR programme, adjacent-grid cross-differences are classified
+numerically: \InfoPositiveCells{} positive, \InfoNegativeCells{} negative,
+\InfoZeroCells{} zero-information and \InfoBoundaryCells{} zero/boundary.
+The strict theorem is restricted to the separable or nonbinding-risk submodel.
 
 Figure~\ref{fig:architecture} summarizes the architecture. It preserves the
 original scientific chain from suitability to stochastic operational
@@ -118,6 +128,7 @@ define feasible action. \textbf{b}, The pre-decision score ranks winter wheat
 first. \textbf{c}, Cardinal mean margins are estimated separately; bars show
 one standard deviation across the eight calibration years. \textbf{d}, The
 registered full-model optimum assigns the least land to winter wheat and
-therefore strongly reverses the score order.}
+therefore produces a selected complete rank reversal, not a strong exclusion
+reversal.}
 \label{fig:architecture}
 \end{figure}

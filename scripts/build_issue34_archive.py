@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a deterministic Issue #34 reproducibility archive and checksum."""
+"""Build the deterministic Issue #36 repaired reproducibility archive."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = ROOT / "release"
-ARCHIVE = RELEASE / "crop-ranking-reversal-issue34-reproducibility.tar.gz"
+ARCHIVE = RELEASE / "crop-ranking-reversal-issue36-reproducibility.tar.gz"
 
 PATHS = [
     "main_manuscript.tex",
@@ -29,9 +29,16 @@ PATHS = [
     "EXPERIMENT_RELIABILITY_AUDIT.md",
     "REFERENCE_RELIABILITY_AUDIT.md",
     "LIMITATIONS_AND_CLAIM_BOUNDARIES.md",
+    "SCIENTIFIC_CLAIM_REPAIR_AUDIT.md",
+    "MECHANISM_ISOLATION_AUDIT.md",
+    "DIVERSIFICATION_FAILURE_VALIDATION.md",
+    "INFORMATION_FLEXIBILITY_VALIDATION.md",
+    "PR_INTEGRATION_PLAN.md",
     "audits/issue_34_acceptance_matrix.md",
     "audits/issue34_figure_contract.md",
+    "audits/issue36_figure_contract.md",
     "audits/issue34_final_page_qa.md",
+    "audits/issue36_visual_qa",
     "literature/issue34_search_log.md",
     "manuscript/issue34",
     "figures/issue34",
@@ -41,11 +48,12 @@ PATHS = [
     "scripts/run_issue34_reconstruction.py",
     "scripts/render_issue34_manuscript_numbers.py",
     "scripts/make_issue34_figures.py",
+    "scripts/build_issue36_visual_qa.py",
     "scripts/build_issue34_archive.py",
     "optimization",
     "theory/issue34",
     "theory/proofs/computational_checks/test_issue34_theory.py",
-    "tests/test_kkt_oracles.py",
+    "tests",
     "empirical/goal16/outputs/extended_state_crop_panel.csv",
     "empirical/goal16/raw",
     "data/raw",

@@ -4,6 +4,12 @@ frozen_at: 2026-07-27T15:00:00+08:00
 status: FROZEN_BEFORE_RESULTS
 owner_issue: 34
 parent_commit: 1262b19150fd1e63f549d3511ba478b003b08d9e
+repair_issue: 36
+repair_baseline_commit: 12fe6b4a3717ef5602b3d31558fd66424287f7d4
+repair_registration:
+  status: REPOSITORY_REGISTERED_BEFORE_FINAL_CONFIRMATORY_RUN
+  language: frozen_before_final_analysis_not_external_preregistration
+  purpose: focused_claim_verification_and_mechanism_isolation
 
 scope:
   geography: Kansas
@@ -109,11 +115,71 @@ phase_diagram:
   dimensions: [copula_family, kendall_tau, risk_tolerance]
   classifications:
     - no_reversal
-    - weak_reversal
+    - selected_pairwise_reversal
+    - selected_complete_rank_reversal
     - strong_reversal
     - infeasible
     - multiple_optima
     - active_set_transition
+
+reversal_taxonomy:
+  score_order_tolerance: 1.0e-6
+  acreage_order_tolerance: 1.0e-4
+  near_zero_tolerance: 1.0e-4
+  tolerance_sensitivity: [1.0e-8, 1.0e-6, 1.0e-4, 1.0e-3, 1.0e-2]
+  pairwise: higher_score_crop_receives_less_acreage
+  complete_rank: highest_score_crop_receives_less_acreage_than_every_lower_crop
+  strong: higher_score_crop_is_excluded_while_a_lower_score_crop_is_positive
+  optimal_face_scope: all_three_strictly_ranked_pairs
+
+mechanism_isolation:
+  margin_induced:
+    geography: Kansas
+    score: predecision_historical_relative_yield_potential
+    comparison: official_data_mean_margin_and_expected_profit_endpoint
+  risk_induced:
+    focal_high_rank_crop: Soybean
+    focal_low_rank_crop: Corn
+    requirement: score_high_and_mean_margin_high_before_downside_stress
+    scenario_family: student_t
+    marginal_family: student_t_df5
+    kendall_tau: 0.25
+    scenario_count: 4096
+    scenario_seed: 202607306036
+    adverse_event_seed: 202607306037
+    soybean_adverse_event_probability: 0.10
+    soybean_downside_shock_share_of_mean_real_gross_revenue: 0.3333333333333333
+    mean_preserving_compensation: exact_finite_sample
+    risk_tolerance_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0]
+    interpretation: severe_soybean_specific_drought_or_basis_stress_not_empirical_estimate
+  operational:
+    focal_high_rank_crop: Soybean
+    focal_low_rank_crop: Corn
+    scenario_family: student_t
+    kendall_tau: 0.25
+    scenario_count: 4096
+    scenario_seed: 202607306038
+    risk_ceiling_rule: fixed_nonbinding_max_single_crop_loss_plus_one_dollar
+    staged_constraints:
+      - land_only
+      - crop_bounds
+      - budget
+      - corn_rotation
+      - soybean_contract
+      - planting_labour
+      - harvest_equipment
+    soybean_rotation_cap_grid: [0.65, 0.60, 0.55, 0.50, 0.45, 0.40, 0.35, 0.30, 0.25, 0.20, 0.15, 0.10]
+    interpretation: controlled_rotation_capacity_path_not_observed_private_constraint
+
+diversification_failure:
+  benchmark_x0: expected_profit_allocation_under_matched_gaussian_law
+  mean_variance_full_investment: true
+  gamma_grid: [0.0, 0.0065, 0.0070, 0.0075, 0.0080, 0.0085, 0.0090, 0.0095, 0.0100, 0.0120, 0.0200]
+  selected_gamma: 0.0085
+  variance_tolerance: 1.0e-6
+  allocation_materiality_l1: 0.01
+  cvar_tolerance: 1.0e-6
+  interpretation: registered_interior_Gaussian_frontier_point
 
 uncertainty:
   historical_bootstrap_replications: 64
@@ -141,7 +207,11 @@ information_flexibility:
     - state_shock_buffering_recourse
   state_shock_buffering_share_grid: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
   risk_objective: expected_profit_subject_to_loss_CVaR_ceiling
-  regions: [strict_complementarity, zero_interaction, substitution]
+  cross_difference_tolerance: 1.0e-7
+  cross_difference_order: adjacent_increasing_signal_accuracy_and_flexibility
+  theorem_scope: separable_or_nonbinding_risk_submodel
+  numerical_scope: shared_ex_ante_loss_CVaR
+  regions: [positive_cross_difference, zero_or_boundary, negative_cross_difference, zero_information]
 
 robustness:
   sample_windows: [[2016, 2023], [2017, 2023], [2018, 2023]]

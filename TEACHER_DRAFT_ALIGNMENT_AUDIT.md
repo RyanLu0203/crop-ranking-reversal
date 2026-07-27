@@ -33,12 +33,12 @@ Ordinal insufficiency remains only a foundational boundary.
 | Land, bounds, budget, rotation and contracts | Mostly retained | Jointly solved in the principal model |
 | Shared labour/equipment | Missing | Added to solver, KKT, tests and primary design |
 | Expected-profit objective under loss-CVaR ceiling | Retained | Retained as the same theory and experiment model |
-| Conditional reversal theorem/frontier | Weakened to identification warnings and certificates | Exact restricted necessary-and-sufficient frontier |
+| Conditional reversal theorem/frontier | Weakened to identification warnings and certificates | Exact restricted necessary-and-sufficient frontier, with pairwise, complete and exclusion-based strong reversal kept distinct |
 | Lower-tail dependence | Present but not a headline result | Restored through named-family phase diagram |
-| Diversification failure | Diagnostic, not a central verified finding | Formal criterion plus matched-Kendall operational failure |
-| Agricultural information--flexibility | Abstract payoff archetypes | Agricultural signal, acreage recourse and shock buffering |
+| Diversification failure | Diagnostic, not a central verified finding | Declared Gaussian mean--variance benchmark with strict variance reduction and a separate true-law CVaR failure |
+| Agricultural information--flexibility | Abstract payoff archetypes | Restricted theorem plus shared ex-ante CVaR numerical cross-differences for agricultural signal, acreage recourse and shock buffering |
 | Theory--simulation--empirical--implication sequence | Fragmented and missing standalone model/literature/implications | Restored explicitly |
-| Formal first-manuscript identity | Internal corrective language remained | Clean title page and 19-page research manuscript |
+| Formal first-manuscript identity | Internal corrective language remained | Clean title page and 20-page research manuscript |
 
 ## Preserved scientific components
 
@@ -55,9 +55,30 @@ claims were replaced, not silently deleted. The new results are narrower where
 mathematics requires scope conditions, but stronger where an exact conditional
 frontier can be proved.
 
+## Issue #36 scientific-identity check
+
+The repair does not manufacture the supervisor Draft's strongest label.  Under
+the Draft's exclusion rule, strong reversal requires a higher-ranked crop to
+receive zero acreage while a lower-ranked crop receives positive acreage.  The
+registered principal solution is instead a complete top-crop inversion:
+winter wheat is ranked first but receives less acreage than both soybean and
+corn, while still receiving positive acreage.  Across all 165 frontier cells,
+selected, possible and universal strong-reversal counts are all zero.  This
+null result is retained.
+
+The Kansas principal inversion is margin-induced, not risk-induced: the
+official-data mean margin of wheat is lower than those of the lower-ranked
+crops.  A separate registered, mean-preserving downside-shock experiment
+establishes a genuine risk-induced soybean--corn crossing while preserving
+both score and mean order.  A fixed-risk controlled rotation-cap path
+identifies the operational crossing; the corresponding registered full
+constraint sequence yields a null operational crossing and is reported as
+such.
+
 ## Remaining supervisor confirmation
 
-Scientific alignment is complete. Before external submission, the supervisor
+Scientific alignment is suitable for supervisor review, not yet claimed to be
+publication-ready. Before external submission, the supervisor
 should confirm author order, final affiliation wording, whether the structural
 stress-test framing is appropriate for the intended journal, and whether the
 single-period model is sufficient for the first manuscript.

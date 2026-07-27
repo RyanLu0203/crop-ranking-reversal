@@ -1,7 +1,9 @@
 {
-  "analysis_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
-  "issue": 34,
-  "design_sha256": "57e0689e388b533c59adc711c16ddfdb54e7df4f8e5ad9c00dbe7406b118c784",
+  "analysis_id": "CRR-ISSUE36-SCIENTIFIC-CLAIM-REPAIR-2026-07-27",
+  "scientific_baseline_issue": 34,
+  "repair_issue": 36,
+  "baseline_commit": "12fe6b4a3717ef5602b3d31558fd66424287f7d4",
+  "design_sha256": "23b19bacf6c38b6765865357e3b8b8876b947df31ac8a5e3b7576ebc62924173",
   "design_file": "simulation/configs/issue34_full_model_design.yaml",
   "entry_point": "scripts/run_issue34_reconstruction.py",
   "source_panel": "empirical/goal16/outputs/extended_state_crop_panel.csv",
@@ -20,5 +22,8 @@
   "main_manuscript": "main_manuscript.tex",
   "supplement": "supplementary_information.tex",
   "figure_script": "scripts/make_issue34_figures.py",
-  "number_script": "scripts/render_issue34_manuscript_numbers.py"
+  "number_script": "scripts/render_issue34_manuscript_numbers.py",
+  "visual_qa_script": "scripts/build_issue36_visual_qa.py",
+  "claim_repair_audit": "SCIENTIFIC_CLAIM_REPAIR_AUDIT.md",
+  "mechanism_audit": "MECHANISM_ISOLATION_AUDIT.md"
 }
