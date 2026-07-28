@@ -1,0 +1,68 @@
+design_id: CRR-GOAL16-EMPIRICAL-2026-07-22
+design_version: 1.0.0
+frozen_document: empirical/goal16/EMPIRICAL_REDESIGN.md
+status: FROZEN_BEFORE_EXTENDED_RESULTS
+frozen_at: 2026-07-22T13:00:00+08:00
+
+crops: [corn, soybeans, winter_wheat]
+ranking_definitions:
+  - relative_yield
+  - standardized_revenue
+  - operating_margin
+  - total_cost_margin
+
+state_sources:
+  - report_year: 2018
+    included_years: [2016, 2017, 2018]
+    path: empirical/goal16/raw/usda_nass/crop_production_2018_summary.pdf
+    url: https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan19.pdf
+    retrieved_at: 2026-07-22T14:08:00+08:00
+  - report_year: 2021
+    included_years: [2019, 2020, 2021]
+    path: empirical/goal16/raw/usda_nass/crop_production_2021_summary.pdf
+    url: https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan22.pdf
+    retrieved_at: 2026-07-22T14:08:00+08:00
+  - report_year: 2024
+    included_years: [2022, 2023, 2024]
+    path: empirical/goal16/raw/usda_nass/crop_production_2024_summary.pdf
+    url: https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan25.pdf
+    retrieved_at: 2026-07-22T14:08:00+08:00
+
+audit_only_sources:
+  - report_year: 2025
+    available_years: [2023, 2024, 2025]
+    path: empirical/goal16/raw/usda_nass/crop_production_2025_summary.pdf
+    url: https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan26.pdf
+    retrieved_at: 2026-07-22T14:08:00+08:00
+    exclusion: 2025 lacks the same complete 12-month CPI-U construction used by the frozen real-dollar pipeline; overlapping years remain on the pre-specified non-overlapping report blocks.
+
+national_economics: data/processed/canonical_crop_year_panel.csv
+county:
+  status: AUDITED_NOT_RECONSTRUCTED
+  api_key_environment_present: false
+  targeted_credential_free_query_available: false
+  bulk_snapshot_url: https://www.nass.usda.gov/datasets/
+  bulk_snapshot_size_gb_at_audit: 1.05
+  reason: The official all-crops bulk file is authoritative and public but not a bounded crop-specific retrieval; no Quick Stats API key is available in the runtime, so a reproducible targeted county extraction was not executed.
+
+uncertainty:
+  method: percentile state-cluster bootstrap
+  replications: 5000
+  confidence_level: 0.95
+  seed: 2026072216
+
+temporal_model:
+  outcome: acreage_share_change
+  primary_predictors: [prior_score_top, prior_acreage_share]
+  fixed_effects: [crop, decision_year, state]
+  sensitivity_predictor: prior_score_rank
+  timing: STRICTLY_LAGGED_NO_LOOKAHEAD
+  interpretation: DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+
+reproducibility:
+  command: python scripts/run_goal16_empirical.py
+  output_dir: empirical/goal16/outputs
+  isolated_replays: 2
+  byte_identical_required: true
+  output_checksum_required: true
+  no_manual_output_edits: true

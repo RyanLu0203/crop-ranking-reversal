@@ -1,0 +1,6 @@
+diagnostic,observed,criterion,criterion_type
+reverse-order replay,12,12,count
+solver sensitivity,9,9,count
+KKT pressure residual,1.81898940355e-11,1e-07,maximum
+Shapley efficiency residual,1.42108547152e-14,1e-08,maximum
+registered infeasible,206,206,count

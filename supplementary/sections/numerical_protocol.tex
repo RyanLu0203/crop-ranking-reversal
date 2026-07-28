@@ -1,16 +1,54 @@
-\section{Numerical protocol and adverse convergence result}
+\section{Confirmatory simulation protocol and complete evidence ledger}
 
-The experiment comprises \SimulationCells{} frozen cells and \SimulationReplications{} primary replications. Every scenario matrix is generated from an explicit seed; each optimization records the scenario hash, solver status, objective, allocation, loss-CVaR, optimal-face gaps, named slacks and dual diagnostics. Independent replay reconstructs all tasks in reverse order. Solver sensitivity compares three HiGHS methods at selected anchors.
+\subsection{Design and precision rule}
+The frozen E1--E6 design specifies factors, estimands, multiplicity, sequential checks, precision targets and maximum replication counts. An experiment meets the criterion only when every registered primary interval passes. E2 and E6 stop with precision achieved at $n=\EtwoReplications{}$ and $n=\EsixReplications{}$, respectively. E1, E3, E4 and E5 reach $n=64$ without meeting the complete experiment-level criterion. Their signs and isolated passing contrasts are not promoted.
 
-The optimal-face audit first fixes the primary objective within a declared tolerance and then minimizes and maximizes each relevant acreage gap. This separates possible, universal and selected reversal even when the solver returns a single vertex. Direct loss-CVaR is computed from the optimized loss vector and compared with the auxiliary expression. Tail weights, stationarity, complementarity and feasibility are checked independently.
+\subsection{E2 operational-intervention detail}
+E2 holds the stochastic margin law fixed and changes only the feasible set. The baseline is compared with a Soy contract, a rotation rule, their combination, a budget limit, budget--contract and budget--rotation combinations, the three-way combination, and a Corn-area cap. For every intervention we solve the registered deterministic selector and two auxiliary programmes that minimize and maximize each crop share over the full optimal face. This separates a solver-selected optimum from conclusions that are universal across all optima.
 
-Figure~\ref{fig:s1} shows the mixed-factor landscape. Filled markers indicate a universal reversal in at least one of five replications; they are not a fitted decision boundary. Constraint frequencies demonstrate that land and contract restrictions often bind, while the downside-risk constraint is both binding and slack across the design. The pseudo-diversification flag remains descriptive.
+The selected Corn share falls from \EtwoBaseCorn{} at baseline to \EtwoBudgetCorn{} under a budget constraint and \EtwoForcedCorn{} under the Corn cap. The registered universal-reversal contrasts are reported in the native probability scale and are accompanied by face-width, active-set and KKT diagnostics. Budget interventions act through the capital shadow price, rotation through intertemporal land coupling, contracts through minimum-demand geometry and the Corn cap through an explicit upper-bound multiplier. The tail-risk multiplier remains zero in the registered E2 environment, so the intervention result is a feasibility mechanism rather than evidence for downside-risk aversion. All \EtwoIntervals{} registered intervals satisfy the experiment-level precision rule. Supplementary Fig.~\ref{fig:s7} expands these results into factorial response surfaces and estimand-level intervals.
+
+\subsection{E6 finite-state information environments}
+E6 makes decision timing explicit. Nature first draws a finite state; the planner observes the signal permitted by the registered information environment and then chooses an action from its corresponding measurable policy class. The restricted and enriched environments therefore have nested action sets, while the state probabilities, crop margins, constraints and risk functional remain fixed. Exact state enumeration avoids Monte Carlo ambiguity in the value comparison.
+
+The three registered archetypes distinguish information that changes no action, information that substitutes for a robust option, and information that unlocks specialization. Their registered interaction estimates are \EsixNull{}, \EsixSubstitution{} (95\% interval \EsixSubstitutionLow{} to \EsixSubstitutionHigh{}) and \EsixPositive{} (\EsixPositiveLow{} to \EsixPositiveHigh{}), respectively. The result is not that more data always change acreage: value is weakly non-negative under nested action sets, but acreage changes only when the signal crosses a decision boundary. All three registered intervals satisfy the complete precision criterion.
+
+\subsection{E1 cardinal-margin experiment}
+E1 tests margin-driven reversal around registered gap contrasts. Its allocation contrasts are stable in sign, but the experiment-level criterion fails at the ceiling. Figure~\ref{fig:s1} preserves the interval geometry and the decision ledger.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{../figures/supplementary/FigureS1.pdf}
-\caption{Mixed-factor simulation landscape and binding diagnostics. All patterns are nonheadline because the convergence audit fails.}
+\includegraphics[width=\textwidth]{../figures/stage_ii/supplementary/FigureS1.pdf}
+\caption{\textbf{E1 cardinal-margin evidence.} Registered allocation contrasts and the complete experiment-level decision are shown. E1 does not meet the pre-specified precision criterion at the replication ceiling.}
 \label{fig:s1}
 \end{figure}
 
-The convergence grid uses five scenario counts and ten replications at each count. A row must meet both the frozen numeric-pass fraction and Wilson interval-width requirements. \ConvergencePassRows{} of \ConvergenceRows{} rows pass. Thus, successful solver checks do not authorize reversal-probability or unique-threshold claims. The complete gate table is available as \texttt{tables/supplementary/TableS1\_simulation\_gates.csv}.
+\subsection{E3 downside-risk experiment}
+E3 varies loss-CVaR levels and binding regimes. Some individual allocation intervals are narrow, but the registered family contains intervals that do not meet their targets. All designed infeasible frontier cells remain recorded.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/stage_ii/supplementary/FigureS2.pdf}
+\caption{\textbf{E3 risk-frontier evidence.} Allocation contrasts are shown by CVaR level and binding regime beside the complete precision inventory. E3 remains inconclusive at the experiment level.}
+\label{fig:s2}
+\end{figure}
+
+\subsection{E4 and E5 dependence experiments}
+E4 tests dependence intensity within named families; E5 evaluates policies under paired true and assumed laws. Neither experiment meets its complete precision criterion. The cross-law pattern is retained as a diagnostic and cannot identify a universal dependence threshold or misspecification penalty.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/stage_ii/supplementary/FigureS3.pdf}
+\caption{\textbf{E4/E5 dependence evidence.} The full precision inventory and E5 cross-law risk-violation diagnostic are shown. Both experiments remain inconclusive.}
+\label{fig:s3}
+\end{figure}
+
+\subsection{Numerical integrity and attribution order}
+Reverse-order replay passes \ReplayPasses{}/\ReplayTotal{} checks and solver-method sensitivity passes \SolverPasses{}/\SolverTotal{}. The maximum KKT stationarity residual is $\KKTResidual$ and the maximum Shapley efficiency residual is $\ShapleyResidual$. The complete record includes all \InfeasibleOutcomes{} infeasible rows. Order-path ranges expose the dependence of sequential attribution on block order; the all-subset Shapley value is an accounting average rather than a causal decomposition.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{../figures/stage_ii/supplementary/FigureS4.pdf}
+\caption{\textbf{Numerical integrity and attribution-order sensitivity.} Replay, solver, KKT, Shapley and infeasibility checks are reported with all registered block-order ranges.}
+\label{fig:s4}
+\end{figure}

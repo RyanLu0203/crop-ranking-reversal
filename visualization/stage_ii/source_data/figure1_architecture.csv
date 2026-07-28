@@ -1,0 +1,7 @@
+step,stage,input_status,mathematical_role,boundary
+1,Suitability ranking,observed or predicted,ordinal,does not identify acreage
+2,Cardinal payoffs,calibrated,cardinal,profit scale and gaps
+3,Joint uncertainty,calibrated/design-controlled,stochastic,marginals and dependence
+4,Feasible + risk set,partly latent,constraints,"land, budget, rotation, contract, CVaR"
+5,Optimal face,model output,set-valued,possible and universal reversal
+6,Selected allocation,solver/decision,selection,observed acreage is not identified as this object

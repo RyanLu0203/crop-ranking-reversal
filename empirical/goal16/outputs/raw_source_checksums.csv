@@ -1,0 +1,5 @@
+path,sha256,official_url,retrieved_at,role
+empirical/goal16/raw/usda_nass/crop_production_2018_summary.pdf,659b038284fe830330b7329eb0eca9ae4f6b06ff12b77a5b874adfc9818db0fd,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan19.pdf,2026-07-22 14:08:00+08:00,INCLUDED
+empirical/goal16/raw/usda_nass/crop_production_2021_summary.pdf,e54c9e6270e4c527e5496c4925111a3ea898d33009b99cf7c69cc978d2bbf080,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan22.pdf,2026-07-22 14:08:00+08:00,INCLUDED
+empirical/goal16/raw/usda_nass/crop_production_2024_summary.pdf,0e3add3bc4c95c8ea5061d8e1e75d166e5d9a4a73dcf9204784be6697e94c0c9,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan25.pdf,2026-07-22 14:08:00+08:00,INCLUDED
+empirical/goal16/raw/usda_nass/crop_production_2025_summary.pdf,16a04c3eedbf789140bb942cdc7f6da6cc821063d25fda03ac9e2fb7f2612155,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan26.pdf,2026-07-22 14:08:00+08:00,AUDIT_ONLY

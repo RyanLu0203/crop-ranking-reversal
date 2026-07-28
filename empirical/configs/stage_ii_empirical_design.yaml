@@ -1,0 +1,96 @@
+design_id: CRR-STAGEII-EMPIRICAL-2026-07-22
+design_version: 1.0.0
+frozen_at: 2026-07-22T00:00:00+08:00
+status: FROZEN_BEFORE_STAGEII_ESTIMATION
+owner_issue: 25
+authorization: https://github.com/RyanLu0203/crop-ranking-reversal/pull/28#issuecomment-5040939632
+
+admitted_inputs:
+  state_crop_panel: data/processed/empirical_state_crop_analysis_panel.csv
+  national_panel: data/processed/canonical_crop_year_panel.csv
+  nass_snapshot: data/raw/usda_nass/crop_production_2024_summary.txt
+  years: [2022, 2023, 2024]
+  crops: [corn, soybeans, winter_wheat]
+  geography: state
+  county_data_admitted: false
+  new_downloads_authorized: false
+
+evidence_layers:
+  directly_observed: [state, year, crop, planted_acres_1000, yield_bushels_per_acre]
+  accounting_constructed:
+    - relative_yield
+    - standardized_revenue_real_2024_usd_per_acre
+    - standardized_operating_margin_real_2024_usd_per_acre
+    - standardized_total_cost_margin_real_2024_usd_per_acre
+  model_generated:
+    - E2 operational allocations and local KKT pressures
+    - E6 information-flexibility values
+  unidentified:
+    - private budgets
+    - private rotation constraints
+    - private contracts
+    - farmer objectives and beliefs
+    - farmer CVaR limits and risk preferences
+    - farmer copula law
+    - causal mechanisms
+    - welfare
+
+primary_estimands:
+  inversion_intensity:
+    unit: state-year
+    definition: discordant crop pairs divided by three
+  top_rank_reversal:
+    unit: state-year
+    definition: top score set disjoint from top acreage set
+  lagged_top_share_transition:
+    unit: state-year transition
+    definition: mean acreage-share change for prior-score-top crops minus other crops
+  rolling_origin_reversal:
+    unit: state-decision-year
+    definition: prior-only mean score ranking versus decision-year acreage ranking
+  rank_transition:
+    unit: state-year transition
+    definition: changes in score-top and acreage-top identities
+  inertia_association:
+    unit: crop-state-year transition
+    definition: OLS acreage-share change on lagged within-state score z-score, lagged share, their interaction and year indicator
+
+uncertainty:
+  method: deterministic percentile cluster bootstrap by state
+  confidence_level: 0.95
+  replications: 5000
+  seed: 2026072251
+  rationale: preserves repeated observations and three-crop dependence within state
+  multiplicity: descriptive families reported completely; no significance selection
+
+robustness:
+  ranking_definitions: [relative_yield, standardized_revenue, operating_margin, total_cost_margin]
+  timing: [concurrent, lagged_rolling_origin]
+  state_cluster_bootstrap: true
+  leave_one_state_out: true
+  leave_one_year_out: true
+  definition_agreement: true
+  national_aggregation: true
+  ties_retained: true
+  entry_exit: not_estimable_complete_three_crop_design
+  data_revision: not_identified_single_snapshot
+
+promotion_rules:
+  allowed:
+    - DESCRIPTIVE_IDENTIFIED
+    - ACCOUNTING_IDENTIFIED
+    - MODEL_CONSISTENT_ASSOCIATION_WITH_EXPLICIT_ALTERNATIVES
+  prohibited:
+    - CAUSAL_IDENTIFIED
+    - OBSERVED_ACREAGE_IS_OPTIMUM
+    - PRIVATE_CONSTRAINT_IDENTIFIED
+    - CVAR_PREFERENCE_IDENTIFIED
+    - COPULA_CAUSALITY_IDENTIFIED
+    - WELFARE_EFFECT_IDENTIFIED
+
+reproducibility:
+  command: python scripts/run_stage_ii_empirical.py
+  isolated_replays: 2
+  byte_identical_required: true
+  output_checksum_required: true
+  no_manual_output_edits: true

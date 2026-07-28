@@ -1,0 +1,12 @@
+claim_id,claim,evidence_class,primary_artifact,figure_or_section,status,boundary
+G16-FINAL-01,Ordinal rankings do not identify cardinal acreage,THEOREM,theory/stage_ii/canonical_theory_extension.md,Figures 1-2,PROVED,Requires objective feasible set risk convention and selection rule
+G16-FINAL-02,Operational feasibility can force universal reversal,THEOREM,theory/stage_ii/canonical_theory_extension.md,Figure 2,PROVED,Sufficient not necessary condition
+G16-FINAL-03,E2 operational interventions induce reversal,PROMOTED_CONFIRMATORY_SIMULATION,visualization/stage_ii/source_data/figure4_e2_cells.csv,Figure 4,VERIFIED,Simulation-domain mechanism not field prevalence
+G16-FINAL-04,E2 meets all registered interval criteria,PROMOTED_CONFIRMATORY_SIMULATION,visualization/stage_ii/source_data/figure4_e2_contrasts.csv,Figure 4,VERIFIED,24 of 24 family-wise intervals
+G16-FINAL-05,E6 interaction is positive exact-null or substitutive,PROMOTED_CONFIRMATORY_SIMULATION,visualization/stage_ii/source_data/figure5_information_interaction.csv,Figure 5,VERIFIED,Depends on constructed action environment
+G16-FINAL-06,E1 E3 E4 and E5 do not meet experiment precision criteria,INCONCLUSIVE_SIMULATION,simulation/stage_ii/outputs/sequential_stopping.csv,Figures S1-S3,VERIFIED_NONHEADLINE,No isolated contrast promotion
+G16-FINAL-07,Numerical replay solver KKT and attribution checks pass,NUMERICAL_REPRODUCIBILITY,simulation/stage_ii/outputs/summary.json,Figure S4,VERIFIED,Integrity does not override precision criteria
+G16-FINAL-08,Operating-margin concurrent inversion intensity is 0.411,DESCRIPTIVE_EMPIRICAL,empirical/goal16/outputs/rank_metric_summary.csv,Figure 6,VERIFIED,Aggregate score-acreage relation only
+G16-FINAL-09,All four primary lagged intervals include zero,DESCRIPTIVE_TRANSITION_BOUNDARY,empirical/goal16/outputs/temporal_model.csv,Figure 6,VERIFIED_QUALIFIED,Not evidence of no effect
+G16-FINAL-10,National patterns depend on definition,DESCRIPTIVE_AGGREGATION_BOUNDARY,empirical/goal16/outputs/aggregation_boundary.csv,Figure 6,VERIFIED_QUALIFIED,Relative yield nationally tied
+G16-FINAL-11,Annual influence and sample checks preserve boundaries,DESCRIPTIVE_ROBUSTNESS,empirical/goal16/outputs/year_summary.csv,Figure S5,VERIFIED_QUALIFIED,No private mechanism inference

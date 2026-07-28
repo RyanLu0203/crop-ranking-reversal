@@ -1,41 +1,32 @@
-# Visual page review
+# GOAL-17 compiled-page visual review
 
-## Review method
+Both final PDFs were rendered at 144 dpi. All 27 pages were inspected through
+seven contact sheets and are nonblank. The eight GOAL-17 figures were separately
+reviewed at their 183-mm final size in colour, grayscale, deuteranopia and
+protanopia; the five retained confirmatory supplementary figures preserve their
+prior full- and 89-mm proofs.
 
-Both final PDFs were rendered at 144 dpi with Poppler. Every one of the 17 pages
-was inspected in full-page contact sheets after the final deterministic build.
-Automated page metrics confirm non-blank content and consistent ink margins.
+## Main manuscript: 16 pages
 
-## Main manuscript (12 pages)
+- Title, abstract and expanded Introduction have a consistent hierarchy and no
+  stranded heading.
+- Figures 1--6 occur beside the corresponding results-led sections.
+- Equations, citations, captions and bibliography entries are unclipped.
+- No figure title, legend, label or annotation overlaps text or plotted marks.
+- Discussion, the separate Conclusion, Methods and declarations close before
+  the references without a blank page.
 
-| Page | Content | Review |
-|---:|---|---|
-| 1 | title, abstract, Introduction | pass: readable hierarchy and no collision |
-| 2 | Introduction, Related literature | pass: balanced text and citations |
-| 3 | Figure 1, literature | pass: full-width vector figure and caption readable |
-| 4 | model and equations | pass: equations centred, numbered and unclipped |
-| 5 | structural results, numerical design | pass: no orphan or overflow |
-| 6 | Figure S2 and data design | pass: nonheadline label and caption legible |
-| 7 | empirical design/results | pass: continuous reading flow |
-| 8 | Figure 2 and robustness | pass: heatmap, denominators and boundaries visible |
-| 9 | Discussion and Conclusion | pass: no stranded concluding line |
-| 10 | Methods and declarations | pass: paths wrap and headings are consistent |
-| 11 | declarations and references | pass: no overlap or clipped URLs |
-| 12 | references | pass: complete final entries and page number |
+## Supplementary Information: 11 pages
 
-## Supplementary Information (5 pages)
+- The theorem/proof hierarchy and mathematical symbols render correctly.
+- Figures S1--S7 cover E1, E3, E4/E5, numerical integrity, empirical robustness,
+  expanded empirical diagnostics and operational response surfaces.
+- No contact-sheet panel shows clipping, overlapping text, missing glyphs or an
+  unreadable final-size figure element.
 
-| Page | Content | Review |
-|---:|---|---|
-| 1 | title and canonical proofs | pass: theorem/proof distinction readable |
-| 2 | proof completion and protocol | pass: symbols and square endings render |
-| 3 | Figure S1 and empirical methods | pass: top-aligned figure, caption legible |
-| 4 | Figure S3 and reproducibility | pass: panels and boundary text readable |
-| 5 | environment and references | pass: stable final page, no abnormal artifact |
+## Decision
 
-## Final visual decision
-
-No clipping, overlap, missing glyph, black box, abnormal blank page, missing page
-number or unreadable figure label was observed. The typography is consistent and
-appropriate for a first supervisor-review draft. Journal-template conversion
-and copy editing remain pre-submission tasks.
+PASS. No clipping, text--image overlap, missing glyph, black box, abnormal blank
+page, missing page number or unresolved reference was observed. The exact
+six-colour card is consistent throughout; SVG and PDF colour validation permits
+only registered colours, white and transparent derivatives.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a checksum manifest for the supervisor-review release package."""
+"""Create a checksum manifest for the Stage II final scientific package."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ def sha(path:Path)->str: return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main()->None:
     paths=[]
-    for pattern in ["output/pdf/*.pdf","output/logs/*.txt","output/qa/*.png","output/qa/*.json","output/*.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md"]:
+    for pattern in ["output/pdf/*.pdf","output/logs/*.txt","output/qa/*.png","output/qa/*.json","output/*.md","audits/first_compile_qa.md","audits/final_claim_evidence_audit.md","audits/visual_page_review.md","audits/stage_ii_final_claim_evidence.csv","audits/goal16_*.md","audits/goal16_visual_comparison/*","audits/goal17_*.md","audits/goal17_*.csv","visualization/goal17/qa/*.json","visualization/goal17/qa/*.csv"]:
         paths.extend(ROOT.glob(pattern))
     paths=sorted(set(p for p in paths if p.is_file()))
     role=lambda p: "review_pdf" if p.suffix==".pdf" else "compile_log" if "logs" in p.parts else "page_qa" if "qa" in p.parts else "review_documentation"

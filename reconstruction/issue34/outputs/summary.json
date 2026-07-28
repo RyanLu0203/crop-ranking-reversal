@@ -1,0 +1,167 @@
+{
+  "bootstrap_selected_complete_rank_reversal_frequency": 0.78125,
+  "bootstrap_selected_pairwise_reversal_frequency": 0.96875,
+  "bootstrap_selected_strong_reversal_frequency": 0.0,
+  "calibration": {
+    "crop_rows": 24,
+    "geography": "Kansas",
+    "means": {
+      "Corn": 199.77344141,
+      "Soybean": 228.991153003125,
+      "Winter Wheat": 138.3417433825
+    },
+    "raw_effective_years": 8,
+    "score_order": [
+      "Winter Wheat",
+      "Soybean",
+      "Corn"
+    ],
+    "scores": {
+      "Corn": 0.748444337923125,
+      "Soybean": 0.755591099423625,
+      "Winter Wheat": 0.8936577554361249
+    },
+    "standard_deviations": {
+      "Corn": 94.85874818772504,
+      "Soybean": 103.97244465751336,
+      "Winter Wheat": 49.5503611189248
+    },
+    "years": [
+      2016,
+      2023
+    ]
+  },
+  "design_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
+  "design_sha256": "8e92d6788a1ac6f0ba8700e89b0a383aec2337c060965b0ad4daf2cb96b0aace",
+  "diversification": {
+    "conditions_numerically_dependent": true,
+    "selected_gamma": 0.0082,
+    "selected_gamma_is_interior": true,
+    "selected_strong_failure": true,
+    "selected_weak_failure": true,
+    "strong_failure_gamma_intervals": "0.0068-0.0088",
+    "weak_failure_gamma_intervals": "0.0068-0.0088",
+    "x_t_ceiling_slack": 6.394884621840902e-14
+  },
+  "diversification_failure_identified": true,
+  "empirical_evidence_scope": "AGGREGATE_DESCRIPTIVE_NOT_CAUSAL",
+  "first_operational_crossing_cap": 0.35,
+  "frontier": {
+    "cells": 165,
+    "infeasible_cells": 0,
+    "multiple_optimum_cells": 2,
+    "possible_complete_rank_reversal_cells": 96,
+    "possible_pairwise_reversal_cells": 143,
+    "possible_strong_reversal_cells": 0,
+    "selected_complete_rank_reversal_cells": 96,
+    "selected_pairwise_reversal_cells": 143,
+    "selected_strong_reversal_cells": 0,
+    "universal_complete_rank_reversal_cells": 96,
+    "universal_pairwise_reversal_cells": 143,
+    "universal_strong_reversal_cells": 0
+  },
+  "information_cross_difference_regions": {
+    "negative_cross_difference": 17,
+    "positive_cross_difference": 32,
+    "zero_information": 18,
+    "zero_or_boundary": 5
+  },
+  "primary_model": {
+    "active_set": "land;cvar",
+    "allocation": {
+      "Corn": 0.33026489324984265,
+      "Soybean": 0.42190376870361523,
+      "Winter Wheat": 0.2478313380465421
+    },
+    "alpha": 0.95,
+    "cvar_limit": -46.98501314938102,
+    "cvar_loss": -46.98501314938104,
+    "expected_profit": 198.48384568132502,
+    "expected_profit_endpoint_cvar": -34.51685845879014,
+    "idle_land": 0.0,
+    "kkt_complementarity_residual": 5.0591738837854656e-14,
+    "kkt_primal_residual": 1.4210854715202004e-14,
+    "kkt_stationarity_residual": 2.842170943040401e-14,
+    "minimum_cvar": -59.453167839971904,
+    "reversal": {
+      "acreage_order_tolerance": 0.0001,
+      "classification": "selected_complete_rank_reversal",
+      "near_zero_tolerance": 0.0001,
+      "pairwise_reversal_count": 2,
+      "reversed_pairs": "Winter Wheat<Soybean;Winter Wheat<Corn",
+      "selected_complete_rank_reversal": true,
+      "selected_pairwise_reversal": true,
+      "selected_strong_reversal": false,
+      "strong_reversal_pairs": "",
+      "top_ranked_allocation": 0.2478313380465421,
+      "top_ranked_crop": "Winter Wheat"
+    },
+    "risk_tolerance": 0.5,
+    "solver_status": "optimal"
+  },
+  "primary_scenario_metadata": {
+    "copula_param": {
+      "corr": [
+        [
+          1.0,
+          0.3826834323650898,
+          0.3826834323650898
+        ],
+        [
+          0.3826834323650898,
+          1.0,
+          0.3826834323650898
+        ],
+        [
+          0.3826834323650898,
+          0.3826834323650898,
+          1.0
+        ]
+      ],
+      "df": 4.0
+    },
+    "copula_type": "Student-t",
+    "crop_names": [
+      "Corn",
+      "Soybean",
+      "Winter Wheat"
+    ],
+    "lower_tail_dependence": 0.1953801683718518,
+    "marginal_assumptions": {
+      "df": 5,
+      "type": "student_t"
+    },
+    "n_scenarios": 512,
+    "ordering_scope": "WITHIN_NAMED_FAMILY_ONLY; scalar tail dependence is not a cross-family order",
+    "sample_means": [
+      201.5711127479139,
+      231.38797579787652,
+      138.3542730948698
+    ],
+    "sample_stds": [
+      92.21151157579902,
+      109.71116801843665,
+      47.464380906928994
+    ],
+    "seed": 202607270034,
+    "target_means": [
+      199.77344141,
+      228.991153003125,
+      138.3417433825
+    ],
+    "target_stds": [
+      94.85874818772504,
+      103.97244465751336,
+      49.5503611189248
+    ]
+  },
+  "quick_mode": false,
+  "risk_induced_crossing_identified": true,
+  "risk_shock_sensitivity": {
+    "cells": 49,
+    "crossing_cells": 24,
+    "infeasible_cells": 1,
+    "no_crossing_cells": 24
+  },
+  "strong_diversification_failure_identified": true
+}

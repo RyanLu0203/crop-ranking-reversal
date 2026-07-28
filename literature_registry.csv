@@ -1,0 +1,37 @@
+reference_id,citation_key,year,domain,doi,verification_source,verified_2026_07_27,role,claim_boundary
+L01,rockafellar2000optimization,2000,CVaR,10.21314/JOR.2000.038,author manuscript,YES,finite-scenario CVaR formulation,no crop-specific evidence
+L02,rockafellar2002conditional,2002,CVaR,10.1016/S0378-4266(02)00271-6,author manuscript,YES,general loss distributions,no crop-specific evidence
+L03,demarta2005tcopula,2005,copula,10.1111/j.1751-5823.2005.tb00254.x,author manuscript,YES,Student-t tail dependence,no global CVaR monotonicity
+L04,ansari2024dependence,2024,copula,10.1515/demo-2024-0002,publisher full text,YES,family-specific dependence order,no cross-family scalar ordering
+L05,filippi2017mixed,2017,crop planning,10.1016/j.cor.2016.12.004,publisher page/full text,YES,crop selection with CVaR,no ranking-reversal theorem
+L06,boyabatli2019crop,2019,crop planning,10.1287/mnsc.2018.3044,institutional manuscript,YES,rotation and dynamic allocation,no CVaR dependence mechanism
+L07,benini2023crop,2023,crop planning,10.1016/j.cor.2023.106316,publisher full text,YES,rotation constraints,no stochastic tail mechanism
+L08,randall2022robust,2022,crop planning,10.1016/j.orp.2021.100219,publisher full text,YES,robust climate planning,no ordinal reversal
+L09,randall2024systematic,2024,crop planning review,10.1007/s11269-024-03758-3,publisher full text,YES,field map,no novelty proof
+L10,nguyenhuy2018copula,2018,agricultural CVaR,10.1016/j.wace.2018.07.002,Elsevier/DOAJ,YES,copula-CVaR diversification,no operational ranking mechanism
+L11,larsen2015geographical,2015,agricultural CVaR,10.1108/AFR-07-2014-0020,Emerald,YES,copula acreage portfolio,no agronomic score
+L12,aitsahlia2011enso,2011,climate and CVaR,10.1007/s10479-009-0551-2,Springer/author PDF,YES,ENSO-conditioned crop planning,no flexibility interaction theorem
+L13,schmitt2024drought,2024,crop diversification,10.1111/agec.12851,Wiley full text,YES,simultaneous losses and crop-pair heterogeneity,no acreage optimization
+L14,du2018land,2018,yield tail dependence,10.1093/ajae/aax082,Oxford Academic,YES,land quality and joint yield tails,no allocation prescription
+L15,pflug2017breadbaskets,2017,systemic crop risk,10.1111/risa.12761,institutional record,YES,cross-region dependence,no farm allocation
+L16,li2015contract,2015,crop operations,10.1016/j.compag.2015.10.002,Elsevier,YES,contract and rotation constraints,no stochastic CVaR
+L17,pahmeyer2021fruchtfolge,2021,crop operations,10.1016/j.compag.2020.105948,Elsevier,YES,spatial crop-choice optimization,no joint tail model
+L18,chen2023specialty,2023,crop operations,10.1111/poms.13842,Wiley,YES,yield learning and forward contract,no general information-flexibility sign
+L19,gupta2023farming,2023,operations review,10.1111/poms.13967,institutional record,YES,farming OM research agenda,no mechanism evidence
+L20,meza2008economic,2008,climate information,10.1175/2007JAMC1540.1,AMS full text,YES,forecast-value evidence review,no universal strict value
+L21,anvo2021framework,2021,climate information,10.1016/j.cliser.2021.100234,Elsevier/DOAJ,YES,bioeconomic forecast valuation,no substitution theorem
+L22,dantzig1955linear,1955,stochastic programming,10.1287/mnsc.1.3-4.197,Stanford reprint,YES,decision timing,no crop calibration
+L23,bertsimas2020predictive,2020,prescriptive analytics,10.1287/mnsc.2018.3253,author manuscript,YES,conditional stochastic optimization,no crop mechanism
+L24,elmachtoub2022smart,2022,predict-then-optimize,10.1287/mnsc.2020.3922,author manuscript,YES,decision-aware loss,no distributional validation
+L25,wilder2019melding,2019,decision-focused learning,10.1609/aaai.v33i01.33011658,AAAI full text,YES,end-to-end optimization,no agricultural parameters
+L26,mandi2023decision,2023,decision-focused review,10.48550/arXiv.2307.13565,arXiv,YES,method taxonomy,preprint
+L27,liakos2018machine,2018,agricultural ML,10.3390/s18082674,publisher full text,YES,predictive agriculture,no acreage optimality
+L28,vanklompenburg2020crop,2020,yield prediction,10.1016/j.compag.2020.105709,publisher full text,YES,yield prediction review,no prescription
+L29,keisler2004value,2004,value of information,10.1287/deca.1040.0023,institutional manuscript,YES,portfolio information value,no crop-specific effect
+L30,merkhofer1975value,1975,value of information,10.21236/ADA016836,DTIC report,YES,information conditional on flexibility,no universal complementarity
+L31,vanmieghem1998investment,1998,operational flexibility,10.1287/mnsc.44.8.1071,author manuscript,YES,flexible action sets,no agricultural prevalence
+L32,usdanass2019crop,2019,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan19.pdf,YES,official 2018 crop production summary,no farm-level expectations or preferences
+L33,usdanass2022crop,2022,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan22.pdf,YES,official 2021 crop production summary,no farm-level expectations or preferences
+L34,usdanass2025crop,2025,official agricultural data,,https://www.nass.usda.gov/Publications/Todays_Reports/reports/cropan25.pdf,YES,official 2024 crop production summary,no farm-level expectations or preferences
+L35,usdaers2026costs,2026,official agricultural cost data,,https://www.ers.usda.gov/data-products/commodity-costs-and-returns/,YES,official commodity costs and returns,no farm-specific costs
+L36,bls2026cpi,2026,official inflation data,,https://www.bls.gov/cpi/data.htm,YES,official CPI-U deflator,no agricultural mechanism evidence

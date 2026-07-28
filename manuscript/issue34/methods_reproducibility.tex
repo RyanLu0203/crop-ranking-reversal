@@ -1,0 +1,121 @@
+\section{Methods}
+
+\subsection{Data sources and transformations}
+
+State acreage and yield are obtained from USDA NASS annual reports
+\citep{usdanass2019crop,usdanass2022crop,usdanass2025crop}. National crop
+yield and harvest price are from USDA NASS, and operating and total costs are
+from USDA ERS \citep{usdaers2026costs}. Annual CPI-U from the US Bureau of
+Labor Statistics converts monetary values to 2024 dollars
+\citep{bls2026cpi}. Crop-year panels are formed by complete-case joins; no
+missing or suppressed agricultural value is imputed.
+
+The Kansas score uses 2016--2023. For each crop and year, state yield is
+divided by the national yield of the same crop; the score is the eight-year
+mean. Margin is state yield times national harvest price minus national
+operating cost, then expressed in real 2024 dollars. Student-\(t\), Gaussian
+and empirical-quantile marginals are calibrated to the historical means and
+dispersion. The primary score intentionally excludes the 2024 evaluation
+year.
+
+\subsection{Scenario generation and optimization}
+
+Common random numbers are used within each model contrast. Primary
+optimization uses 512 equally weighted scenarios and seed 202607270034.
+Copula correlation is derived from matched Kendall's \(\tau\). The
+Student-\(t\) copula uses four degrees of freedom and Student-\(t\) marginals
+use five. Linear programmes are solved with HiGHS. Every solution is
+re-evaluated from scenario profit, resource use and constraint violation, and
+its primal--dual conditions are checked.
+
+Minimum-CVaR and expected-profit endpoints are solved separately for each
+joint law. Equation~\ref{eq:riskpath} produces eleven risk ceilings. To
+characterize objective-equivalent allocations, expected profit is constrained
+to its optimum within numerical tolerance and each ranked-pair difference is
+minimized and maximized. Complete-rank and exclusion feasibility are checked
+on the same optimal face. The deterministic HiGHS allocation defines the
+selected classification; universal and possible classifications use the face
+bounds. Ordering and zero tolerances are \(10^{-4}\) normalized land share,
+with sensitivity from \(10^{-8}\) to \(10^{-2}\).
+
+\subsection{Diversification comparison}
+
+The benchmark \(x^0\) maximizes expected profit under the matched Gaussian
+model. For each \(\gamma\in\{0,10^{-4},\ldots,0.03\}\), \(x^{MV}(\gamma)\)
+maximizes Gaussian mean minus \(\gamma\) times Gaussian variance, subject to
+the same full-investment and operational constraints. The reported
+mean--variance policy is selected without reference to its tail outcome: it is
+the smallest \(\gamma\) that reduces Gaussian variance by at least 15\%
+relative to \(x^0\). Targets of 10\% and 20\% are sensitivity cases.
+
+The tail-aware policy \(x^T\) maximizes expected profit subject to a common
+Student-\(t\) loss-CVaR ceiling. All three allocations are then evaluated
+under that Student-\(t\) law. Weak failure requires the fixed Gaussian
+variance target, a nonzero allocation difference and higher evaluation
+loss-CVaR for \(x^{MV}\) than for \(x^T\). Strong failure additionally
+requires \(x^{MV}\) to violate the common ceiling. Sensitivity varies target,
+scenario count, seed, dependence strength, copula degrees of freedom,
+confidence level, risk tolerance and marginal family one factor at a time.
+
+\subsection{Mechanism isolation and robustness}
+
+Score-proportional, score-winner and equal-share allocations are projected
+onto the operationally feasible set before outcome comparison.
+Expected-profit, mean--variance, full loss-CVaR and minimum-CVaR endpoints use
+the same constraints. Robustness varies one dimension at a time: confidence
+level, dependence family and parameter, marginal model, historical window,
+scenario count, seed, solver and removal of each constraint group. Null,
+nonmonotone, multiple-optimum and infeasible cases are retained.
+
+The risk-isolation path preserves the Kansas Soybean--Corn score and mean
+orders, then applies a mean-preserving severe soybean downside event.
+Probability ranges from 2\% to 20\% and adverse gross-revenue share from 10\%
+to 60\%; risk tolerance spans 0 to 1. The operational path fixes margin
+scenarios and a nonbinding risk ceiling, adds observed-resource constraint
+groups sequentially and then tightens only the soybean rotation cap. These
+controlled stresses identify mathematical mechanisms rather than estimating
+private farm constraints or shock probabilities.
+
+Historical uncertainty resamples calibration years 64 times. Each replication
+re-estimates scores and margins, regenerates scenarios and resolves the
+frontier. Continuous outputs use historical-resample percentile intervals.
+Binary reversal frequencies use exact Clopper--Pearson binomial intervals.
+Neither interval treats simulated scenarios as independent empirical
+observations.
+
+\subsection{Information and flexibility}
+
+The binary state is constructed from the corn-minus-soybean relative-yield
+advantage around its historical median. Signal accuracy ranges from 0.5 to
+1.0. A feasible constant policy is always available, providing an exact
+signal-ignorability check. The acreage-recourse path changes the share
+adjustable after signal arrival. The buffering path contracts state-dependent
+margins toward their common mean while retaining signal-contingent actions.
+One loss-CVaR ceiling applies to the full ex-ante state--signal loss
+distribution. Numerical information values below \(10^{-7}\) are classified
+as zero. For each adjacent \(q_1<q_2\), \(\phi_1<\phi_2\) rectangle,
+interaction is the solved cross-difference
+\([V(q_2,\phi_2)-V(q_1,\phi_2)]-[V(q_2,\phi_1)-V(q_1,\phi_1)]\).
+
+\subsection{External descriptive analysis}
+
+For the 31-state panel, pairwise inversion intensity counts discordant pairs
+among the three crops. Top-rank disagreement equals one when the highest-score
+crop is not the largest-acreage crop. Confidence intervals use state-cluster
+resampling. The lagged model predicts next-year acreage-share change from the
+previous relative-yield leader and previous acreage share, with crop, state
+and decision-year fixed effects. It uses no contemporaneous score to predict
+the same year's acreage.
+
+\subsection{Data availability}
+
+The public source reports, analysis-ready tables and figure source data needed
+to reproduce the reported results will be deposited in a versioned public
+archive upon publication. No confidential farm-level data are used.
+
+\subsection{Code availability}
+
+Analysis code sufficient to regenerate the numerical results and figures will
+be deposited with the source data upon publication. Additional mathematical
+proofs, phase classifications, data dictionaries and numerical diagnostics
+are provided in Supplementary Information.

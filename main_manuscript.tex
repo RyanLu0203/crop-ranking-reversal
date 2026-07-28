@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.05cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx,array,multirow}
+\usepackage{graphicx,microtype,natbib,xcolor}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks,pdftitle={Crop-ranking reversal under downside risk and operational constraints},pdfauthor={Xinyu Lu and Peimin Chen}]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\CVaR}{\operatorname{CVaR}}
+\newcommand{\VaR}{\operatorname{VaR}}
+\newcommand{\argmax}{\operatorname*{arg\,max}}
+\newcommand{\ind}{\mathbf 1}
+\input{manuscript/issue34/generated/numbers.tex}
+\title{\textbf{Crop-ranking reversal under downside risk and operational constraints}}
+\author{Xinyu Lu\textsuperscript{1} and Peimin Chen\textsuperscript{1}\\[3pt]
+\small\textsuperscript{1}BNU--HKBU United International College, Zhuhai, China}
+\date{}
+\begin{document}
+\maketitle
+\input{manuscript/issue34/abstract.tex}
+\input{manuscript/issue34/introduction.tex}
+\input{manuscript/issue34/literature_review.tex}
+\input{manuscript/issue34/model.tex}
+\input{manuscript/issue34/theory.tex}
+\input{manuscript/issue34/experiments.tex}
+\input{manuscript/issue34/external_evidence.tex}
+\input{manuscript/issue34/implications.tex}
+\input{manuscript/issue34/conclusion.tex}
+\input{manuscript/issue34/methods_reproducibility.tex}
+\section*{Acknowledgements}
+The authors thank the providers of the USDA NASS, USDA ERS and BLS public
+series. No claim in this study should be interpreted as an endorsement by
+those agencies.
+\section*{Author contributions}
+X.L. conducted the data analysis, developed the computational experiments and
+drafted the manuscript. P.C. conceived and supervised the study. Both authors
+reviewed the manuscript.
+\section*{Competing interests}
+The authors declare no competing interests.
+\bibliographystyle{plainnat}
+\begingroup\footnotesize
+\bibliography{references}
+\endgroup
+\end{document}

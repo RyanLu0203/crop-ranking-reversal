@@ -1,0 +1,7 @@
+experiment_id,registered_intervals,intervals_passed,final_replications,experiment_pass
+E1,8,4,64,False
+E2,24,24,16,True
+E3,27,19,64,False
+E4,18,3,64,False
+E5,24,0,64,False
+E6,3,3,16,True

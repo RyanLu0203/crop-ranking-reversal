@@ -1,0 +1,12 @@
+{
+  "command": "uv run --python 3.11 python scripts/run_stage_ii_confirmatory.py",
+  "completed_unix": 1784683806.50553,
+  "design_sha256": "21c5b970e734ed79636df2f3882d4d85460c5efa40b88e59b9b9a3f34a25c0ff",
+  "numpy": "1.26.4",
+  "pandas": "2.0.3",
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "python": "3.11.15",
+  "scipy": "1.10.1",
+  "started_unix": 1784683672.8887439,
+  "wall_seconds": 133.61678624153137
+}

@@ -1,0 +1,13 @@
+claim_id,manuscript_claim,supporting_citations,evidence_role,status
+C01,Finite-scenario loss-CVaR has a linear auxiliary-variable formulation,rockafellar2000optimization;rockafellar2002conditional,theory foundation,VERIFIED
+C02,Named copula families differ in lower-tail dependence even at matched rank dependence,demarta2005tcopula;ansari2024dependence,theory scope,VERIFIED
+C03,Crop planning routinely includes land resource rotation contract and timing constraints,filippi2017mixed;boyabatli2019crop;benini2023crop;li2015contract;pahmeyer2021fruchtfolge,domain context,VERIFIED
+C04,Copula-CVaR has agricultural portfolio precedent,larsen2015geographical;nguyenhuy2018copula;aitsahlia2011enso,closest method context,VERIFIED
+C05,Simultaneous crop losses can vary by crop pair drought severity and land quality,schmitt2024drought;du2018land;pflug2017breadbaskets,mechanism motivation,VERIFIED
+C06,Prediction accuracy does not by itself determine downstream decision quality,bertsimas2020predictive;elmachtoub2022smart;wilder2019melding;mandi2023decision,method context,VERIFIED
+C07,Seasonal forecast value depends on the management responses that remain actionable,meza2008economic;anvo2021framework;aitsahlia2011enso;merkhofer1975value;keisler2004value,information-value context,VERIFIED
+C08,The exact two-crop reversal frontier is necessary and sufficient under the stated restricted model,none;analytical proof and computational checks,original result,PROVED_AND_TESTED
+C09,The Kansas model produces a selected complete rank reversal but no exclusion-based strong reversal,none;public-data calibration and solved optimization,original numerical result,REPRODUCED
+C10,A Gaussian mean-variance policy selected by a fixed variance-reduction rule can violate the Student-t evaluation-law CVaR ceiling over a non-singleton gamma interval,none;complete solved frontier and one-factor sensitivity,original numerical result,REPRODUCED
+C11,The 31-state score-acreage comparison is descriptive and non-causal,USDA NASS;USDA ERS;BLS CPI-U,public-data scope,REPRODUCED
+C12,Information-flexibility interaction can be positive zero or negative in the shared ex-ante CVaR model,merkhofer1975value;vanmieghem1998investment plus original constructions,theory and experiment,PROVED_AND_REPRODUCED

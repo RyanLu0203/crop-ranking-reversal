@@ -1,0 +1,53 @@
+{
+  "actual_replications": {
+    "E1": 64,
+    "E2": 16,
+    "E3": 64,
+    "E4": 64,
+    "E5": 64,
+    "E6": 16
+  },
+  "attribution_rows": 9600,
+  "claim_assessments": {
+    "NOT_IDENTIFIED": 1,
+    "PARAMETER_DEPENDENT": 1,
+    "PRECISION_FAILED": 4,
+    "SUPPORTED": 9
+  },
+  "claim_boundary": "CONFIRMATORY_SIMULATION_NOT_EMPIRICAL_EVIDENCE",
+  "contrast_rows": 5360,
+  "dependence_rows": 1024,
+  "design_id": "CRR-STAGEII-CONFIRM-2026-07-22",
+  "design_sha256": "21c5b970e734ed79636df2f3882d4d85460c5efa40b88e59b9b9a3f34a25c0ff",
+  "experiment_precision": {
+    "E1": false,
+    "E2": true,
+    "E3": false,
+    "E4": false,
+    "E5": false,
+    "E6": true
+  },
+  "face_rows": 2576,
+  "figure_source_rows": 439,
+  "figures_generated": false,
+  "frontier_rows": 1536,
+  "historical_numeric_claims_restored": false,
+  "independent_replay_passes": 12,
+  "independent_replay_total": 12,
+  "information_rows": 306,
+  "manuscript_rewritten": false,
+  "maximum_pressure_stationarity_residual": 1.8189894035458565e-11,
+  "maximum_shapley_efficiency_residual": 1.4210854715202004e-14,
+  "panel_sha256": "ddaf1a2aec05966c284865897b98d09371e015f9ca61ff302b85b787dca7be76",
+  "path_rows": 480,
+  "precision_failed_experiments": 4,
+  "precision_passed_experiments": 2,
+  "pressure_rows": 912,
+  "primary_solver_failures_excluding_registered_infeasible": 0,
+  "raw_rows": 2320,
+  "registered_infeasible_rows": 206,
+  "scenario_registry_rows": 1632,
+  "solver_sensitivity_passes": 9,
+  "solver_sensitivity_total": 9,
+  "subset_rows": 256
+}

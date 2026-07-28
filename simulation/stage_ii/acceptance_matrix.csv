@@ -1,0 +1,19 @@
+requirement_id,requirement,evidence,status,notes
+G12-01,Frozen pre-result versioned design,simulation/configs/stage_ii_confirmatory_design.yaml,COMPLETE,Design hash is propagated to every governed output
+G12-02,Isolated cardinal-margin experiment,mechanism_summary.csv;raw_replications.csv,ADVERSE_RETAINED,E1 reached 64 and failed allocation precision while binary reversal contrasts passed
+G12-03,Operational constraint forcing experiment,kkt_pressures.csv;optimal_faces.csv,COMPLETE,E2 passed all prospective precision gates at 16
+G12-04,Nested CVaR frontier experiment,mechanism_summary.csv;kkt_pressures.csv,ADVERSE_RETAINED,E3 retained eight imprecise strong-tail contrasts at the 64 ceiling
+G12-05,Within-family dependence experiment,mechanism_summary.csv;scenario_registry.csv,ADVERSE_RETAINED,E4 retained fifteen imprecise contrasts and certified sampled infeasibility
+G12-06,True-law diversification failure experiment,dependence_evaluation.csv;diversification_metrics.csv,ADVERSE_RETAINED,E5 retained all twenty-four precision failures and separates violation from feasible regret
+G12-07,Information-flexibility interaction experiment,information_flexibility.csv;mechanism_summary.csv,COMPLETE,E6 passed positive null and substitution interaction gates at 16
+G12-08,Gaussian Student-t Clayton and empirical copula coverage,scenario_registry.csv,COMPLETE,Cross-family results are labeled model sensitivity rather than a scalar order
+G12-09,Sequential replication and confidence-controlled stopping,sequential_stopping.csv,COMPLETE,Checks occurred only at 16 32 48 and 64 and failures were not tuned away
+G12-10,All-subset and all-order attribution,block_subset_values.csv;block_attribution.csv,COMPLETE,All 16 subsets and all 24 orders were evaluated for 16 fixed seeds
+G12-11,Optimal-face reversal classification,optimal_faces.csv,COMPLETE,Selected possible and universal reversal are retained separately
+G12-12,KKT pressure accounting,kkt_pressures.csv,COMPLETE,Maximum stationarity residual is below the frozen tolerance
+G12-13,Independent replay and solver sensitivity,independent_replay.csv;solver_sensitivity.csv,COMPLETE,12 reverse-order replays and 9 method anchors passed
+G12-14,Certified infeasibility and failure retention,raw_replications.csv,COMPLETE,All failed solves are either designed or independently minimum-CVaR certified
+G12-15,Resource ceiling and deterministic single-worker run,resource_audit.json;run_log.json,COMPLETE,Observed parent RSS is below the frozen 750 MB ceiling
+G12-16,Tidy source data without figure generation,figure_source_data.csv,COMPLETE,GOAL-13 receives source data with eligibility labels but no GOAL-12 figures
+G12-17,Claim-level theory crosswalk,claim_assessment.csv,COMPLETE,All fifteen Stage II theory results are classified with precision failures explicit
+G12-18,Baseline and manuscript immutability,scripts/validate_stage_ii_confirmatory.py,COMPLETE,Teacher draft panel and manuscript tree hashes remain unchanged

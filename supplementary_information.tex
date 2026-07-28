@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.0cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx,longtable,array,graphicx,microtype,natbib}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[hidelinks,pdftitle={Supplementary information: Crop-ranking reversal}]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\CVaR}{\operatorname{CVaR}}
+\newcommand{\ind}{\mathbf 1}
+\input{manuscript/issue34/generated/numbers.tex}
+\title{\textbf{Supplementary Information}\\
+\large Crop-ranking reversal under downside risk and operational constraints}
+\author{Xinyu Lu and Peimin Chen}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Definitions and complete model notation}
+
+Pairwise reversal is \(s_i>s_j,\ x_i<x_j\). Complete rank reversal means that
+the top-ranked crop receives less than every lower-ranked crop. Strong reversal
+uses exclusion: \(s_i>s_j,\ x_i=0<x_j\). These definitions separate a strict
+allocation-order inversion from complete exclusion of the higher-ranked crop.
+
+\begin{longtable}{p{2.2cm}p{11.8cm}}
+\toprule
+Symbol & Definition\\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Definition\\
+\midrule
+\endhead
+\(i=1,\ldots,n\) & crop index\\
+\(\omega\) & joint price--yield--cost state\\
+\(s_i\) & external pre-decision agronomic or predictive score\\
+\(x_i\) & planted area or normalized land share\\
+\(\widetilde P_i,\widetilde Y_i,\widetilde C_i\) & stochastic price, yield and cost\\
+\(\widetilde\pi_i\) & stochastic per-acre margin
+\(\widetilde P_i\widetilde Y_i-\widetilde C_i\)\\
+\(\mu_i\) & expected per-acre margin\\
+\(L(x)\) & portfolio loss \(-\widetilde\pi^\top x\)\\
+\(A\) & available land\\
+\(B,c\) & working-capital limit and crop cash coefficients\\
+\(R,r\) & rotation rows and limits\\
+\(K,k\) & contractual-minimum rows and requirements\\
+\(G,h\) & shared-capacity rows and limits\\
+\(\ell,u\) & crop-specific lower and upper area bounds\\
+\(\alpha\) & CVaR confidence level\\
+\(\kappa\) & loss-CVaR ceiling\\
+\(\rho\) & normalized risk-tolerance path index\\
+\(\mathcal X\) & operational feasible set\\
+\(\mathcal S_\kappa\) & complete optimal set under ceiling \(\kappa\)\\
+\(\sigma\) & deterministic selector for one reported optimum\\
+\(\theta\) & parameter along a named joint-law family\\
+\(\phi\) & operational-flexibility or buffering parameter\\
+\bottomrule
+\end{longtable}
+
+\section{Full finite-scenario linear programme}
+
+For scenario probabilities \(w_m>0\) summing to one, the implemented primal is
+\begin{align}
+\max_{x,v,q}\quad & \mu^\top x\\
+\text{s.t.}\quad
+&\ind^\top x\le A,\\
+&c^\top x\le B,\\
+&Rx\le r,\qquad -Kx\le-k,\qquad Gx\le h,\\
+&\ell\le x\le u,\\
+&v+\frac{1}{1-\alpha}\sum_{m=1}^M w_mq_m\le\kappa,\\
+&-\pi_m^\top x-v-q_m\le0,\qquad m=1,\ldots,M,\\
+&q_m\ge0,\qquad v\in\R.
+\end{align}
+There is no hidden penalty term and no post-solution adjustment of the
+optimized policy. Heuristic benchmark policies are projected onto the feasible
+set so that all policies are compared inside the same operational set.
+
+\subsection{KKT equations}
+
+Let \(\eta\) be the CVaR-ceiling multiplier, \(t_m\) the multiplier for
+scenario excess row \(m\), and \(z_m\) the multiplier on \(q_m\ge0\). Together
+with the operational multipliers defined in the main text, stationarity is
+\begin{align}
+0={}&-\mu+\gamma\ind+\beta c+R^\top\rho-K^\top\chi+
+G^\top\lambda-a+b-\sum_mt_m\pi_m,\\
+0={}&\eta-\sum_mt_m,\\
+0={}&\frac{\eta w_m}{1-\alpha}-t_m-z_m,\qquad m=1,\ldots,M.
+\end{align}
+All multipliers are nonnegative except the dual expression associated with the
+free variable \(v\). Complementarity requires each multiplier times its
+primal slack to be zero. The scenario equations allow fractional mass at the
+VaR threshold and are valid for discrete scenario distributions.
+
+\section{Proofs}
+
+\subsection{Proof of the restricted reversal theorem}
+
+Let \(z=x_1\) and \(x_2=A-z\). Expected profit is
+\[
+\mu_1z+\mu_2(A-z)=\mu_2A+(\mu_1-\mu_2)z.
+\]
+Because \(\mu_1>\mu_2\), this function is strictly increasing in \(z\).
+Loss-CVaR is convex and continuous in the portfolio weights. Its sublevel set
+intersected with the compact operational interval \(I\) is therefore a compact
+interval \(\mathcal K_{\theta,\kappa}\). A strictly increasing linear
+objective has the unique maximizer \(\sup\mathcal K_{\theta,\kappa}\).
+
+The pair reverses when \(z<A-z\), equivalently \(z<A/2\). Hence reversal holds
+if and only if the right endpoint of the entire risk-feasible interval lies
+below \(A/2\), which is equivalent to no feasible point on
+\([A/2,\overline z]\). If risk is nondecreasing on that upper half, the
+minimum upper-half risk occurs at \(A/2\), so the upper half is infeasible if
+and only if \(r_\theta(A/2)>\kappa\). Existence of a feasible lower-half point
+ensures that this inequality indicates reversal rather than infeasibility.
+
+If \(\theta\mapsto r_\theta(A/2)\) is continuous, strictly increasing and
+crosses \(\kappa\), the intermediate-value theorem gives a unique
+\(\theta^*\). If strictness is removed, an interval of thresholds can result.
+If monotonicity is removed, the reversal set can be disconnected. If crossing
+is removed, a threshold need not exist.
+
+\subsection{Proof of complete optimality}
+
+The finite-scenario problem is a bounded linear programme whenever
+\(\mathcal X\) is nonempty and bounded. Linear-programming strong duality
+implies that primal and dual feasibility plus equality of the objective values
+are necessary and sufficient. Expanding equality of values across all
+inequality rows yields stationarity and complementarity. The equations above
+therefore form a complete certificate.
+
+For the population convex formulation, write the Lagrangian using loss-CVaR
+as a convex function. Under Slater's condition or another convex constraint
+qualification, KKT conditions are necessary; convexity makes them sufficient.
+Pairwise subtraction of acreage stationarity cancels \(\gamma\) but leaves
+budget, rotation, contract, shared-resource and bound terms. No algebraic
+operation on this local equality recovers an acreage ordering without the
+global feasible geometry.
+
+\subsection{Proof of named-family ordering}
+
+For integrable random losses, CVaR is a law-invariant coherent risk measure and
+is monotone under convex order. Thus
+\(L_{\theta_1}(x)\preceq_{\mathrm{cx}}L_{\theta_2}(x)\) implies the stated
+CVaR inequality at each \(x\). Pointwise inequality gives containment of the
+two risk sublevel sets. Maximizing the same expected-profit objective over
+nested sets gives the optimal-value order. Coordinate monotonicity does not
+follow because the supporting face can change when the feasible set contracts.
+
+\subsection{Proofs for information and flexibility}
+
+In a posterior-separable model, or when the shared ex-ante risk restriction is
+nonbinding, any no-information action defines a constant signal-contingent policy. If the
+constant policy is feasible, optimization after observing a signal cannot
+lower value. When one common action is posterior-optimal for every signal, the
+constant policy also attains the informed optimum, proving zero value. If
+unique posterior optima differ on events with positive probability and at
+least one difference is strict, expected improvement is positive. This
+posterior-optimum strictness step is not applied when contingent actions share
+a binding ex-ante CVaR budget.
+
+Increasing differences and nested action sets yield monotone posterior actions
+under standard monotone comparative statics. Strictness on a positive-
+probability event makes the information gain larger at the higher acreage-
+flexibility level. This is the conditional complementarity result.
+
+For buffering, at \(\phi=1\) all state margins equal \(\bar\pi\); posterior
+optimization problems are identical and the common-action condition gives
+zero information value. If information value is positive at \(\phi=0\) and
+continuous along the contraction path, it must decline somewhere. Those
+intervals are substitutive. Total optimized value may still rise with
+\(\phi\).
+
+For the complete shared-CVaR numerical programme, interaction is classified
+without extending that theorem:
+\[
+\Delta_{q,\phi}V=[V(q_2,\phi_2)-V(q_1,\phi_2)]
+-[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\]
+The sign is computed on each adjacent grid rectangle.
+
+\section{Calibration and constraint table}
+
+\begin{table}[h]
+\centering\small
+\caption{Kansas calibration and primary allocation.}
+\begin{tabular}{lrrrr}
+\toprule
+Crop & score & mean margin & margin s.d. & full-model share\\
+ & & \multicolumn{2}{c}{real 2024 US\$ per acre} &\\
+\midrule
+Corn & \ScoreCorn & \MarginCorn & 94.9 & \PrimaryCorn\\
+Soybean & \ScoreSoy & \MarginSoy & 104.0 & \PrimarySoy\\
+Winter wheat & \ScoreWheat & \MarginWheat & 49.6 & \PrimaryWheat\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\caption{Operational set. Coefficients use normalized land and capacity units.}
+\begin{tabularx}{\textwidth}{lXXX}
+\toprule
+Object & Corn & Soybean & Winter wheat\\
+\midrule
+Lower bound & 0.05 & 0.10 & 0.05\\
+Upper bound & 0.55 & 0.65 & 0.60\\
+Rotation cap & 0.50 & --- & ---\\
+Contract minimum & --- & 0.10 & ---\\
+Planting-labour coefficient & 1.00 & 0.72 & 0.58\\
+Harvest-equipment coefficient & 1.05 & 0.82 & 0.62\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Total land is 1.0, operating budget is US\$330, planting-labour capacity is
+0.82 and harvest-equipment capacity is 0.88. The full model uses
+\(\alpha=0.95\), \(\rho=0.5\), 512 optimization scenarios and seed
+202607270034.
+
+\section{Policy comparison}
+
+\begin{table}[h]
+\centering\small
+\caption{Primary policy outcomes. A larger loss-CVaR is worse.}
+\begin{tabular}{lrrrrrl}
+\toprule
+Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
+\midrule
+Suitability proportional & 0.312 & 0.315 & 0.373 & 187.4 & -53.1 & yes\\
+Winner take all, projected & 0.300 & 0.100 & 0.600 & 166.6 & -57.3 & yes\\
+Equal share & 0.333 & 0.333 & 0.333 & 190.4 & -51.4 & yes\\
+Expected profit & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
+Mean--variance & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
+Full loss-CVaR & \PrimaryCorn & \PrimarySoy & \PrimaryWheat &
+\PrimaryProfit & \PrimaryCVaR & yes\\
+Minimum-CVaR endpoint & 0.220 & 0.180 & 0.600 & 169.0 & -59.5 & yes\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The primary policy table retains a low-penalty mean--variance diagnostic for
+comparability. The diversification comparison is separate. Its \(x^0\) is the
+matched-Gaussian expected-profit allocation; all
+\DiversificationFrontierPoints{} points over \(\gamma\in[0,0.03]\) are solved;
+and its selected \(x^{MV}\) is the first point to attain the fixed
+\DiversificationTarget\% Gaussian variance-reduction target. At that point the
+reduction is \DiversificationVarianceReduction\%, the allocation differs from
+\(x^T\), and Student-\(t\) evaluation loss-CVaR is
+\(\$\,\DiversificationTailGap\) higher. The weak and strong criteria hold over
+\(\gamma\) intervals \DiversificationWeakGammaInterval{} and
+\DiversificationStrongGammaInterval{}. Because \(x^T\) binds the common
+ceiling, the tail-inferiority and ceiling-violation gaps are numerically
+dependent.
+
+One-factor sensitivity contains \DiversificationSensitivityCases{} cases
+covering scenario count, seed, Kendall's \(\tau\), Student-\(t\) copula degrees
+of freedom, CVaR confidence level, risk-ceiling location, evaluation-law
+marginal specification and the 10\%, 15\% and 20\% selection targets.
+\DiversificationSensitivityStrongCases{} cases satisfy the selected-policy
+weak and strong criteria. The retained null is the 20\% target, which selects
+\(\gamma=0.0089\), just beyond the focal strong-failure interval; its positive
+tail gap is smaller than the declared risk tolerance
+\(\varepsilon_r\).
+
+\section{Phase-diagram summary}
+
+The mechanism-isolation outputs retain every evaluated cell. In the margin
+layer, top-ranked winter wheat has the lowest public-data mean margin and
+the expected-profit endpoint is already completely inverted; CVaR raises its
+share. In the risk layer, Soybean has the higher score and mean margin, while
+a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
+the loose-to-tight allocation crossing reported in the main text. Across the
+probability-by-magnitude map, \RiskShockCrossingCells{} of
+\RiskShockCells{} cells cross, \RiskShockNoCrossingCells{} remain feasible
+without crossing and \RiskShockInfeasibleCells{} are infeasible. In the
+operational layer, the observed constraint-addition sequence and its null
+crossing result precede the complete soybean rotation-cap grid; the first
+crossing is at \OperationalCrossingCap. These controlled paths do not estimate
+the prevalence of either mechanism.
+
+Across all \PhaseCells{} cells, selected pairwise reversal occurs in
+\PhaseReversal{}, selected complete rank reversal in \PhaseComplete{} and
+strong exclusion reversal in \PhaseStrong{}. Complete
+family-by-\(\tau\) table, all three ranked-pair face extrema and possible,
+universal and selected classifications are retained for every cell.
+
+\section{Robustness and uncertainty}
+
+The one-at-a-time robustness file reports selected pairwise, selected complete
+and selected strong classifications separately for confidence level,
+constraint regime, dependence family and parameter, marginal law, sample
+window, scenario count, random seed and solver. With positive crop
+lower bounds, none of these cells can satisfy the exclusion
+definition.
+
+The 64 historical bootstrap replications produce mean shares 0.277 for corn,
+0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals
+are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. Reversal probability
+is treated separately: selected pairwise reversal occurs in
+\BootstrapReversalCount{} of 64
+resamples. Its exact Clopper--Pearson binomial interval is
+[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]; this is not a
+percentile bootstrap interval. The first-reversal
+index mean is \BootstrapFirstMean{} with interval
+[\BootstrapFirstLow,\BootstrapFirstHigh]. The broad boundary interval is
+consistent with an eight-year calibration and is not hidden by the large
+number of simulated scenarios.
+
+\section{Information--flexibility details}
+
+The state split contains four low and four high relative-yield-advantage
+years. Signal accuracy takes six values and flexibility takes six values on
+each path, producing 72 cells. Adjacent-grid classifications are
+\InfoPositiveCells{} positive cross-differences, \InfoNegativeCells{} negative
+cross-differences, \InfoZeroCells{} zero-information and
+\InfoBoundaryCells{} zero/boundary. Every signal-contingent problem is
+feasible and the minimum computed value of information differs from zero only
+at floating-point scale.
+
+At perfect signal accuracy, post-signal acreage reallocation raises
+information value monotonically from zero at no adjustable acreage to
+\(\$\,\MaxInformationValue\) at full adjustment. Under shock buffering, the
+corresponding information value declines toward zero as the state margins are
+contracted to a common vector. This comparison is about interaction; buffering
+can still increase the no-information optimized value.
+
+\section{External panel and identification boundary}
+
+\begin{table}[h]
+\centering\small
+\caption{Top-rank disagreement in \StateYears{} state-years.}
+\begin{tabular}{lrrr}
+\toprule
+Ranking definition & estimate & cluster 95\% low & cluster 95\% high\\
+\midrule
+Relative yield & \RelativeYieldRate & 0.802 & 0.954\\
+Standardized revenue & \RevenueRate & 0.447 & 0.767\\
+Operating margin & \OperatingMarginRate & 0.552 & 0.693\\
+Total-cost margin & \TotalCostRate & 0.701 & 0.857\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The leakage-free relative-yield specification uses 651 crop-transition rows.
+Its prior-leader effect is \LaggedEffect{} with interval
+[\LaggedLow,\LaggedHigh]. The estimand is descriptive because the panel does
+not observe farm objectives, local prices or costs, credit, rotation history,
+contracts, risk preferences or received forecasts. State acreage is never
+substituted for an optimizer output.
+
+\section{Data availability}
+
+The analysis uses public USDA NASS, USDA ERS and US Bureau of Labor Statistics
+files joined by crop and year. The public source reports, analysis-ready
+tables and figure source data needed to reproduce the reported results will be
+deposited in a versioned public archive upon publication. No confidential
+farm-level data are used.
+
+\section{Code availability}
+
+Analysis code sufficient to regenerate the numerical results and figures will
+be deposited with the source data upon publication.
+
+\section{Limitations}
+
+\begin{enumerate}
+\item The Kansas calibration has eight effective annual observations. It
+cannot estimate extreme-tail dependence reliably.
+\item State yield combined with national price and cost is not a farm-level
+profit series.
+\item Copula parameters and shared-capacity limits are controlled stress
+values, not causal estimates.
+\item The model is single-period and linear. It omits fixed charges,
+endogenous prices, spatial spillovers and explicit multi-year rotation state.
+\item Historical bootstrap replications quantify sensitivity to the short
+calibration record but do not create independent empirical observations.
+\item The information state is a transparent annual proxy, not a deployed
+forecast product.
+\item The external panel is aggregate and descriptive; it cannot identify the
+full model's active mechanism or welfare.
+\end{enumerate}
+
+\end{document}

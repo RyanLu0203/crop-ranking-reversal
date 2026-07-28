@@ -7,11 +7,27 @@ import csv
 import hashlib
 import re
 from pathlib import Path
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "provenance/canonical_asset_manifest.csv"
 CHECKSUMS = ROOT / "provenance/checksums/canonical_SHA256SUMS.txt"
-EXCLUDED_NAMES = {MANIFEST.name, CHECKSUMS.name, ".DS_Store"}
+EXCLUDED_NAMES = {
+    MANIFEST.name,
+    CHECKSUMS.name,
+    ".DS_Store",
+    # The deterministic delivery archive contains a snapshot of canonical
+    # assets and therefore has its own checksum; including it here would make
+    # the repository manifest self-referential after every package rebuild.
+    "stage_ii_final_scientific_package.zip",
+    "stage_ii_final_scientific_package.zip.sha256",
+    "crop-ranking-reversal-issue34-reproducibility.tar.gz",
+    "crop-ranking-reversal-issue34-reproducibility.tar.gz.sha256",
+    "crop-ranking-reversal-issue36-reproducibility.tar.gz",
+    "crop-ranking-reversal-issue36-reproducibility.tar.gz.sha256",
+    "crop-ranking-reversal-issue38-supervisor-review.tar.gz",
+    "crop-ranking-reversal-issue38-supervisor-review.tar.gz.sha256",
+}
 EXCLUDED_TOP_LEVEL = {"build", "dist", "scratch", "tmp"}
 SYNC_COLLISION = re.compile(r" \d+$")
 
@@ -28,7 +44,10 @@ def included(path: Path) -> bool:
         and ".pytest_cache" not in relative.parts
         and path.name not in EXCLUDED_NAMES
         and not SYNC_COLLISION.search(path.stem)
-        and path.suffix != ".pyc"
+        and path.suffix not in {
+            ".aux", ".bbl", ".blg", ".fdb_latexmk", ".fls", ".log",
+            ".out", ".pyc", ".synctex.gz", ".toc",
+        }
     )
 
 
@@ -36,8 +55,23 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def tracked_files() -> list[Path]:
+    """Return repository-owned files without transient ignored build output."""
+    result = subprocess.run(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    )
+    return [
+        ROOT / relative
+        for relative in result.stdout.decode("utf-8").split("\0")
+        if relative
+    ]
+
+
 def main() -> None:
-    files = sorted(path for path in ROOT.rglob("*") if included(path))
+    files = sorted(path for path in tracked_files() if included(path))
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     with MANIFEST.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(

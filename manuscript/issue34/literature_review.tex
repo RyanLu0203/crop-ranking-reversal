@@ -1,0 +1,118 @@
+\section{Literature review and scientific position}
+
+\subsection{Risk-aware crop planning}
+
+Crop-planning models have long represented planting as an operational
+allocation rather than a list of recommended crops. Their variables include
+crop areas, sequences and timing; their constraints include land, capital,
+labour, equipment, rotations, storage and contracts. Contemporary models
+combine these objects with crop-selection integer programmes
+\citep{filippi2017mixed}, dynamic rotation benefits
+\citep{boyabatli2019crop}, sustainable rotation systems
+\citep{benini2023crop}, contract-farming schedules \citep{li2015contract} and
+spatial decision support \citep{pahmeyer2021fruchtfolge}. Reviews show that
+climate uncertainty is handled through stochastic, robust and multiobjective
+approaches rather than one standardized decision model
+\citep{randall2022robust,randall2024systematic}.
+
+Loss-CVaR is attractive in this setting because it controls an expected
+shortfall and admits a linear finite-scenario representation
+\citep{rockafellar2000optimization,rockafellar2002conditional}. Agricultural
+precedent is substantial but fragmented. \citet{aitsahlia2011enso} combine
+ENSO-conditioned planting and hedging with Gaussian-copula scenarios and
+CVaR. \citet{filippi2017mixed} embed CVaR in operational crop selection.
+\citet{larsen2015geographical} and \citet{nguyenhuy2018copula} use copulas and
+mean-CVaR to study geographical wheat portfolios. These studies establish
+that crop portfolios can be optimized under downside risk. They do not ask
+whether an externally supplied agronomic ranking reverses, characterize the
+ranking boundary, or bound all optima on the objective-equivalent face.
+
+\subsection{Joint tail risk and the limits of conventional diversification}
+
+Diversification is effective when crop outcomes do not fail together in the
+states that matter to the decision. Linear correlation summarizes average
+co-movement, not the geometry of the joint lower tail. Student-\(t\) copulas
+retain nonzero symmetric tail dependence, while Archimedean families can
+concentrate dependence asymmetrically \citep{demarta2005tcopula}. Dependence
+comparisons are family- and order-specific \citep{ansari2024dependence}; a
+single lower-tail coefficient does not order arbitrary portfolio losses
+across families.
+
+Agricultural evidence motivates this distinction. Joint yield tails vary with
+land quality \citep{du2018land}, production shocks are dependent across major
+breadbaskets \citep{pflug2017breadbaskets}, and copula estimates show that the
+risk reduction from crop diversification changes with crop pair, region and
+drought severity \citep{schmitt2024drought}. These findings do not imply that
+diversification generally fails. They imply that ``number of crops'' and
+variance reduction are incomplete diagnostics for a loss-CVaR-constrained
+portfolio. Our criterion therefore requires a conventional policy to pass a
+fixed variance benchmark yet fail under the Student-\(t\) evaluation law and
+differ from the tail-aware allocation.
+
+\subsection{Prediction, prescription and suitability}
+
+Agricultural machine learning commonly predicts yield, classifies land or
+ranks crop performance using weather, soil, management and remote-sensing
+features \citep{liakos2018machine,vanklompenburg2020crop}. A score can be
+scientifically useful even when it is not an acreage prescription. The
+prescriptive-analytics literature instead evaluates how conditional
+predictions change an optimized decision
+\citep{bertsimas2020predictive,elmachtoub2022smart}. Decision-focused learning
+extends this principle to end-to-end systems
+\citep{mandi2023decision}.
+
+Our contribution is not a new learning algorithm. We use this literature to
+make the interface explicit. A genuine agronomic score ranks historical
+relative-yield potential and never enters the profit objective. The optimizer
+then reveals whether the operationally optimal area order agrees with that
+score. This design avoids two errors: treating prediction accuracy as proof of
+prescriptive optimality, and dismissing the score because it does not contain
+every economic variable.
+
+\subsection{Information value and operational flexibility}
+
+Seasonal climate information has value only through decisions it can change.
+Reviews emphasize that forecast skill, risk preferences, institutions and
+available management responses jointly determine economic value
+\citep{meza2008economic}. Bioeconomic applications measure value through
+changes in sowing and other decisions \citep{anvo2021framework}, while
+ENSO-based crop-planning models combine forecasts with planting and financial
+hedges \citep{aitsahlia2011enso}. General decision analysis likewise links
+information value to the portfolio or action set
+\citep{keisler2004value,merkhofer1975value}; operational-flexibility theory
+shows that flexibility value depends on margins, cost and the full uncertainty
+structure \citep{vanmieghem1998investment}.
+
+None of this supports unconditional strict complementarity. A flexible action
+can make a signal actionable, but it can also provide a robust fallback that
+reduces the need to distinguish states. We therefore prove non-negativity,
+strictness and zero conditions separately, add an increasing-differences
+condition for complementarity, and construct an agricultural buffering path
+for substitution.
+
+\subsection{Contribution matrix}
+
+\begin{table}[t]
+\centering\scriptsize
+\caption{\textbf{Position relative to the closest research streams.} A check
+indicates a central analyzed object rather than a passing mention.}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xcccccc}
+\toprule
+Stream & Agro. rank & Operations & CVaR & Tail law &
+Frontier & Info--flex\\
+\midrule
+Agricultural ML reviews & \(\checkmark\) & & & & &\\
+Crop-planning optimization & & \(\checkmark\) & some & limited & &\\
+Agricultural copula--CVaR & & partial & \(\checkmark\) & \(\checkmark\) & &\\
+Climate forecast valuation & & partial & some & & & partial\\
+This study & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) &
+\(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The novelty is thus a conjunction, not a claim that no previous study has used
+any individual ingredient. We connect a genuine agronomic rank to a complete
+stochastic operational model; give a valid reversal frontier; separate
+variance, dependence and CVaR notions of diversification; and determine when
+information complements, substitutes for or is unrelated to flexibility.

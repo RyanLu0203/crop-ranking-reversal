@@ -1,0 +1,12 @@
+{
+  "command": "python scripts/run_stage_ii_empirical.py",
+  "design_id": "CRR-STAGEII-EMPIRICAL-2026-07-22",
+  "design_sha256": "89cf9cda5910c6428944478032a24c8475de745a93e442ce07c7c0fd841bb3e3",
+  "input_hashes": {
+    "data/processed/canonical_crop_year_panel.csv": "ddaf1a2aec05966c284865897b98d09371e015f9ca61ff302b85b787dca7be76",
+    "data/processed/empirical_state_crop_analysis_panel.csv": "3faf6b2944009929d70ed134032491ecd79ed9e18555050e6402e9bfaa55b90f",
+    "data/processed/nass_state_crop_2022_2024.csv": "c654314d6a5d2100855308f6f3f537982861f7e92ae3d6d603e2d4d09715bf49",
+    "empirical/outputs/discordance_detail.csv": "b92cc64d532afd02fba660f867936ed179a74691e2e5fe8fcb6e6ba8c1ba2c5f"
+  },
+  "manual_output_edits": false
+}

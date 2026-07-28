@@ -1,0 +1,22 @@
+{
+  "compiled_pdf_language_scan": {
+    "main_manuscript.pdf": {},
+    "supplementary_information.pdf": {}
+  },
+  "diversification": {
+    "frontier_points": 301,
+    "selected_gamma": 0.0082,
+    "sensitivity_cases": 18,
+    "sensitivity_strong_cases": 17,
+    "sensitivity_weak_cases": 17,
+    "strong_interval": "0.0068-0.0088",
+    "weak_interval": "0.0068-0.0088"
+  },
+  "exact_scientific_baseline": "d058f0764e42e994bf2c1c00b48cbde3622f96c6",
+  "risk_shock_sensitivity": {
+    "crossing": 24,
+    "infeasible": 1,
+    "no_crossing": 24
+  },
+  "status": "PASS"
+}

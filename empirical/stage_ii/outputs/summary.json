@@ -1,0 +1,23 @@
+{
+  "bootstrap_replications": 5000,
+  "copula_causality_identified": false,
+  "county_analysis_admissible": false,
+  "crop_transition_rows": 612,
+  "cvar_identified": false,
+  "design_id": "CRR-STAGEII-EMPIRICAL-2026-07-22",
+  "design_sha256": "89cf9cda5910c6428944478032a24c8475de745a93e442ce07c7c0fd841bb3e3",
+  "observed_acreage_is_optimum": false,
+  "private_constraint_identified": false,
+  "rank_transition_events": 204,
+  "ranking_definitions": 4,
+  "result_scope": "DESCRIPTIVE_ACCOUNTING_AND_MODEL_CONSISTENCY_ONLY",
+  "state_crop_rows": 231,
+  "state_years": 77,
+  "states": 26,
+  "welfare_identified": false,
+  "years": [
+    2022,
+    2023,
+    2024
+  ]
+}

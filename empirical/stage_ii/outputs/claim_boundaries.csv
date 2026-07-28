@@ -1,0 +1,12 @@
+claim_domain,status,reason
+rank transitions,DESCRIPTIVE_IDENTIFIED,official acreage and yield with explicit timing
+inversion intensity,DESCRIPTIVE_IDENTIFIED,complete three-crop state-years
+accounting definition comparison,ACCOUNTING_IDENTIFIED,national price/cost mismatch remains explicit
+lagged score-share association,MODEL_CONSISTENT_ASSOCIATION_WITH_EXPLICIT_ALTERNATIVES,prior scores precede acreage but do not isolate a mechanism
+prior-acreage inertia proxy,DESCRIPTIVE_INERTIA_PROXY_NOT_CONSTRAINT,lagged share is observed but is not a rotation/budget/contract measure
+county heterogeneity,NOT_IDENTIFIED,no admitted county snapshot
+private operational constraints,NOT_IDENTIFIED,"budgets, rotation limits and contracts absent"
+observed acreage optimality,NOT_IDENTIFIED,private feasible sets and objectives absent
+CVaR preference or binding,NOT_IDENTIFIED,farmer risk limit and decision loss law absent
+copula mechanism or causality,NOT_IDENTIFIED,three aggregate years cannot identify farmer beliefs
+welfare effect,NOT_IDENTIFIED,no causal design or identified objective

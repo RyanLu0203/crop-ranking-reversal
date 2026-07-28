@@ -61,4 +61,8 @@ make check
 
 ## Current milestone
 
-Issues #1--#10 are integrated in the milestone package labelled **“First compiled draft for supervisor review.”** It is ready for supervisor review, not direct submission; author metadata, funding, licensing, target-journal conversion and the scientific actions in `output/remaining_actions.md` remain open.
+Issues #1--#10 are integrated in the Stage I package labelled **“First compiled draft for supervisor review.”** Commit `4d6c14d` is the theory-repair and reproducibility foundation, not the final scientific manuscript.
+
+GOAL-11 / Issue #21 and GOAL-14 / Issue #24 are supervisor-approved. The GOAL-12 / Issue #22 confirmatory package is now frozen under `simulation/stage_ii/` for supervisor review. E2 and E6 passed all prospective precision gates; E1, E3, E4 and E5 reached the replication ceiling with explicit precision failures. These artifacts do not alter the Stage I theorem repair or manuscript.
+
+Later phases remain locked in the fixed order GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all scientific phases pass. Run `make check` to exercise all three Stage II fail-closed validators with the canonical suite.

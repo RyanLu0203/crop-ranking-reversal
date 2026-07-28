@@ -1,0 +1,5 @@
+ranking_definition,national_years,informative_years,national_mean_inversion_intensity,national_top_reversal_rate,national_pairwise_ties,claim_level
+operating_margin,3,3,0,0,0,DESCRIPTIVE_AGGREGATION_BOUNDARY
+relative_yield,3,0,0,0,9,DESCRIPTIVE_AGGREGATION_BOUNDARY
+standardized_revenue,3,3,0,0,0,DESCRIPTIVE_AGGREGATION_BOUNDARY
+total_cost_margin,3,3,0.666666666667,0.666666666667,0,DESCRIPTIVE_AGGREGATION_BOUNDARY
