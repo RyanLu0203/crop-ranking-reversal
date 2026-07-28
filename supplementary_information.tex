@@ -21,40 +21,12 @@
 \maketitle
 \tableofcontents
 
-\section{Relationship to the supervisor draft}
+\section{Definitions and complete model notation}
 
-The immutable supervisor draft establishes the research question and innovation
-chain: suitability versus operational optimality; ranking reversal under
-uncertain price, yield and cost; joint downside risk and diversification
-failure; operational constraints; and the dependence of climate-information
-value on flexibility. The reconstruction retains that chain and the section
-architecture of introduction, literature, model, theory, numerical analysis,
-discussion and conclusion.
-
-Several mathematical statements in the draft could not be retained as written.
-An undefined risk-adjusted margin gap did not imply an acreage ``if and only
-if'' result; KKT stationarity omitted operational multipliers and
-finite-scenario auxiliary variables; a scalar lower-tail coefficient did not
-globally order portfolio CVaR across copula families; a universal unique
-dependence threshold lacked monotonicity and crossing assumptions; and strict
-information--flexibility complementarity was not unconditional. The main
-paper replaces these statements with restricted exact theorems and reports
-null, disconnected and multiple-optimum cases.
-
-Issue \#36 restores the supervisor Draft's exclusion terminology. Pairwise
-reversal is \(s_i>s_j,\ x_i<x_j\); complete rank reversal means that the
-top-ranked crop receives less than every lower-ranked crop; and strong
-reversal requires \(s_i>s_j,\ x_i=0<x_j\). The Kansas result is therefore a
-selected complete rank reversal, not a strong reversal.
-
-The previous repository manuscript centered the proposition that an ordinal
-ranking does not identify a cardinal allocation. That statement is correct but
-does not by itself answer the supervisor's mechanism question. In the
-reconstructed manuscript it is treated as a boundary condition. The dominant
-argument is again the conditional reversal frontier under the full stochastic
-operational model.
-
-\section{Complete model notation}
+Pairwise reversal is \(s_i>s_j,\ x_i<x_j\). Complete rank reversal means that
+the top-ranked crop receives less than every lower-ranked crop. Strong reversal
+uses exclusion: \(s_i>s_j,\ x_i=0<x_j\). These definitions separate a strict
+allocation-order inversion from complete exclusion of the higher-ranked crop.
 
 \begin{longtable}{p{2.2cm}p{11.8cm}}
 \toprule
@@ -105,9 +77,9 @@ For scenario probabilities \(w_m>0\) summing to one, the implemented primal is
 &-\pi_m^\top x-v-q_m\le0,\qquad m=1,\ldots,M,\\
 &q_m\ge0,\qquad v\in\R.
 \end{align}
-There is no hidden penalty term and no post-solution repair of the optimized
-policy. Repairs apply only to heuristic benchmark policies so that they are
-compared inside the same operational set.
+There is no hidden penalty term and no post-solution adjustment of the
+optimized policy. Heuristic benchmark policies are projected onto the feasible
+set so that all policies are compared inside the same operational set.
 
 \subsection{KKT equations}
 
@@ -210,13 +182,13 @@ without extending that theorem:
 \Delta_{q,\phi}V=[V(q_2,\phi_2)-V(q_1,\phi_2)]
 -[V(q_2,\phi_1)-V(q_1,\phi_1)].
 \]
-The sign is computed on each adjacent registered grid rectangle.
+The sign is computed on each adjacent grid rectangle.
 
 \section{Calibration and constraint table}
 
 \begin{table}[h]
 \centering\small
-\caption{Registered Kansas calibration and primary allocation.}
+\caption{Kansas calibration and primary allocation.}
 \begin{tabular}{lrrrr}
 \toprule
 Crop & score & mean margin & margin s.d. & full-model share\\
@@ -255,13 +227,13 @@ Total land is 1.0, operating budget is US\$330, planting-labour capacity is
 
 \begin{table}[h]
 \centering\small
-\caption{Registered primary policy outcomes. A larger loss-CVaR is worse.}
+\caption{Primary policy outcomes. A larger loss-CVaR is worse.}
 \begin{tabular}{lrrrrrl}
 \toprule
 Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
 \midrule
 Suitability proportional & 0.312 & 0.315 & 0.373 & 187.4 & -53.1 & yes\\
-Winner take all, repaired & 0.300 & 0.100 & 0.600 & 166.6 & -57.3 & yes\\
+Winner take all, projected & 0.300 & 0.100 & 0.600 & 166.6 & -57.3 & yes\\
 Equal share & 0.333 & 0.333 & 0.333 & 190.4 & -51.4 & yes\\
 Expected profit & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
 Mean--variance & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
@@ -272,22 +244,41 @@ Minimum-CVaR endpoint & 0.220 & 0.180 & 0.600 & 169.0 & -59.5 & yes\\
 \end{tabular}
 \end{table}
 
-The primary policy table retains the original low-penalty mean--variance
-diagnostic for comparability. The repaired diversification test is separate:
-its declared \(x^0\) is the matched-Gaussian expected-profit allocation, its
-full-investment frontier uses \(\gamma=\DiversificationGamma\), and its
-selected \(x^{MV}\) reduces Gaussian variance by
-\DiversificationVarianceReduction\% before being evaluated under the
-Student-\(t\) true law.
+The primary policy table retains a low-penalty mean--variance diagnostic for
+comparability. The diversification comparison is separate. Its \(x^0\) is the
+matched-Gaussian expected-profit allocation; all
+\DiversificationFrontierPoints{} points over \(\gamma\in[0,0.03]\) are solved;
+and its selected \(x^{MV}\) is the first point to attain the fixed
+\DiversificationTarget\% Gaussian variance-reduction target. At that point the
+reduction is \DiversificationVarianceReduction\%, the allocation differs from
+\(x^T\), and Student-\(t\) evaluation loss-CVaR is
+\(\$\,\DiversificationTailGap\) higher. The weak and strong criteria hold over
+\(\gamma\) intervals \DiversificationWeakGammaInterval{} and
+\DiversificationStrongGammaInterval{}. Because \(x^T\) binds the common
+ceiling, the tail-inferiority and ceiling-violation gaps are numerically
+dependent.
+
+One-factor sensitivity contains \DiversificationSensitivityCases{} cases
+covering scenario count, seed, Kendall's \(\tau\), Student-\(t\) copula degrees
+of freedom, CVaR confidence level, risk-ceiling location, evaluation-law
+marginal specification and the 10\%, 15\% and 20\% selection targets.
+\DiversificationSensitivityStrongCases{} cases satisfy the selected-policy
+weak and strong criteria. The retained null is the 20\% target, which selects
+\(\gamma=0.0089\), just beyond the focal strong-failure interval; its positive
+tail gap is smaller than the declared risk tolerance
+\(\varepsilon_r\).
 
 \section{Phase-diagram summary}
 
-The mechanism-isolation outputs retain every registered cell. In the margin
-layer, top-ranked winter wheat has the lowest official-data mean margin and
+The mechanism-isolation outputs retain every evaluated cell. In the margin
+layer, top-ranked winter wheat has the lowest public-data mean margin and
 the expected-profit endpoint is already completely inverted; CVaR raises its
 share. In the risk layer, Soybean has the higher score and mean margin, while
 a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
-the loose-to-tight allocation crossing reported in the main text. In the
+the loose-to-tight allocation crossing reported in the main text. Across the
+probability-by-magnitude map, \RiskShockCrossingCells{} of
+\RiskShockCells{} cells cross, \RiskShockNoCrossingCells{} remain feasible
+without crossing and \RiskShockInfeasibleCells{} are infeasible. In the
 operational layer, the observed constraint-addition sequence and its null
 crossing result precede the complete soybean rotation-cap grid; the first
 crossing is at \OperationalCrossingCap. These controlled paths do not estimate
@@ -295,19 +286,17 @@ the prevalence of either mechanism.
 
 Across all \PhaseCells{} cells, selected pairwise reversal occurs in
 \PhaseReversal{}, selected complete rank reversal in \PhaseComplete{} and
-true strong exclusion reversal in \PhaseStrong{}. The complete
+strong exclusion reversal in \PhaseStrong{}. Complete
 family-by-\(\tau\) table, all three ranked-pair face extrema and possible,
-universal and selected flags are retained in
-\texttt{reversal\_phase\_diagram.csv}; no former ``strong'' count is silently
-relabelled.
+universal and selected classifications are retained for every cell.
 
 \section{Robustness and uncertainty}
 
 The one-at-a-time robustness file reports selected pairwise, selected complete
 and selected strong classifications separately for confidence level,
 constraint regime, dependence family and parameter, marginal law, sample
-window, scenario count, random seed and solver. With positive registered crop
-lower bounds, none of these cells can satisfy the restored exclusion
+window, scenario count, random seed and solver. With positive crop
+lower bounds, none of these cells can satisfy the exclusion
 definition.
 
 The 64 historical bootstrap replications produce mean shares 0.277 for corn,
@@ -365,31 +354,18 @@ not observe farm objectives, local prices or costs, credit, rotation history,
 contracts, risk preferences or received forecasts. State acreage is never
 substituted for an optimizer output.
 
-\section{Data lineage and reproducibility}
+\section{Data availability}
 
-The reconstruction begins with registered raw USDA NASS, USDA ERS and BLS
-files. The canonical state-crop panel is joined to national prices, costs and
-CPI-U through explicit crop and year keys. The Issue \#34 script filters the
-frozen Kansas calibration years, constructs the genuine score and real
-margins, solves all policies, phase cells, robustness and bootstrap
-replications, and writes a machine-readable manifest.
+The analysis uses public USDA NASS, USDA ERS and US Bureau of Labor Statistics
+files joined by crop and year. The public source reports, analysis-ready
+tables and figure source data needed to reproduce the reported results will be
+deposited in a versioned public archive upon publication. No confidential
+farm-level data are used.
 
-The required commands are:
-\begin{verbatim}
-uv sync
-uv run python scripts/run_issue34_reconstruction.py
-(cd reconstruction/issue34/outputs && \
-  shasum -a 256 -c SHA256SUMS.txt)
-uv run python scripts/render_issue34_manuscript_numbers.py
-uv run python scripts/make_issue34_figures.py
-uv run pytest -q
-\end{verbatim}
+\section{Code availability}
 
-The plotting script reads only registered output tables. Each figure is
-exported as editable SVG and PDF, 300-dpi PNG and 600-dpi TIFF. The manuscript
-and Supplementary Information compile from the repository root. The release
-archive contains the source registry, data dictionary, analysis manifest,
-checksums, tests, source data and rendered documents.
+Analysis code sufficient to regenerate the numerical results and figures will
+be deposited with the source data upon publication.
 
 \section{Limitations}
 
@@ -398,7 +374,7 @@ checksums, tests, source data and rendered documents.
 cannot estimate extreme-tail dependence reliably.
 \item State yield combined with national price and cost is not a farm-level
 profit series.
-\item Copula parameters and shared-capacity limits are registered stress
+\item Copula parameters and shared-capacity limits are controlled stress
 values, not causal estimates.
 \item The model is single-period and linear. It omits fixed charges,
 endogenous prices, spatial spillovers and explicit multi-year rotation state.
@@ -408,8 +384,6 @@ calibration record but do not create independent empirical observations.
 forecast product.
 \item The external panel is aggregate and descriptive; it cannot identify the
 full model's active mechanism or welfare.
-\item Author order, affiliations and contribution wording require final
-confirmation before journal submission.
 \end{enumerate}
 
 \end{document}

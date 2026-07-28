@@ -25,6 +25,8 @@ EXCLUDED_NAMES = {
     "crop-ranking-reversal-issue34-reproducibility.tar.gz.sha256",
     "crop-ranking-reversal-issue36-reproducibility.tar.gz",
     "crop-ranking-reversal-issue36-reproducibility.tar.gz.sha256",
+    "crop-ranking-reversal-issue38-supervisor-review.tar.gz",
+    "crop-ranking-reversal-issue38-supervisor-review.tar.gz.sha256",
 }
 EXCLUDED_TOP_LEVEL = {"build", "dist", "scratch", "tmp"}
 SYNC_COLLISION = re.compile(r" \d+$")

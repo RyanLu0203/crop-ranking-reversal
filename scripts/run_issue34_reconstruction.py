@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the registered Issue #34 full-model reconstruction experiment.
+"""Run the crop-ranking-reversal full-model reconstruction experiment.
 
 The workflow starts from the official-data-derived Kansas state crop panel,
 constructs a pre-decision historical-yield-potential score, calibrates margin
@@ -84,8 +84,11 @@ def load_design() -> Dict[str, Any]:
         design["status"] != "FROZEN_BEFORE_RESULTS"
         or design["owner_issue"] != 34
         or design.get("repair_issue") != 36
+        or design.get("finalization_issue") != 38
+        or design.get("finalization_registration", {}).get("status")
+        != "PRE_SPECIFIED_BEFORE_FINAL_FRONTIER_RERUN"
     ):
-        raise ValueError("Issue #34 design and Issue #36 repair must be registered")
+        raise ValueError("the reconstruction and finalization design must be registered")
     design["design_sha256"] = sha256(DESIGN_PATH)
     return design
 
@@ -169,12 +172,17 @@ def operational_spec(design: Mapping[str, Any], calibration: pd.DataFrame) -> Di
     }
 
 
-def copula_parameters(family: str, tau: float) -> tuple[str, Any]:
+def copula_parameters(
+    family: str,
+    tau: float,
+    *,
+    student_t_df: float = 4.0,
+) -> tuple[str, Any]:
     if family == "gaussian":
         return "Gaussian", equicorrelation_from_kendall_tau(tau, len(CROPS))
     if family == "student_t":
         return "Student-t", {
-            "df": 4,
+            "df": float(student_t_df),
             "corr": equicorrelation_from_kendall_tau(tau, len(CROPS)),
         }
     if family == "clayton":
@@ -191,9 +199,12 @@ def scenarios(
     seed: int,
     *,
     marginal: str = "student_t_df5",
+    student_t_copula_df: float = 4.0,
     empirical_samples: np.ndarray | None = None,
 ) -> tuple[np.ndarray, Dict[str, Any]]:
-    copula_type, copula_param = copula_parameters(family, tau)
+    copula_type, copula_param = copula_parameters(
+        family, tau, student_t_df=student_t_copula_df
+    )
     if marginal == "student_t_df5":
         marginal_model = {"type": "student_t", "df": 5}
     elif marginal == "gaussian":
@@ -595,6 +606,418 @@ def dependence_diagnostics(
     return pd.DataFrame(rows).sort_values("aic")
 
 
+def _gamma_values(registered: Mapping[str, Any]) -> np.ndarray:
+    contract = registered["gamma_frontier"]
+    start = float(contract["start"])
+    stop = float(contract["stop"])
+    step = float(contract["step"])
+    count = int(round((stop - start) / step))
+    grid = np.round(start + step * np.arange(count + 1), 10)
+    if len(grid) < 100 or not np.isclose(grid[0], start) or not np.isclose(grid[-1], stop):
+        raise ValueError("the pre-specified gamma frontier is incomplete")
+    return grid
+
+
+def _allocation_feasibility_residual(
+    x: np.ndarray,
+    spec: Mapping[str, Any],
+    *,
+    full_investment: bool,
+) -> float:
+    residuals = [
+        abs(float(np.sum(x) - spec["total_land"])) if full_investment
+        else max(float(np.sum(x) - spec["total_land"]), 0.0),
+        max(float(spec["costs"] @ x - spec["budget"]), 0.0),
+        float(np.max(np.maximum(spec["lower"] - x, 0.0))),
+        float(np.max(np.maximum(x - spec["upper"], 0.0))),
+    ]
+    for crop, cap in spec["rotation_caps"].items():
+        residuals.append(max(float(x[CROPS.index(crop)] - cap), 0.0))
+    for crop, minimum in spec["contract_minimums"].items():
+        residuals.append(max(float(minimum - x[CROPS.index(crop)]), 0.0))
+    for capacity in spec["shared_capacity_constraints"].values():
+        coefficients = np.asarray(
+            [float(capacity["coefficients"].get(crop, 0.0)) for crop in CROPS]
+        )
+        residuals.append(
+            max(float(coefficients @ x - float(capacity["capacity"])), 0.0)
+        )
+    return max(residuals)
+
+
+def _gamma_intervals(frame: pd.DataFrame, flag: str) -> str:
+    selected = frame.loc[frame[flag].fillna(False)].sort_values("gamma")
+    if selected.empty:
+        return "none"
+    step = float(np.diff(np.sort(frame["gamma"].unique())).min())
+    values = selected["gamma"].to_numpy(dtype=float)
+    intervals: list[tuple[float, float]] = []
+    left = previous = values[0]
+    for value in values[1:]:
+        if value - previous > step * 1.5:
+            intervals.append((left, previous))
+            left = value
+        previous = value
+    intervals.append((left, previous))
+    return ";".join(
+        f"{lower:.4f}" if np.isclose(lower, upper) else f"{lower:.4f}-{upper:.4f}"
+        for lower, upper in intervals
+    )
+
+
+def _solve_diversification_case(
+    means: np.ndarray,
+    stds: np.ndarray,
+    margin_matrix: np.ndarray,
+    scores: np.ndarray,
+    spec: Mapping[str, Any],
+    design: Mapping[str, Any],
+    *,
+    scenario_count: int,
+    seed: int,
+    tau: float,
+    student_t_copula_df: float,
+    alpha: float,
+    risk_tolerance: float,
+    evaluation_marginal: str,
+    variance_target: float,
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    registered = design["diversification_failure"]
+    gaussian, gaussian_meta = scenarios(
+        means,
+        stds,
+        "gaussian",
+        tau,
+        scenario_count,
+        seed,
+        marginal="student_t_df5",
+        empirical_samples=margin_matrix,
+    )
+    evaluation, evaluation_meta = scenarios(
+        means,
+        stds,
+        "student_t",
+        tau,
+        scenario_count,
+        seed,
+        marginal=evaluation_marginal,
+        student_t_copula_df=student_t_copula_df,
+        empirical_samples=margin_matrix,
+    )
+    kappa, expected_evaluation, minimum_evaluation = risk_endpoint(
+        evaluation, spec, alpha, risk_tolerance
+    )
+    benchmark = solve_expected(gaussian, spec)
+    tail_aware = solve_risk(evaluation, spec, alpha, kappa)
+    if benchmark.allocation is None or tail_aware.allocation is None:
+        raise RuntimeError("a declared diversification policy is infeasible")
+    x0 = np.asarray(benchmark.allocation, dtype=float)
+    x_t = np.asarray(tail_aware.allocation, dtype=float)
+    gamma_values = _gamma_values(registered)
+    frontier_records: list[dict[str, Any]] = []
+    allocations: dict[float, np.ndarray] = {}
+    start = x0.copy()
+    covariance = np.cov(gaussian, rowvar=False)
+    gaussian_mean = gaussian.mean(axis=0)
+    for gamma in gamma_values:
+        point = mean_variance_policy(
+            gaussian,
+            spec["costs"],
+            spec["total_land"],
+            spec["budget"],
+            spec["lower"],
+            spec["upper"],
+            spec["rotation_caps"],
+            CROPS,
+            gamma=float(gamma),
+            start=start,
+            contract_minimums=spec["contract_minimums"],
+            shared_capacity_constraints=spec["shared_capacity_constraints"],
+            full_investment=bool(registered["mean_variance_full_investment"]),
+        )
+        if point["status"] != "optimal":
+            raise RuntimeError(
+                f"Gaussian mean-variance frontier failed at gamma={gamma}: "
+                f"{point.get('message', '')}"
+            )
+        x = np.asarray(point["allocation"], dtype=float)
+        start = x
+        allocations[float(gamma)] = x
+        gaussian_profit = gaussian @ x
+        evaluation_profit = evaluation @ x
+        _, evaluation_cvar = _var_cvar(-evaluation_profit, alpha)
+        allocation_l1 = float(np.abs(x - x_t).sum())
+        gaussian_variance = float(np.var(gaussian_profit, ddof=1))
+        frontier_records.append({
+            "policy": f"Gaussian_MV_frontier_gamma_{gamma:.4f}",
+            "row_type": "mean_variance_frontier",
+            "gamma": float(gamma),
+            "declared_benchmark": False,
+            "policy_solver_generated": True,
+            "solver_status": str(point["status"]),
+            "solver_message": str(point.get("message", "")),
+            "mean_variance_objective": float(
+                gaussian_mean @ x - float(gamma) * (x @ covariance @ x)
+            ),
+            "feasibility_max_violation": _allocation_feasibility_residual(
+                x, spec, full_investment=True
+            ),
+            "full_investment_residual": abs(float(x.sum() - spec["total_land"])),
+            "matched_kendall_tau": tau,
+            "evaluation_law": (
+                f"student_t_copula_df{student_t_copula_df:g}_"
+                f"{evaluation_marginal}_marginal"
+            ),
+            "gaussian_lower_tail_dependence": 0.0,
+            "lower_tail_dependence": evaluation_meta["lower_tail_dependence"],
+            "gaussian_profit_variance": gaussian_variance,
+            "gaussian_expected_profit": float(np.mean(gaussian_profit)),
+            "evaluation_profit_variance": float(
+                np.var(evaluation_profit, ddof=1)
+            ),
+            "evaluation_loss_CVaR": float(evaluation_cvar),
+            "evaluation_expected_profit": float(np.mean(evaluation_profit)),
+            "risk_ceiling": kappa,
+            "xMV_vs_xT_allocation_L1": allocation_l1,
+            "xMV_evaluation_CVaR_minus_xT": float(
+                evaluation_cvar - tail_aware.cvar_loss
+            ),
+            **{
+                f"allocation_{crop.replace(' ', '_')}": float(value)
+                for crop, value in zip(CROPS, x)
+            },
+            **reversal_classification(x, scores, design),
+        })
+    frontier = pd.DataFrame(frontier_records)
+    benchmark_variance = float(np.var(gaussian @ x0, ddof=1))
+    frontier["benchmark_gaussian_variance"] = benchmark_variance
+    frontier["gaussian_variance_reduction"] = (
+        benchmark_variance - frontier["gaussian_profit_variance"]
+    )
+    frontier["gaussian_variance_reduction_fraction"] = (
+        1.0 - frontier["gaussian_profit_variance"] / benchmark_variance
+    )
+    candidates = frontier.loc[
+        frontier["gaussian_variance_reduction_fraction"]
+        >= variance_target - 1e-12
+    ]
+    if candidates.empty:
+        raise RuntimeError("the registered frontier does not reach the variance target")
+    selected_gamma = float(candidates.iloc[0]["gamma"])
+    selected_allocation = allocations[selected_gamma]
+    x0_matches_gamma_zero_l1 = float(
+        np.abs(x0 - allocations[float(gamma_values[0])]).sum()
+    )
+    if x0_matches_gamma_zero_l1 > 1e-5:
+        raise AssertionError("gamma=0 frontier endpoint does not reproduce x0")
+
+    variance_tolerance = float(registered["variance_tolerance"])
+    cvar_tolerance = float(registered["cvar_tolerance"])
+    allocation_threshold = float(registered["allocation_materiality_l1"])
+    frontier["variance_diversification_criterion"] = (
+        frontier["gaussian_profit_variance"]
+        < benchmark_variance - variance_tolerance
+    )
+    frontier["allocation_disagreement_criterion"] = (
+        frontier["xMV_vs_xT_allocation_L1"] > allocation_threshold
+    )
+    frontier["tail_inferiority_criterion"] = (
+        frontier["evaluation_loss_CVaR"]
+        > float(tail_aware.cvar_loss) + cvar_tolerance
+    )
+    frontier["strong_risk_ceiling_violation_criterion"] = (
+        frontier["evaluation_loss_CVaR"] > kappa + cvar_tolerance
+    )
+    frontier["weak_diversification_failure"] = (
+        frontier["variance_diversification_criterion"]
+        & frontier["allocation_disagreement_criterion"]
+        & frontier["tail_inferiority_criterion"]
+    )
+    frontier["strong_diversification_failure"] = (
+        frontier["weak_diversification_failure"]
+        & frontier["strong_risk_ceiling_violation_criterion"]
+    )
+    frontier["selected_policy"] = np.isclose(frontier["gamma"], selected_gamma)
+    x_t_ceiling_slack = float(kappa - tail_aware.cvar_loss)
+    conditions_coincide = bool(abs(x_t_ceiling_slack) <= max(1e-6, cvar_tolerance))
+    frontier["xT_ceiling_slack"] = x_t_ceiling_slack
+    frontier["tail_and_ceiling_conditions_numerically_dependent"] = (
+        conditions_coincide
+    )
+    frontier["selection_rule"] = registered["selection_rule"]
+    frontier["variance_reduction_target"] = variance_target
+    frontier["selected_gamma"] = selected_gamma
+    frontier["selected_gamma_is_interior"] = bool(
+        selected_gamma > gamma_values[0] and selected_gamma < gamma_values[-1]
+    )
+    weak_intervals = _gamma_intervals(frontier, "weak_diversification_failure")
+    strong_intervals = _gamma_intervals(frontier, "strong_diversification_failure")
+    frontier["weak_failure_gamma_intervals"] = weak_intervals
+    frontier["strong_failure_gamma_intervals"] = strong_intervals
+
+    selected_frontier = frontier.loc[frontier["selected_policy"]].iloc[0]
+    policy_allocations = {
+        "x0_expected_profit_under_matched_gaussian": (
+            x0, benchmark.status, benchmark.message, np.nan
+        ),
+        "xMV_variance_target_selected": (
+            selected_allocation,
+            str(selected_frontier["solver_status"]),
+            str(selected_frontier["solver_message"]),
+            selected_gamma,
+        ),
+        "xT_CVaR_under_student_t_evaluation": (
+            x_t, tail_aware.status, tail_aware.message, np.nan
+        ),
+        "expected_profit_under_evaluation_law_diagnostic": (
+            np.asarray(expected_evaluation.allocation, dtype=float),
+            expected_evaluation.status,
+            expected_evaluation.message,
+            np.nan,
+        ),
+    }
+    policy_rows: list[dict[str, Any]] = []
+    for policy, (x, status, message, gamma) in policy_allocations.items():
+        gaussian_profit = gaussian @ x
+        evaluation_profit = evaluation @ x
+        _, evaluation_cvar = _var_cvar(-evaluation_profit, alpha)
+        selected = policy == "xMV_variance_target_selected"
+        policy_rows.append({
+            "policy": policy,
+            "row_type": "registered_policy",
+            "gamma": gamma,
+            "declared_benchmark": policy.startswith("x0_"),
+            "policy_solver_generated": True,
+            "solver_status": status,
+            "solver_message": message,
+            "mean_variance_objective": (
+                float(gaussian_mean @ x - selected_gamma * (x @ covariance @ x))
+                if selected else np.nan
+            ),
+            "feasibility_max_violation": _allocation_feasibility_residual(
+                x, spec, full_investment=True
+            ),
+            "full_investment_residual": abs(float(x.sum() - spec["total_land"])),
+            "matched_kendall_tau": tau,
+            "evaluation_law": (
+                f"student_t_copula_df{student_t_copula_df:g}_"
+                f"{evaluation_marginal}_marginal"
+            ),
+            "gaussian_lower_tail_dependence": 0.0,
+            "lower_tail_dependence": evaluation_meta["lower_tail_dependence"],
+            "gaussian_profit_variance": float(
+                np.var(gaussian_profit, ddof=1)
+            ),
+            "gaussian_expected_profit": float(np.mean(gaussian_profit)),
+            "evaluation_profit_variance": float(
+                np.var(evaluation_profit, ddof=1)
+            ),
+            "evaluation_loss_CVaR": float(evaluation_cvar),
+            "evaluation_expected_profit": float(np.mean(evaluation_profit)),
+            "risk_ceiling": kappa,
+            "xMV_vs_xT_allocation_L1": (
+                float(np.abs(x - x_t).sum()) if selected else np.nan
+            ),
+            "xMV_evaluation_CVaR_minus_xT": (
+                float(evaluation_cvar - tail_aware.cvar_loss)
+                if selected else np.nan
+            ),
+            "benchmark_gaussian_variance": benchmark_variance,
+            "gaussian_variance_reduction": (
+                benchmark_variance - float(np.var(gaussian_profit, ddof=1))
+                if selected else np.nan
+            ),
+            "gaussian_variance_reduction_fraction": (
+                1.0 - float(np.var(gaussian_profit, ddof=1)) / benchmark_variance
+                if selected else np.nan
+            ),
+            "variance_diversification_criterion": (
+                bool(selected_frontier["variance_diversification_criterion"])
+                if selected else np.nan
+            ),
+            "allocation_disagreement_criterion": (
+                bool(selected_frontier["allocation_disagreement_criterion"])
+                if selected else np.nan
+            ),
+            "tail_inferiority_criterion": (
+                bool(selected_frontier["tail_inferiority_criterion"])
+                if selected else np.nan
+            ),
+            "strong_risk_ceiling_violation_criterion": (
+                bool(selected_frontier["strong_risk_ceiling_violation_criterion"])
+                if selected else np.nan
+            ),
+            "weak_diversification_failure": (
+                bool(selected_frontier["weak_diversification_failure"])
+                if selected else np.nan
+            ),
+            "strong_diversification_failure": (
+                bool(selected_frontier["strong_diversification_failure"])
+                if selected else np.nan
+            ),
+            "selected_policy": selected,
+            "xT_ceiling_slack": x_t_ceiling_slack,
+            "tail_and_ceiling_conditions_numerically_dependent": (
+                conditions_coincide
+            ),
+            "selection_rule": registered["selection_rule"],
+            "variance_reduction_target": variance_target,
+            "selected_gamma": selected_gamma,
+            "selected_gamma_is_interior": bool(
+                selected_gamma > gamma_values[0]
+                and selected_gamma < gamma_values[-1]
+            ),
+            "weak_failure_gamma_intervals": weak_intervals,
+            "strong_failure_gamma_intervals": strong_intervals,
+            **{
+                f"allocation_{crop.replace(' ', '_')}": float(value)
+                for crop, value in zip(CROPS, x)
+            },
+            **reversal_classification(x, scores, design),
+        })
+    frame = pd.concat([pd.DataFrame(policy_rows), frontier], ignore_index=True)
+    frame["frontier_points"] = len(gamma_values)
+    frame["frontier_gamma_start"] = float(gamma_values[0])
+    frame["frontier_gamma_stop"] = float(gamma_values[-1])
+    frame["frontier_gamma_step"] = float(gamma_values[1] - gamma_values[0])
+    frame["x0_matches_gamma_zero_L1"] = x0_matches_gamma_zero_l1
+    frame["minimum_evaluation_CVaR"] = minimum_evaluation.cvar_loss
+    frame["gaussian_scenario_count"] = scenario_count
+    frame["evaluation_scenario_count"] = scenario_count
+    frame["scenario_seed"] = seed
+    frame["student_t_copula_df"] = student_t_copula_df
+    frame["evaluation_marginal"] = evaluation_marginal
+    frame["alpha"] = alpha
+    frame["risk_tolerance"] = risk_tolerance
+    frame["gaussian_sample_mean_max_error"] = float(
+        np.max(np.abs(np.asarray(gaussian_meta["sample_means"]) - means))
+    )
+    frame["criterion_definition"] = (
+        "variance reduction relative to solver-generated x0; material allocation "
+        "difference from solver-generated xT; Student-t evaluation-law tail "
+        "inferiority; and, for strong failure, violation of the common loss-CVaR "
+        "ceiling. When xT binds the ceiling, the last two inequalities coincide "
+        "numerically and are not independent checks."
+    )
+    metadata = {
+        "selected_gamma": selected_gamma,
+        "selected_gamma_is_interior": bool(
+            selected_gamma > gamma_values[0] and selected_gamma < gamma_values[-1]
+        ),
+        "weak_failure_gamma_intervals": weak_intervals,
+        "strong_failure_gamma_intervals": strong_intervals,
+        "selected_weak_failure": bool(
+            selected_frontier["weak_diversification_failure"]
+        ),
+        "selected_strong_failure": bool(
+            selected_frontier["strong_diversification_failure"]
+        ),
+        "conditions_numerically_dependent": conditions_coincide,
+        "x_t_ceiling_slack": x_t_ceiling_slack,
+    }
+    return frame, metadata
+
+
 def diversification_failure(
     means: np.ndarray,
     stds: np.ndarray,
@@ -602,160 +1025,99 @@ def diversification_failure(
     scores: np.ndarray,
     spec: Mapping[str, Any],
     design: Mapping[str, Any],
-) -> pd.DataFrame:
-    tau = float(design["dependence"]["primary_kendall_tau"])
-    seed = int(design["uncertainty"]["base_seed"]) + 80000
-    n = int(design["uncertainty"]["evaluation_scenarios"])
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
     registered = design["diversification_failure"]
-    gaussian, _ = scenarios(
-        means, stds, "gaussian", tau, n, seed, empirical_samples=margin_matrix
-    )
-    tail, tail_meta = scenarios(
-        means, stds, "student_t", tau, n, seed, empirical_samples=margin_matrix
-    )
-    alpha = float(design["optimization"]["alpha_primary"])
-    kappa, expected_tail, _minimum_tail = risk_endpoint(
-        tail, spec, alpha, design["optimization"]["primary_risk_tolerance"]
-    )
-    benchmark = solve_expected(gaussian, spec)
-    if benchmark.allocation is None:
-        raise RuntimeError("declared diversification benchmark is infeasible")
-    frontier: Dict[float, np.ndarray] = {}
-    start = np.asarray(benchmark.allocation)
-    for gamma_value in registered["gamma_grid"]:
-        gamma = float(gamma_value)
-        point = mean_variance_policy(
-            gaussian, spec["costs"], spec["total_land"], spec["budget"], spec["lower"],
-            spec["upper"], spec["rotation_caps"], CROPS, gamma=gamma,
-            start=start,
-            contract_minimums=spec["contract_minimums"],
-            shared_capacity_constraints=spec["shared_capacity_constraints"],
-            full_investment=bool(registered["mean_variance_full_investment"]),
-        )
-        if point["status"] != "optimal":
-            raise RuntimeError(f"Gaussian mean-variance frontier failed at gamma={gamma}")
-        start = np.asarray(point["allocation"], dtype=float)
-        frontier[gamma] = start
-    selected_gamma = float(registered["selected_gamma"])
-    if selected_gamma not in frontier:
-        raise ValueError("selected mean-variance gamma is absent from registered grid")
-    mean_variance_allocation = frontier[selected_gamma]
-    tail_aware = solve_risk(tail, spec, alpha, kappa)
-    if tail_aware.allocation is None:
-        raise RuntimeError("tail-aware diversification comparison is infeasible")
-    candidates = {
-        "x0_expected_profit_under_matched_gaussian": np.asarray(benchmark.allocation),
-        "xMV_registered_Gaussian_frontier_point": mean_variance_allocation,
-        "xT_CVaR_under_matched_student_t": np.asarray(tail_aware.allocation),
-        "expected_profit_under_tail_law_diagnostic": np.asarray(expected_tail.allocation),
+    baseline = {
+        "scenario_count": int(design["uncertainty"]["evaluation_scenarios"]),
+        "seed": int(design["uncertainty"]["base_seed"]) + 80000,
+        "tau": float(design["dependence"]["primary_kendall_tau"]),
+        "student_t_copula_df": float(design["dependence"]["primary_df"]),
+        "alpha": float(design["optimization"]["alpha_primary"]),
+        "risk_tolerance": float(design["optimization"]["primary_risk_tolerance"]),
+        "evaluation_marginal": "student_t_df5",
+        "variance_target": float(
+            registered["target_gaussian_variance_reduction_fraction"]
+        ),
     }
-    rows = []
-    for policy, x in candidates.items():
-        tail_profit = tail @ x
-        gaussian_profit = gaussian @ x
-        _, tail_cvar = _var_cvar(-tail_profit, alpha)
-        rows.append({
-            "policy": policy,
-            "row_type": "registered_policy",
-            "gamma": selected_gamma if policy.startswith("xMV_") else np.nan,
-            "declared_benchmark": policy.startswith("x0_"),
-            "matched_kendall_tau": tau,
-            "true_law": "student_t_df4_copula",
-            "gaussian_lower_tail_dependence": 0.0,
-            "lower_tail_dependence": tail_meta["lower_tail_dependence"],
-            "gaussian_profit_variance": float(np.var(gaussian_profit, ddof=1)),
-            "gaussian_expected_profit": float(np.mean(gaussian_profit)),
-            "true_law_profit_variance": float(np.var(tail_profit, ddof=1)),
-            "true_law_loss_CVaR": float(tail_cvar),
-            "true_law_expected_profit": float(np.mean(tail_profit)),
-            "risk_ceiling": kappa,
-            **{f"allocation_{crop.replace(' ', '_')}": float(value)
-               for crop, value in zip(CROPS, x)},
-            **reversal_classification(x, scores, design),
+    frame, metadata = _solve_diversification_case(
+        means, stds, margin_matrix, scores, spec, design, **baseline
+    )
+    cases: list[tuple[str, str, Any, dict[str, Any]]] = [
+        ("baseline", "baseline", "baseline", baseline)
+    ]
+    sensitivity = registered["sensitivity"]
+    mappings = [
+        ("scenario_count", "scenario_count", sensitivity["scenario_counts"]),
+        ("seed", "seed", [
+            baseline["seed"] + int(offset) for offset in sensitivity["seed_offsets"]
+        ]),
+        ("kendall_tau", "tau", sensitivity["kendall_tau"]),
+        ("student_t_copula_df", "student_t_copula_df",
+         sensitivity["student_t_copula_df"]),
+        ("cvar_alpha", "alpha", sensitivity["cvar_alpha"]),
+        ("risk_ceiling_path", "risk_tolerance", sensitivity["risk_tolerance"]),
+        ("evaluation_marginal", "evaluation_marginal",
+         sensitivity["evaluation_marginal"]),
+        ("selection_target", "variance_target",
+         registered["selection_rule_sensitivity_targets"]),
+    ]
+    for factor, key, values in mappings:
+        for value in values:
+            if (
+                isinstance(value, float)
+                and isinstance(baseline[key], float)
+                and np.isclose(float(value), float(baseline[key]))
+            ) or value == baseline[key]:
+                continue
+            arguments = dict(baseline)
+            arguments[key] = value
+            cases.append((f"{factor}_{value}", factor, value, arguments))
+    sensitivity_rows: list[dict[str, Any]] = []
+    for case_id, factor, value, arguments in cases:
+        if case_id == "baseline":
+            case_frame, case_meta = frame, metadata
+        else:
+            case_frame, case_meta = _solve_diversification_case(
+                means, stds, margin_matrix, scores, spec, design, **arguments
+            )
+        selected = case_frame.loc[
+            case_frame["row_type"].eq("registered_policy")
+            & case_frame["policy"].eq("xMV_variance_target_selected")
+        ].iloc[0]
+        sensitivity_rows.append({
+            "case_id": case_id,
+            "varied_factor": factor,
+            "varied_value": value,
+            **arguments,
+            "selected_gamma": case_meta["selected_gamma"],
+            "selected_gamma_is_interior": case_meta["selected_gamma_is_interior"],
+            "weak_failure_gamma_intervals": (
+                case_meta["weak_failure_gamma_intervals"]
+            ),
+            "strong_failure_gamma_intervals": (
+                case_meta["strong_failure_gamma_intervals"]
+            ),
+            "selected_weak_failure": case_meta["selected_weak_failure"],
+            "selected_strong_failure": case_meta["selected_strong_failure"],
+            "tail_and_ceiling_conditions_numerically_dependent": (
+                case_meta["conditions_numerically_dependent"]
+            ),
+            "selected_gaussian_variance_reduction_fraction": (
+                selected["gaussian_variance_reduction_fraction"]
+            ),
+            "selected_allocation_L1_from_xT": selected["xMV_vs_xT_allocation_L1"],
+            "selected_evaluation_CVaR_minus_xT": (
+                selected["xMV_evaluation_CVaR_minus_xT"]
+            ),
+            "selected_evaluation_CVaR_minus_ceiling": (
+                selected["evaluation_loss_CVaR"] - selected["risk_ceiling"]
+            ),
+            "selected_solver_status": selected["solver_status"],
+            "selected_feasibility_max_violation": (
+                selected["feasibility_max_violation"]
+            ),
         })
-    for gamma, x in frontier.items():
-        gaussian_profit = gaussian @ x
-        tail_profit = tail @ x
-        _, tail_cvar = _var_cvar(-tail_profit, alpha)
-        rows.append({
-            "policy": f"Gaussian_MV_frontier_gamma_{gamma:.4f}",
-            "row_type": "mean_variance_frontier",
-            "gamma": gamma,
-            "declared_benchmark": False,
-            "matched_kendall_tau": tau,
-            "true_law": "student_t_df4_copula",
-            "gaussian_lower_tail_dependence": 0.0,
-            "lower_tail_dependence": tail_meta["lower_tail_dependence"],
-            "gaussian_profit_variance": float(np.var(gaussian_profit, ddof=1)),
-            "gaussian_expected_profit": float(np.mean(gaussian_profit)),
-            "true_law_profit_variance": float(np.var(tail_profit, ddof=1)),
-            "true_law_loss_CVaR": float(tail_cvar),
-            "true_law_expected_profit": float(np.mean(tail_profit)),
-            "risk_ceiling": kappa,
-            **{f"allocation_{crop.replace(' ', '_')}": float(value)
-               for crop, value in zip(CROPS, x)},
-            **reversal_classification(x, scores, design),
-        })
-    frame = pd.DataFrame(rows)
-    x0 = frame.loc[
-        frame["policy"].eq("x0_expected_profit_under_matched_gaussian")
-    ].iloc[0]
-    mv = frame.loc[
-        frame["policy"].eq("xMV_registered_Gaussian_frontier_point")
-    ].iloc[0]
-    cv = frame.loc[
-        frame["policy"].eq("xT_CVaR_under_matched_student_t")
-    ].iloc[0]
-    variance_tolerance = float(registered["variance_tolerance"])
-    cvar_tolerance = float(registered["cvar_tolerance"])
-    allocation_threshold = float(registered["allocation_materiality_l1"])
-    variance_diversifies = bool(
-        mv["gaussian_profit_variance"]
-        < x0["gaussian_profit_variance"] - variance_tolerance
-    )
-    cvar_fails = bool(
-        mv["true_law_loss_CVaR"] > cv["true_law_loss_CVaR"] + cvar_tolerance
-    )
-    allocation_l1 = float(sum(
-        abs(mv[f"allocation_{crop.replace(' ', '_')}"]
-            - cv[f"allocation_{crop.replace(' ', '_')}"])
-        for crop in CROPS
-    ))
-    allocation_disagrees = bool(allocation_l1 > allocation_threshold)
-    strong_failure = bool(
-        variance_diversifies
-        and cvar_fails
-        and allocation_disagrees
-        and mv["true_law_loss_CVaR"] > kappa + cvar_tolerance
-    )
-    frame["variance_diversification_criterion"] = variance_diversifies
-    frame["tail_CVaR_failure_criterion"] = cvar_fails
-    frame["allocation_disagreement_criterion"] = allocation_disagrees
-    frame["strong_risk_ceiling_violation_criterion"] = bool(
-        mv["true_law_loss_CVaR"] > kappa + cvar_tolerance
-    )
-    frame["benchmark_gaussian_variance"] = float(x0["gaussian_profit_variance"])
-    frame["selected_xMV_gaussian_variance"] = float(mv["gaussian_profit_variance"])
-    frame["gaussian_variance_reduction"] = float(
-        x0["gaussian_profit_variance"] - mv["gaussian_profit_variance"]
-    )
-    frame["gaussian_variance_reduction_fraction"] = float(
-        1.0 - mv["gaussian_profit_variance"] / x0["gaussian_profit_variance"]
-    )
-    frame["xMV_vs_xT_allocation_L1"] = allocation_l1
-    frame["xMV_true_law_CVaR_minus_xT"] = float(
-        mv["true_law_loss_CVaR"] - cv["true_law_loss_CVaR"]
-    )
-    frame["diversification_failure_identified"] = (
-        variance_diversifies and cvar_fails and allocation_disagrees
-    )
-    frame["strong_diversification_failure_identified"] = strong_failure
-    frame["criterion_definition"] = (
-        "xMV must reduce Gaussian variance relative to declared x0, differ "
-        "materially from xT, and have worse Student-t-law loss-CVaR; strong "
-        "failure additionally requires violation of the true-law ceiling"
-    )
-    return frame
+    return frame, pd.DataFrame(sensitivity_rows), metadata
 
 
 def margin_mechanism(
@@ -938,6 +1300,171 @@ def risk_induced_mechanism(
         < -float(design["reversal_taxonomy"]["acreage_order_tolerance"])
     )
     frame["registered_loose_to_tight_crossing"] = crossing
+    return frame
+
+
+def risk_shock_sensitivity(
+    calibration: pd.DataFrame,
+    means: np.ndarray,
+    stds: np.ndarray,
+    margin_matrix: np.ndarray,
+    scores: np.ndarray,
+    spec: Mapping[str, Any],
+    design: Mapping[str, Any],
+) -> pd.DataFrame:
+    """Map risk-induced crossing over shock probability and magnitude."""
+
+    registered = design["mechanism_isolation"]["risk_induced"]
+    scenario_count = int(registered["scenario_count"])
+    base, metadata = scenarios(
+        means,
+        stds,
+        str(registered["scenario_family"]),
+        float(registered["kendall_tau"]),
+        scenario_count,
+        int(registered["scenario_seed"]),
+        marginal=str(registered["marginal_family"]),
+        empirical_samples=margin_matrix,
+    )
+    high_crop = str(registered["focal_high_rank_crop"])
+    low_crop = str(registered["focal_low_rank_crop"])
+    high = CROPS.index(high_crop)
+    low = CROPS.index(low_crop)
+    gross = calibration.assign(
+        real_gross_revenue=(
+            calibration["yield_bushels_per_acre"]
+            * calibration["harvest_price_usd_per_bushel"]
+            * calibration["cpi_u_deflator_to_2024"]
+        )
+    )
+    mean_gross = float(
+        gross.loc[gross["crop"].eq(high_crop), "real_gross_revenue"].mean()
+    )
+    rng = np.random.default_rng(int(registered["adverse_event_seed"]))
+    permutation = rng.permutation(scenario_count)
+    alpha = float(design["optimization"]["alpha_primary"])
+    tolerance = float(design["reversal_taxonomy"]["acreage_order_tolerance"])
+    rho_grid = np.asarray(
+        registered["sensitivity_risk_tolerance_grid"], dtype=float
+    )
+    focal_probability = float(registered["soybean_adverse_event_probability"])
+    focal_share = float(
+        registered["soybean_downside_shock_share_of_mean_real_gross_revenue"]
+    )
+    rows: list[dict[str, Any]] = []
+    for probability in registered["sensitivity_probability_grid"]:
+        p = float(probability)
+        event_count = int(round(p * scenario_count))
+        adverse = np.zeros(scenario_count, dtype=bool)
+        adverse[permutation[:event_count]] = True
+        for shock_share in registered["sensitivity_shock_share_grid"]:
+            share = float(shock_share)
+            shock = mean_gross * share
+            compensation = shock * event_count / (scenario_count - event_count)
+            stressed = base.copy()
+            stressed[adverse, high] -= shock
+            stressed[~adverse, high] += compensation
+            mean_error = float(stressed[:, high].mean() - base[:, high].mean())
+            if abs(mean_error) > 1e-9:
+                raise AssertionError("shock sensitivity must preserve the sample mean")
+            if not (
+                scores[high] > scores[low]
+                and stressed[:, high].mean() > stressed[:, low].mean()
+            ):
+                raise AssertionError(
+                    "risk sensitivity requires higher score and higher mean margin"
+                )
+            gaps: list[float] = []
+            statuses: list[str] = []
+            cvar_limits: list[float] = []
+            for rho in rho_grid:
+                kappa, _expected, _minimum = risk_endpoint(
+                    stressed, spec, alpha, float(rho)
+                )
+                result = solve_risk(stressed, spec, alpha, kappa)
+                statuses.append(result.status)
+                cvar_limits.append(kappa)
+                gaps.append(
+                    np.nan
+                    if result.allocation is None
+                    else float(result.allocation[high] - result.allocation[low])
+                )
+            gap_array = np.asarray(gaps, dtype=float)
+            feasible = np.isfinite(gap_array)
+            reversal = feasible & (gap_array < -tolerance)
+            nonreversal = feasible & (gap_array > tolerance)
+            transition_indices = [
+                index
+                for index in range(1, len(rho_grid))
+                if feasible[index - 1]
+                and feasible[index]
+                and (
+                    (gap_array[index - 1] < -tolerance
+                     and gap_array[index] > tolerance)
+                    or (gap_array[index - 1] > tolerance
+                        and gap_array[index] < -tolerance)
+                )
+            ]
+            if not feasible.all():
+                classification = "infeasible"
+            elif reversal.any() and nonreversal.any() and transition_indices:
+                classification = "crossing"
+            else:
+                classification = "no_crossing"
+            first_crossing = (
+                float(
+                    0.5
+                    * (
+                        rho_grid[transition_indices[0] - 1]
+                        + rho_grid[transition_indices[0]]
+                    )
+                )
+                if transition_indices else np.nan
+            )
+            rows.append({
+                "adverse_event_probability_target": p,
+                "adverse_event_probability_realized": event_count / scenario_count,
+                "shock_share_of_mean_real_gross_revenue": share,
+                "downside_shock_real_2024_usd_per_acre": shock,
+                "nonadverse_compensation_real_2024_usd_per_acre": compensation,
+                "mean_preservation_error": mean_error,
+                "score_high": float(scores[high]),
+                "score_low": float(scores[low]),
+                "mean_margin_high": float(stressed[:, high].mean()),
+                "mean_margin_low": float(stressed[:, low].mean()),
+                "classification": classification,
+                "first_crossing_risk_tolerance": first_crossing,
+                "sign_transition_count": len(transition_indices),
+                "reversal_tolerance_cells": int(reversal.sum()),
+                "nonreversal_tolerance_cells": int(nonreversal.sum()),
+                "infeasible_tolerance_cells": int((~feasible).sum()),
+                "tight_allocation_high_minus_low": gap_array[0],
+                "loose_allocation_high_minus_low": gap_array[-1],
+                "minimum_risk_ceiling": min(cvar_limits),
+                "maximum_risk_ceiling": max(cvar_limits),
+                "risk_tolerance_grid": ";".join(f"{value:.2f}" for value in rho_grid),
+                "solver_statuses": ";".join(statuses),
+                "focal_case": bool(
+                    np.isclose(p, focal_probability)
+                    and np.isclose(share, focal_share)
+                ),
+                "scenario_count": scenario_count,
+                "scenario_seed": int(registered["scenario_seed"]),
+                "adverse_event_seed": int(registered["adverse_event_seed"]),
+                "alpha": alpha,
+                "kendall_tau": float(registered["kendall_tau"]),
+                "lower_tail_dependence": metadata["lower_tail_dependence"],
+                "interpretation": (
+                    "structural probability-magnitude stress sensitivity; "
+                    "not an estimated farm-level shock process"
+                ),
+            })
+    frame = pd.DataFrame(rows).sort_values(
+        ["adverse_event_probability_target",
+         "shock_share_of_mean_real_gross_revenue"]
+    )
+    if frame["focal_case"].sum() != 1:
+        raise AssertionError("the declared focal risk stress is absent from the grid")
     return frame
 
 
@@ -1861,6 +2388,27 @@ def main() -> None:
         design["uncertainty"]["historical_bootstrap_replications"] = 8
         design["uncertainty"]["optimization_scenarios"] = 256
         design["uncertainty"]["evaluation_scenarios"] = 512
+        risk_quick = design["mechanism_isolation"]["risk_induced"]
+        risk_quick["scenario_count"] = 1024
+        risk_quick["sensitivity_probability_grid"] = [0.05, 0.10, 0.20]
+        risk_quick["sensitivity_shock_share_grid"] = [
+            0.20, 0.3333333333333333, 0.50
+        ]
+        risk_quick["sensitivity_risk_tolerance_grid"] = [
+            0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+        ]
+        design["diversification_failure"]["sensitivity"] = {
+            "scenario_counts": [512],
+            "seed_offsets": [0, 1],
+            "kendall_tau": [0.25],
+            "student_t_copula_df": [4],
+            "cvar_alpha": [0.95],
+            "risk_tolerance": [0.50],
+            "evaluation_marginal": ["student_t_df5"],
+        }
+        design["diversification_failure"][
+            "selection_rule_sensitivity_targets"
+        ] = [0.10, 0.15]
     OUT.mkdir(parents=True, exist_ok=True)
     calibration, calibration_summary = load_calibration(design)
     margin_matrix, means, stds, scores = arrays(calibration, calibration_summary)
@@ -1880,13 +2428,16 @@ def main() -> None:
         means, stds, margin_matrix, scores, spec, design
     )
     dependence = dependence_diagnostics(margin_matrix, design)
-    diversification = diversification_failure(
+    diversification, diversification_sensitivity, diversification_metadata = diversification_failure(
         means, stds, margin_matrix, scores, spec, design
     )
     margin_mechanisms = margin_mechanism(
         calibration, calibration_summary, policies
     )
     risk_mechanisms = risk_induced_mechanism(
+        calibration, means, stds, margin_matrix, scores, spec, design
+    )
+    risk_sensitivity = risk_shock_sensitivity(
         calibration, means, stds, margin_matrix, scores, spec, design
     )
     operational_mechanisms = operational_mechanism(
@@ -1910,8 +2461,13 @@ def main() -> None:
         write_frame(frontier_summary(phase), "reversal_frontier_summary.csv"),
         write_frame(dependence, "dependence_diagnostics.csv"),
         write_frame(diversification, "diversification_failure.csv"),
+        write_frame(
+            diversification_sensitivity,
+            "diversification_sensitivity.csv",
+        ),
         write_frame(margin_mechanisms, "margin_mechanism.csv"),
         write_frame(risk_mechanisms, "risk_induced_reversal.csv"),
+        write_frame(risk_sensitivity, "risk_shock_sensitivity.csv"),
         write_frame(operational_mechanisms, "operational_mechanism.csv"),
         write_frame(robustness, "robustness_results.csv"),
         write_frame(bootstrap, "bootstrap_replications.csv"),
@@ -1995,15 +2551,28 @@ def main() -> None:
             "infeasible_cells": int(phase["classification"].eq("infeasible").sum()),
             "multiple_optimum_cells": int(phase["multiple_optima"].fillna(False).sum()),
         },
+        "diversification": diversification_metadata,
         "diversification_failure_identified": bool(
-            diversification["diversification_failure_identified"].iloc[0]
+            diversification_metadata["selected_weak_failure"]
         ),
         "strong_diversification_failure_identified": bool(
-            diversification["strong_diversification_failure_identified"].iloc[0]
+            diversification_metadata["selected_strong_failure"]
         ),
         "risk_induced_crossing_identified": bool(
             risk_mechanisms["registered_loose_to_tight_crossing"].iloc[0]
         ),
+        "risk_shock_sensitivity": {
+            "cells": len(risk_sensitivity),
+            "crossing_cells": int(
+                risk_sensitivity["classification"].eq("crossing").sum()
+            ),
+            "no_crossing_cells": int(
+                risk_sensitivity["classification"].eq("no_crossing").sum()
+            ),
+            "infeasible_cells": int(
+                risk_sensitivity["classification"].eq("infeasible").sum()
+            ),
+        },
         "first_operational_crossing_cap": float(
             operational_mechanisms["first_operational_crossing_cap"].iloc[0]
         ),

@@ -69,7 +69,7 @@ The proof follows convex KKT sufficiency or, in the implemented model, linear
 programming strong duality. The theorem matters because incomplete
 stationarity can assign a residual margin difference to ``risk'' even when
 budget, contract or shared capacity is active. It also clarifies the role of
-multiple optima. KKT validates a point; the face audit determines whether the
+multiple optima. KKT validates a point; optimal-face analysis determines whether the
 ranking relation holds throughout all equivalent optima.
 
 \subsection{Dependence paths}
@@ -109,8 +109,13 @@ Conventional diversification fails when
 \CVaR_{\alpha,T}[L(x^T)],\\
 x^{MV}&\ne x^T,
 \end{align}
-where \(x^0\) is the registered comparison policy. Failure is operationally
-strong when \(\CVaR_{\alpha,T}[L(x^{MV})]>\kappa\).
+where \(x^0\) is the expected-profit policy under the matched Gaussian law.
+In computation, allocation disagreement requires
+\(\lVert x^{MV}-x^T\rVert_1>\varepsilon_x\), and tail inferiority requires
+\(\CVaR_{\alpha,T}[L(x^{MV})]>
+\CVaR_{\alpha,T}[L(x^T)]+\varepsilon_r\).
+Failure is operationally strong when
+\(\CVaR_{\alpha,T}[L(x^{MV})]>\kappa+\varepsilon_r\).
 \end{definition}
 
 \begin{proposition}
@@ -120,9 +125,12 @@ violates the declared risk ceiling.
 \end{proposition}
 
 This statement is logically modest but empirically useful. It separates
-variance reduction, matched Gaussian dependence, true-law loss-CVaR and
+variance reduction, matched Gaussian dependence, evaluation-law loss-CVaR and
 allocation disagreement. It does not assert that every diversified portfolio
-fails or that tail dependence can be summarized by one coefficient.
+fails or that tail dependence can be summarized by one coefficient. If
+\(\CVaR_{\alpha,T}[L(x^T)]=\kappa\), the tail-inferiority and ceiling-violation
+inequalities coincide numerically and must not be counted as independent
+evidence.
 
 \subsection{Information, complementarity and substitution}
 
@@ -168,7 +176,7 @@ is continuous, it must decrease on at least one interval; shock-buffering
 flexibility substitutes for information there.
 \end{proposition}
 
-These results repair an unconditional supermodularity claim. For the complete
+These results do not support unconditional supermodularity. For the complete
 shared-ex-ante-CVaR numerical programme we instead compute, on every adjacent
 grid rectangle,
 \[

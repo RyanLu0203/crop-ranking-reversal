@@ -13,8 +13,8 @@ without rejecting the agronomic information contained in the ranking.
 This paper studies that event as \emph{crop-ranking reversal}. For a pair with
 score \(s_i>s_j\), reversal means \(x_i<x_j\) in the selected optimal acreage
 plan. A complete inversion occurs when the top-ranked crop receives less land
-than every lower-ranked crop. Following the supervisor Draft, strong reversal
-is narrower: a higher-ranked crop is excluded, \(x_i=0<x_j\), while a
+than every lower-ranked crop. Strong reversal is narrower: a higher-ranked
+crop is excluded, \(x_i=0<x_j\), while a
 lower-ranked crop is planted. The question is not whether a ranking alone
 identifies acreage. It does not. The scientific question is sharper: under a declared
 stochastic crop-planning model, which economic, risk and operational mechanisms
@@ -52,7 +52,7 @@ below one-half of total land. With additional monotonicity on the upper half,
 the condition reduces to CVaR at the equal-share allocation exceeding the
 risk ceiling. A unique dependence threshold exists only within a named family
 when continuity, strict monotonicity and crossing are verified. Without those
-conditions the reversal set can be disconnected. This directly repairs
+conditions the reversal set can be disconnected. This rules out
 informal arguments that attempt to infer acreage from a ``risk-adjusted margin
 gap'' or from a scalar tail-dependence coefficient.
 
@@ -61,7 +61,7 @@ US agricultural series. Kansas corn, soybean and winter wheat provide
 \KansasYears{} complete pre-evaluation years. The score order is winter wheat,
 soybean, corn, while mean real margins are \(\$\,\MarginWheat\),
 \(\$\,\MarginSoy\) and \(\$\,\MarginCorn\) per acre, respectively. In the
-registered Student-\(t\) copula stress model, the 95\% loss-CVaR ceiling binds.
+Student-\(t\) copula stress model, the 95\% loss-CVaR ceiling binds.
 The top-ranked winter wheat receives share \PrimaryWheat, less than corn
 (\PrimaryCorn) and soybean (\PrimarySoy). Expected profit is
 \(\$\,\PrimaryProfit\) per normalized acre and loss-CVaR is
@@ -74,30 +74,34 @@ risk- and operationally induced Soybean--Corn crossings while holding the
 relevant score and mean-margin orders fixed.
 
 The phase diagram is more informative than this one allocation. Across
-\PhaseCells{} registered cells spanning three copula families, five
+\PhaseCells{} pre-specified cells spanning three copula families, five
 Kendall-\(\tau\) values and eleven risk tolerances, \PhaseReversal{} cells
 show selected pairwise reversal, \PhaseComplete{} show selected complete rank
-reversal and \PhaseStrong{} show true strong exclusion reversal. Two cells contain multiple
+reversal and \PhaseStrong{} show strong exclusion reversal. Two cells contain multiple
 optima, no cells are infeasible, and one Clayton path is disconnected on the
-registered grid. Selected pairwise reversal occurs in
+pre-specified grid. Selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64 historical resamples, with exact
 Clopper--Pearson binomial interval
 \([\BootstrapProbabilityLow,\BootstrapProbabilityHigh]\). These quantities
-are uncertainty diagnostics for the registered structural stress test, not
+are uncertainty diagnostics for the structural stress test, not
 estimates of farm-level prevalence.
 
 Our third contribution separates diversification diagnostics that are often
 conflated. We define \(x^0\) explicitly and claim failure only when a
 full-investment Gaussian mean--variance policy strictly reduces variance
-relative to that benchmark,
-differs from the tail-aware allocation and has worse loss-CVaR under the
-declared true law. At matched Kendall's \(\tau=0.25\), Gaussian advice has
+relative to that benchmark, differs from the tail-aware allocation and has
+worse loss-CVaR under the Student-\(t\) evaluation law. The focal policy is
+selected independently of tail performance as the smallest \(\gamma\) that
+achieves a \DiversificationTarget\% Gaussian variance reduction. At matched
+Kendall's \(\tau=0.25\), Gaussian advice has
 Student-\(t\) loss-CVaR \(\$\,\DiversificationGaussianCVaR\), exceeding the
 ceiling \(\$\,\DiversificationRiskCeiling\); the tail-aware allocation attains
-\(\$\,\DiversificationTailCVaR\). Thus the failure is operational and
-executable rather than a rhetorical claim that ``correlation misses tails.''
+\(\$\,\DiversificationTailCVaR\). Strong failure holds over
+\(\gamma\in[\DiversificationStrongGammaInterval]\) in the focal experiment.
+Because the tail-aware optimum binds the ceiling, tail inferiority and ceiling
+violation are numerically equivalent here rather than independent evidence.
 
-Finally, we reconstruct the relation between information and flexibility.
+Finally, we examine the relation between information and flexibility.
 The signal is an imperfect pre-plant indication of relative crop-yield
 conditions. In one path, flexibility expands the share that can be reallocated
 after observing the signal. In a second path, flexibility buffers
@@ -110,8 +114,8 @@ numerically: \InfoPositiveCells{} positive, \InfoNegativeCells{} negative,
 The strict theorem is restricted to the separable or nonbinding-risk submodel.
 
 Figure~\ref{fig:architecture} summarizes the architecture. It preserves the
-original scientific chain from suitability to stochastic operational
-optimality: score, uncertain margin, joint law, operational set, downside-risk
+scientific chain from suitability to stochastic operational optimality:
+score, uncertain margin, joint law, operational set, downside-risk
 constraint, reversal frontier, diversification failure and information
 actionability. The paper does not recast the topic as a general essay about
 ordinal insufficiency. Ordinality is a boundary condition; the contribution
@@ -127,7 +131,7 @@ whereas land, budget, rotation, contract and shared-capacity restrictions
 define feasible action. \textbf{b}, The pre-decision score ranks winter wheat
 first. \textbf{c}, Cardinal mean margins are estimated separately; bars show
 one standard deviation across the eight calibration years. \textbf{d}, The
-registered full-model optimum assigns the least land to winter wheat and
+full-model optimum assigns the least land to winter wheat and
 therefore produces a selected complete rank reversal, not a strong exclusion
 reversal.}
 \label{fig:architecture}

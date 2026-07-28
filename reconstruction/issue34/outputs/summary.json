@@ -32,7 +32,17 @@
     ]
   },
   "design_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
-  "design_sha256": "23b19bacf6c38b6765865357e3b8b8876b947df31ac8a5e3b7576ebc62924173",
+  "design_sha256": "8e92d6788a1ac6f0ba8700e89b0a383aec2337c060965b0ad4daf2cb96b0aace",
+  "diversification": {
+    "conditions_numerically_dependent": true,
+    "selected_gamma": 0.0082,
+    "selected_gamma_is_interior": true,
+    "selected_strong_failure": true,
+    "selected_weak_failure": true,
+    "strong_failure_gamma_intervals": "0.0068-0.0088",
+    "weak_failure_gamma_intervals": "0.0068-0.0088",
+    "x_t_ceiling_slack": 6.394884621840902e-14
+  },
   "diversification_failure_identified": true,
   "empirical_evidence_scope": "AGGREGATE_DESCRIPTIVE_NOT_CAUSAL",
   "first_operational_crossing_cap": 0.35,
@@ -108,7 +118,7 @@
           1.0
         ]
       ],
-      "df": 4
+      "df": 4.0
     },
     "copula_type": "Student-t",
     "crop_names": [
@@ -147,5 +157,11 @@
   },
   "quick_mode": false,
   "risk_induced_crossing_identified": true,
+  "risk_shock_sensitivity": {
+    "cells": 49,
+    "crossing_cells": 24,
+    "infeasible_cells": 1,
+    "no_crossing_cells": 24
+  },
   "strong_diversification_failure_identified": true
 }

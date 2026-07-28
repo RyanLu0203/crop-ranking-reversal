@@ -64,37 +64,91 @@ def test_registered_risk_path_has_true_crossing_and_order_conditions():
     assert frame["registered_loose_to_tight_crossing"].all()
 
 
-def test_diversification_variance_uses_declared_x0_not_candidate_maximum():
+def test_diversification_frontier_and_non_outcome_selection_rule():
     frame = pd.read_csv(OUTPUT / "diversification_failure.csv")
     policies = frame[frame["row_type"] == "registered_policy"]
+    frontier = frame[frame["row_type"] == "mean_variance_frontier"].sort_values(
+        "gamma"
+    )
     x0 = policies.loc[
         policies["policy"] == "x0_expected_profit_under_matched_gaussian"
     ].iloc[0]
     xmv = policies.loc[
-        policies["policy"] == "xMV_registered_Gaussian_frontier_point"
+        policies["policy"] == "xMV_variance_target_selected"
     ].iloc[0]
 
     assert bool(x0["declared_benchmark"])
+    assert len(frontier) == 301
+    assert np.isclose(frontier["gamma"].iloc[0], 0.0)
+    assert np.isclose(frontier["gamma"].iloc[-1], 0.03)
+    assert np.allclose(np.diff(frontier["gamma"]), 0.0001)
+    assert frontier["policy_solver_generated"].all()
+    assert frontier["solver_status"].eq("optimal").all()
+    assert frontier["feasibility_max_violation"].max() <= 1e-7
+    assert frontier["full_investment_residual"].abs().max() <= 1e-7
     assert xmv["gaussian_profit_variance"] < x0["gaussian_profit_variance"] - 1e-6
     assert np.isclose(
         xmv["benchmark_gaussian_variance"], x0["gaussian_profit_variance"]
     )
-    assert "maximum candidate" not in str(xmv["criterion_definition"]).lower()
+    assert xmv["gaussian_variance_reduction_fraction"] >= 0.15
+    previous = frontier.loc[frontier["gamma"] < xmv["gamma"]].iloc[-1]
+    assert previous["gaussian_variance_reduction_fraction"] < 0.15
+    assert xmv["selection_rule"] == (
+        "smallest_gamma_achieving_fixed_gaussian_variance_reduction"
+    )
 
 
-def test_true_law_cvar_and_strong_failure_inequalities():
+def test_evaluation_law_cvar_and_strong_failure_inequalities():
     frame = pd.read_csv(OUTPUT / "diversification_failure.csv")
     xmv = frame.loc[
-        frame["policy"] == "xMV_registered_Gaussian_frontier_point"
+        frame["policy"] == "xMV_variance_target_selected"
     ].iloc[0]
     xt = frame.loc[
-        frame["policy"] == "xT_CVaR_under_matched_student_t"
+        frame["policy"] == "xT_CVaR_under_student_t_evaluation"
     ].iloc[0]
 
     assert xmv["xMV_vs_xT_allocation_L1"] > 0.01
-    assert xmv["true_law_loss_CVaR"] > xt["true_law_loss_CVaR"] + 1e-6
-    assert xmv["true_law_loss_CVaR"] > xmv["risk_ceiling"] + 1e-6
-    assert bool(xmv["strong_diversification_failure_identified"])
+    assert xmv["evaluation_loss_CVaR"] > xt["evaluation_loss_CVaR"] + 1e-6
+    assert xmv["evaluation_loss_CVaR"] > xmv["risk_ceiling"] + 1e-6
+    assert bool(xmv["strong_diversification_failure"])
+    assert bool(xmv["tail_and_ceiling_conditions_numerically_dependent"])
+    assert np.isclose(
+        xmv["xMV_evaluation_CVaR_minus_xT"],
+        xmv["evaluation_loss_CVaR"] - xmv["risk_ceiling"],
+        atol=1e-6,
+    )
+
+
+def test_diversification_sensitivity_varies_all_required_factors():
+    frame = pd.read_csv(OUTPUT / "diversification_sensitivity.csv")
+    assert {
+        "baseline",
+        "scenario_count",
+        "seed",
+        "kendall_tau",
+        "student_t_copula_df",
+        "cvar_alpha",
+        "risk_ceiling_path",
+        "evaluation_marginal",
+        "selection_target",
+    } <= set(frame["varied_factor"])
+    assert frame["selected_solver_status"].eq("optimal").all()
+    assert frame["selected_feasibility_max_violation"].max() <= 1e-7
+    assert frame["selected_gamma_is_interior"].all()
+    assert frame["weak_failure_gamma_intervals"].ne("none").all()
+
+
+def test_risk_probability_magnitude_map_contains_focal_crossing():
+    frame = pd.read_csv(OUTPUT / "risk_shock_sensitivity.csv")
+    assert len(frame) == 49
+    assert set(frame["classification"]) <= {
+        "crossing", "no_crossing", "infeasible"
+    }
+    assert frame["mean_preservation_error"].abs().max() <= 1e-9
+    focal = frame.loc[frame["focal_case"]]
+    assert len(focal) == 1
+    assert focal.iloc[0]["classification"] == "crossing"
+    assert np.isfinite(focal.iloc[0]["first_crossing_risk_tolerance"])
 
 
 def test_information_cross_difference_matches_four_solved_values():
@@ -145,6 +199,12 @@ def test_manuscript_terminology_and_official_references_are_consistent():
     assert "red strong reversal" not in manuscript
     assert "selected complete rank reversal" in manuscript
     assert "exact Clopper--Pearson" in manuscript
+    forbidden = {
+        "supervisor", "repository", "registered", "preregistered", "audit",
+        "repaired", "reconstruction", "true-law", "issue #",
+    }
+    lower = manuscript.lower()
+    assert not any(term in lower for term in forbidden)
     for key in [
         "usdanass2019crop",
         "usdanass2022crop",

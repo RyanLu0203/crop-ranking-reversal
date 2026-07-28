@@ -1,6 +1,6 @@
 {
   "analysis_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
-  "design_sha256": "23b19bacf6c38b6765865357e3b8b8876b947df31ac8a5e3b7576ebc62924173",
+  "design_sha256": "8e92d6788a1ac6f0ba8700e89b0a383aec2337c060965b0ad4daf2cb96b0aace",
   "issue": 36,
   "outputs": [
     {
@@ -9,14 +9,19 @@
       "sha256": "0a2c320a47198f262ce9e12eacfa1af748aee25d21a4f852341819ff3b130132"
     },
     {
-      "bytes": 1367,
+      "bytes": 1369,
       "path": "reconstruction/issue34/outputs/dependence_diagnostics.csv",
-      "sha256": "a3252bd986f9fe3b9fae271273bdb89119c4ba09c6813bb6e9eb66feeac27a07"
+      "sha256": "26300f21ddf7b6b62ba896045186a22e47ba4699eeb874572f7a19982e7837ca"
     },
     {
-      "bytes": 11160,
+      "bytes": 336049,
       "path": "reconstruction/issue34/outputs/diversification_failure.csv",
-      "sha256": "7b6e24565836319a77168543f46ad7608d6468be74e389aae3a492c111bcc932"
+      "sha256": "07148a26ed6d2894a1ad9a6cd1c9e3e45e502377d18e7fd6d74b13a3d17304d9"
+    },
+    {
+      "bytes": 4741,
+      "path": "reconstruction/issue34/outputs/diversification_sensitivity.csv",
+      "sha256": "9181f876868f19b8e2ea00ba9d7e632d05ce61380335c8d5a861d18c12004dec"
     },
     {
       "bytes": 1407,
@@ -69,6 +74,11 @@
       "sha256": "ff800427a3952c8a5fc6b50d3845e3e50a9af293182c8810a1ce1af18fc91134"
     },
     {
+      "bytes": 31550,
+      "path": "reconstruction/issue34/outputs/risk_shock_sensitivity.csv",
+      "sha256": "eb3d327509235b840a09bfdf749a8aac2cabbd666b390146065b07116b17970d"
+    },
+    {
       "bytes": 11936,
       "path": "reconstruction/issue34/outputs/robustness_results.csv",
       "sha256": "dbb9f42bd02c73ef08c3081b0f957eaf5eecb9e2bae9a2147259d278d9bb2e91"
@@ -79,9 +89,9 @@
       "sha256": "63be899c3fb4e0dc6ced0fca880c62e185c476e4ad5bcf0ae47fbd68cab9314b"
     },
     {
-      "bytes": 4290,
+      "bytes": 4796,
       "path": "reconstruction/issue34/outputs/summary.json",
-      "sha256": "f8b23af78177a1e0023360b198cde5f8f9db0e89feefc8d5ad4015b603f6de3d"
+      "sha256": "c7d035d0f9c8e502f912dbed4357124cd3694d44eff0be52c05e62d49e5a6457"
     },
     {
       "bytes": 1240,

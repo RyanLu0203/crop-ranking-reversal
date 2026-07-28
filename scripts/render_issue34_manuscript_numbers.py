@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render registered Issue #34 output values as LaTeX macros."""
+"""Render reconstruction output values as LaTeX macros."""
 
 from pathlib import Path
 import json
@@ -17,17 +17,24 @@ u = pd.read_csv(OUT / "uncertainty_summary.csv").set_index("metric")
 d = pd.read_csv(OUT / "diversification_failure.csv").drop_duplicates("policy")
 i = pd.read_csv(OUT / "information_flexibility.csv")
 risk = pd.read_csv(OUT / "risk_induced_reversal.csv")
+risk_sensitivity = pd.read_csv(OUT / "risk_shock_sensitivity.csv")
 operation = pd.read_csv(OUT / "operational_mechanism.csv")
+diversification_sensitivity = pd.read_csv(
+    OUT / "diversification_sensitivity.csv"
+)
 
 primary = s["primary_model"]
 score = s["calibration"]["scores"]
 means = s["calibration"]["means"]
 row_x0 = d.loc[d["policy"].eq("x0_expected_profit_under_matched_gaussian")].iloc[0]
-row_mv = d.loc[d["policy"].eq("xMV_registered_Gaussian_frontier_point")].iloc[0]
-row_tail = d.loc[d["policy"].eq("xT_CVaR_under_matched_student_t")].iloc[0]
+row_mv = d.loc[d["policy"].eq("xMV_variance_target_selected")].iloc[0]
+row_tail = d.loc[
+    d["policy"].eq("xT_CVaR_under_student_t_evaluation")
+].iloc[0]
 u_pair = u.loc["selected_pairwise_reversal_frequency"]
 risk_tight = risk.sort_values("risk_tolerance").iloc[0]
 risk_loose = risk.sort_values("risk_tolerance").iloc[-1]
+risk_focal = risk_sensitivity.loc[risk_sensitivity["focal_case"]].iloc[0]
 
 def macro(name, value):
     return f"\\newcommand{{\\{name}}}{{{value}}}"
@@ -68,14 +75,22 @@ rows = [
     macro("BootstrapFirstMean", f(u.loc["first_reversal_risk_tolerance", "estimate_mean"])),
     macro("BootstrapFirstLow", f(u.loc["first_reversal_risk_tolerance", "percentile_95_low"])),
     macro("BootstrapFirstHigh", f(u.loc["first_reversal_risk_tolerance", "percentile_95_high"])),
-    macro("DiversificationGaussianCVaR", f(row_mv["true_law_loss_CVaR"], 1)),
-    macro("DiversificationTailCVaR", f(row_tail["true_law_loss_CVaR"], 1)),
+    macro("DiversificationGaussianCVaR", f(row_mv["evaluation_loss_CVaR"], 1)),
+    macro("DiversificationTailCVaR", f(row_tail["evaluation_loss_CVaR"], 1)),
     macro("DiversificationRiskCeiling", f(row_mv["risk_ceiling"], 1)),
     macro("DiversificationGamma", f(row_mv["gamma"], 4)),
+    macro("DiversificationTarget", f(100 * row_mv["variance_reduction_target"], 0)),
     macro("DiversificationBenchmarkVariance", f(row_x0["gaussian_profit_variance"], 1)),
     macro("DiversificationMVVariance", f(row_mv["gaussian_profit_variance"], 1)),
     macro("DiversificationVarianceReduction", f(100 * row_mv["gaussian_variance_reduction_fraction"], 1)),
     macro("DiversificationAllocationLone", f(row_mv["xMV_vs_xT_allocation_L1"], 3)),
+    macro("DiversificationTailGap", f(row_mv["xMV_evaluation_CVaR_minus_xT"], 3)),
+    macro("DiversificationCeilingGap", f(row_mv["evaluation_loss_CVaR"] - row_mv["risk_ceiling"], 3)),
+    macro("DiversificationWeakGammaInterval", row_mv["weak_failure_gamma_intervals"]),
+    macro("DiversificationStrongGammaInterval", row_mv["strong_failure_gamma_intervals"]),
+    macro("DiversificationFrontierPoints", int(row_mv["frontier_points"])),
+    macro("DiversificationSensitivityCases", len(diversification_sensitivity)),
+    macro("DiversificationSensitivityStrongCases", int(diversification_sensitivity["selected_strong_failure"].sum())),
     macro("LowerTailCoefficient", f(row_mv["lower_tail_dependence"])),
     macro("RiskShock", f(risk_tight["downside_shock_real_2024_usd_per_acre"], 1)),
     macro("RiskMeanGap", f(risk_tight["official_mean_margin_gap_high_minus_low"], 1)),
@@ -83,6 +98,11 @@ rows = [
     macro("RiskTightCorn", f(risk_tight["allocation_low"])),
     macro("RiskLooseSoy", f(risk_loose["allocation_high"])),
     macro("RiskLooseCorn", f(risk_loose["allocation_low"])),
+    macro("RiskShockCells", len(risk_sensitivity)),
+    macro("RiskShockCrossingCells", int(risk_sensitivity["classification"].eq("crossing").sum())),
+    macro("RiskShockNoCrossingCells", int(risk_sensitivity["classification"].eq("no_crossing").sum())),
+    macro("RiskShockInfeasibleCells", int(risk_sensitivity["classification"].eq("infeasible").sum())),
+    macro("RiskFocalFirstCrossing", f(risk_focal["first_crossing_risk_tolerance"], 3)),
     macro("OperationalCrossingCap", f(s["first_operational_crossing_cap"], 2)),
     macro("StateYears", int(e["state_years"].iloc[0])),
     macro("States", int(e["states"].iloc[0])),

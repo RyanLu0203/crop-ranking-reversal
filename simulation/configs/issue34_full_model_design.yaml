@@ -6,6 +6,11 @@ owner_issue: 34
 parent_commit: 1262b19150fd1e63f549d3511ba478b003b08d9e
 repair_issue: 36
 repair_baseline_commit: 12fe6b4a3717ef5602b3d31558fd66424287f7d4
+finalization_issue: 38
+finalization_baseline_commit: d058f0764e42e994bf2c1c00b48cbde3622f96c6
+finalization_registration:
+  status: PRE_SPECIFIED_BEFORE_FINAL_FRONTIER_RERUN
+  purpose: diversification_frontier_completion_and_risk_stress_sensitivity
 repair_registration:
   status: REPOSITORY_REGISTERED_BEFORE_FINAL_CONFIRMATORY_RUN
   language: frozen_before_final_analysis_not_external_preregistration
@@ -149,6 +154,9 @@ mechanism_isolation:
     adverse_event_seed: 202607306037
     soybean_adverse_event_probability: 0.10
     soybean_downside_shock_share_of_mean_real_gross_revenue: 0.3333333333333333
+    sensitivity_probability_grid: [0.02, 0.05, 0.075, 0.10, 0.125, 0.15, 0.20]
+    sensitivity_shock_share_grid: [0.10, 0.20, 0.25, 0.3333333333333333, 0.40, 0.50, 0.60]
+    sensitivity_risk_tolerance_grid: [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 1.0]
     mean_preserving_compensation: exact_finite_sample
     risk_tolerance_grid: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.0]
     interpretation: severe_soybean_specific_drought_or_basis_stress_not_empirical_estimate
@@ -174,12 +182,25 @@ mechanism_isolation:
 diversification_failure:
   benchmark_x0: expected_profit_allocation_under_matched_gaussian_law
   mean_variance_full_investment: true
-  gamma_grid: [0.0, 0.0065, 0.0070, 0.0075, 0.0080, 0.0085, 0.0090, 0.0095, 0.0100, 0.0120, 0.0200]
-  selected_gamma: 0.0085
+  gamma_frontier:
+    start: 0.0
+    stop: 0.0300
+    step: 0.0001
+  selection_rule: smallest_gamma_achieving_fixed_gaussian_variance_reduction
+  target_gaussian_variance_reduction_fraction: 0.15
+  selection_rule_sensitivity_targets: [0.10, 0.15, 0.20]
   variance_tolerance: 1.0e-6
   allocation_materiality_l1: 0.01
   cvar_tolerance: 1.0e-6
-  interpretation: registered_interior_Gaussian_frontier_point
+  sensitivity:
+    scenario_counts: [2048, 4096, 8192]
+    seed_offsets: [0, 1, 2]
+    kendall_tau: [0.15, 0.25, 0.35]
+    student_t_copula_df: [3, 4, 6, 10]
+    cvar_alpha: [0.90, 0.95, 0.99]
+    risk_tolerance: [0.40, 0.50, 0.60]
+    evaluation_marginal: [gaussian, student_t_df5, empirical_quantile]
+  interpretation: pre_specified_dense_frontier_with_variance_target_selection
 
 uncertainty:
   historical_bootstrap_replications: 64

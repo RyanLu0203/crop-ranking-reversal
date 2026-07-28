@@ -5,7 +5,7 @@
 2. Kansas yield combined with national price and cost is a transparent
    aggregate calibration, not a farm-level profit series.
 3. Copula parameters, shared-capacity coefficients and risk tolerance are
-   registered structural stress values, not empirical estimates of a specific
+   controlled structural stress values, not empirical estimates of a specific
    producer.
 4. The model is single-period and linear. Fixed charges, endogenous prices,
    spatial interaction and explicit dynamic rotation state are outside scope.
@@ -24,21 +24,31 @@
     coefficient or monotone individual crop shares under set contraction.
 12. The author order, affiliation wording and contribution statement require
 confirmation before journal submission.
-13. The exclusion-based strong-reversal result is null in the registered
+13. The exclusion-based strong-reversal result is null in the evaluated
 frontier and bootstrap analyses.  Complete inversion must not be described as
 strong reversal.
-14. The risk-induced crossing is a registered structural perturbation, not an
+14. The risk-induced crossing is a controlled structural perturbation, not an
 empirical estimate of soybean downside risk.
 15. The controlled operational crossing isolates one rotation-cap path; the
-registered full constraint sequence has no soybean--corn crossing.
+ordinary full constraint sequence has no soybean--corn crossing.
 16. Information--flexibility cross-difference signs are numerical properties
 of the declared shared-CVaR grid, not a universal theorem.
 
-Permitted headline claim: the registered full model produces a robust
+17. Diversification tail inferiority and ceiling violation coincide
+numerically when the tail-aware optimum binds the common ceiling; they are not
+independent confirmations.
+18. Diversification sensitivity is parameter-dependent. The complete
+frontier and one-factor cases identify where weak or strong failure holds,
+not a universal property of mean--variance optimization.
+19. The probability--magnitude risk map is a controlled stress surface, not an
+estimated distribution of Kansas farm shocks.
+
+Permitted headline claim: the full model produces a robust
 conditional complete ranking inversion but no exclusion-based strong
 reversal; a separate mean-preserving downside-risk path produces a genuine
 risk-induced crossing; conventional Gaussian mean--variance advice can fail
-the declared true-law tail-risk ceiling; and the sign of the numerical
+the Student-\(t\) evaluation-law tail-risk ceiling over a parameter region;
+and the sign of the numerical
 information--flexibility interaction depends on the agricultural action
 mechanism.
 

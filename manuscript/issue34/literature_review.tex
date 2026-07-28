@@ -25,7 +25,7 @@ CVaR. \citet{filippi2017mixed} embed CVaR in operational crop selection.
 mean-CVaR to study geographical wheat portfolios. These studies establish
 that crop portfolios can be optimized under downside risk. They do not ask
 whether an externally supplied agronomic ranking reverses, characterize the
-ranking boundary, or audit all optima on the objective-equivalent face.
+ranking boundary, or bound all optima on the objective-equivalent face.
 
 \subsection{Joint tail risk and the limits of conventional diversification}
 
@@ -45,9 +45,9 @@ risk reduction from crop diversification changes with crop pair, region and
 drought severity \citep{schmitt2024drought}. These findings do not imply that
 diversification generally fails. They imply that ``number of crops'' and
 variance reduction are incomplete diagnostics for a loss-CVaR-constrained
-portfolio. Our executable criterion therefore requires a conventional policy
-to pass its own variance benchmark yet fail under the registered true-law
-tail and differ from the tail-aware allocation.
+portfolio. Our criterion therefore requires a conventional policy to pass a
+fixed variance benchmark yet fail under the Student-\(t\) evaluation law and
+differ from the tail-aware allocation.
 
 \subsection{Prediction, prescription and suitability}
 
@@ -59,7 +59,7 @@ prescriptive-analytics literature instead evaluates how conditional
 predictions change an optimized decision
 \citep{bertsimas2020predictive,elmachtoub2022smart}. Decision-focused learning
 extends this principle to end-to-end systems
-\citep{wilder2019melding,mandi2023decision}.
+\citep{mandi2023decision}.
 
 Our contribution is not a new learning algorithm. We use this literature to
 make the interface explicit. A genuine agronomic score ranks historical
