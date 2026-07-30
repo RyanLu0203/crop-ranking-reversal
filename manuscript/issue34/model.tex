@@ -35,6 +35,26 @@ separate variable. These constraints are not post-hoc explanations of an
 observed acreage vector; they define the controlled
 decision problem.
 
+\subsection{Heuristic-policy projection}
+
+Let \(x^h\) be a raw score-proportional, score-winner or equal-share
+prescription. Its principal comparison policy is the unique Euclidean
+projection
+\begin{equation}
+\widehat x^{\,h}_2
+=\operatorname*{arg\,min}_{x\in\mathcal X_h}
+\frac12\lVert x-x^h\rVert_2^2,
+\label{eq:projection}
+\end{equation}
+where \(\mathcal X_h\) imposes \(\ind^\top x=A\), the crop bounds, budget,
+rotation, contract, labour and equipment constraints in
+Eq.~\ref{eq:operations}. Idle land is therefore excluded from the comparison
+set. The CVaR ceiling is not part of the projection; loss-CVaR and risk
+feasibility are evaluated after projection. Strict convexity gives a unique
+principal projection. An unweighted \(L^1\) projection provides a sensitivity
+comparison; on a non-unique \(L^1\)-optimal face, a fixed crop-order weighted
+linear objective selects one allocation deterministically.
+
 \subsection{Loss-CVaR ceiling}
 
 For confidence level \(\alpha\),
@@ -76,6 +96,11 @@ highest-ranked crop has less area than every lower-ranked crop. Strong reversal
 requires
 \(s_i>s_j\) and \(x_i=0<x_j\).
 \end{definition}
+
+In the principal specification, all crop lower bounds are positive, so strong
+exclusion is infeasible by construction. It becomes a testable outcome only
+in the declared sensitivities that set all crop lower bounds, or only the
+highest-ranked crop's lower bound, to zero.
 
 Let
 \[

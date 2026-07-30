@@ -78,8 +78,28 @@ For scenario probabilities \(w_m>0\) summing to one, the implemented primal is
 &q_m\ge0,\qquad v\in\R.
 \end{align}
 There is no hidden penalty term and no post-solution adjustment of the
-optimized policy. Heuristic benchmark policies are projected onto the feasible
-set so that all policies are compared inside the same operational set.
+optimized policy.
+
+\subsection{Heuristic-policy comparison set and projection}
+
+For raw heuristic \(x^h\), the principal comparison allocation is
+\[
+\widehat x^{\,h}_2
+=\operatorname*{arg\,min}_x\frac12\lVert x-x^h\rVert_2^2
+\]
+subject to \(\ind^\top x=1\), the crop lower and upper bounds, operating
+budget, corn rotation cap, soybean contract minimum, planting-labour capacity
+and harvest-equipment capacity. Idle land is not allowed. The CVaR ceiling is
+not included in this projection set; projected policies are evaluated against
+it afterwards. The unweighted objective is strictly convex, so the Euclidean
+projection is unique. SLSQP uses objective tolerance \(10^{-10}\), followed by
+an independent \(10^{-8}\) feasibility check.
+
+The sensitivity projection minimizes \(\lVert x-x^h\rVert_1\) over the same
+set by HiGHS. A second linear programme selects one point on a non-unique
+\(L^1\)-optimal face by minimizing crop-order weights \((1,2,3)^\top x\)
+within \(10^{-10}\) of the minimum distance. This deterministic rule affects
+only benchmark comparison policies, not any optimized model solution.
 
 \subsection{KKT equations}
 
@@ -232,23 +252,30 @@ Total land is 1.0, operating budget is US\$330, planting-labour capacity is
 \toprule
 Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
 \midrule
-Suitability proportional & 0.312 & 0.315 & 0.373 & 187.4 & -53.1 & yes\\
-Winner take all, projected & 0.300 & 0.100 & 0.600 & 166.6 & -57.3 & yes\\
-Equal share & 0.333 & 0.333 & 0.333 & 190.4 & -51.4 & yes\\
-Expected profit & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
-Mean--variance & 0.280 & 0.650 & 0.070 & 216.5 & -34.5 & no\\
+Suitability proportional, Euclidean & \PolicySuitabilityCorn &
+\PolicySuitabilitySoy & \PolicySuitabilityWheat &
+\PolicySuitabilityProfit & \PolicySuitabilityCVaR & yes\\
+Winner take all, Euclidean & \ProjectionWinnerLtwoCorn &
+\ProjectionWinnerLtwoSoy & \ProjectionWinnerLtwoWheat &
+\ProjectionWinnerLtwoProfit & \ProjectionWinnerLtwoCVaR & yes\\
+Equal share & \PolicyEqualCorn & \PolicyEqualSoy & \PolicyEqualWheat &
+\PolicyEqualProfit & \PolicyEqualCVaR & yes\\
+Expected profit & \PolicyExpectedCorn & \PolicyExpectedSoy &
+\PolicyExpectedWheat & \PolicyExpectedProfit & \PolicyExpectedCVaR & no\\
 Full loss-CVaR & \PrimaryCorn & \PrimarySoy & \PrimaryWheat &
 \PrimaryProfit & \PrimaryCVaR & yes\\
-Minimum-CVaR endpoint & 0.220 & 0.180 & 0.600 & 169.0 & -59.5 & yes\\
+Minimum-CVaR endpoint & \PolicyMinimumCorn & \PolicyMinimumSoy &
+\PolicyMinimumWheat & \PolicyMinimumProfit & \PolicyMinimumCVaR & yes\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The primary policy table retains a low-penalty mean--variance diagnostic for
-comparability. The diversification comparison is separate. Its \(x^0\) is the
-matched-Gaussian expected-profit allocation; all
+The expected-profit endpoint is reported as an endpoint rather than as a
+mean--variance comparison policy. The diversification comparison uses one
+Selected Gaussian mean--variance policy.
+Its \(x^0\) is the matched-Gaussian expected-profit allocation; all
 \DiversificationFrontierPoints{} points over \(\gamma\in[0,0.03]\) are solved;
-and its selected \(x^{MV}\) is the first point to attain the fixed
+and \(x^{MV}\) is the first point to attain the fixed
 \DiversificationTarget\% Gaussian variance-reduction target. At that point the
 reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \(x^T\), and Student-\(t\) evaluation loss-CVaR is
@@ -257,6 +284,63 @@ reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \DiversificationStrongGammaInterval{}. Because \(x^T\) binds the common
 ceiling, the tail-inferiority and ceiling-violation gaps are numerically
 dependent.
+
+\begin{table}[h]
+\centering\small
+\caption{Canonical Selected Gaussian mean--variance policy. Operational
+feasibility applies to the common full-investment set; risk feasibility is
+evaluated under the Student-\(t\) law.}
+\begin{tabular}{lrrrr}
+\toprule
+\(\gamma\) & Corn & Soybean & Winter wheat & operational/risk feasible\\
+\midrule
+\DiversificationGamma & \CanonicalMVCorn & \CanonicalMVSoy &
+\CanonicalMVWheat & \CanonicalMVOperationalFeasible/\CanonicalMVRiskFeasible\\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\begin{tabular}{rrrr}
+\toprule
+Gaussian mean profit & Gaussian variance & Student-\(t\) mean profit &
+Student-\(t\) loss-CVaR\\
+\midrule
+\CanonicalMVGaussianExpectedProfit & \CanonicalMVGaussianVariance &
+\CanonicalMVExpectedProfit & \CanonicalMVCVaR\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\caption{Raw heuristics and principal Euclidean projections. Distances are
+unweighted Euclidean distances in normalized land share.}
+\begin{tabular}{lrrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{Raw} & \multicolumn{3}{c}{Projected} & distance\\
+Policy & Corn & Soy & Wheat & Corn & Soy & Wheat & \(L^2\)\\
+\midrule
+Score proportional & \PolicySuitabilityCorn & \PolicySuitabilitySoy &
+\PolicySuitabilityWheat & \PolicySuitabilityCorn & \PolicySuitabilitySoy &
+\PolicySuitabilityWheat & 0.000\\
+Winner take all & 0.000 & 0.000 & 1.000 &
+\ProjectionWinnerLtwoCorn & \ProjectionWinnerLtwoSoy &
+\ProjectionWinnerLtwoWheat & \ProjectionWinnerLtwoDistance\\
+Equal share & \PolicyEqualCorn & \PolicyEqualSoy & \PolicyEqualWheat &
+\PolicyEqualCorn & \PolicyEqualSoy & \PolicyEqualWheat & 0.000\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The alternative \(L^1\) projection leaves the already feasible
+score-proportional and equal-share policies unchanged. It maps winner take all
+to \((\ProjectionWinnerLoneCorn,\ProjectionWinnerLoneSoy,
+\ProjectionWinnerLoneWheat)\) at distance \ProjectionWinnerLoneDistance,
+compared with the Euclidean allocation
+\((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
+\ProjectionWinnerLtwoWheat)\). Both are risk-feasible, but only the \(L^1\)
+allocation reverses the Soybean--Corn pair. The score-winner reversal
+classification is therefore projection-sensitive.
 
 One-factor sensitivity contains \DiversificationSensitivityCases{} cases
 covering scenario count, seed, Kendall's \(\tau\), Student-\(t\) copula degrees
@@ -284,20 +368,70 @@ crossing result precede the complete soybean rotation-cap grid; the first
 crossing is at \OperationalCrossingCap. These controlled paths do not estimate
 the prevalence of either mechanism.
 
-Across all \PhaseCells{} cells, selected pairwise reversal occurs in
-\PhaseReversal{}, selected complete rank reversal in \PhaseComplete{} and
-strong exclusion reversal in \PhaseStrong{}. Complete
-family-by-\(\tau\) table, all three ranked-pair face extrema and possible,
-universal and selected classifications are retained for every cell.
+Across all \PhaseCells{} principal cells, selected pairwise reversal occurs in
+\PhaseReversal{} and selected complete rank reversal in \PhaseComplete.
+Strong exclusion is structurally inadmissible because every crop has a
+positive lower bound; its zero is not interpreted as a discovered phase
+frequency. Complete family-by-\(\tau\) tables, all three ranked-pair face
+extrema and possible, universal and selected classifications are retained for
+every cell.
+
+\begin{table}[h]
+\centering\small
+\caption{Lower-bound sensitivity at numerical-zero tolerance \(10^{-4}\).
+The principal strong count is structural; the relaxed-specification counts
+are testable null results.}
+\begingroup
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}rrrrrr}
+\toprule
+Lower-bound specification & pairwise & complete &
+\shortstack{selected\\strong} &
+\shortstack{possible\\strong} & \shortstack{universal\\strong} &
+\shortstack{multiple/\\infeasible}\\
+\midrule
+Positive crop minima & \PhaseReversal & \PhaseComplete & structural &
+structural & structural & \PhaseMultiple/0\\
+All crop minima zero & \AllZeroPairwise & \AllZeroComplete &
+\AllZeroStrong & \AllZeroPossibleStrong & \AllZeroUniversalStrong &
+\AllZeroMultiple/\AllZeroInfeasible\\
+Top-crop minimum zero & \TopZeroPairwise & \TopZeroComplete &
+\TopZeroStrong & \TopZeroPossibleStrong & \TopZeroUniversalStrong &
+\TopZeroMultiple/\TopZeroInfeasible\\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/issue34/SupplementaryFigure1.pdf}
+\caption{\textbf{Lower-bound sensitivity makes crop exit admissible but does
+not produce strong exclusion on the evaluated grid.} \textbf{a}, Minimum
+winter-wheat allocation over the complete optimal face under the principal,
+all-zero and top-crop-zero lower-bound specifications. All remain bounded away
+from numerical zero. \textbf{b}, Selected pairwise, complete and strong counts
+at tolerance $10^{-4}$. Hatching marks the principal strong count as
+structurally unavailable; the two relaxed strong counts are genuine null
+results. All 165 cells per specification are retained.}
+\label{fig:lower-bound-sensitivity}
+\end{figure}
+
+No selected, possible or universal exclusion is found after crop exit becomes
+admissible. Hence no first strong-reversal boundary, excluded crop or active
+constraint at an exclusion transition exists on the evaluated grid. The
+minimum selected top-crop share under all-zero bounds is \AllZeroMinTop.
 
 \section{Robustness and uncertainty}
 
-The one-at-a-time robustness file reports selected pairwise, selected complete
-and selected strong classifications separately for confidence level,
+The one-at-a-time robustness file reports selected pairwise and selected complete
+classifications separately for confidence level,
 constraint regime, dependence family and parameter, marginal law, sample
-window, scenario count, random seed and solver. With positive crop
-lower bounds, none of these cells can satisfy the exclusion
-definition.
+window, scenario count, random seed and solver. Its strong classification is
+structurally unavailable because all crop lower bounds are positive. In the
+all-zero and top-crop-zero phases, strong reversal remains absent for every
+zero tolerance from \(10^{-8}\) to \(10^{-2}\); pairwise and complete counts
+change only at the coarser ordering tolerances reported in the source table.
 
 The 64 historical bootstrap replications produce mean shares 0.277 for corn,
 0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals

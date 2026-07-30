@@ -1,12 +1,17 @@
 {
   "analysis_id": "CRR-ISSUE34-FULL-MODEL-2026-07-27",
-  "design_sha256": "8e92d6788a1ac6f0ba8700e89b0a383aec2337c060965b0ad4daf2cb96b0aace",
+  "design_sha256": "4ed38a7d81138298ed08a7ac6b54688365dd21c22766d6e57708b7d2e0380e9d",
   "issue": 36,
   "outputs": [
     {
       "bytes": 17019,
       "path": "reconstruction/issue34/outputs/bootstrap_replications.csv",
       "sha256": "0a2c320a47198f262ce9e12eacfa1af748aee25d21a4f852341819ff3b130132"
+    },
+    {
+      "bytes": 649,
+      "path": "reconstruction/issue34/outputs/canonical_mean_variance_policy.csv",
+      "sha256": "838b7d84d271cd7ec857c1bd798913601ddf277966d0bcf0b0e014321bced969"
     },
     {
       "bytes": 1369,
@@ -29,6 +34,11 @@
       "sha256": "2d698cee33f2568a0db0088864af853e97722d445df43f8fd61877600c2321f7"
     },
     {
+      "bytes": 4469,
+      "path": "reconstruction/issue34/outputs/heuristic_projection_sensitivity.csv",
+      "sha256": "4454f3d7dbf122ac0301f6b1c944d538f0af007e19d4495cef572b0edb221569"
+    },
+    {
       "bytes": 38982,
       "path": "reconstruction/issue34/outputs/information_flexibility.csv",
       "sha256": "b5eeccbed361d24fc039366e4c73349f771620bb63c576828a1d517ead1d0646"
@@ -49,9 +59,9 @@
       "sha256": "6948873b1026e13252eca8c54af37c9b9f4948a3cf4f5cc04cbf50900bad129e"
     },
     {
-      "bytes": 2957,
+      "bytes": 3016,
       "path": "reconstruction/issue34/outputs/policy_comparison.csv",
-      "sha256": "88fea0e8b1055609e2ec1ea7b567410d58d0003a213bc40b512e443b7c82f409"
+      "sha256": "b954f1efcce834830ec24234c09e28749e0492d8a70d18c8a1ea26836541e4ef"
     },
     {
       "bytes": 1320,
@@ -59,9 +69,9 @@
       "sha256": "74af710510c6b5c91d81e9333244d036c8eba5070e831d38d3c428237d4f0d08"
     },
     {
-      "bytes": 93836,
+      "bytes": 102381,
       "path": "reconstruction/issue34/outputs/reversal_phase_diagram.csv",
-      "sha256": "eed18c8293caeb2218aa3c946f883709e05fb4c42be98145f82b8e9f0dabd52a"
+      "sha256": "7b30ee5e9c5298bce58d6b6701dd18b6799fd7251e3e2c767c857b44eeaff413"
     },
     {
       "bytes": 641,
@@ -89,9 +99,19 @@
       "sha256": "63be899c3fb4e0dc6ced0fca880c62e185c476e4ad5bcf0ae47fbd68cab9314b"
     },
     {
-      "bytes": 4796,
+      "bytes": 300913,
+      "path": "reconstruction/issue34/outputs/strong_reversal_lower_bound_phase.csv",
+      "sha256": "9dca6cf06f3154457489ceea55c98f8bc45bacb1e1a63c0ae6d99141b6144cd7"
+    },
+    {
+      "bytes": 3090,
+      "path": "reconstruction/issue34/outputs/strong_reversal_lower_bound_summary.csv",
+      "sha256": "39117106faa50dfbf966729257ff594d60276d8d5b840dcff17f3d6885baf072"
+    },
+    {
+      "bytes": 9732,
       "path": "reconstruction/issue34/outputs/summary.json",
-      "sha256": "c7d035d0f9c8e502f912dbed4357124cd3694d44eff0be52c05e62d49e5a6457"
+      "sha256": "813ac9fcaaedad5cc60d0d9513704954ed595630cf83940961ee36678354b116"
     },
     {
       "bytes": 1240,

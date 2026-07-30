@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build deterministic figure-accessibility and PDF-page QA contact sheets."""
+"""Build deterministic Issue #40 figure-accessibility and PDF-page QA sheets."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "audits" / "issue38_visual_qa"
+OUT = ROOT / "audits" / "issue40_visual_qa"
 FIGURES = [ROOT / "figures" / "issue34" / f"Figure{i}.png" for i in range(1, 7)]
 PDFS = [ROOT / "main_manuscript.pdf", ROOT / "supplementary_information.pdf"]
 BUNDLED_PDFTOPPM = (
@@ -100,7 +100,7 @@ def main() -> None:
         outputs[mode] = str(path.relative_to(ROOT))
 
     page_counts: dict[str, int] = {}
-    with tempfile.TemporaryDirectory(prefix="issue38-pdf-qa-") as temp:
+    with tempfile.TemporaryDirectory(prefix="issue40-pdf-qa-") as temp:
         temp_dir = Path(temp)
         for pdf in PDFS:
             page_paths = render_pdf(pdf, temp_dir)
@@ -137,7 +137,7 @@ def main() -> None:
             "PASS is assigned only after manual inspection at contact-sheet and full-page scale."
         ),
     }
-    (OUT / "generation_report.json").write_text(
+    (OUT / "page_qa_generation_report.json").write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
     print(json.dumps(report, indent=2, sort_keys=True))

@@ -3,6 +3,7 @@
 
 from pathlib import Path
 import json
+import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,13 @@ operation = pd.read_csv(OUT / "operational_mechanism.csv")
 diversification_sensitivity = pd.read_csv(
     OUT / "diversification_sensitivity.csv"
 )
+canonical_mv = pd.read_csv(OUT / "canonical_mean_variance_policy.csv").iloc[0]
+lower_bound = pd.read_csv(
+    OUT / "strong_reversal_lower_bound_summary.csv"
+)
+projection = pd.read_csv(
+    OUT / "heuristic_projection_sensitivity.csv"
+)
 
 primary = s["primary_model"]
 score = s["calibration"]["scores"]
@@ -35,6 +43,28 @@ u_pair = u.loc["selected_pairwise_reversal_frequency"]
 risk_tight = risk.sort_values("risk_tolerance").iloc[0]
 risk_loose = risk.sort_values("risk_tolerance").iloc[-1]
 risk_focal = risk_sensitivity.loc[risk_sensitivity["focal_case"]].iloc[0]
+zero_primary = float(
+    s["strong_reversal_lower_bound_sensitivity"][
+        "all_zero_lower_bounds"
+    ]["near_zero_tolerance"]
+)
+lower_primary = lower_bound.loc[
+    np.isclose(lower_bound["near_zero_tolerance"], zero_primary)
+].set_index("lower_bound_specification")
+all_zero = lower_primary.loc["all_zero_lower_bounds"]
+top_zero = lower_primary.loc["highest_ranked_crop_zero_lower_bound"]
+winner_projection = projection.loc[
+    projection["heuristic_policy"].eq("winner_take_all")
+].set_index("projection_method")
+winner_l2 = winner_projection.loc["euclidean_l2"]
+winner_l1 = winner_projection.loc["l1_lexicographic"]
+policy_rows = p.set_index("policy")
+policy_suitability = policy_rows.loc[
+    "suitability_proportional_euclidean"
+]
+policy_equal = policy_rows.loc["equal_share_euclidean"]
+policy_expected = policy_rows.loc["expected_profit_no_CVaR"]
+policy_minimum = policy_rows.loc["minimum_CVaR_endpoint_not_primary"]
 
 def macro(name, value):
     return f"\\newcommand{{\\{name}}}{{{value}}}"
@@ -89,6 +119,116 @@ rows = [
     macro("DiversificationWeakGammaInterval", row_mv["weak_failure_gamma_intervals"]),
     macro("DiversificationStrongGammaInterval", row_mv["strong_failure_gamma_intervals"]),
     macro("DiversificationFrontierPoints", int(row_mv["frontier_points"])),
+    macro("CanonicalMVCorn", f(canonical_mv["allocation_Corn"])),
+    macro("CanonicalMVSoy", f(canonical_mv["allocation_Soybean"])),
+    macro("CanonicalMVWheat", f(canonical_mv["allocation_Winter_Wheat"])),
+    macro("CanonicalMVExpectedProfit", f(
+        canonical_mv["student_t_evaluation_expected_profit"], 1
+    )),
+    macro("CanonicalMVGaussianExpectedProfit", f(
+        canonical_mv["gaussian_expected_profit"], 1
+    )),
+    macro("CanonicalMVGaussianVariance", f(
+        canonical_mv["gaussian_profit_variance"], 1
+    )),
+    macro("CanonicalMVCVaR", f(
+        canonical_mv["student_t_evaluation_loss_CVaR"], 1
+    )),
+    macro("CanonicalMVOperationalFeasible", (
+        "yes" if bool(canonical_mv["operational_feasible"]) else "no"
+    )),
+    macro("CanonicalMVRiskFeasible", (
+        "yes" if bool(canonical_mv["risk_ceiling_feasible"]) else "no"
+    )),
+    macro("AllZeroPairwise", int(
+        all_zero["selected_pairwise_reversal_cells"]
+    )),
+    macro("AllZeroComplete", int(
+        all_zero["selected_complete_rank_reversal_cells"]
+    )),
+    macro("AllZeroStrong", int(
+        all_zero["selected_strong_reversal_cells"]
+    )),
+    macro("AllZeroPossibleStrong", int(
+        all_zero["possible_strong_reversal_cells"]
+    )),
+    macro("AllZeroUniversalStrong", int(
+        all_zero["universal_strong_reversal_cells"]
+    )),
+    macro("AllZeroMultiple", int(all_zero["multiple_optimum_cells"])),
+    macro("AllZeroInfeasible", int(all_zero["infeasible_cells"])),
+    macro("AllZeroMinTop", f(
+        all_zero["minimum_selected_top_crop_allocation"]
+    )),
+    macro("TopZeroPairwise", int(
+        top_zero["selected_pairwise_reversal_cells"]
+    )),
+    macro("TopZeroComplete", int(
+        top_zero["selected_complete_rank_reversal_cells"]
+    )),
+    macro("TopZeroStrong", int(
+        top_zero["selected_strong_reversal_cells"]
+    )),
+    macro("TopZeroPossibleStrong", int(
+        top_zero["possible_strong_reversal_cells"]
+    )),
+    macro("TopZeroUniversalStrong", int(
+        top_zero["universal_strong_reversal_cells"]
+    )),
+    macro("TopZeroMultiple", int(top_zero["multiple_optimum_cells"])),
+    macro("TopZeroInfeasible", int(top_zero["infeasible_cells"])),
+    macro("ProjectionWinnerLtwoCorn", f(winner_l2["projected_Corn"])),
+    macro("ProjectionWinnerLtwoSoy", f(winner_l2["projected_Soybean"])),
+    macro("ProjectionWinnerLtwoWheat", f(
+        winner_l2["projected_Winter_Wheat"]
+    )),
+    macro("ProjectionWinnerLoneCorn", f(winner_l1["projected_Corn"])),
+    macro("ProjectionWinnerLoneSoy", f(winner_l1["projected_Soybean"])),
+    macro("ProjectionWinnerLoneWheat", f(
+        winner_l1["projected_Winter_Wheat"]
+    )),
+    macro("ProjectionWinnerLtwoDistance", f(
+        winner_l2["projection_distance_l2"]
+    )),
+    macro("ProjectionWinnerLoneDistance", f(
+        winner_l1["projection_distance_l1"]
+    )),
+    macro("ProjectionWinnerLtwoProfit", f(
+        winner_l2["expected_profit"], 1
+    )),
+    macro("ProjectionWinnerLtwoCVaR", f(
+        winner_l2["cvar_loss"], 1
+    )),
+    macro("ProjectionWinnerLoneProfit", f(
+        winner_l1["expected_profit"], 1
+    )),
+    macro("ProjectionWinnerLoneCVaR", f(
+        winner_l1["cvar_loss"], 1
+    )),
+    macro("PolicySuitabilityCorn", f(policy_suitability["acres_Corn"])),
+    macro("PolicySuitabilitySoy", f(policy_suitability["acres_Soybean"])),
+    macro("PolicySuitabilityWheat", f(
+        policy_suitability["acres_Winter Wheat"]
+    )),
+    macro("PolicySuitabilityProfit", f(
+        policy_suitability["expected_profit"], 1
+    )),
+    macro("PolicySuitabilityCVaR", f(policy_suitability["cvar_loss"], 1)),
+    macro("PolicyEqualCorn", f(policy_equal["acres_Corn"])),
+    macro("PolicyEqualSoy", f(policy_equal["acres_Soybean"])),
+    macro("PolicyEqualWheat", f(policy_equal["acres_Winter Wheat"])),
+    macro("PolicyEqualProfit", f(policy_equal["expected_profit"], 1)),
+    macro("PolicyEqualCVaR", f(policy_equal["cvar_loss"], 1)),
+    macro("PolicyExpectedCorn", f(policy_expected["acres_Corn"])),
+    macro("PolicyExpectedSoy", f(policy_expected["acres_Soybean"])),
+    macro("PolicyExpectedWheat", f(policy_expected["acres_Winter Wheat"])),
+    macro("PolicyExpectedProfit", f(policy_expected["expected_profit"], 1)),
+    macro("PolicyExpectedCVaR", f(policy_expected["cvar_loss"], 1)),
+    macro("PolicyMinimumCorn", f(policy_minimum["acres_Corn"])),
+    macro("PolicyMinimumSoy", f(policy_minimum["acres_Soybean"])),
+    macro("PolicyMinimumWheat", f(policy_minimum["acres_Winter Wheat"])),
+    macro("PolicyMinimumProfit", f(policy_minimum["expected_profit"], 1)),
+    macro("PolicyMinimumCVaR", f(policy_minimum["cvar_loss"], 1)),
     macro("DiversificationSensitivityCases", len(diversification_sensitivity)),
     macro("DiversificationSensitivityStrongCases", int(diversification_sensitivity["selected_strong_failure"].sum())),
     macro("LowerTailCoefficient", f(row_mv["lower_tail_dependence"])),

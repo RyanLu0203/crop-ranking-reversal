@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the deterministic scientific finalization reproducibility archive."""
+"""Build the deterministic Issue #40 reproducibility archive."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = ROOT / "release"
-ARCHIVE = RELEASE / "crop-ranking-reversal-issue38-supervisor-review.tar.gz"
+ARCHIVE = RELEASE / "crop-ranking-reversal-issue40-supervisor-review.tar.gz"
 
 PATHS = [
     "main_manuscript.tex",
@@ -33,17 +33,22 @@ PATHS = [
     "SCIENTIFIC_CLAIM_REPAIR_AUDIT.md",
     "MECHANISM_ISOLATION_AUDIT.md",
     "DIVERSIFICATION_FAILURE_VALIDATION.md",
+    "STRONG_REVERSAL_SENSITIVITY.md",
+    "HEURISTIC_PROJECTION_VALIDATION.md",
     "INFORMATION_FLEXIBILITY_VALIDATION.md",
     "PR_INTEGRATION_PLAN.md",
     "audits/issue_34_acceptance_matrix.md",
     "audits/issue34_figure_contract.md",
     "audits/issue36_figure_contract.md",
     "audits/issue38_figure_contract.md",
+    "audits/issue40_figure_contract.md",
     "audits/issue38_manuscript_language_scan.json",
-    "audits/issue38_deterministic_build.json",
+    "audits/issue40_deterministic_build.json",
+    "audits/issue40_final_consistency.json",
+    "audits/issue40_final_visual_qa.md",
     "audits/issue38_final_visual_qa.md",
     "audits/issue34_final_page_qa.md",
-    "audits/issue38_visual_qa",
+    "audits/issue40_visual_qa",
     "literature/issue34_search_log.md",
     "manuscript/issue34",
     "figures/issue34",
@@ -56,6 +61,7 @@ PATHS = [
     "scripts/build_issue38_visual_qa.py",
     "scripts/build_issue38_papers_deterministic.py",
     "scripts/validate_issue38_finalization.py",
+    "scripts/validate_issue40_final_consistency.py",
     "scripts/build_issue38_archive.py",
     "optimization",
     "theory/issue34",

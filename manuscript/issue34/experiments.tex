@@ -35,8 +35,9 @@ sensitivity dimension.
 
 \subsection{Primary reversal}
 
-The expected-profit endpoint without loss-CVaR assigns 0.280 to corn, 0.650
-to soybean and 0.070 to winter wheat. It produces a complete rank reversal,
+The expected-profit endpoint without loss-CVaR assigns \PolicyExpectedCorn{}
+to corn, \PolicyExpectedSoy{} to soybean and \PolicyExpectedWheat{} to winter
+wheat. It produces a complete rank reversal,
 but not a strong reversal because winter wheat remains positively allocated;
 its loss-CVaR
 \(\$\,\PrimaryNoRiskCVaR\), exceeding the primary risk ceiling. The
@@ -56,7 +57,8 @@ stationarity and complementarity residuals are \(\KKTPrimal\),
 This Kansas result is margin-induced: the score--margin separation favours
 soybean economically even though winter wheat ranks agronomically first, and
 the expected-profit endpoint is already inverted. The CVaR ceiling raises
-winter wheat from 0.070 to \PrimaryWheat{} and therefore moderates rather than
+winter wheat from \PolicyExpectedWheat{} to \PrimaryWheat{} and therefore
+moderates rather than
 creates the top-crop inversion. Operational constraints delimit the available
 path between those endpoints.
 
@@ -65,13 +67,26 @@ path between those endpoints.
 Figure~\ref{fig:phase} reports all \PhaseCells{} combinations of copula
 family, Kendall's \(\tau\) and risk tolerance. Selected pairwise reversal
 occurs in \PhaseReversal{} cells, selected complete rank reversal in
-\PhaseComplete{} cells and strong exclusion reversal in \PhaseStrong{}
-cells. There are no infeasible
+\PhaseComplete{} cells. Strong exclusion is not an admissible event in this
+principal specification because the lower bounds 0.05, 0.10 and 0.05 prevent
+crop exit; its zero count is therefore structural. There are no infeasible
 cells, but two Clayton cells have multiple optima. Most reversal regions are
 connected on the evaluated grid; Clayton at \(\tau=0.30\) is disconnected.
 The first selected-reversal index ranges from 0 to 0.3 across family and
-dependence paths. No strong-reversal index exists on any evaluated path
-because no cell satisfies the restored exclusion definition.
+dependence paths.
+
+Setting every crop lower bound to zero makes strong exclusion feasible without
+altering the score, scenario laws, risk path or remaining operational
+constraints. On that grid, \AllZeroPairwise{} cells show selected pairwise
+reversal, \AllZeroComplete{} show selected complete reversal, and
+\AllZeroStrong{} show selected strong reversal; possible and universal strong
+counts are \AllZeroPossibleStrong{} and \AllZeroUniversalStrong. The smallest
+selected share of top-ranked winter wheat is \AllZeroMinTop, so no exclusion
+boundary or excluded crop exists on the evaluated grid. The targeted
+sensitivity that removes only winter wheat's lower bound similarly gives
+\TopZeroPairwise{} pairwise, \TopZeroComplete{} complete and
+\TopZeroStrong{} strong cells. These are substantive null results under
+specifications in which exit is admissible.
 
 The nonmonotonic cells are substantively important. Increasing dependence can
 change which resource or risk constraint binds, and that active-set transition
@@ -86,9 +101,10 @@ ordering statistic.
 \includegraphics[width=\textwidth]{figures/issue34/Figure2.pdf}
 \caption{\textbf{Ranking reversal occupies a family- and risk-dependent
 phase.} \textbf{a--c}, Classification across risk tolerance and Kendall's
-\(\tau\) for Gaussian, Student-\(t\) and Clayton copulas. Grey indicates no
-	reversal, mint indicates pairwise-only reversal and dark teal indicates
-	complete rank reversal; strong exclusion counts are stated separately.
+\(\tau\) for Gaussian, Student-\(t\) and Clayton copulas; the compact key
+distinguishes no reversal, pairwise-only reversal and complete reversal.
+Strong exclusion is structurally inadmissible here because all crop minima
+are positive; zero-lower-bound results are reported separately.
 \textbf{d}, The first
 selected-reversal risk tolerance varies non-monotonically across the named
 	family paths. All \PhaseCells{} evaluated cells, including \PhaseMultiple{}
@@ -99,7 +115,7 @@ multiple-optimum cells, are retained.}
 \subsection{Diversification failure under matched rank dependence}
 
 The comparison \(x^0\) is the matched-Gaussian expected-profit allocation.
-The mean--variance benchmark and tail-aware model use the same marginal means
+The Selected Gaussian mean--variance policy and tail-aware model use the same marginal means
 and standard deviations and matched Kendall's \(\tau=0.25\). The Student-\(t\)
 law nevertheless has lower-tail coefficient \LowerTailCoefficient, whereas
 the Gaussian copula has zero asymptotic tail dependence. We solve a complete
@@ -111,11 +127,17 @@ reduction relative to \(x^0\).
 
 At the selected point, Gaussian variance falls from
 \DiversificationBenchmarkVariance{} to \DiversificationMVVariance{}
-(\DiversificationVarianceReduction\%), while the allocation changes by
+\((\DiversificationVarianceReduction\%)\). The canonical policy allocates
+\CanonicalMVCorn{} to corn, \CanonicalMVSoy{} to soybean and
+\CanonicalMVWheat{} to winter wheat; Gaussian expected profit is
+\(\$\,\CanonicalMVGaussianExpectedProfit\) per acre. Its operational
+feasibility is \CanonicalMVOperationalFeasible. The allocation changes by
 \DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
-evaluation law, the Gaussian mean--variance policy has loss-CVaR
+evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\) and
+the Selected Gaussian mean--variance policy has loss-CVaR
 \(\$\,\DiversificationGaussianCVaR\), exceeding the common ceiling
 \(\$\,\DiversificationRiskCeiling\) by \(\$\,\DiversificationCeilingGap\).
+Its risk-ceiling feasibility is \CanonicalMVRiskFeasible.
 The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
 by \(\$\,\DiversificationTailGap\). The weak and strong failure criteria hold
 over \(\gamma\) intervals \(\DiversificationWeakGammaInterval\) and
@@ -150,14 +172,27 @@ lower-tail dependence.}
 \subsection{Mechanism isolation and policy robustness}
 
 The suitability-proportional, winner-take-all and equal-share policies are
-projected to operational feasibility before evaluation. Suitability
-proportional earns \(\$187.4\) with loss-CVaR \(-\$53.1\) and does not
-reverse. Feasibility-projected winner-take-all earns \(\$166.6\) with loss-CVaR
-\(-\$57.3\) and reverses one pair. Equal share earns \(\$190.4\) with
-loss-CVaR \(-\$51.4\). The expected-profit and mean--variance endpoints both
-earn \(\$216.5\) but violate the CVaR ceiling. The full model earns less
-expected profit than those infeasible endpoints because it buys certified
-downside protection.
+projected by Eq.~\ref{eq:projection} before evaluation. Suitability
+proportional earns \(\$\,\PolicySuitabilityProfit\) with loss-CVaR
+\(\$\,\PolicySuitabilityCVaR\) and does not
+reverse. The raw winner-take-all prescription \((0,0,1)\) projects to
+\((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
+\ProjectionWinnerLtwoWheat)\) under the principal Euclidean rule, earns
+\(\$\,\ProjectionWinnerLtwoProfit\), has loss-CVaR
+\(\$\,\ProjectionWinnerLtwoCVaR\), and does not reverse. Equal share earns
+\(\$\,\PolicyEqualProfit\) with loss-CVaR \(\$\,\PolicyEqualCVaR\). The
+expected-profit endpoint earns \(\$\,\PolicyExpectedProfit\) but violates the
+CVaR ceiling. The full model earns less expected
+profit because it buys certified downside protection.
+
+Projection choice matters for one benchmark. The alternative \(L^1\) rule
+maps the same winner target to
+\((\ProjectionWinnerLoneCorn,\ProjectionWinnerLoneSoy,
+\ProjectionWinnerLoneWheat)\), which reverses the Soybean--Corn pair; both
+projections remain risk-feasible. Suitability-proportional and equal-share
+policies are already feasible and are unchanged. Heuristic reversal is
+therefore reported as projection-sensitive rather than as a property of the
+raw score-winner rule.
 
 The controlled risk experiment uses the Kansas Soybean--Corn score and
 margin ordering: soybean has both the higher score and a mean-margin advantage
@@ -186,7 +221,10 @@ constraint (Fig.~\ref{fig:policies}).
 Every one-at-a-time sensitivity dimension retains selected pairwise reversal:
 \(\alpha\), constraint regime, dependence family, dependence parameter,
 marginal family, sample window, scenario count, seed and solver. Strong
-exclusion does not occur because crop lower bounds are positive.
+exclusion is structurally inadmissible in those positive-lower-bound runs.
+The all-zero and top-crop-zero analyses make exclusion admissible but retain
+the strong-reversal null across numerical-zero tolerances from \(10^{-8}\) to
+\(10^{-2}\).
 The solver
 comparisons use HiGHS, dual simplex and interior point; scenario counts are
 256, 512 and 1,024; sample windows begin in 2016, 2017 or 2018. These

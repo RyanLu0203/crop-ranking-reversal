@@ -38,13 +38,23 @@ selected classification; universal and possible classifications use the face
 bounds. Ordering and zero tolerances are \(10^{-4}\) normalized land share,
 with sensitivity from \(10^{-8}\) to \(10^{-2}\).
 
+The principal phase uses lower bounds 0.05, 0.10 and 0.05 for corn, soybean
+and winter wheat. Strong exclusion is consequently infeasible by
+construction. Two complete sensitivity phases retain every other model
+component: one sets all three lower bounds to zero, and one sets only the
+highest-ranked winter wheat lower bound to zero. Each phase is re-solved at
+zero tolerances \(10^{-8},10^{-6},10^{-4},10^{-3}\) and \(10^{-2}\), including
+selected solutions and possible/universal classifications on the complete
+optimal face.
+
 \subsection{Diversification comparison}
 
 The benchmark \(x^0\) maximizes expected profit under the matched Gaussian
 model. For each \(\gamma\in\{0,10^{-4},\ldots,0.03\}\), \(x^{MV}(\gamma)\)
 maximizes Gaussian mean minus \(\gamma\) times Gaussian variance, subject to
-the same full-investment and operational constraints. The reported
-mean--variance policy is selected without reference to its tail outcome: it is
+the same full-investment and operational constraints. The reported Selected
+Gaussian mean--variance policy is selected without reference to its tail
+outcome: it is
 the smallest \(\gamma\) that reduces Gaussian variance by at least 15\%
 relative to \(x^0\). Targets of 10\% and 20\% are sensitivity cases.
 
@@ -59,10 +69,21 @@ confidence level, risk tolerance and marginal family one factor at a time.
 
 \subsection{Mechanism isolation and robustness}
 
-Score-proportional, score-winner and equal-share allocations are projected
-onto the operationally feasible set before outcome comparison.
-Expected-profit, mean--variance, full loss-CVaR and minimum-CVaR endpoints use
-the same constraints. Robustness varies one dimension at a time: confidence
+For a raw heuristic \(x^h\), the principal projection minimizes
+\(\frac12\lVert x-x^h\rVert_2^2\) subject to full investment, crop bounds,
+budget, rotation, soybean contract, planting-labour and harvest-equipment
+constraints. Idle land is not allowed in this comparison set. The loss-CVaR
+ceiling is excluded from projection and evaluated afterwards. The strictly
+convex problem is solved by SLSQP with objective tolerance \(10^{-10}\);
+feasibility is checked independently at \(10^{-8}\).
+
+An alternative unweighted \(L^1\) projection is solved by HiGHS. If its closest
+face is non-unique, a second linear programme minimizes a fixed crop-order
+weighted allocation with weights 1, 2 and 3 for corn, soybean and winter wheat,
+respectively, while remaining within \(10^{-10}\) of the minimum \(L^1\)
+distance. Raw targets, both projected allocations and both distances are
+reported. Expected-profit, full loss-CVaR and minimum-CVaR endpoints use the
+same constraints. Robustness varies one dimension at a time: confidence
 level, dependence family and parameter, marginal model, historical window,
 scenario count, seed, solver and removal of each constraint group. Null,
 nonmonotone, multiple-optimum and infeasible cases are retained.

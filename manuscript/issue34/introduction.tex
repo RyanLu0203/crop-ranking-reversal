@@ -77,7 +77,11 @@ The phase diagram is more informative than this one allocation. Across
 \PhaseCells{} pre-specified cells spanning three copula families, five
 Kendall-\(\tau\) values and eleven risk tolerances, \PhaseReversal{} cells
 show selected pairwise reversal, \PhaseComplete{} show selected complete rank
-reversal and \PhaseStrong{} show strong exclusion reversal. Two cells contain multiple
+reversal. Strong exclusion cannot occur in the principal phase because the
+three crop lower bounds are strictly positive; its zero count is therefore
+structural rather than an empirical pattern. A parallel all-zero-lower-bound
+phase makes exclusion feasible but still finds no selected, possible or
+universal strong reversal on the evaluated grid. Two cells contain multiple
 optima, no cells are infeasible, and one Clayton path is disconnected on the
 pre-specified grid. Selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64 historical resamples, with exact
@@ -88,7 +92,7 @@ estimates of farm-level prevalence.
 
 Our third contribution separates diversification diagnostics that are often
 conflated. We define \(x^0\) explicitly and claim failure only when a
-full-investment Gaussian mean--variance policy strictly reduces variance
+full-investment Selected Gaussian mean--variance policy strictly reduces variance
 relative to that benchmark, differs from the tail-aware allocation and has
 worse loss-CVaR under the Student-\(t\) evaluation law. The focal policy is
 selected independently of tail performance as the smallest \(\gamma\) that
@@ -113,13 +117,12 @@ numerically: \InfoPositiveCells{} positive, \InfoNegativeCells{} negative,
 \InfoZeroCells{} zero-information and \InfoBoundaryCells{} zero/boundary.
 The strict theorem is restricted to the separable or nonbinding-risk submodel.
 
-Figure~\ref{fig:architecture} summarizes the architecture. It preserves the
+Figure~\ref{fig:architecture} summarizes the architecture. It shows the
 scientific chain from suitability to stochastic operational optimality:
 score, uncertain margin, joint law, operational set, downside-risk
 constraint, reversal frontier, diversification failure and information
-actionability. The paper does not recast the topic as a general essay about
-ordinal insufficiency. Ordinality is a boundary condition; the contribution
-is the conditional mechanism and its verified consequences.
+actionability. Ordinal insufficiency is a modelling boundary; the contribution
+is the conditional mechanism and its evaluated consequences.
 
 \begin{figure}[t]
 \centering

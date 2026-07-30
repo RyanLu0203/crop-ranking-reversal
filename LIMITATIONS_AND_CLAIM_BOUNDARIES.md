@@ -42,6 +42,15 @@ frontier and one-factor cases identify where weak or strong failure holds,
 not a universal property of mean--variance optimization.
 19. The probability--magnitude risk map is a controlled stress surface, not an
 estimated distribution of Kansas farm shocks.
+20. Positive crop lower bounds make strong exclusion structurally impossible
+in the principal phase; its zero count is not empirical evidence. When all
+lower bounds, or only the top crop's lower bound, are set to zero, strong
+exclusion remains absent on the evaluated grid. This is a conditional null,
+not proof that exclusion cannot occur elsewhere.
+21. Winner-take-all benchmark reversal is projection-sensitive: the unique
+Euclidean projection does not reverse, whereas the declared lexicographic
+\(L^1\) projection reverses the soybean--corn pair. No raw heuristic should be
+assigned a unique reversal classification without its projection rule.
 
 Permitted headline claim: the full model produces a robust
 conditional complete ranking inversion but no exclusion-based strong

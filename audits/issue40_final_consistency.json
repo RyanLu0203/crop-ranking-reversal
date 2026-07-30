@@ -1,0 +1,139 @@
+{
+  "canonical_mean_variance_policy": {
+    "allocation": {
+      "Corn": 0.313972736195,
+      "Soybean": 0.543025099531,
+      "Winter_Wheat": 0.143002164273
+    },
+    "gamma": 0.0082,
+    "gaussian_expected_profit": 206.555450882,
+    "gaussian_variance": 5733.4636871,
+    "name": "Selected Gaussian mean-variance policy",
+    "operational_feasible": true,
+    "risk_feasible": false,
+    "selection_rule": "smallest_gamma_achieving_fixed_gaussian_variance_reduction",
+    "student_t_expected_profit": 206.63107308,
+    "student_t_loss_cvar": -43.3691087682,
+    "target": 0.15
+  },
+  "exact_parent_commit": "2c03e0ddd1bfa29ff8b16078d3effff592e36508",
+  "figures": {
+    "editable_svg_text_nodes": {
+      "Figure1": 51,
+      "Figure2": 68,
+      "Figure3": 55,
+      "Figure4": 76,
+      "Figure5": 95,
+      "Figure6": 31
+    },
+    "figure_count": 6,
+    "maximum_svg_font_px": 9.0,
+    "minimum_svg_font_px": 4.06,
+    "ordinary_font_range_px": [
+      5.4,
+      7.0
+    ],
+    "panel_label_font_px": 8.0,
+    "renderer_bounds_failures": 0,
+    "renderer_title_collisions": 0,
+    "widths_mm": [
+      182.88
+    ]
+  },
+  "heuristic_projection": {
+    "euclidean_l2": {
+      "classification": "no_reversal",
+      "distance_l1": 0.8,
+      "distance_l2": 0.489897948557,
+      "projected": [
+        0.200000000398,
+        0.199999999602,
+        0.6
+      ],
+      "raw": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "risk_feasible": true
+    },
+    "l1_lexicographic": {
+      "classification": "selected_pairwise_reversal",
+      "distance_l1": 0.8000000001,
+      "distance_l2": 0.509901951428,
+      "projected": [
+        0.30000000005,
+        0.1,
+        0.59999999995
+      ],
+      "raw": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "risk_feasible": true
+    }
+  },
+  "language_scan": {
+    "revision-history semantics": [],
+    "workflow metadata": []
+  },
+  "status": "PASS",
+  "strong_reversal": {
+    "all_zero_lower_bounds": {
+      "first_strong_boundary": "none_on_evaluated_grid",
+      "infeasible_cells": 0,
+      "minimum_top_crop_allocation": 0.0700283487798,
+      "multiple_optimum_cells": 2,
+      "possible_complete_rank_reversal_cells": 95,
+      "possible_pairwise_reversal_cells": 143,
+      "possible_strong_reversal_cells": 0,
+      "selected_complete_rank_reversal_cells": 95,
+      "selected_pairwise_reversal_cells": 143,
+      "selected_strong_reversal_cells": 0,
+      "structural_strong_zero": false,
+      "universal_complete_rank_reversal_cells": 95,
+      "universal_pairwise_reversal_cells": 143,
+      "universal_strong_reversal_cells": 0
+    },
+    "highest_ranked_crop_zero_lower_bound": {
+      "first_strong_boundary": "none_on_evaluated_grid",
+      "infeasible_cells": 0,
+      "minimum_top_crop_allocation": 0.0700283487798,
+      "multiple_optimum_cells": 2,
+      "possible_complete_rank_reversal_cells": 96,
+      "possible_pairwise_reversal_cells": 143,
+      "possible_strong_reversal_cells": 0,
+      "selected_complete_rank_reversal_cells": 96,
+      "selected_pairwise_reversal_cells": 143,
+      "selected_strong_reversal_cells": 0,
+      "structural_strong_zero": false,
+      "universal_complete_rank_reversal_cells": 96,
+      "universal_pairwise_reversal_cells": 143,
+      "universal_strong_reversal_cells": 0
+    },
+    "principal_positive_lower_bounds": {
+      "first_strong_boundary": "none_on_evaluated_grid",
+      "infeasible_cells": 0,
+      "minimum_top_crop_allocation": 0.0700283487798,
+      "multiple_optimum_cells": 2,
+      "possible_complete_rank_reversal_cells": 96,
+      "possible_pairwise_reversal_cells": 143,
+      "possible_strong_reversal_cells": 0,
+      "selected_complete_rank_reversal_cells": 96,
+      "selected_pairwise_reversal_cells": 143,
+      "selected_strong_reversal_cells": 0,
+      "structural_strong_zero": true,
+      "universal_complete_rank_reversal_cells": 96,
+      "universal_pairwise_reversal_cells": 143,
+      "universal_strong_reversal_cells": 0
+    },
+    "zero_tolerances": [
+      1e-08,
+      1e-06,
+      0.0001,
+      0.001,
+      0.01
+    ]
+  }
+}

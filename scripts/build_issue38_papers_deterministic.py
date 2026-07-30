@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build both academic PDFs twice and require byte-identical outputs."""
+"""Build both Issue #40 academic PDFs twice and require byte-identical outputs."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCUMENTS = ("main_manuscript", "supplementary_information")
-REPORT = ROOT / "audits" / "issue38_deterministic_build.json"
+REPORT = ROOT / "audits" / "issue40_deterministic_build.json"
 
 
 def digest(path: Path) -> str:

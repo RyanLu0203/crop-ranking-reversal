@@ -1,5 +1,5 @@
 design_id: CRR-ISSUE34-FULL-MODEL-2026-07-27
-design_version: 1.0.0
+design_version: 1.1.0
 frozen_at: 2026-07-27T15:00:00+08:00
 status: FROZEN_BEFORE_RESULTS
 owner_issue: 34
@@ -11,6 +11,13 @@ finalization_baseline_commit: d058f0764e42e994bf2c1c00b48cbde3622f96c6
 finalization_registration:
   status: PRE_SPECIFIED_BEFORE_FINAL_FRONTIER_RERUN
   purpose: diversification_frontier_completion_and_risk_stress_sensitivity
+editorial_consistency_issue: 40
+editorial_consistency_baseline_commit: 2c03e0ddd1bfa29ff8b16078d3effff592e36508
+editorial_consistency_registration:
+  status: ISSUE40_SPECIFICATION_APPLIED_BEFORE_CANONICAL_RERUN
+  purpose: >-
+    canonical_mean_variance_policy_zero_lower_bound_phase_analysis_and
+    heuristic_projection_sensitivity
 repair_registration:
   status: REPOSITORY_REGISTERED_BEFORE_FINAL_CONFIRMATORY_RUN
   language: frozen_before_final_analysis_not_external_preregistration
@@ -109,12 +116,55 @@ optimization:
   allocation_tie_tolerance: 1.0e-4
 
 policies:
-  - suitability_proportional_repaired_to_operational_feasibility
-  - suitability_winner_take_all_repaired_to_operational_feasibility
+  - suitability_proportional_euclidean_projection
+  - suitability_winner_take_all_euclidean_projection
   - expected_profit_without_CVaR
-  - mean_variance
+  - selected_gaussian_mean_variance_from_registered_frontier
   - full_CVaR_operational
-  - equal_share_repaired_to_operational_feasibility
+  - equal_share_euclidean_projection
+
+heuristic_projection:
+  principal_method: euclidean_l2
+  alternative_method: l1_lexicographic
+  comparison_feasible_set: >-
+    full_investment_land_equality_budget_crop_bounds_rotation_contract_and
+    shared_labour_and_equipment_capacities
+  total_land_equality: true
+  idle_land_allowed: false
+  cvar_ceiling_in_projection: false
+  cvar_treatment: evaluated_after_projection
+  euclidean_objective: one_half_unweighted_squared_distance_to_raw_policy
+  l1_objective: unweighted_absolute_distance_to_raw_policy
+  l1_secondary_tie_break: >-
+    minimize_crop_order_weighted_allocation_on_the_l1_optimal_face
+  crop_order_tie_break_weights:
+    Corn: 1.0
+    Soybean: 2.0
+    Winter Wheat: 3.0
+  solver_principal: scipy_SLSQP
+  solver_alternative: scipy_HiGHS
+  feasibility_tolerance: 1.0e-8
+  objective_tolerance: 1.0e-10
+
+strong_reversal_sensitivity:
+  specifications:
+    principal_positive_lower_bounds:
+      Corn: 0.05
+      Soybean: 0.10
+      Winter Wheat: 0.05
+    all_zero_lower_bounds:
+      Corn: 0.0
+      Soybean: 0.0
+      Winter Wheat: 0.0
+    highest_ranked_crop_zero_lower_bound:
+      Corn: 0.05
+      Soybean: 0.10
+      Winter Wheat: 0.0
+  primary_zero_tolerance: 1.0e-4
+  zero_tolerance_grid: [1.0e-8, 1.0e-6, 1.0e-4, 1.0e-3, 1.0e-2]
+  interpretation: >-
+    principal_zero_is_structural_all_zero_and_targeted_zero_specs_test
+    whether_exclusion_occurs_when_crop_exit_is_admissible
 
 phase_diagram:
   dimensions: [copula_family, kendall_tau, risk_tolerance]

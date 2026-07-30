@@ -14,10 +14,11 @@
 
 ## Selection rule and focal result
 
-The focal mean--variance policy is the smallest \(\gamma\) achieving at least
+The canonical **Selected Gaussian mean--variance policy** is the smallest
+\(\gamma\) achieving at least
 15% Gaussian variance reduction relative to \(x^0\). This rule does not use
-the Student-\(t\) outcome. It selects \(\gamma=0.0082\), not the previous
-single point 0.0085, and is interior to the frontier.
+the Student-\(t\) outcome. It selects \(\gamma=0.0082\) and is interior to the
+frontier. No separate low-penalty mean--variance comparison policy is retained.
 
 1. Gaussian variance:
    \[
@@ -63,3 +64,4 @@ Complete policy, frontier and sensitivity rows are in:
 
 - `reconstruction/issue34/outputs/diversification_failure.csv`
 - `reconstruction/issue34/outputs/diversification_sensitivity.csv`
+- `reconstruction/issue34/outputs/canonical_mean_variance_policy.csv`

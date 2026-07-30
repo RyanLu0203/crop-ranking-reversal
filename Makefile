@@ -4,7 +4,7 @@ PYTHON_VERSION ?= 3.11
 # byte-for-byte reproducible.  This is 27 July 2026 00:00:00 Asia/Shanghai.
 export SOURCE_DATE_EPOCH ?= 1785081600
 
-.PHONY: install figures manuscript paper reproduce validate test check manifest issue34 issue36 issue38
+.PHONY: install figures manuscript paper reproduce validate test check manifest issue34 issue36 issue38 issue40
 
 install:
 	$(UV) sync --locked --extra test --python $(PYTHON_VERSION)
@@ -27,6 +27,7 @@ paper:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue38_papers_deterministic.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_issue38_finalization.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue38_visual_qa.py
+	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_issue40_final_consistency.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_manifest.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/validate_manifest.py
 	$(UV) run --python $(PYTHON_VERSION) python scripts/build_issue38_archive.py
@@ -64,6 +65,8 @@ issue34: reproduce
 issue36: reproduce
 
 issue38: reproduce
+
+issue40: reproduce
 
 reproduce:
 	$(UV) run --python $(PYTHON_VERSION) python scripts/run_issue34_reconstruction.py

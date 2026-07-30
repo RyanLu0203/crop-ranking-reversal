@@ -30,9 +30,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "simulation/src"), str(ROOT / "optimization/src")]
 
 from crop_optimization.benchmark_policies import (
+    euclidean_projection_to_feasible,
     mean_variance_policy,
     repair_allocation_to_feasible,
-    suitability_proportional_policy,
 )
 from crop_optimization.cvar_optimizer import (
     AllocationResult,
@@ -87,8 +87,15 @@ def load_design() -> Dict[str, Any]:
         or design.get("finalization_issue") != 38
         or design.get("finalization_registration", {}).get("status")
         != "PRE_SPECIFIED_BEFORE_FINAL_FRONTIER_RERUN"
+        or design.get("editorial_consistency_issue") != 40
+        or design.get("editorial_consistency_baseline_commit")
+        != "2c03e0ddd1bfa29ff8b16078d3effff592e36508"
+        or design.get("editorial_consistency_registration", {}).get("status")
+        != "ISSUE40_SPECIFICATION_APPLIED_BEFORE_CANONICAL_RERUN"
     ):
-        raise ValueError("the reconstruction and finalization design must be registered")
+        raise ValueError(
+            "the reconstruction, finalization and consistency designs must be registered"
+        )
     design["design_sha256"] = sha256(DESIGN_PATH)
     return design
 
@@ -373,46 +380,132 @@ def policy_comparison(
     spec: Mapping[str, Any],
     scores: np.ndarray,
     design: Mapping[str, Any],
-) -> tuple[pd.DataFrame, Dict[str, Any]]:
+) -> tuple[pd.DataFrame, Dict[str, Any], pd.DataFrame]:
     alpha = float(design["optimization"]["alpha_primary"])
     rho = float(design["optimization"]["primary_risk_tolerance"])
     kappa, expected, minimum = risk_endpoint(scen, spec, alpha, rho)
-    suitability = suitability_proportional_policy(
-        scores, spec["total_land"], spec["costs"], spec["budget"], spec["lower"],
-        spec["upper"], spec["rotation_caps"], CROPS, spec["contract_minimums"],
-        spec["shared_capacity_constraints"],
-    )
-    winner_target = np.zeros(len(CROPS))
-    winner_target[int(np.argmax(scores))] = spec["total_land"]
-    winner = repair_allocation_to_feasible(
-        winner_target, spec["costs"], spec["total_land"], spec["budget"],
-        spec["lower"], spec["upper"], spec["rotation_caps"], CROPS,
-        spec["contract_minimums"], spec["shared_capacity_constraints"],
-    )
-    equal = repair_allocation_to_feasible(
-        np.full(len(CROPS), spec["total_land"] / len(CROPS)),
-        spec["costs"], spec["total_land"], spec["budget"], spec["lower"],
-        spec["upper"], spec["rotation_caps"], CROPS, spec["contract_minimums"],
-        spec["shared_capacity_constraints"],
-    )
-    mean_variance = mean_variance_policy(
-        scen, spec["costs"], spec["total_land"], spec["budget"], spec["lower"],
-        spec["upper"], spec["rotation_caps"], CROPS, gamma=2e-5,
-        start=expected.allocation, contract_minimums=spec["contract_minimums"],
-        shared_capacity_constraints=spec["shared_capacity_constraints"],
-    )
     cvar = solve_risk(scen, spec, alpha, kappa)
+    raw_policies = {
+        "suitability_proportional": (
+            spec["total_land"] * scores / scores.sum()
+        ),
+        "winner_take_all": np.eye(len(CROPS))[
+            int(np.argmax(scores))
+        ] * spec["total_land"],
+        "equal_share": np.full(
+            len(CROPS), spec["total_land"] / len(CROPS)
+        ),
+    }
+    projection_design = design["heuristic_projection"]
+    tie_weights = [
+        float(projection_design["crop_order_tie_break_weights"][crop])
+        for crop in CROPS
+    ]
+    projection_rows: list[dict[str, Any]] = []
+    principal_results: dict[str, Mapping[str, Any]] = {}
+    for policy, target in raw_policies.items():
+        for method in ("euclidean_l2", "l1_lexicographic"):
+            if method == "euclidean_l2":
+                projected = euclidean_projection_to_feasible(
+                    target, spec["costs"], spec["total_land"], spec["budget"],
+                    spec["lower"], spec["upper"], spec["rotation_caps"], CROPS,
+                    spec["contract_minimums"],
+                    spec["shared_capacity_constraints"],
+                    objective_tolerance=float(
+                        projection_design["objective_tolerance"]
+                    ),
+                )
+            else:
+                projected = repair_allocation_to_feasible(
+                    target, spec["costs"], spec["total_land"], spec["budget"],
+                    spec["lower"], spec["upper"], spec["rotation_caps"], CROPS,
+                    spec["contract_minimums"],
+                    spec["shared_capacity_constraints"],
+                    tie_break_weights=tie_weights,
+                    objective_tolerance=float(
+                        projection_design["objective_tolerance"]
+                    ),
+                )
+            if projected["status"] != "projected":
+                raise RuntimeError(
+                    f"{policy} {method} projection failed: "
+                    f"{projected.get('message', '')}"
+                )
+            metrics = result_row(
+                policy, projected, scen, spec, scores, alpha, kappa, design
+            )
+            projection_rows.append({
+                "heuristic_policy": policy,
+                "projection_method": method,
+                "projection_status": projected["status"],
+                "projection_solver": (
+                    projection_design["solver_principal"]
+                    if method == "euclidean_l2"
+                    else projection_design["solver_alternative"]
+                ),
+                "projection_set": projection_design[
+                    "comparison_feasible_set"
+                ],
+                "full_investment_required": bool(
+                    projection_design["total_land_equality"]
+                ),
+                "idle_land_allowed": bool(
+                    projection_design["idle_land_allowed"]
+                ),
+                "cvar_ceiling_in_projection": bool(
+                    projection_design["cvar_ceiling_in_projection"]
+                ),
+                "tie_break_rule": projected["tie_break_rule"],
+                "projection_distance_l1": projected[
+                    "projection_distance_l1"
+                ],
+                "projection_distance_l2": projected[
+                    "projection_distance_l2"
+                ],
+                **{
+                    f"raw_{crop.replace(' ', '_')}": float(value)
+                    for crop, value in zip(CROPS, target)
+                },
+                **{
+                    f"projected_{crop.replace(' ', '_')}": float(value)
+                    for crop, value in zip(CROPS, projected["allocation"])
+                },
+                **{
+                    key: value for key, value in metrics.items()
+                    if key not in {"policy", "status"}
+                },
+            })
+            if method == projection_design["principal_method"]:
+                principal_results[policy] = projected
+
     rows = [
-        result_row("suitability_proportional", suitability, scen, spec, scores, alpha, kappa, design),
-        result_row("winner_take_all", winner, scen, spec, scores, alpha, kappa, design),
-        result_row("equal_share", equal, scen, spec, scores, alpha, kappa, design),
+        result_row(
+            "suitability_proportional_euclidean",
+            principal_results["suitability_proportional"],
+            scen, spec, scores, alpha, kappa, design,
+        ),
+        result_row(
+            "winner_take_all_euclidean",
+            principal_results["winner_take_all"],
+            scen, spec, scores, alpha, kappa, design,
+        ),
+        result_row(
+            "equal_share_euclidean",
+            principal_results["equal_share"],
+            scen, spec, scores, alpha, kappa, design,
+        ),
         result_row("expected_profit_no_CVaR", expected, scen, spec, scores, alpha, kappa, design),
-        result_row("mean_variance", mean_variance, scen, spec, scores, alpha, kappa, design),
         result_row("full_CVaR_operational", cvar, scen, spec, scores, alpha, kappa, design),
         result_row("minimum_CVaR_endpoint_not_primary", minimum, scen, spec, scores, alpha, kappa, design),
     ]
     for row in rows:
         row.update({"alpha": alpha, "risk_tolerance": rho, "cvar_limit": kappa})
+        row["comparison_scenario_law"] = (
+            "primary Student-t structural scenario law"
+        )
+        row["projection_method"] = (
+            "euclidean_l2" if "_euclidean" in row["policy"] else "not_applicable"
+        )
     endpoint = {
         "alpha": alpha,
         "risk_tolerance": rho,
@@ -421,7 +514,7 @@ def policy_comparison(
         "primary_cvar_limit": kappa,
         "primary_result": cvar,
     }
-    return pd.DataFrame(rows), endpoint
+    return pd.DataFrame(rows), endpoint, pd.DataFrame(projection_rows)
 
 
 def active_set(result: AllocationResult) -> str:
@@ -440,6 +533,10 @@ def phase_diagram(
     scores: np.ndarray,
     spec: Mapping[str, Any],
     design: Mapping[str, Any],
+    *,
+    lower_bound_specification: str = "principal_positive_lower_bounds",
+    acreage_tolerance: float | None = None,
+    near_zero_tolerance: float | None = None,
 ) -> pd.DataFrame:
     rows = []
     opt = design["optimization"]
@@ -457,6 +554,13 @@ def phase_diagram(
                 kappa, _expected, _minimum = risk_endpoint(scen, spec, opt["alpha_primary"], rho)
                 result = solve_risk(scen, spec, opt["alpha_primary"], kappa)
                 row: Dict[str, Any] = {
+                    "lower_bound_specification": lower_bound_specification,
+                    "lower_bound_Corn": float(spec["lower"][0]),
+                    "lower_bound_Soybean": float(spec["lower"][1]),
+                    "lower_bound_Winter_Wheat": float(spec["lower"][2]),
+                    "strong_reversal_structurally_inadmissible": bool(
+                        np.all(np.asarray(spec["lower"], dtype=float) > 0)
+                    ),
                     "copula_family": family,
                     "kendall_tau": float(tau),
                     "risk_tolerance": float(rho),
@@ -468,7 +572,13 @@ def phase_diagram(
                 if result.allocation is None:
                     row["classification"] = "infeasible"
                 else:
-                    row.update(reversal_classification(result.allocation, scores, design))
+                    row.update(reversal_classification(
+                        result.allocation,
+                        scores,
+                        design,
+                        acreage_tolerance=acreage_tolerance,
+                        near_zero_tolerance=near_zero_tolerance,
+                    ))
                     row["expected_profit"] = result.expected_profit
                     row["cvar_loss"] = result.cvar_loss
                     row["idle_land"] = float(spec["total_land"] - result.allocation.sum())
@@ -483,8 +593,16 @@ def phase_diagram(
                         contract_minimums=spec["contract_minimums"],
                         shared_capacity_constraints=spec["shared_capacity_constraints"],
                         score_tolerance=float(taxonomy["score_order_tolerance"]),
-                        allocation_tolerance=float(taxonomy["acreage_order_tolerance"]),
-                        near_zero_tolerance=float(taxonomy["near_zero_tolerance"]),
+                        allocation_tolerance=(
+                            float(taxonomy["acreage_order_tolerance"])
+                            if acreage_tolerance is None
+                            else float(acreage_tolerance)
+                        ),
+                        near_zero_tolerance=(
+                            float(taxonomy["near_zero_tolerance"])
+                            if near_zero_tolerance is None
+                            else float(near_zero_tolerance)
+                        ),
                         primary_result=result,
                     )
                     for key in [
@@ -510,6 +628,187 @@ def phase_diagram(
         .transform(lambda values: values.ne(values.shift()).fillna(False))
     )
     return frame
+
+
+def summarize_reversal_phase(
+    phase: pd.DataFrame,
+    *,
+    zero_tolerance: float,
+) -> Dict[str, Any]:
+    """Return one complete classification row for a lower-bound specification."""
+
+    feasible = phase.loc[~phase["classification"].eq("infeasible")].copy()
+    selected_strong = feasible.loc[
+        feasible["selected_strong_reversal"].fillna(False)
+    ].sort_values(
+        ["risk_tolerance", "copula_family", "kendall_tau"],
+        ascending=[False, True, True],
+    )
+    first = selected_strong.iloc[0] if len(selected_strong) else None
+    return {
+        "lower_bound_specification": phase[
+            "lower_bound_specification"
+        ].iloc[0],
+        "lower_bound_Corn": float(phase["lower_bound_Corn"].iloc[0]),
+        "lower_bound_Soybean": float(phase["lower_bound_Soybean"].iloc[0]),
+        "lower_bound_Winter_Wheat": float(
+            phase["lower_bound_Winter_Wheat"].iloc[0]
+        ),
+        "strong_reversal_structurally_inadmissible": bool(
+            phase["strong_reversal_structurally_inadmissible"].iloc[0]
+        ),
+        "near_zero_tolerance": float(zero_tolerance),
+        "cells": int(len(phase)),
+        "feasible_cells": int(len(feasible)),
+        "infeasible_cells": int(phase["classification"].eq("infeasible").sum()),
+        "multiple_optimum_cells": int(
+            feasible["multiple_optima"].fillna(False).sum()
+        ),
+        "selected_pairwise_reversal_cells": int(
+            feasible["selected_pairwise_reversal"].fillna(False).sum()
+        ),
+        "possible_pairwise_reversal_cells": int(
+            feasible["possible_pairwise_reversal"].fillna(False).sum()
+        ),
+        "universal_pairwise_reversal_cells": int(
+            feasible["universal_pairwise_reversal"].fillna(False).sum()
+        ),
+        "selected_complete_rank_reversal_cells": int(
+            feasible["selected_complete_rank_reversal"].fillna(False).sum()
+        ),
+        "possible_complete_rank_reversal_cells": int(
+            feasible["possible_complete_rank_reversal"].fillna(False).sum()
+        ),
+        "universal_complete_rank_reversal_cells": int(
+            feasible["universal_complete_rank_reversal"].fillna(False).sum()
+        ),
+        "selected_strong_reversal_cells": int(
+            feasible["selected_strong_reversal"].fillna(False).sum()
+        ),
+        "possible_strong_reversal_cells": int(
+            feasible["possible_strong_reversal"].fillna(False).sum()
+        ),
+        "universal_strong_reversal_cells": int(
+            feasible["universal_strong_reversal"].fillna(False).sum()
+        ),
+        "minimum_selected_top_crop_allocation": float(
+            feasible["top_ranked_allocation"].min()
+        ),
+        "minimum_optimal_face_top_crop_allocation": float(
+            feasible["top_min_allocation"].min()
+        ),
+        "first_selected_strong_copula_family": (
+            str(first["copula_family"]) if first is not None else ""
+        ),
+        "first_selected_strong_kendall_tau": (
+            float(first["kendall_tau"]) if first is not None else np.nan
+        ),
+        "first_selected_strong_risk_tolerance": (
+            float(first["risk_tolerance"]) if first is not None else np.nan
+        ),
+        "first_selected_strong_excluded_pair": (
+            str(first["strong_reversal_pairs"]) if first is not None else ""
+        ),
+        "first_selected_strong_active_constraints": (
+            str(first["active_set"]) if first is not None else ""
+        ),
+        "first_strong_boundary_status": (
+            "identified" if first is not None else "none_on_evaluated_grid"
+        ),
+    }
+
+
+def strong_reversal_lower_bound_sensitivity(
+    means: np.ndarray,
+    stds: np.ndarray,
+    margin_matrix: np.ndarray,
+    scores: np.ndarray,
+    principal_spec: Mapping[str, Any],
+    principal_phase: pd.DataFrame,
+    design: Mapping[str, Any],
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Solve the declared lower-bound and numerical-zero sensitivity grid."""
+
+    registered = design["strong_reversal_sensitivity"]
+    primary_tolerance = float(registered["primary_zero_tolerance"])
+    primary_frames: list[pd.DataFrame] = []
+    summary_rows: list[Dict[str, Any]] = []
+    for specification, lower_by_crop in registered["specifications"].items():
+        spec = copy.deepcopy(principal_spec)
+        spec["lower"] = np.asarray(
+            [float(lower_by_crop[crop]) for crop in CROPS], dtype=float
+        )
+        for tolerance_value in registered["zero_tolerance_grid"]:
+            tolerance = float(tolerance_value)
+            if (
+                specification == "principal_positive_lower_bounds"
+                and np.isclose(tolerance, primary_tolerance)
+            ):
+                frame = principal_phase.copy()
+            else:
+                frame = phase_diagram(
+                    means,
+                    stds,
+                    margin_matrix,
+                    scores,
+                    spec,
+                    design,
+                    lower_bound_specification=specification,
+                    acreage_tolerance=tolerance,
+                    near_zero_tolerance=tolerance,
+                )
+            summary_rows.append(
+                summarize_reversal_phase(frame, zero_tolerance=tolerance)
+            )
+            if np.isclose(tolerance, primary_tolerance):
+                primary_frames.append(frame)
+    return (
+        pd.concat(primary_frames, ignore_index=True),
+        pd.DataFrame(summary_rows),
+    )
+
+
+def canonical_mean_variance_policy(
+    diversification: pd.DataFrame,
+) -> pd.DataFrame:
+    """Extract the single focal policy selected by the registered frontier rule."""
+
+    selected = diversification.loc[
+        diversification["policy"].eq("xMV_variance_target_selected")
+        & diversification["row_type"].eq("registered_policy")
+    ]
+    if len(selected) != 1:
+        raise AssertionError("expected exactly one selected Gaussian MV policy")
+    row = selected.iloc[0]
+    return pd.DataFrame([{
+        "policy": "Selected Gaussian mean-variance policy",
+        "source_policy_id": "xMV_variance_target_selected",
+        "selection_rule": row["selection_rule"],
+        "variance_reduction_target": float(row["variance_reduction_target"]),
+        "gamma": float(row["gamma"]),
+        "allocation_Corn": float(row["allocation_Corn"]),
+        "allocation_Soybean": float(row["allocation_Soybean"]),
+        "allocation_Winter_Wheat": float(row["allocation_Winter_Wheat"]),
+        "gaussian_expected_profit": float(row["gaussian_expected_profit"]),
+        "gaussian_profit_variance": float(row["gaussian_profit_variance"]),
+        "student_t_evaluation_expected_profit": float(
+            row["evaluation_expected_profit"]
+        ),
+        "student_t_evaluation_loss_CVaR": float(
+            row["evaluation_loss_CVaR"]
+        ),
+        "risk_ceiling": float(row["risk_ceiling"]),
+        "operational_feasible": bool(
+            float(row["feasibility_max_violation"]) <= 1e-7
+            and abs(float(row["full_investment_residual"])) <= 1e-7
+        ),
+        "risk_ceiling_feasible": bool(
+            float(row["evaluation_loss_CVaR"])
+            <= float(row["risk_ceiling"]) + 1e-6
+        ),
+        "solver_status": str(row["solver_status"]),
+        "evaluation_law": str(row["evaluation_law"]),
+    }])
 
 
 def pseudo_observations(matrix: np.ndarray) -> np.ndarray:
@@ -2421,7 +2720,7 @@ def main() -> None:
         design["uncertainty"]["base_seed"],
         empirical_samples=margin_matrix,
     )
-    policies, endpoints = policy_comparison(
+    policies, endpoints, projection_sensitivity = policy_comparison(
         primary_scenarios, spec, scores, design
     )
     phase = phase_diagram(
@@ -2430,6 +2729,18 @@ def main() -> None:
     dependence = dependence_diagnostics(margin_matrix, design)
     diversification, diversification_sensitivity, diversification_metadata = diversification_failure(
         means, stds, margin_matrix, scores, spec, design
+    )
+    canonical_mv = canonical_mean_variance_policy(diversification)
+    lower_bound_phase, lower_bound_summary = (
+        strong_reversal_lower_bound_sensitivity(
+            means,
+            stds,
+            margin_matrix,
+            scores,
+            spec,
+            phase,
+            design,
+        )
     )
     margin_mechanisms = margin_mechanism(
         calibration, calibration_summary, policies
@@ -2457,7 +2768,23 @@ def main() -> None:
         write_frame(calibration, "kansas_calibration_panel.csv"),
         write_frame(calibration_summary, "score_and_margin_calibration.csv"),
         write_frame(policies, "policy_comparison.csv"),
+        write_frame(
+            canonical_mv,
+            "canonical_mean_variance_policy.csv",
+        ),
+        write_frame(
+            projection_sensitivity,
+            "heuristic_projection_sensitivity.csv",
+        ),
         write_frame(phase, "reversal_phase_diagram.csv"),
+        write_frame(
+            lower_bound_phase,
+            "strong_reversal_lower_bound_phase.csv",
+        ),
+        write_frame(
+            lower_bound_summary,
+            "strong_reversal_lower_bound_summary.csv",
+        ),
         write_frame(frontier_summary(phase), "reversal_frontier_summary.csv"),
         write_frame(dependence, "dependence_diagnostics.csv"),
         write_frame(diversification, "diversification_failure.csv"),
@@ -2550,6 +2877,44 @@ def main() -> None:
             ),
             "infeasible_cells": int(phase["classification"].eq("infeasible").sum()),
             "multiple_optimum_cells": int(phase["multiple_optima"].fillna(False).sum()),
+            "principal_strong_zero_interpretation": (
+                "structurally inadmissible because every crop lower bound is positive"
+            ),
+        },
+        "canonical_mean_variance_policy": canonical_mv.iloc[0].to_dict(),
+        "strong_reversal_lower_bound_sensitivity": {
+            row["lower_bound_specification"]: {
+                key: jsonable(value)
+                for key, value in row.items()
+                if key != "lower_bound_specification"
+            }
+            for row in lower_bound_summary.loc[
+                np.isclose(
+                    lower_bound_summary["near_zero_tolerance"],
+                    float(
+                        design["strong_reversal_sensitivity"][
+                            "primary_zero_tolerance"
+                        ]
+                    ),
+                )
+            ].to_dict("records")
+        },
+        "heuristic_projection": {
+            "principal_method": design["heuristic_projection"][
+                "principal_method"
+            ],
+            "alternative_method": design["heuristic_projection"][
+                "alternative_method"
+            ],
+            "winner_take_all_reversal_projection_sensitive": bool(
+                projection_sensitivity.loc[
+                    projection_sensitivity["heuristic_policy"].eq(
+                        "winner_take_all"
+                    ),
+                    "selected_pairwise_reversal",
+                ].nunique()
+                > 1
+            ),
         },
         "diversification": diversification_metadata,
         "diversification_failure_identified": bool(

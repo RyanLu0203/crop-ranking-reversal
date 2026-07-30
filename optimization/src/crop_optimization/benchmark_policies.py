@@ -27,8 +27,11 @@ def repair_allocation_to_feasible(
     crop_names: List[str],
     contract_minimums: Optional[Dict[str, float]] = None,
     shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
+    *,
+    tie_break_weights: Optional[Iterable[float]] = None,
+    objective_tolerance: float = 1e-10,
 ) -> Dict[str, object]:
-    """Find the closest feasible allocation to a target using L1 distance."""
+    """Find an L1-closest full-investment allocation with a declared tie-break."""
 
     target = np.asarray(list(target_allocation), dtype=float)
     costs_arr = np.asarray(list(costs), dtype=float)
@@ -99,7 +102,161 @@ def repair_allocation_to_feasible(
     )
     if not result.success:
         return {"status": "infeasible_or_failed", "message": result.message, "allocation": target}
-    return {"status": "repaired", "message": result.message, "allocation": np.maximum(result.x[:n], 0.0)}
+    l1_optimum = float(c @ result.x)
+    weights = np.asarray(
+        list(tie_break_weights) if tie_break_weights is not None
+        else np.arange(1.0, n + 1.0),
+        dtype=float,
+    )
+    if weights.shape != (n,):
+        raise ValueError("tie_break_weights must match the allocation dimension")
+    distance_row = c.reshape(1, -1)
+    tie_objective = np.r_[weights, np.zeros(2 * n)]
+    tie_result = linprog(
+        tie_objective,
+        A_ub=np.vstack([
+            np.vstack(a_ub) if a_ub else np.empty((0, 3 * n)),
+            distance_row,
+        ]),
+        b_ub=np.r_[
+            np.asarray(b_ub) if b_ub else np.empty(0),
+            l1_optimum + float(objective_tolerance),
+        ],
+        A_eq=np.vstack(a_eq),
+        b_eq=np.asarray(b_eq),
+        bounds=bounds,
+        method="highs",
+    )
+    chosen = tie_result if tie_result.success else result
+    allocation = np.maximum(chosen.x[:n], 0.0)
+    return {
+        "status": "projected",
+        "message": chosen.message,
+        "allocation": allocation,
+        "projection_method": "l1_lexicographic",
+        "projection_distance_l1": float(np.abs(allocation - target).sum()),
+        "projection_distance_l2": float(np.linalg.norm(allocation - target)),
+        "tie_break_rule": (
+            "minimize crop-order weighted allocation on the L1-optimal face"
+        ),
+        "tie_break_weights": weights,
+    }
+
+
+def euclidean_projection_to_feasible(
+    target_allocation: Iterable[float],
+    costs: Iterable[float],
+    total_acres: float,
+    budget: float,
+    lower_bounds: Iterable[float],
+    upper_bounds: Iterable[float],
+    rotation_caps: Optional[Dict[str, float]],
+    crop_names: List[str],
+    contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
+    *,
+    objective_tolerance: float = 1e-10,
+) -> Dict[str, object]:
+    """Unique Euclidean projection onto the declared operational comparison set."""
+
+    target = np.asarray(list(target_allocation), dtype=float)
+    costs_arr = np.asarray(list(costs), dtype=float)
+    lower = np.asarray(list(lower_bounds), dtype=float)
+    upper = np.asarray(list(upper_bounds), dtype=float)
+    start_result = repair_allocation_to_feasible(
+        target,
+        costs_arr,
+        total_acres,
+        budget,
+        lower,
+        upper,
+        rotation_caps,
+        crop_names,
+        contract_minimums,
+        shared_capacity_constraints,
+        objective_tolerance=objective_tolerance,
+    )
+    if start_result["status"] == "infeasible_or_failed":
+        return start_result
+
+    constraints: list[dict[str, object]] = [
+        {
+            "type": "eq",
+            "fun": lambda allocation: float(
+                np.sum(allocation) - float(total_acres)
+            ),
+        },
+        {
+            "type": "ineq",
+            "fun": lambda allocation: float(
+                float(budget) - costs_arr @ allocation
+            ),
+        },
+    ]
+    for crop, cap in (rotation_caps or {}).items():
+        index = crop_names.index(crop)
+        constraints.append({
+            "type": "ineq",
+            "fun": lambda allocation, index=index, cap=float(cap): float(
+                cap - allocation[index]
+            ),
+        })
+    for crop, minimum in (contract_minimums or {}).items():
+        index = crop_names.index(crop)
+        constraints.append({
+            "type": "ineq",
+            "fun": lambda allocation, index=index, minimum=float(minimum): float(
+                allocation[index] - minimum
+            ),
+        })
+    for capacity_spec in (shared_capacity_constraints or {}).values():
+        raw = capacity_spec["coefficients"]
+        coefficients = (
+            np.asarray([float(raw.get(crop, 0.0)) for crop in crop_names])
+            if isinstance(raw, Mapping)
+            else np.asarray(list(raw), dtype=float)
+        )
+        capacity = float(capacity_spec["capacity"])
+        constraints.append({
+            "type": "ineq",
+            "fun": (
+                lambda allocation, coefficients=coefficients, capacity=capacity:
+                float(capacity - coefficients @ allocation)
+            ),
+        })
+
+    result = minimize(
+        lambda allocation: float(
+            0.5 * np.square(allocation - target).sum()
+        ),
+        x0=np.asarray(start_result["allocation"], dtype=float),
+        method="SLSQP",
+        bounds=[
+            (float(lower[index]), float(upper[index]))
+            for index in range(target.size)
+        ],
+        constraints=constraints,
+        options={
+            "maxiter": 2000,
+            "ftol": float(objective_tolerance),
+        },
+    )
+    if not result.success:
+        return {
+            "status": "infeasible_or_failed",
+            "message": result.message,
+            "allocation": target,
+        }
+    allocation = np.maximum(np.asarray(result.x, dtype=float), 0.0)
+    return {
+        "status": "projected",
+        "message": result.message,
+        "allocation": allocation,
+        "projection_method": "euclidean_l2",
+        "projection_distance_l1": float(np.abs(allocation - target).sum()),
+        "projection_distance_l2": float(np.linalg.norm(allocation - target)),
+        "tie_break_rule": "not required: strictly convex objective",
+    }
 
 
 def suitability_proportional_policy(

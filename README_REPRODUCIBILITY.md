@@ -1,4 +1,4 @@
-# Reproducing the supervisor-review finalization
+# Reproducing the Issue #40 supervisor-review consistency package
 
 Run all commands from the repository root with `uv`, Python 3.11 and a TeX
 installation that provides `latexmk`.
@@ -13,11 +13,13 @@ make paper
 ```
 
 `make reproduce` rebuilds the complete numerical analysis, verifies its
-output checksums, renders manuscript numbers, and regenerates Figures 1–6.
+output checksums, renders manuscript numbers, and regenerates Figures 1–6 and
+Supplementary Figure 1.
 `make validate` runs the legacy and finalization-specific analytical checks
 and the complete test suite. `make paper` performs deterministic LaTeX builds,
  scans both compiled PDFs for internal workflow language, produces the visual
-QA contact sheets, refreshes manifests, and creates the release archive.
+QA contact sheets, runs the Issue #40 scientific/semantic/visual validator,
+refreshes manifests, and creates the release archive.
 
 The main analytical components can also be run directly:
 
@@ -50,7 +52,7 @@ Interpretive boundaries:
 - no suppressed agricultural value is imputed.
 
 The deterministic release artifact is
-`release/crop-ranking-reversal-issue38-supervisor-review.tar.gz`; its adjacent
+`release/crop-ranking-reversal-issue40-supervisor-review.tar.gz`; its adjacent
 `.sha256` file is generated after the preceding gates pass. The historical
-`make issue34` and `make issue36` entry points remain aliases to
+`make issue34`, `make issue36`, `make issue38` and `make issue40` entry points remain aliases to
 `make reproduce`.

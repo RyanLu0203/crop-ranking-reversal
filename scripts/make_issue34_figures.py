@@ -16,12 +16,19 @@ os.environ.setdefault("SOURCE_DATE_EPOCH", "1785081600")
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap, ListedColormap
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+from matplotlib.colors import (
+    BoundaryNorm,
+    LinearSegmentedColormap,
+    ListedColormap,
+    TwoSlopeNorm,
+)
+from matplotlib.lines import Line2D
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Patch, Rectangle
 import numpy as np
 import pandas as pd
 from matplotlib.text import Text
 from PIL import Image, ImageDraw, ImageOps
+from scipy.stats import gaussian_kde
 
 plt.rcParams["font.family"] = "sans-serif"
 plt.rcParams["font.sans-serif"] = ["Arial", "DejaVu Sans", "Liberation Sans"]
@@ -33,7 +40,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "reconstruction" / "issue34" / "outputs"
 OUT = ROOT / "figures" / "issue34"
 SRC = OUT / "source_data"
-QA = ROOT / "audits" / "issue38_visual_qa"
+QA = ROOT / "audits" / "issue40_visual_qa"
 OUT.mkdir(parents=True, exist_ok=True)
 SRC.mkdir(parents=True, exist_ok=True)
 QA.mkdir(parents=True, exist_ok=True)
@@ -67,15 +74,18 @@ CROSS_CMAP = LinearSegmentedColormap.from_list(
 def style() -> None:
     mpl.rcParams.update(
         {
-            "font.size": 8.0,
-            "axes.labelsize": 8.0,
-            "axes.titlesize": 8.8,
-            "xtick.labelsize": 7.2,
-            "ytick.labelsize": 7.2,
-            "legend.fontsize": 7.0,
-            "axes.linewidth": 0.7,
-            "xtick.major.width": 0.7,
-            "ytick.major.width": 0.7,
+            "font.size": 6.3,
+            "axes.labelsize": 6.3,
+            "axes.titlesize": 7.0,
+            "xtick.labelsize": 5.7,
+            "ytick.labelsize": 5.7,
+            "legend.fontsize": 5.8,
+            "legend.title_fontsize": 6.0,
+            "axes.linewidth": 0.65,
+            "xtick.major.width": 0.6,
+            "ytick.major.width": 0.6,
+            "xtick.major.size": 2.5,
+            "ytick.major.size": 2.5,
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.edgecolor": INK,
@@ -93,7 +103,7 @@ def style() -> None:
 def panel(ax: plt.Axes, label: str) -> None:
     ax.text(
         -0.08, 1.10, label, transform=ax.transAxes,
-        weight="bold", fontsize=9, va="bottom",
+        weight="bold", fontsize=8, va="bottom",
     )
 
 
@@ -201,29 +211,87 @@ def copy_source(name: str) -> pd.DataFrame:
     return pd.read_csv(src)
 
 
+def copy_empirical_source(name: str) -> pd.DataFrame:
+    src = ROOT / "empirical" / "goal16" / "outputs" / name
+    shutil.copy2(src, SRC / name)
+    return pd.read_csv(src)
+
+
+def horizontal_raincloud(
+    ax: plt.Axes,
+    values: np.ndarray,
+    y: float,
+    estimate: float,
+    interval_low: float,
+    interval_high: float,
+    color: str,
+    seed: int,
+    support: tuple[float, float],
+) -> None:
+    """Draw a compact, deterministic half-density + raw-draw uncertainty glyph."""
+    finite = np.asarray(values, dtype=float)
+    finite = finite[np.isfinite(finite)]
+    grid = np.linspace(support[0], support[1], 240)
+    density = gaussian_kde(finite)(grid)
+    density = 0.27 * density / density.max()
+    ax.fill_between(
+        grid, y, y + density,
+        facecolor=color, alpha=0.72, edgecolor=INK, linewidth=0.45,
+        zorder=1,
+    )
+
+    rng = np.random.default_rng(seed)
+    display_n = min(72, finite.size)
+    draw_index = np.sort(rng.choice(finite.size, size=display_n, replace=False))
+    rain_y = y - 0.09 - 0.16 * rng.random(display_n)
+    ax.scatter(
+        finite[draw_index], rain_y,
+        s=5.2, facecolor=color, edgecolor=INK, linewidth=0.22,
+        alpha=0.62, zorder=2,
+    )
+
+    q25, median, q75 = np.quantile(finite, [0.25, 0.50, 0.75])
+    ax.plot(
+        [q25, q75], [y, y], color=GREY, linewidth=3.4,
+        solid_capstyle="butt", zorder=3,
+    )
+    ax.plot(
+        [median, median], [y - 0.045, y + 0.045],
+        color="white", linewidth=1.0, zorder=4,
+    )
+    ax.errorbar(
+        [estimate], [y],
+        xerr=[[estimate - interval_low], [interval_high - estimate]],
+        fmt="D", color=INK, ecolor=INK, elinewidth=0.8,
+        capsize=1.8, markersize=3.2, markeredgewidth=0.3, zorder=5,
+    )
+
+
 def figure1() -> None:
-    cal = copy_source("score_and_margin_calibration.csv")
+    cal = copy_source("score_and_margin_calibration.csv").set_index("crop").loc[
+        ["Corn", "Soybean", "Winter Wheat"]
+    ].reset_index()
     pol = copy_source("policy_comparison.csv")
     full = pol.loc[pol["policy"] == "full_CVaR_operational"].iloc[0]
     crops = list(cal["crop"])
     fig = plt.figure(figsize=(7.205, 4.25))
     gs = fig.add_gridspec(
-        1, 2, width_ratios=[1.08, 1.18],
-        left=0.055, right=0.98, bottom=0.12, top=0.84, wspace=0.34,
+        1, 2, width_ratios=[1.34, 1.0],
+        left=0.055, right=0.98, bottom=0.12, top=0.84, wspace=0.30,
     )
 
     ax = fig.add_subplot(gs[0, 0])
     ax.axis("off")
     ax.text(
         -0.03, 1.02, "a", transform=ax.transAxes,
-        weight="bold", fontsize=9, va="bottom",
+        weight="bold", fontsize=8, va="bottom",
     )
     boxes = [
-        (0.02, 0.77, "External agronomic\nscore $s$", PALE_GREEN),
-        (0.54, 0.77, "Stochastic margin\nprice × yield − cost", PALE_TEAL),
-        (0.54, 0.46, "Joint law\nmargins + dependence", PALE_BLUE),
-        (0.02, 0.46, "Operational set\nland, budget, rotation,\ncontract, capacities", PALE_GREY),
-        (0.18, 0.10, "Expected-profit allocation $x^*$\nunder a loss-CVaR ceiling", LIGHT),
+        (0.02, 0.76, "External ranking\nagronomic score $s$", PALE_GREEN),
+        (0.54, 0.76, "Cardinal evidence\nprice × yield − cost", PALE_TEAL),
+        (0.54, 0.45, "Joint uncertainty\nmargins + dependence", PALE_BLUE),
+        (0.02, 0.45, "Operational feasibility\nland, budget, rotation,\ncontract, capacities", PALE_GREY),
+        (0.18, 0.09, "Selected allocation $x^*$\nexpected profit subject to loss-CVaR", LIGHT),
     ]
     for x, y, text, color in boxes:
         patch = FancyBboxPatch(
@@ -236,11 +304,10 @@ def figure1() -> None:
         ax.text(
             x + (0.21 if y > 0.2 else 0.31),
             y + (0.075 if y > 0.2 else 0.09),
-            text, ha="center", va="center", fontsize=8,
+            text, ha="center", va="center", fontsize=6.3,
         )
     arrows = [
-        ((0.44, 0.845), (0.54, 0.845)),
-        ((0.75, 0.77), (0.75, 0.63)),
+        ((0.75, 0.76), (0.75, 0.63)),
         ((0.23, 0.46), (0.37, 0.28)),
         ((0.75, 0.46), (0.62, 0.28)),
     ]
@@ -251,10 +318,16 @@ def figure1() -> None:
                 color=GREY, linewidth=0.8,
             )
         )
+    ax.add_patch(
+        FancyArrowPatch(
+            (0.23, 0.76), (0.42, 0.28), arrowstyle="-|>",
+            mutation_scale=7, color=PURPLE, linewidth=0.75,
+            linestyle=(0, (2, 2)), connectionstyle="arc3,rad=0.18",
+        )
+    )
     ax.text(
-        0.49, 0.015,
-        "Pairwise: $s_i>s_j$, $x_i<x_j$   •   Strong: $s_i>s_j$, $x_i=0<x_j$",
-        ha="center", va="bottom", fontsize=8,
+        0.19, 0.61, "rank comparison", rotation=-57,
+        ha="center", va="center", fontsize=5.8, color=PURPLE,
     )
 
     right = gs[0, 1].subgridspec(3, 1, hspace=0.98)
@@ -273,7 +346,7 @@ def figure1() -> None:
     ax.set_title("Agronomic ranking", loc="left", pad=3)
     ax.invert_yaxis()
     for yi, value in zip(y, cal["historical_yield_potential_score"]):
-        ax.text(value + 0.015, yi, f"{value:.3f}", va="center", fontsize=8)
+        ax.text(value + 0.015, yi, f"{value:.3f}", va="center", fontsize=5.8)
 
     ax = fig.add_subplot(right[1, 0])
     panel(ax, "c")
@@ -306,10 +379,10 @@ def figure1() -> None:
     ax.set_xlabel("Selected land share $x^*$")
     ax.set_title("Selected allocation: complete reversal", loc="left", pad=3)
     for yi, value in zip(y, alloc):
-        ax.text(value + 0.012, yi, f"{value:.3f}", va="center", fontsize=8)
+        ax.text(value + 0.012, yi, f"{value:.3f}", va="center", fontsize=5.8)
     fig.suptitle(
         "Ranking becomes allocation only through margins, joint risk and operations",
-        x=0.055, ha="left", fontsize=11, weight="bold",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
     )
     save(fig, "Figure1")
 
@@ -318,7 +391,10 @@ def figure2() -> None:
     phase = copy_source("reversal_phase_diagram.csv")
     front = copy_source("reversal_frontier_summary.csv")
     fams = ["gaussian", "student_t", "clayton"]
-    fig, axes = plt.subplots(1, 4, figsize=(7.205, 3.05), gridspec_kw={"width_ratios": [1, 1, 1, 1.15]})
+    fig, axes = plt.subplots(
+        1, 4, figsize=(7.205, 2.95),
+        gridspec_kw={"width_ratios": [1, 1, 1, 1.18]},
+    )
     cmap = ListedColormap([PALE_GREY, PALE_TEAL, INK])
     for j, fam in enumerate(fams):
         ax = axes[j]
@@ -336,7 +412,7 @@ def figure2() -> None:
         ax.set_xlabel("Risk-tolerance index")
         if j == 0:
             ax.set_ylabel("Kendall's $\\tau$")
-        ax.set_title(fam.replace("_", " ").title())
+        ax.set_title(fam.replace("_", " ").title(), loc="left")
         panel(ax, chr(ord("a") + j))
         for spine in ax.spines.values():
             spine.set_visible(True)
@@ -349,18 +425,32 @@ def figure2() -> None:
     ax.set_xlabel("Kendall's $\\tau$")
     ax.set_ylabel("First reversal\nrisk-tolerance index")
     ax.set_ylim(-0.03, 1.03)
-    ax.legend(title="Copula family", fontsize=8)
-    ax.set_title("Conditional reversal frontier", fontsize=8)
+    ax.legend(title="Copula family", handlelength=1.6)
+    ax.set_title("Selected-reversal boundary", loc="left")
     panel(ax, "d")
-    true_strong = int(phase["selected_strong_reversal"].fillna(False).sum())
-    fig.text(
-        0.39, 0.015,
-        f"grey: none     mint: pairwise only     dark teal: complete     "
-        f"true strong (exclusion): {true_strong}",
-        ha="center", fontsize=8,
+    legend_handles = [
+        Patch(facecolor=PALE_GREY, edgecolor=GREY, label="No reversal"),
+        Patch(facecolor=PALE_TEAL, edgecolor=GREY, label="Pairwise only"),
+        Patch(facecolor=INK, edgecolor=INK, label="Complete"),
+        Patch(
+            facecolor="white", edgecolor=PURPLE, hatch="///",
+            label="Strong unavailable†",
+        ),
+    ]
+    fig.legend(
+        handles=legend_handles, loc="lower left", bbox_to_anchor=(0.06, 0.015),
+        ncol=4, frameon=False, handlelength=1.4, columnspacing=1.4,
     )
-    fig.suptitle("Ranking reversal occupies a family- and risk-dependent phase", x=0.06, ha="left", fontsize=10, weight="bold")
-    fig.subplots_adjust(top=0.8, bottom=0.23, wspace=0.42)
+    fig.text(
+        0.94, 0.028,
+        "† positive lower bounds",
+        ha="right", va="bottom", fontsize=5.5, color=PURPLE,
+    )
+    fig.suptitle(
+        "Ranking reversal occupies a family- and risk-dependent phase",
+        x=0.06, ha="left", fontsize=9.0, weight="bold",
+    )
+    fig.subplots_adjust(top=0.80, bottom=0.24, wspace=0.42)
     save(fig, "Figure2")
 
 
@@ -385,25 +475,35 @@ def figure3() -> None:
     ax.plot(
         frontier["gaussian_profit_variance"],
         frontier["gaussian_expected_profit"],
-        color=GREY, lw=1.2, label="complete Gaussian frontier",
+        color=GREY, lw=1.0, label="301-point Gaussian frontier",
     )
     strong = frontier["strong_diversification_failure"].fillna(False).to_numpy()
     ax.plot(
         frontier.loc[strong, "gaussian_profit_variance"],
         frontier.loc[strong, "gaussian_expected_profit"],
-        color=TEAL, lw=3.0, solid_capstyle="round",
-        label="strong-failure interval",
+        color=TEAL, lw=2.4, solid_capstyle="round",
+        label="Student-$t$ failure interval",
     )
     x0 = rows.iloc[0]
     xmv = rows.iloc[1]
     xt = rows.iloc[2]
+    target = 100 * float(xmv["variance_reduction_target"])
+    target_variance = float(x0["gaussian_profit_variance"]) * (1 - target / 100)
+    ax.axvline(
+        target_variance, color=PURPLE, lw=0.9, ls=(0, (2, 2)),
+        label=f"{target:.0f}% variance target",
+    )
     ax.scatter(
-        [x0["gaussian_profit_variance"], xmv["gaussian_profit_variance"],
-         xt["gaussian_profit_variance"]],
-        [x0["gaussian_expected_profit"], xmv["gaussian_expected_profit"],
-         xt["gaussian_expected_profit"]],
-        color=[PURPLE, TEAL, INK],
-        marker="o", edgecolor=INK, linewidth=0.5, s=[46, 55, 46], zorder=4,
+        [x0["gaussian_profit_variance"], xt["gaussian_profit_variance"]],
+        [x0["gaussian_expected_profit"], xt["gaussian_expected_profit"]],
+        color=[PURPLE, INK], marker="o", edgecolor=INK, linewidth=0.45,
+        s=30, zorder=4,
+    )
+    ax.scatter(
+        [xmv["gaussian_profit_variance"]],
+        [xmv["gaussian_expected_profit"]],
+        color=TEAL, marker="*", edgecolor=INK, linewidth=0.45,
+        s=68, zorder=5, label="Selected Gaussian policy",
     )
     for row, label, offset in [
         (x0, "$x^0$", (5, -12)),
@@ -413,22 +513,14 @@ def figure3() -> None:
         ax.annotate(
             label,
             (row["gaussian_profit_variance"], row["gaussian_expected_profit"]),
-            xytext=offset, textcoords="offset points", fontsize=8,
+            xytext=offset, textcoords="offset points", fontsize=5.8,
         )
-    target = 100 * float(xmv["variance_reduction_target"])
-    interval = str(xmv["strong_failure_gamma_intervals"])
-    ax.text(
-        0.01, 0.03,
-        f"Selection rule: smallest $\\gamma$ reaching {target:.0f}% variance reduction\n"
-        f"selected $\\gamma={float(xmv['gamma']):.4f}$; strong-failure interval {interval}",
-        transform=ax.transAxes, va="bottom", fontsize=8,
-    )
     ax.set_xlabel("Gaussian profit variance (US\\$${}^{2}$ acre$^{-2}$)")
     ax.set_ylabel("Gaussian expected profit (US\\$ acre$^{-1}$)")
     ax.set_xlim(2400, 6600)
     ax.set_xticks([3000, 4000, 5000, 6000])
-    ax.set_title("Complete 301-point mean–variance frontier", loc="left")
-    ax.legend(loc="lower right", ncol=2)
+    ax.set_title("Gaussian construction space", loc="left")
+    ax.legend(loc="lower right", ncol=2, handlelength=1.5, columnspacing=1.2)
     panel(ax, "a")
 
     ax = fig.add_subplot(grid[1, 0])
@@ -444,7 +536,7 @@ def figure3() -> None:
         bottom += vals
     ax.set_xticks(
         x, ["benchmark\n$x^0$", "Gaussian\n$x^{MV}$", "tail-aware\n$x^T$"],
-        fontsize=8,
+        fontsize=5.8,
     )
     ax.set_ylabel("Land share")
     ax.set_ylim(0, 1.0)
@@ -462,8 +554,8 @@ def figure3() -> None:
         marker="o", edgecolor=INK, linewidth=0.4, zorder=3,
     )
     for yi, value in zip(y, values):
-        ax.text(value + 0.25, yi, f"{value:.1f}", va="center", fontsize=8)
-    ax.set_yticks(y, ["$x^0$", "$x^{MV}$", "$x^T$"], fontsize=8)
+        ax.text(value + 0.25, yi, f"{value:.1f}", va="center", fontsize=5.8)
+    ax.set_yticks(y, ["$x^0$", "$x^{MV}$", "$x^T$"], fontsize=5.8)
     ax.invert_yaxis()
     ax.set_xlim(min(values.min(), ceiling) - 0.8, values.max() + 1.8)
     ax.set_xlabel(
@@ -472,20 +564,14 @@ def figure3() -> None:
     )
     ax.text(
         ceiling - 0.4, 1.95, f"ceiling {ceiling:.1f}",
-        ha="right", va="bottom", fontsize=8, color=RED,
+        ha="right", va="bottom", fontsize=5.8, color=RED,
     )
     ax.set_title("Heavy-tail evaluation", loc="left")
     panel(ax, "c")
     reduction = 100 * float(xmv["gaussian_variance_reduction_fraction"])
     fig.suptitle(
-        f"Variance falls {reduction:.1f}%, but the selected Gaussian policy is tail-inferior",
-        x=0.055, ha="left", fontsize=11, weight="bold",
-    )
-    fig.text(
-        0.94, 0.035,
-        "Because $x^T$ binds the ceiling, tail inferiority and ceiling violation "
-        "coincide numerically.",
-        ha="right", fontsize=8,
+        f"Gaussian variance falls {reduction:.1f}%, but Student-$t$ tail safety fails",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
     )
     save(fig, "Figure3")
 
@@ -510,7 +596,7 @@ def figure4() -> None:
         )
         ax.annotate(crop.replace("Winter ", ""), (
             row["score"], row["mean_margin_real_2024_usd_per_acre"]
-        ), xytext=(4, 3), textcoords="offset points", fontsize=8)
+        ), xytext=(4, 3), textcoords="offset points", fontsize=5.8)
     ax.set_xlabel("Historical relative-yield score")
     ax.set_ylabel("Mean margin (US\\$ acre$^{-1}$)")
     ax.set_xlim(0.74, 0.905)
@@ -521,11 +607,11 @@ def figure4() -> None:
     risk = risk.sort_values("risk_tolerance")
     ax.plot(
         risk["risk_tolerance"], risk["allocation_high"],
-        color=SOY, marker="o", ls="-", label="Soybean",
+        color=SOY, marker="o", ms=3.2, lw=1.0, ls="-", label="Soybean",
     )
     ax.plot(
         risk["risk_tolerance"], risk["allocation_low"],
-        color=CORNF, marker="s", ls="--", label="Corn",
+        color=CORNF, marker="s", ms=3.2, lw=1.0, ls="--", label="Corn",
     )
     ax.fill_between(
         risk["risk_tolerance"], risk["allocation_low"], risk["allocation_high"],
@@ -559,7 +645,7 @@ def figure4() -> None:
     )
     ax.imshow(
         matrix.to_numpy(), origin="lower", aspect="auto",
-        cmap=ListedColormap([PALE_GREY, PALE_TEAL, RED]), vmin=0, vmax=2,
+        cmap=ListedColormap([PALE_GREY, PALE_TEAL, RED]), vmin=-0.5, vmax=2.5,
     )
     ax.set_xticks(
         np.arange(len(probabilities)),
@@ -571,11 +657,7 @@ def figure4() -> None:
     )
     ax.set_xlabel("Adverse-event probability (%)")
     ax.set_ylabel("Shock magnitude (% of mean gross revenue)")
-    ax.set_title(
-        "Probability × magnitude sensitivity\n"
-        "number = first crossing $\\rho$; star = focal case",
-        loc="left", fontsize=8.2,
-    )
+    ax.set_title("Downside-stress classification", loc="left")
     for row_index, magnitude in enumerate(magnitudes):
         for column_index, probability in enumerate(probabilities):
             row = sensitivity.loc[
@@ -588,26 +670,48 @@ def figure4() -> None:
                     probability,
                 )
             ].iloc[0]
-            label = (
-                f"{row['first_crossing_risk_tolerance']:.2f}"
-                if row["classification"] == "crossing"
-                else "—" if row["classification"] == "no_crossing" else "×"
-            )
             focal_case = bool(row["focal_case"])
-            ax.text(
-                column_index - (0.08 if focal_case else 0.0), row_index, label,
-                ha="center", va="center", fontsize=8,
-                weight="bold" if focal_case else "normal",
-            )
-            if focal_case:
+            if row["classification"] == "crossing":
                 ax.scatter(
-                    column_index + 0.34, row_index + 0.32, marker="*", s=34,
-                    facecolor=INK, edgecolor=INK, linewidth=0.5,
+                    column_index, row_index, marker="o", s=8,
+                    facecolor="none", edgecolor=INK, linewidth=0.45,
+                )
+            elif row["classification"] == "infeasible":
+                ax.scatter(
+                    column_index, row_index, marker="x", s=10,
+                    color="white", linewidth=0.55,
+                )
+            if focal_case:
+                ax.add_patch(
+                    Rectangle(
+                        (column_index - 0.43, row_index - 0.43), 0.86, 0.86,
+                        fill=False, edgecolor=PURPLE, linewidth=0.75,
+                        linestyle=(0, (2, 1)),
+                    )
                 )
     for spine in ax.spines.values():
         spine.set_visible(True)
         spine.set_linewidth(0.5)
     panel(ax, "c")
+    ax.legend(
+        handles=[
+            Patch(facecolor=PALE_GREY, edgecolor=GREY, label="No crossing"),
+            Line2D(
+                [0], [0], marker="o", linestyle="none", markerfacecolor=PALE_TEAL,
+                markeredgecolor=INK, markersize=4, label="Crossing",
+            ),
+            Line2D(
+                [0], [0], marker="x", linestyle="none", color=RED,
+                markersize=4, label="Infeasible",
+            ),
+            Patch(
+                facecolor="white", edgecolor=PURPLE, linestyle="--",
+                label="Focal stress",
+            ),
+        ],
+        loc="upper left", bbox_to_anchor=(0, -0.26), ncol=2,
+        handlelength=1.4, columnspacing=1.2,
+    )
 
     ax = axes[1, 1]
     rotation = operation[
@@ -615,11 +719,11 @@ def figure4() -> None:
     ].sort_values("soybean_rotation_cap", ascending=False)
     ax.plot(
         rotation["soybean_rotation_cap"], rotation["allocation_high"],
-        color=SOY, marker="o", ls="-", label="Soybean",
+        color=SOY, marker="o", ms=3.2, lw=1.0, ls="-", label="Soybean",
     )
     ax.plot(
         rotation["soybean_rotation_cap"], rotation["allocation_low"],
-        color=CORNF, marker="s", ls="--", label="Corn",
+        color=CORNF, marker="s", ms=3.2, lw=1.0, ls="--", label="Corn",
     )
     ax.axvline(
         rotation["first_operational_crossing_cap"].iloc[0],
@@ -636,11 +740,11 @@ def figure4() -> None:
     panel(ax, "d")
     fig.suptitle(
         "Margin, downside risk and operations leave distinct reversal signatures",
-        x=0.055, ha="left", fontsize=11, weight="bold",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
     )
     fig.subplots_adjust(
-        top=0.84, bottom=0.15, left=0.11, right=0.95,
-        hspace=0.82, wspace=0.36,
+        top=0.84, bottom=0.18, left=0.11, right=0.95,
+        hspace=0.88, wspace=0.36,
     )
     save(fig, "Figure4")
 
@@ -687,6 +791,9 @@ def figure5() -> None:
 
     finite_cross = info["discrete_cross_difference"].dropna()
     cross_abs = max(0.01, float(finite_cross.abs().max()))
+    cross_norm = TwoSlopeNorm(vmin=-cross_abs, vcenter=0.0, vmax=cross_abs)
+    cross_map = CROSS_CMAP.copy()
+    cross_map.set_bad("white")
     cross_images = []
     for column, path in enumerate(paths):
         ax = axes[1, column]
@@ -697,7 +804,7 @@ def figure5() -> None:
         )
         cross_im = ax.imshow(
             piv.to_numpy(), origin="lower", aspect="auto",
-            cmap=CROSS_CMAP, vmin=-cross_abs, vmax=cross_abs,
+            cmap=cross_map, norm=cross_norm,
         )
         cross_images.append(cross_im)
         ax.set_xticks(
@@ -722,10 +829,15 @@ def figure5() -> None:
                 value = values[row_index, column_index]
                 if not np.isfinite(value):
                     continue
-                sign = "+" if value > 1e-7 else "−" if value < -1e-7 else "0"
+                if abs(value) <= 1e-7:
+                    symbol = "0"
+                elif abs(value) >= 0.15 * cross_abs:
+                    symbol = "+" if value > 0 else "−"
+                else:
+                    continue
                 ax.text(
-                    column_index, row_index, sign,
-                    ha="center", va="center", fontsize=8,
+                    column_index, row_index, symbol,
+                    ha="center", va="center", fontsize=5.4,
                     color=INK if abs(value) < 0.65 * cross_abs else "white",
                 )
         for spine in ax.spines.values():
@@ -741,9 +853,10 @@ def figure5() -> None:
     cross_cax = fig.add_axes([0.915, 0.18, 0.012, 0.22])
     cross_cb = fig.colorbar(cross_images[-1], cax=cross_cax)
     cross_cb.set_label("Adjacent-grid cross-difference")
+    cross_cb.set_ticks([-cross_abs, 0.0, cross_abs])
     fig.suptitle(
         "Information remains valuable, but its interaction with flexibility changes sign",
-        x=0.055, ha="left", fontsize=11, weight="bold",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
     )
     save(fig, "Figure5")
 
@@ -752,17 +865,27 @@ def figure6() -> None:
     ext = copy_source("external_descriptive_evidence.csv")
     copy_source("bootstrap_replications.csv")
     uncertainty = copy_source("uncertainty_summary.csv")
+    rank_draws = copy_empirical_source("rank_metric_bootstrap_draws.csv")
+    temporal_draws = copy_empirical_source("temporal_model_bootstrap_draws.csv")
     fig, axes = plt.subplots(
-        1, 3, figsize=(7.205, 3.4),
-        gridspec_kw={"width_ratios": [1.25, 1.0, 1.0]},
+        1, 3, figsize=(7.205, 3.8),
+        gridspec_kw={"width_ratios": [1.35, 0.92, 1.08]},
     )
     ax = axes[0]
     rates = ext.dropna(subset=["top_rank_reversal_rate"]).copy()
     y = np.arange(len(rates))
-    x = rates["top_rank_reversal_rate"].to_numpy()
-    lo = rates["top_rank_reversal_rate_ci_low"].to_numpy()
-    hi = rates["top_rank_reversal_rate_ci_high"].to_numpy()
-    ax.errorbar(x, y, xerr=[x - lo, hi - x], fmt="o", color=INK, ecolor=TEAL, capsize=2)
+    for index, row in rates.reset_index(drop=True).iterrows():
+        values = rank_draws.loc[
+            rank_draws["ranking_definition"].eq(row["ranking_definition"]),
+            "top_rank_disagreement",
+        ].to_numpy()
+        horizontal_raincloud(
+            ax, values, index,
+            float(row["top_rank_reversal_rate"]),
+            float(row["top_rank_reversal_rate_ci_low"]),
+            float(row["top_rank_reversal_rate_ci_high"]),
+            PALE_TEAL, 400 + index, (0.0, 1.0),
+        )
     definition_labels = {
         "operating_margin": "operating margin",
         "relative_yield": "relative yield",
@@ -774,7 +897,8 @@ def figure6() -> None:
     )
     ax.set_xlim(0, 1)
     ax.set_xlabel("Top-rank disagreement rate")
-    ax.set_title("Definition-specific disagreement", loc="left")
+    ax.set_ylim(-0.36, len(rates) - 0.58)
+    ax.set_title("State-cluster bootstrap distributions", loc="left")
     panel(ax, "a")
 
     ax = axes[1]
@@ -786,20 +910,14 @@ def figure6() -> None:
     high = float(pair["exact_binomial_95_high"])
     ax.errorbar(
         [rate], [0], xerr=[[rate - low], [high - rate]],
-        fmt="o", color=INK, ecolor=TEAL, capsize=3, markersize=6,
+        fmt="o", color=INK, ecolor=SAGE_GREY, elinewidth=0.9,
+        capsize=2.5, markersize=4,
     )
     ax.set_xlim(0.8, 1.005)
     ax.set_ylim(-0.6, 0.6)
-    ax.set_yticks([])
+    ax.set_yticks([0], [f"{int(pair['event_count'])}/{int(pair['bootstrap_replications'])}"])
     ax.set_xlabel("Resample frequency")
-    ax.set_title("Eight-year resample uncertainty", loc="left")
-    ax.text(
-        0.98, 0.18,
-        "Selected pairwise reversal\n"
-        f"{int(pair['event_count'])}/{int(pair['bootstrap_replications'])}\n"
-        f"[{low:.3f}, {high:.3f}]",
-        transform=ax.transAxes, ha="right", va="top", fontsize=8,
-    )
+    ax.set_title("Exact binomial interval", loc="left")
     panel(ax, "b")
 
     ax = axes[2]
@@ -807,31 +925,126 @@ def figure6() -> None:
     estimate = 100 * float(lagged["lagged_score_leader_acreage_share_effect"])
     low = 100 * float(lagged["lagged_effect_ci_low"])
     high = 100 * float(lagged["lagged_effect_ci_high"])
-    ax.axvline(0, color=GREY, ls="--", lw=1)
-    ax.errorbar(
-        [estimate], [0],
-        xerr=[[estimate - low], [high - estimate]],
-        fmt="s", color=INK, ecolor=TEAL, capsize=3, markersize=6,
+    lagged_draws = 100 * temporal_draws.loc[
+        temporal_draws["ranking_definition"].eq("relative_yield")
+        & temporal_draws["specification"].eq("primary_top"),
+        "coefficient",
+    ].to_numpy()
+    ax.axvline(0, color=PURPLE, ls=(0, (2, 2)), lw=0.9)
+    support = (
+        min(float(np.quantile(lagged_draws, 0.001)), low) - 0.08,
+        max(float(np.quantile(lagged_draws, 0.999)), high) + 0.08,
     )
-    ax.set_ylim(-0.6, 0.6)
-    ax.set_yticks([])
+    horizontal_raincloud(
+        ax, lagged_draws, 0.0, estimate, low, high,
+        PALE_BLUE, 406, support,
+    )
+    ax.set_xlim(*support)
+    ax.set_ylim(-0.34, 0.46)
+    ax.set_yticks([0], ["lagged effect"])
     ax.set_xlabel("Lagged change (percentage points)")
-    ax.set_title("Leakage-free lagged null", loc="left")
-    ax.text(
-        0.98, 0.12,
-        "Lagged score-leader coefficient\n"
-        f"{estimate:.2f} pp; 95% interval [{low:.2f}, {high:.2f}]",
-        transform=ax.transAxes, ha="right", va="bottom", fontsize=8,
-    )
+    ax.set_title("State-cluster bootstrap distribution", loc="left")
     panel(ax, "c")
     fig.suptitle(
         "External disagreement is descriptive and sensitive to definition and record length",
-        x=0.055, ha="left", fontsize=11, weight="bold",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
     )
     fig.subplots_adjust(
-        top=0.79, bottom=0.22, left=0.13, right=0.94, wspace=0.66,
+        top=0.79, bottom=0.25, left=0.13, right=0.96, wspace=0.60,
+    )
+    fig.legend(
+        handles=[
+            Patch(facecolor=PALE_TEAL, edgecolor=INK, label="bootstrap density"),
+            Line2D(
+                [0], [0], marker="o", linestyle="none", markersize=3.3,
+                markerfacecolor=PALE_TEAL, markeredgecolor=INK,
+                label="fixed draw subset",
+            ),
+            Line2D(
+                [0], [0], marker="D", color=INK, linewidth=0.8,
+                markersize=3.3, label="estimate + 95% interval",
+            ),
+        ],
+        loc="lower center", bbox_to_anchor=(0.55, 0.075),
+        ncol=3, columnspacing=1.2, handlelength=1.6,
     )
     save(fig, "Figure6")
+
+
+def supplementary_figure1() -> None:
+    """Visualize the admissible-exclusion sensitivity without forcing a result."""
+    summary = copy_source("strong_reversal_lower_bound_summary.csv")
+    primary = summary.loc[np.isclose(summary["near_zero_tolerance"], 1e-4)].copy()
+    order = [
+        "principal_positive_lower_bounds",
+        "all_zero_lower_bounds",
+        "highest_ranked_crop_zero_lower_bound",
+    ]
+    primary = primary.set_index("lower_bound_specification").loc[order].reset_index()
+    labels = ["Positive minima", "All minima zero", "Top-crop minimum zero"]
+    colors = [GREY, TEAL, PURPLE]
+    markers = ["o", "s", "^"]
+    fig, axes = plt.subplots(1, 2, figsize=(7.205, 2.55))
+
+    ax = axes[0]
+    y = np.arange(len(primary))
+    ax.axvline(0, color=RED, lw=0.8, ls=(0, (2, 2)))
+    for index, row in primary.iterrows():
+        value = float(row["minimum_optimal_face_top_crop_allocation"])
+        ax.plot(
+            [0, value], [index, index], color=PALE_GREY, lw=1.2,
+            solid_capstyle="round",
+        )
+        ax.scatter(
+            value, index, color=colors[index], marker=markers[index],
+            s=28, edgecolor=INK, linewidth=0.4, zorder=3,
+        )
+        ax.text(value + 0.002, index, f"{value:.3f}", va="center", fontsize=5.8)
+    ax.set_yticks(y, labels)
+    ax.invert_yaxis()
+    ax.set_xlim(
+        -0.005,
+        max(primary["minimum_optimal_face_top_crop_allocation"]) + 0.025,
+    )
+    ax.set_xlabel("Minimum top-crop share on the optimal face")
+    ax.set_title("Exit remains unused when admissible", loc="left")
+    panel(ax, "a")
+
+    ax = axes[1]
+    categories = ["Pairwise", "Complete", "Strong"]
+    x = np.arange(len(categories))
+    width = 0.22
+    for index, row in primary.iterrows():
+        values = [
+            row["selected_pairwise_reversal_cells"],
+            row["selected_complete_rank_reversal_cells"],
+            row["selected_strong_reversal_cells"],
+        ]
+        bars = ax.bar(
+            x + (index - 1) * width, values, width,
+            color=colors[index], edgecolor=INK, linewidth=0.35,
+            hatch="///" if index == 0 else None, label=labels[index],
+        )
+        for bar, value in zip(bars, values):
+            if value > 0:
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2, value + 2,
+                    f"{int(value)}", ha="center", va="bottom", fontsize=5.5,
+                )
+    ax.set_xticks(x, categories)
+    ax.set_ylim(0, 165)
+    ax.set_ylabel("Selected cells (of 165)")
+    ax.set_title("Reversal classifications at $10^{-4}$", loc="left")
+    ax.legend(loc="upper right", handlelength=1.4)
+    panel(ax, "b")
+    fig.suptitle(
+        "Relaxing crop lower bounds leaves strong exclusion at zero",
+        x=0.055, ha="left", fontsize=9.0, weight="bold",
+    )
+    fig.subplots_adjust(
+        top=0.77, bottom=0.22, left=0.13, right=0.96, wspace=0.48,
+    )
+    save(fig, "SupplementaryFigure1")
 
 
 def accessibility_transform(image: Image.Image, mode: str) -> Image.Image:
@@ -920,8 +1133,11 @@ def finalize_outputs() -> None:
         contact_sheet(records, QA / f"figure_contact_{width_mm}mm.png")
 
     minimum_font = np.inf
-    for index in range(1, 7):
-        svg = (OUT / f"Figure{index}.svg").read_text(encoding="utf-8")
+    maximum_font = -np.inf
+    for stem in [f"Figure{index}" for index in range(1, 7)] + [
+        "SupplementaryFigure1"
+    ]:
+        svg = (OUT / f"{stem}.svg").read_text(encoding="utf-8")
         sizes = [
             float(value)
             for value in re.findall(
@@ -931,6 +1147,7 @@ def finalize_outputs() -> None:
         ]
         if sizes:
             minimum_font = min(minimum_font, min(sizes))
+            maximum_font = max(maximum_font, max(sizes))
     report = {
         "backend": "Python/Matplotlib",
         "figure_count": len(FIGURE_RECORDS),
@@ -948,6 +1165,16 @@ def finalize_outputs() -> None:
         ),
         "minimum_svg_font_px": (
             None if not np.isfinite(minimum_font) else float(minimum_font)
+        ),
+        "maximum_svg_font_px": (
+            None if not np.isfinite(maximum_font) else float(maximum_font)
+        ),
+        "declared_ordinary_font_range_px": [5.4, 7.0],
+        "panel_label_font_px": 8.0,
+        "figure_title_font_px": 9.0,
+        "minimum_svg_font_note": (
+            "Values below 5 pt are automatic mathematical super/subscripts; "
+            "ordinary text is constrained to the declared 5.4--7.0 pt range."
         ),
         "manual_review_status": "PENDING_PAGE_AND_CONTACT_SHEET_INSPECTION",
     }
@@ -976,6 +1203,7 @@ def main() -> None:
     figure4()
     figure5()
     figure6()
+    supplementary_figure1()
     finalize_outputs()
     print(f"Wrote figures and source data to {OUT}")
 
