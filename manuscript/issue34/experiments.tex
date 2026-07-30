@@ -131,24 +131,22 @@ At the selected point, Gaussian variance falls from
 \((\DiversificationVarianceReduction\%)\). The canonical policy allocates
 \CanonicalMVCorn{} to corn, \CanonicalMVSoy{} to soybean and
 \CanonicalMVWheat{} to winter wheat; Gaussian expected profit is
-\(\$\,\CanonicalMVGaussianExpectedProfit\) per acre. Its operational
-feasibility is \CanonicalMVOperationalFeasible. The allocation changes by
+\(\$\,\CanonicalMVGaussianExpectedProfit\) per acre. The selected policy
+satisfies all operational constraints but violates the Student-\(t\)
+loss-CVaR ceiling. Its evaluation loss-CVaR is
+US\(\$\,\DiversificationGaussianCVaR\) per acre, exceeding the ceiling of
+US\(\$\,\DiversificationRiskCeiling\) per acre by
+US\(\$\,\DiversificationCeilingGap\) per acre. The allocation changes by
 \DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
-evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\) and
-the selected Gaussian mean--variance policy has loss-CVaR
-\(\$\,\DiversificationGaussianCVaR\), exceeding the common ceiling
-\(\$\,\DiversificationRiskCeiling\) by \(\$\,\DiversificationCeilingGap\).
-Its risk-ceiling feasibility is \CanonicalMVRiskFeasible.
+evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\).
 The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
-by \(\$\,\DiversificationTailGap\). The weak and strong failure criteria hold
-for
-\(\gamma\in[\DiversificationWeakGammaInterval]\) and
-\(\gamma\in[\DiversificationStrongGammaInterval]\), respectively.
-
-Because the tail-aware optimum binds the common loss-CVaR ceiling, its tail
-improvement and the Gaussian policy's ceiling violation are numerically equal
-at the selected point; these are therefore two expressions of one tail-risk
-gap, not independent confirmations. Across
+by \(\$\,\DiversificationTailGap\). Both the weak and operationally strong
+diversification-failure criteria hold for
+\(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
+share the same interval in this experiment because the tail-aware optimum
+binds the common loss-CVaR ceiling. Its tail improvement and the Gaussian
+policy's ceiling violation are numerically equal at the selected point and
+therefore express the same tail-risk gap. Across
 \DiversificationSensitivityCases{} one-factor perturbations of target
 variance reduction, scenario count, seed, dependence, confidence level, risk
 tolerance and marginal family, \DiversificationSensitivityStrongCases{}
@@ -206,9 +204,9 @@ under the tight ceiling they receive \RiskTightSoy{} and \RiskTightCorn{}.
 Tightening the loss-CVaR ceiling therefore reverses the soybean--corn
 allocation order while preserving the index and expected-margin order. A
 probability-by-magnitude sensitivity map evaluates
-\RiskShockCells{} stress combinations: \RiskShockCrossingCells{} cross,
-\RiskShockNoCrossingCells{} remain feasible without crossing and
-\RiskShockInfeasibleCells{} are infeasible. In the focal cell, the first
+\RiskShockCells{} stress combinations. Of these, \RiskShockCrossingCells{}
+produce an allocation crossing, \RiskShockNoCrossingCells{} remain feasible
+without a crossing, and one is infeasible. In the focal cell, the first
 crossing occurs at risk tolerance \RiskFocalFirstCrossing. These controlled
 stresses isolate a mechanism; they do not estimate the probability or severity
 of a Kansas farm shock.

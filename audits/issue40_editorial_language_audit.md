@@ -122,6 +122,6 @@ methodology.
 Final PDF SHA-256 values:
 
 - `main_manuscript.pdf`:
-  `320e37c61a3f4706bc7afe33dc19a6594635eeaf17cdecf698ccd8f536508aa8`
+  `3faf7f6a1ea58c626c98bb633d6607cc585e7b2de1ead5111f69f30ca8c57b8c`
 - `supplementary_information.pdf`:
-  `1c80baeff1afba167dcd61625610774bcb56b26a8682fd1e863f80af75d85cc7`
+  `4411ffcbc4633743a4c5f5d19b78d6a0f2d872efba655f9721c1d130619e5506`

@@ -119,10 +119,11 @@ G^\top\nu^G-\nu^\ell+\nu^u-\sum_mt_m\pi_m,\\
 0={}&\eta-\sum_mt_m,\\
 0={}&\frac{\eta w_m}{1-\alpha}-t_m-z_m,\qquad m=1,\ldots,M.
 \end{align}
-All multipliers are nonnegative except the dual expression associated with the
-free variable \(v\). Complementarity requires each multiplier times its
-primal slack to be zero. The scenario equations allow fractional mass at the
-VaR threshold and are valid for discrete scenario distributions.
+All multipliers associated with inequality constraints are nonnegative.
+Because \(v\) is unrestricted in sign, stationarity with respect to \(v\)
+yields the equality in Eq.~(10). Complementarity requires each multiplier
+times its primal slack to be zero. The scenario equations allow fractional
+mass at the VaR threshold and are valid for discrete scenario distributions.
 
 \section{Proofs}
 
@@ -286,12 +287,11 @@ and \(x^{MV}\) is the first point to attain the fixed
 \DiversificationTarget\% Gaussian variance-reduction target. At that point the
 reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \(x^T\), and Student-\(t\) evaluation loss-CVaR is
-\(\$\,\DiversificationTailGap\) higher. The weak and strong criteria hold over
-\(\gamma\in[\DiversificationWeakGammaInterval]\) and
-\(\gamma\in[\DiversificationStrongGammaInterval]\), respectively. Because
-\(x^T\) binds the common
-ceiling, the tail-inferiority and ceiling-violation gaps are numerically
-dependent.
+\(\$\,\DiversificationTailGap\) higher. Both the weak and operationally strong
+diversification-failure criteria hold for
+\(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
+share the same interval in this experiment because the tail-aware optimum
+binds the common loss-CVaR ceiling.
 
 \begin{table}[h]
 \centering\small
@@ -370,9 +370,10 @@ raises its share. In the risk layer, soybean has the higher index and mean
 margin, while
 a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
 the loose-to-tight allocation crossing reported in the main text. Across the
-probability-by-magnitude map, \RiskShockCrossingCells{} of
-\RiskShockCells{} cells cross, \RiskShockNoCrossingCells{} remain feasible
-without crossing and \RiskShockInfeasibleCells{} are infeasible. In the
+probability-by-magnitude map, \RiskShockCrossingCells{} of the
+\RiskShockCells{} stress combinations produce an allocation crossing,
+\RiskShockNoCrossingCells{} remain feasible without a crossing, and one is
+infeasible. In the
 operational layer, the baseline calibrated constraint sequence remains
 non-reversing before the soybean rotation-cap path is evaluated; the first
 crossing is at \OperationalCrossingCap. These controlled paths demonstrate
@@ -449,12 +450,14 @@ complete rank reversal counts change only at the coarser ordering tolerances.
 
 The 64 historical bootstrap replications produce mean shares 0.277 for corn,
 0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals
-are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. Reversal probability
-is treated separately: selected pairwise reversal occurs in
+are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. The binary reversal
+frequency across historical resamples is treated separately. Selected pairwise
+reversal occurs in
 \BootstrapReversalCount{} of 64
 resamples. Its exact Clopper--Pearson binomial interval is
 [\BootstrapProbabilityLow,\BootstrapProbabilityHigh]. The interval describes
-the binomial frequency among resamples. The first-reversal
+the frequency among historical resamples, not a farm-population probability.
+The first-reversal
 index mean is \BootstrapFirstMean{} with interval
 [\BootstrapFirstLow,\BootstrapFirstHigh]. The broad boundary interval is
 consistent with an eight-year calibration; simulated scenarios do not add
