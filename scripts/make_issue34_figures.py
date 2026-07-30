@@ -287,7 +287,7 @@ def figure1() -> None:
         weight="bold", fontsize=8, va="bottom",
     )
     boxes = [
-        (0.02, 0.76, "External ranking\nagronomic score $s$", PALE_GREEN),
+        (0.02, 0.76, "External performance index\nhistorical relative yield $s$", PALE_GREEN),
         (0.54, 0.76, "Cardinal evidence\nprice × yield − cost", PALE_TEAL),
         (0.54, 0.45, "Joint uncertainty\nmargins + dependence", PALE_BLUE),
         (0.02, 0.45, "Operational feasibility\nland, budget, rotation,\ncontract, capacities", PALE_GREY),
@@ -342,8 +342,8 @@ def figure1() -> None:
     )
     ax.set_yticks(y, crops)
     ax.set_xlim(0, 1)
-    ax.set_xlabel("Historical relative-yield score $s$")
-    ax.set_title("Agronomic ranking", loc="left", pad=3)
+    ax.set_xlabel("Historical relative-yield index $s$")
+    ax.set_title("Performance index", loc="left", pad=3)
     ax.invert_yaxis()
     for yi, value in zip(y, cal["historical_yield_potential_score"]):
         ax.text(value + 0.015, yi, f"{value:.3f}", va="center", fontsize=5.8)
@@ -377,7 +377,7 @@ def figure1() -> None:
     ax.invert_yaxis()
     ax.set_xlim(0, 0.7)
     ax.set_xlabel("Selected land share $x^*$")
-    ax.set_title("Selected allocation: complete reversal", loc="left", pad=3)
+    ax.set_title("Selected allocation: complete rank reversal", loc="left", pad=3)
     for yi, value in zip(y, alloc):
         ax.text(value + 0.012, yi, f"{value:.3f}", va="center", fontsize=5.8)
     fig.suptitle(
@@ -396,6 +396,11 @@ def figure2() -> None:
         gridspec_kw={"width_ratios": [1, 1, 1, 1.18]},
     )
     cmap = ListedColormap([PALE_GREY, PALE_TEAL, INK])
+    family_labels = {
+        "gaussian": "Gaussian",
+        "student_t": "Student-$t$",
+        "clayton": "Clayton",
+    }
     for j, fam in enumerate(fams):
         ax = axes[j]
         sub = phase[phase["copula_family"] == fam]
@@ -412,7 +417,7 @@ def figure2() -> None:
         ax.set_xlabel("Risk-tolerance index")
         if j == 0:
             ax.set_ylabel("Kendall's $\\tau$")
-        ax.set_title(fam.replace("_", " ").title(), loc="left")
+        ax.set_title(family_labels[fam], loc="left")
         panel(ax, chr(ord("a") + j))
         for spine in ax.spines.values():
             spine.set_visible(True)
@@ -421,7 +426,7 @@ def figure2() -> None:
     for fam, color, marker in zip(fams, [INK, PURPLE, TEAL], ["o", "s", "^"]):
         sub = front[front["copula_family"] == fam].sort_values("kendall_tau")
         ax.plot(sub["kendall_tau"], sub["first_selected_reversal_risk_tolerance"],
-                marker=marker, color=color, lw=1.3, label=fam.replace("_", " "))
+                marker=marker, color=color, lw=1.3, label=family_labels[fam])
     ax.set_xlabel("Kendall's $\\tau$")
     ax.set_ylabel("First reversal\nrisk-tolerance index")
     ax.set_ylim(-0.03, 1.03)
@@ -431,10 +436,10 @@ def figure2() -> None:
     legend_handles = [
         Patch(facecolor=PALE_GREY, edgecolor=GREY, label="No reversal"),
         Patch(facecolor=PALE_TEAL, edgecolor=GREY, label="Pairwise only"),
-        Patch(facecolor=INK, edgecolor=INK, label="Complete"),
+        Patch(facecolor=INK, edgecolor=INK, label="Complete rank"),
         Patch(
             facecolor="white", edgecolor=PURPLE, hatch="///",
-            label="Strong unavailable†",
+            label="Strong exclusion unavailable†",
         ),
     ]
     fig.legend(
@@ -503,7 +508,7 @@ def figure3() -> None:
         [xmv["gaussian_profit_variance"]],
         [xmv["gaussian_expected_profit"]],
         color=TEAL, marker="*", edgecolor=INK, linewidth=0.45,
-        s=68, zorder=5, label="Selected Gaussian policy",
+        s=68, zorder=5, label="Selected Gaussian mean–variance policy",
     )
     for row, label, offset in [
         (x0, "$x^0$", (5, -12)),
@@ -541,7 +546,7 @@ def figure3() -> None:
     ax.set_ylabel("Land share")
     ax.set_ylim(0, 1.0)
     ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.32))
-    ax.set_title("Solver-generated policy allocations", loc="left")
+    ax.set_title("Optimized policy allocations", loc="left")
     panel(ax, "b")
 
     ax = fig.add_subplot(grid[1, 1])
@@ -815,11 +820,11 @@ def figure5() -> None:
         )
         ax.set_xlabel("Upper flexibility $\\phi_2$")
         if column == 0:
-            ax.set_ylabel("Upper accuracy $q_2$")
+            ax.set_ylabel("Upper accuracy $\\xi_2$")
         ax.set_title(
-            "Interaction: reallocation $\\Delta_{q,\\phi}V$"
+            "Interaction: reallocation $\\Delta_{\\xi,\\phi}V$"
             if column == 0
-            else "Interaction: buffering $\\Delta_{q,\\phi}V$",
+            else "Interaction: buffering $\\Delta_{\\xi,\\phi}V$",
             loc="left",
         )
         panel(ax, chr(ord("c") + column))
@@ -958,7 +963,7 @@ def figure6() -> None:
             Line2D(
                 [0], [0], marker="o", linestyle="none", markersize=3.3,
                 markerfacecolor=PALE_TEAL, markeredgecolor=INK,
-                label="fixed draw subset",
+                label="displayed bootstrap draws",
             ),
             Line2D(
                 [0], [0], marker="D", color=INK, linewidth=0.8,
@@ -981,7 +986,7 @@ def supplementary_figure1() -> None:
         "highest_ranked_crop_zero_lower_bound",
     ]
     primary = primary.set_index("lower_bound_specification").loc[order].reset_index()
-    labels = ["Positive minima", "All minima zero", "Top-crop minimum zero"]
+    labels = ["Positive minima", "All minima zero", "Highest-ranked zero"]
     colors = [GREY, TEAL, PURPLE]
     markers = ["o", "s", "^"]
     fig, axes = plt.subplots(1, 2, figsize=(7.205, 2.55))
@@ -1006,12 +1011,12 @@ def supplementary_figure1() -> None:
         -0.005,
         max(primary["minimum_optimal_face_top_crop_allocation"]) + 0.025,
     )
-    ax.set_xlabel("Minimum top-crop share on the optimal face")
+    ax.set_xlabel("Minimum highest-ranked crop share on the optimal face")
     ax.set_title("Exit remains unused when admissible", loc="left")
     panel(ax, "a")
 
     ax = axes[1]
-    categories = ["Pairwise", "Complete", "Strong"]
+    categories = ["Pairwise", "Complete rank", "Strong exclusion"]
     x = np.arange(len(categories))
     width = 0.22
     for index, row in primary.iterrows():

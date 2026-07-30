@@ -291,23 +291,23 @@ z
    </g>
    <g id="legend_1">
     <g id="line2d_13">
-     <path d="M 313.356719 123.633812
-L 317.706719 123.633812
-L 322.056719 123.633812
+     <path d="M 272.091531 123.633812
+L 276.441531 123.633812
+L 280.791531 123.633812
 " style="fill: none; stroke: #8f9092; stroke-linecap: square"/>
     </g>
     <g id="text_16">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="326.696719" y="125.663812" transform="rotate(-0 326.696719 125.663812)">301-point Gaussian frontier</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="285.431531" y="125.663812" transform="rotate(-0 285.431531 125.663812)">301-point Gaussian frontier</text>
     </g>
     <g id="line2d_14">
-     <path d="M 313.356719 131.838093
-L 317.706719 131.838093
-L 322.056719 131.838093
+     <path d="M 272.091531 131.838093
+L 276.441531 131.838093
+L 280.791531 131.838093
 " style="fill: none; stroke: #33c5b2; stroke-width: 2.4; stroke-linecap: round"/>
     </g>
     <g id="text_17">
      <!-- Student-$t$ failure interval -->
-     <g style="fill: #024e52" transform="translate(326.696719 133.868093)">
+     <g style="fill: #024e52" transform="translate(285.431531 133.868093)">
       <text>
        <tspan style="font: 5.8px 'Arial'" x="0 3.835205 5.432739 8.630615 11.828491 15.026367 18.224243 19.821777 23.991089 25.588623 27.186157 30.384033 31.661499 32.938965 36.136841 38.051636 41.249512 42.847046 44.124512 47.322388 48.919922 52.117798 54.032593 56.907593 60.105469" y="-0.625">Student- failure interval</tspan>
        <tspan style="font: oblique 5.8px 'DejaVu Sans'" x="21.736572" y="-0.625">t</tspan>
@@ -315,21 +315,21 @@ L 322.056719 131.838093
      </g>
     </g>
     <g id="line2d_15">
-     <path d="M 403.613781 123.633812
-L 407.963781 123.633812
-L 412.313781 123.633812
+     <path d="M 362.348594 123.633812
+L 366.698594 123.633812
+L 371.048594 123.633812
 " style="fill: none; stroke-dasharray: 1.8,1.8; stroke-dashoffset: 0; stroke: #8a83a0; stroke-width: 0.9"/>
     </g>
     <g id="text_18">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="416.953781" y="125.663812" transform="rotate(-0 416.953781 125.663812)">15% variance target</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="375.688594" y="125.663812" transform="rotate(-0 375.688594 125.663812)">15% variance target</text>
     </g>
     <g id="PathCollection_3">
      <g>
-      <use xlink:href="#m341e445849" x="407.963781" y="132.484249" style="fill: #33c5b2; stroke: #024e52; stroke-width: 0.45"/>
+      <use xlink:href="#m341e445849" x="366.698594" y="132.484249" style="fill: #33c5b2; stroke: #024e52; stroke-width: 0.45"/>
      </g>
     </g>
     <g id="text_19">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="416.953781" y="134.006749" transform="rotate(-0 416.953781 134.006749)">Selected Gaussian policy</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="375.688594" y="134.006749" transform="rotate(-0 375.688594 134.006749)">Selected Gaussian mean–variance policy</text>
     </g>
    </g>
   </g>
@@ -546,7 +546,7 @@ L 231.874169 253.1088
     <text style="fill: #024e52; font: 700 8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="29.039186" y="177.829506" transform="rotate(-0 29.039186 177.829506)">b</text>
    </g>
    <g id="text_31">
-    <text style="fill: #024e52; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="44.064" y="180.108305" transform="rotate(-0 44.064 180.108305)">Solver-generated policy allocations</text>
+    <text style="fill: #024e52; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="44.064" y="180.108305" transform="rotate(-0 44.064 180.108305)">Optimized policy allocations</text>
    </g>
    <g id="legend_2">
     <g id="patch_17">

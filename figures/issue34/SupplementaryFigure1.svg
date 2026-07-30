@@ -94,7 +94,7 @@ L 0 2.5
      </g>
     </g>
     <g id="text_6">
-     <text style="fill: #024e52; font: 6.3px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="154.140387" y="162.445431" transform="rotate(-0 154.140387 162.445431)">Minimum top-crop share on the optimal face</text>
+     <text style="fill: #024e52; font: 6.3px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="154.140387" y="162.445431" transform="rotate(-0 154.140387 162.445431)">Minimum highest-ranked crop share on the optimal face</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
@@ -130,7 +130,7 @@ L -2.5 0
       </g>
      </g>
      <g id="text_9">
-      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="61.392" y="140.114377" transform="rotate(-0 61.392 140.114377)">Top-crop minimum zero</text>
+      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: end" x="61.392" y="140.114377" transform="rotate(-0 61.392 140.114377)">Highest-ranked zero</text>
      </g>
     </g>
    </g>
@@ -322,7 +322,7 @@ z
       </g>
      </g>
      <g id="text_16">
-      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="410.915613" y="152.795822" transform="rotate(-0 410.915613 152.795822)">Complete</text>
+      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="410.915613" y="152.795822" transform="rotate(-0 410.915613 152.795822)">Complete rank</text>
      </g>
     </g>
     <g id="xtick_8">
@@ -332,7 +332,7 @@ z
       </g>
      </g>
      <g id="text_17">
-      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="470.210478" y="152.795822" transform="rotate(-0 470.210478 152.795822)">Strong</text>
+      <text style="fill: #024e52; font: 5.7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: middle" x="470.210478" y="152.795822" transform="rotate(-0 470.210478 152.795822)">Strong exclusion</text>
      </g>
     </g>
    </g>
@@ -454,37 +454,37 @@ L 497.664 142.6464
    </g>
    <g id="legend_1">
     <g id="patch_17">
-     <path d="M 419.096656 51.433931
-L 427.216656 51.433931
-L 427.216656 47.373931
-L 419.096656 47.373931
+     <path d="M 427.46225 51.433931
+L 435.58225 51.433931
+L 435.58225 47.373931
+L 427.46225 47.373931
 z
 " style="fill: url(#hf83e37df2c); stroke: #024e52; stroke-width: 0.35; stroke-linejoin: miter"/>
     </g>
     <g id="text_34">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="431.856656" y="51.433931" transform="rotate(-0 431.856656 51.433931)">Positive minima</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="440.22225" y="51.433931" transform="rotate(-0 440.22225 51.433931)">Positive minima</text>
     </g>
     <g id="patch_18">
-     <path d="M 419.096656 59.638213
-L 427.216656 59.638213
-L 427.216656 55.578213
-L 419.096656 55.578213
+     <path d="M 427.46225 59.638212
+L 435.58225 59.638212
+L 435.58225 55.578212
+L 427.46225 55.578212
 z
 " style="fill: #33c5b2; stroke: #024e52; stroke-width: 0.35; stroke-linejoin: miter"/>
     </g>
     <g id="text_35">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="431.856656" y="59.638213" transform="rotate(-0 431.856656 59.638213)">All minima zero</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="440.22225" y="59.638212" transform="rotate(-0 440.22225 59.638212)">All minima zero</text>
     </g>
     <g id="patch_19">
-     <path d="M 419.096656 67.842494
-L 427.216656 67.842494
-L 427.216656 63.782494
-L 419.096656 63.782494
+     <path d="M 427.46225 67.842494
+L 435.58225 67.842494
+L 435.58225 63.782494
+L 427.46225 63.782494
 z
 " style="fill: #8a83a0; stroke: #024e52; stroke-width: 0.35; stroke-linejoin: miter"/>
     </g>
     <g id="text_36">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="431.856656" y="67.842494" transform="rotate(-0 431.856656 67.842494)">Top-crop minimum zero</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="440.22225" y="67.842494" transform="rotate(-0 440.22225 67.842494)">Highest-ranked zero</text>
     </g>
    </g>
   </g>

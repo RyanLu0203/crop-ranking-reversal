@@ -3,8 +3,9 @@
 \subsection{Scores, margins and joint uncertainty}
 
 Let \(i=1,\ldots,n\) index crops and \(x_i\) denote planted area. A
-pre-decision score \(s_i\) induces a crop order. It is external to the
-optimization model: no cardinal transformation of \(s\) is used as a margin.
+pre-decision historical relative-yield performance index \(s_i\) induces a
+crop order. The index is external to the optimization model; no cardinal
+transformation of \(s\) is used as a margin.
 For state \(\omega\), stochastic per-acre margin and portfolio profit are
 \begin{equation}
 \widetilde\pi_i(\omega)=\widetilde P_i(\omega)\widetilde
@@ -31,9 +32,8 @@ Here \(A\) is available land, \(c\) and \(B\) describe pre-plant cash
 requirements, \(R\) contains rotation caps, \(K\) contains contract minimums,
 and \(G\) contains shared labour, equipment, irrigation or storage rows. Idle
 land is \(A-\ind^\top x\) and is reported even when it is not assigned a
-separate variable. These constraints are not post-hoc explanations of an
-observed acreage vector; they define the controlled
-decision problem.
+separate variable. Together, the constraints define the feasible planting
+decisions before acreage is optimized.
 
 \subsection{Heuristic-policy projection}
 
@@ -49,7 +49,7 @@ projection
 where \(\mathcal X_h\) imposes \(\ind^\top x=A\), the crop bounds, budget,
 rotation, contract, labour and equipment constraints in
 Eq.~\ref{eq:operations}. Idle land is therefore excluded from the comparison
-set. The CVaR ceiling is not part of the projection; loss-CVaR and risk
+set. The loss-CVaR ceiling is not part of the projection; loss-CVaR and risk
 feasibility are evaluated after projection. Strict convexity gives a unique
 principal projection. An unweighted \(L^1\) projection provides a sensitivity
 comparison; on a non-unique \(L^1\)-optimal face, a fixed crop-order weighted
@@ -89,18 +89,16 @@ laws without transferring an arbitrary dollar ceiling.
 
 \subsection{Reversal and optimal faces}
 
-\begin{definition}[Pairwise, complete-rank and strong reversal]
+\begin{definition}[Pairwise, complete rank and strong exclusion reversal]
 For a pair \(s_i>s_j\), an allocation reverses the ranking if \(x_i<x_j\).
-A complete rank reversal, or top-crop rank inversion, occurs when the
-highest-ranked crop has less area than every lower-ranked crop. Strong reversal
-requires
+A complete rank reversal occurs when the highest-ranked crop has less area
+than every lower-ranked crop. A strong exclusion reversal requires
 \(s_i>s_j\) and \(x_i=0<x_j\).
 \end{definition}
 
-In the principal specification, all crop lower bounds are positive, so strong
-exclusion is infeasible by construction. It becomes a testable outcome only
-in the declared sensitivities that set all crop lower bounds, or only the
-highest-ranked crop's lower bound, to zero.
+Positive crop lower bounds preclude strong exclusion reversal in the principal
+specification. Sensitivity analyses evaluate this outcome after setting either
+all lower bounds or only the highest-ranked crop's lower bound to zero.
 
 Let
 \[
@@ -109,26 +107,29 @@ r_\alpha(x)\le\kappa\}
 \]
 be the complete optimal set. Reversal is \emph{possible} if it occurs at some
 \(x\in\mathcal S_\kappa\), \emph{universal} if it occurs at every such point,
-and \emph{selected} if it occurs at the point returned by the deterministic
-selector. We examine a pair by minimizing and maximizing \(x_j-x_i\) on the
-objective-equivalent face. A single solver vertex is not sufficient evidence
-of universal reversal. Ordering and operational zero use numerical
+and \emph{selected} if it occurs at the point chosen by a specified
+deterministic selector. Pairwise classification follows the minimum and
+maximum of \(x_j-x_i\) on the objective-equivalent face; one optimal vertex
+does not establish universal reversal. Ordering and operational zero use numerical
 tolerances of \(10^{-4}\) normalized land share; sensitivity spans
 \(10^{-8}\) to \(10^{-2}\).
 
 \subsection{Full stationarity system}
 
-Let nonnegative multipliers \(\eta,\gamma,\beta,\rho,\chi,\lambda,a,b\)
+Let nonnegative multipliers
+\(\eta,\nu^A,\nu^B,\nu^R,\nu^K,\nu^G,\nu^\ell,\nu^u\)
 correspond to loss-CVaR, land, budget, rotation, sign-converted contract,
-shared capacity, lower bounds and upper bounds. For a CVaR subgradient
+shared capacity, lower bounds and upper bounds. For a loss-CVaR subgradient
 \(d\in\partial r_\alpha(x^*)\), acreage stationarity is
 \begin{equation}
--\mu+\eta d+\gamma\ind+\beta c+R^\top\rho-K^\top\chi+
-G^\top\lambda-a+b=0.
+-\mu+\eta d+\nu^A\ind+\nu^B c+R^\top\nu^R-K^\top\nu^K+
+G^\top\nu^G-\nu^\ell+\nu^u=0.
 \label{eq:kkt}
 \end{equation}
 Pairwise subtraction cancels the common land multiplier but retains budget,
 shared-resource and crop-bound pressures. Equation~\ref{eq:kkt} is a marginal
-balance, not an acreage-ordering formula. The finite-scenario implementation
-also verifies stationarity for \(v\) and every \(q_m\), including fractional
-tail weights when the loss distribution has atoms.
+balance rather than an acreage-ordering formula. The finite-scenario KKT
+system also includes stationarity for \(v\) and every \(q_m\), including
+fractional tail weights when the loss distribution has atoms. These
+conditions provide the optimality basis for the reversal frontier developed
+next.

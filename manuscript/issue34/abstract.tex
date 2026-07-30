@@ -1,44 +1,28 @@
 \begin{abstract}
-Crop recommendation systems rank crops using agronomic or predicted
-performance, whereas producers allocate land under uncertain margins, joint
-downside risk and operational restrictions. We ask when these two orders
-reverse and how diversification and climate information alter the
-resulting exposure. We formulate a stochastic crop-planning programme with
-uncertain price, yield and cost; land, budget, rotation, contract, labour and
-equipment constraints; and a loss-CVaR ceiling. A restricted two-crop theorem
-gives a necessary-and-sufficient reversal frontier: when the higher-ranked crop
-also has the higher expected margin, reversal occurs exactly when no
-risk-feasible allocation remains on the upper half of its feasible share
-interval. The result is family-specific and need not reduce to a universal
-tail-dependence threshold. A public-data-calibrated Kansas experiment uses
-pre-decision relative-yield potential as a genuine agronomic score. Winter
-wheat ranks first (\ScoreWheat) but receives the least land (\PrimaryWheat),
-below soybean (\PrimarySoy) and corn (\PrimaryCorn), in the
-Student-\(t\) model. Reversal appears in \PhaseReversal{} of \PhaseCells{}
-copula--dependence--risk cells; \PhaseComplete{} are selected complete rank
-reversals. Strong exclusion is structurally inadmissible in this principal
-specification because every crop has a positive minimum share. When all crop
-lower bounds are relaxed to zero, \AllZeroStrong{} selected,
-\AllZeroPossibleStrong{} possible and \AllZeroUniversalStrong{} universal
-strong reversals occur on the same grid, a substantive null despite crop exit
-being admissible. The Kansas inversion is margin-induced and is moderated by
-risk. Separate controlled
-experiments identify a risk-induced Soybean--Corn crossing with the
-higher-score crop also having the higher mean margin, and an operational
-crossing under a tightened rotation cap. A full-investment matched-Kendall
-Selected Gaussian mean--variance policy chosen by a fixed
-\DiversificationTarget\%
-variance-reduction rule reduces variance relative to an expected-profit
-benchmark yet violates the Student-\(t\) evaluation-law CVaR ceiling. Strong
-failure holds over \(\gamma\in[\DiversificationStrongGammaInterval]\) in the
-focal experiment; because the tail-aware optimum binds the ceiling, tail
-inferiority and ceiling violation coincide numerically. In a two-stage
-extension, adjacent-grid cross-differences under one shared ex-ante CVaR
-ceiling are positive, zero or negative depending on what flexibility changes.
-A separate
-\StateYears{}-state-year public panel shows widespread score--acreage
-disagreement but no leakage-free lagged association, so it validates
-prevalence only descriptively. Ranking reversal is therefore a conditional
-decision-system property, not a generic defect of ranking and not evidence
-that observed acreage is privately optimal.
+Crop-ranking systems order crops by agronomic or predicted performance, whereas
+acreage decisions depend on uncertain margins, joint downside risk and
+operational feasibility. We formulate a stochastic crop-planning programme
+with price, yield and cost uncertainty; land, budget, rotation, contract,
+labour and equipment constraints; and a loss-CVaR ceiling. In a fixed-land
+two-crop model, when the higher-ranked crop also has the higher expected margin,
+reversal occurs if and only if the risk-feasible share interval ends below the
+equal-share allocation. In a
+public-data-calibrated Kansas experiment, winter wheat ranks first by a
+pre-decision historical relative-yield performance index but receives the
+smallest optimized share, producing a complete rank reversal. The Kansas
+result is margin-induced and moderated by downside risk. Separate controlled
+experiments show that tightening a loss-CVaR ceiling can
+reverse the soybean--corn allocation order while preserving both score and
+expected-margin order, whereas a soybean rotation cap produces an
+operationally induced reversal. A selected Gaussian mean--variance policy
+reduces Gaussian variance by \DiversificationVarianceReduction\% relative to
+the expected-profit benchmark but violates the Student-\(t\) evaluation-law
+loss-CVaR ceiling. Under a shared ex-ante loss-CVaR model, the
+information--flexibility interaction can be positive, zero or negative,
+depending on whether flexibility enables reallocation or buffers the predicted
+state. A \StateYears{}-state-year public panel documents score--acreage
+disagreement descriptively, while its lagged association includes zero and
+does not identify private objectives or constraints. Crop rankings therefore
+support acreage recommendations only when combined with explicit economic,
+risk and operational assumptions.
 \end{abstract}

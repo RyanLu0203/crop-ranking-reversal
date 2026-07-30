@@ -3389,15 +3389,15 @@ L 472.140846 142.4088
   </g>
   <g id="legend_1">
    <g id="patch_11">
-    <path d="M 182.408344 246.639281
-L 191.688344 246.639281
-L 191.688344 242.579281
-L 182.408344 242.579281
+    <path d="M 171.285031 246.639281
+L 180.565031 246.639281
+L 180.565031 242.579281
+L 171.285031 242.579281
 z
 " style="fill: #9ad8c8; stroke: #024e52; stroke-linejoin: miter"/>
    </g>
    <g id="text_29">
-    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="196.328344" y="246.639281" transform="rotate(-0 196.328344 246.639281)">bootstrap density</text>
+    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="185.205031" y="246.639281" transform="rotate(-0 185.205031 246.639281)">bootstrap density</text>
    </g>
    <g id="line2d_48">
     <defs>
@@ -3414,16 +3414,16 @@ z
 " style="stroke: #024e52"/>
     </defs>
     <g>
-     <use xlink:href="#m00ad890e0a" x="252.09625" y="244.609281" style="fill: #9ad8c8; stroke: #024e52"/>
+     <use xlink:href="#m00ad890e0a" x="240.972938" y="244.609281" style="fill: #9ad8c8; stroke: #024e52"/>
     </g>
    </g>
    <g id="text_30">
-    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="261.37625" y="246.639281" transform="rotate(-0 261.37625 246.639281)">fixed draw subset</text>
+    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="250.252938" y="246.639281" transform="rotate(-0 250.252938 246.639281)">displayed bootstrap draws</text>
    </g>
    <g id="line2d_49">
-    <path d="M 313.4675 244.609281
-L 318.1075 244.609281
-L 322.7475 244.609281
+    <path d="M 324.590812 244.609281
+L 329.230812 244.609281
+L 333.870812 244.609281
 " style="fill: none; stroke: #024e52; stroke-width: 0.8; stroke-linecap: square"/>
     <defs>
      <path id="m0ed3ef6a77" d="M -0 2.333452
@@ -3434,11 +3434,11 @@ z
 " style="stroke: #024e52; stroke-linejoin: miter"/>
     </defs>
     <g>
-     <use xlink:href="#m0ed3ef6a77" x="318.1075" y="244.609281" style="fill: #024e52; stroke: #024e52; stroke-linejoin: miter"/>
+     <use xlink:href="#m0ed3ef6a77" x="329.230812" y="244.609281" style="fill: #024e52; stroke: #024e52; stroke-linejoin: miter"/>
     </g>
    </g>
    <g id="text_31">
-    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="327.3875" y="246.639281" transform="rotate(-0 327.3875 246.639281)">estimate + 95% interval</text>
+    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="338.510812" y="246.639281" transform="rotate(-0 338.510812 246.639281)">estimate + 95% interval</text>
    </g>
   </g>
  </g>

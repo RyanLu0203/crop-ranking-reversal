@@ -72,6 +72,10 @@ def macro(name, value):
 def f(x, n=3):
     return f"{float(x):.{n}f}"
 
+def interval_tex(value):
+    """Format a closed positive interval with a comma between endpoints."""
+    return str(value).replace("-", ",", 1)
+
 rows = [
     macro("DesignHash", s["design_sha256"][:12]),
     macro("KansasYears", s["calibration"]["raw_effective_years"]),
@@ -116,8 +120,12 @@ rows = [
     macro("DiversificationAllocationLone", f(row_mv["xMV_vs_xT_allocation_L1"], 3)),
     macro("DiversificationTailGap", f(row_mv["xMV_evaluation_CVaR_minus_xT"], 3)),
     macro("DiversificationCeilingGap", f(row_mv["evaluation_loss_CVaR"] - row_mv["risk_ceiling"], 3)),
-    macro("DiversificationWeakGammaInterval", row_mv["weak_failure_gamma_intervals"]),
-    macro("DiversificationStrongGammaInterval", row_mv["strong_failure_gamma_intervals"]),
+    macro("DiversificationWeakGammaInterval", interval_tex(
+        row_mv["weak_failure_gamma_intervals"]
+    )),
+    macro("DiversificationStrongGammaInterval", interval_tex(
+        row_mv["strong_failure_gamma_intervals"]
+    )),
     macro("DiversificationFrontierPoints", int(row_mv["frontier_points"])),
     macro("CanonicalMVCorn", f(canonical_mv["allocation_Corn"])),
     macro("CanonicalMVSoy", f(canonical_mv["allocation_Soybean"])),

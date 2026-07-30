@@ -1,4 +1,4 @@
-\section{Literature review and scientific position}
+\section{Literature review and research position}
 
 \subsection{Risk-aware crop planning}
 
@@ -15,17 +15,18 @@ climate uncertainty is handled through stochastic, robust and multiobjective
 approaches rather than one standardized decision model
 \citep{randall2022robust,randall2024systematic}.
 
-Loss-CVaR is attractive in this setting because it controls an expected
-shortfall and admits a linear finite-scenario representation
+Loss-CVaR is useful in this setting because it controls expected shortfall and
+admits a linear finite-scenario representation
 \citep{rockafellar2000optimization,rockafellar2002conditional}. Agricultural
 precedent is substantial but fragmented. \citet{aitsahlia2011enso} combine
 ENSO-conditioned planting and hedging with Gaussian-copula scenarios and
 CVaR. \citet{filippi2017mixed} embed CVaR in operational crop selection.
 \citet{larsen2015geographical} and \citet{nguyenhuy2018copula} use copulas and
 mean-CVaR to study geographical wheat portfolios. These studies establish
-that crop portfolios can be optimized under downside risk. They do not ask
-whether an externally supplied agronomic ranking reverses, characterize the
-ranking boundary, or bound all optima on the objective-equivalent face.
+that crop portfolios can be optimized under downside risk. The present study
+extends this perspective by comparing an externally supplied performance
+ranking with optimized acreage, characterizing reversal boundaries and
+examining the complete objective-equivalent optimal face.
 
 \subsection{Joint tail risk and the limits of conventional diversification}
 
@@ -45,11 +46,11 @@ risk reduction from crop diversification changes with crop pair, region and
 drought severity \citep{schmitt2024drought}. These findings do not imply that
 diversification generally fails. They imply that ``number of crops'' and
 variance reduction are incomplete diagnostics for a loss-CVaR-constrained
-portfolio. Our criterion therefore requires a conventional policy to pass a
+portfolio. The diversification criterion used here requires a conventional policy to pass a
 fixed variance benchmark yet fail under the Student-\(t\) evaluation law and
 differ from the tail-aware allocation.
 
-\subsection{Prediction, prescription and suitability}
+\subsection{Prediction, prescription and performance scores}
 
 Agricultural machine learning commonly predicts yield, classifies land or
 ranks crop performance using weather, soil, management and remote-sensing
@@ -61,13 +62,13 @@ predictions change an optimized decision
 extends this principle to end-to-end systems
 \citep{mandi2023decision}.
 
-Our contribution is not a new learning algorithm. We use this literature to
-make the interface explicit. A genuine agronomic score ranks historical
-relative-yield potential and never enters the profit objective. The optimizer
-then reveals whether the operationally optimal area order agrees with that
-score. This design avoids two errors: treating prediction accuracy as proof of
-prescriptive optimality, and dismissing the score because it does not contain
-every economic variable.
+The present analysis does not develop a learning algorithm. Instead, it
+separates prediction from prescription. A pre-decision historical
+relative-yield performance index ranks crop outcomes but does not enter the
+profit objective. Optimized acreage can therefore be compared with the
+external ranking without treating predictive accuracy as evidence of
+prescriptive optimality or requiring the index to contain every economic
+variable.
 
 \subsection{Information value and operational flexibility}
 
@@ -83,7 +84,7 @@ information value to the portfolio or action set
 shows that flexibility value depends on margins, cost and the full uncertainty
 structure \citep{vanmieghem1998investment}.
 
-None of this supports unconditional strict complementarity. A flexible action
+These results do not imply unconditional strict complementarity. A flexible action
 can make a signal actionable, but it can also provide a robust fallback that
 reduces the need to distinguish states. We therefore prove non-negativity,
 strictness and zero conditions separately, add an increasing-differences
@@ -94,25 +95,30 @@ for substitution.
 
 \begin{table}[t]
 \centering\scriptsize
-\caption{\textbf{Position relative to the closest research streams.} A check
-indicates a central analyzed object rather than a passing mention.}
+\caption{\textbf{Positioning relative to selected research streams.}
+\(\bullet\) denotes a central object, \(\circ\) denotes conditional or
+subfield-specific coverage, and \(--\) denotes an object outside the stream's
+principal scope. The comparison is selective rather than an exhaustive map of
+the literature.}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}Xcccccc}
 \toprule
-Stream & Agro. rank & Operations & CVaR & Tail law &
-Frontier & Info--flex\\
+Stream & Performance rank & Operations & Loss-CVaR & Joint tail law &
+Reversal frontier & Info.--flex.\\
 \midrule
-Agricultural ML reviews & \(\checkmark\) & & & & &\\
-Crop-planning optimization & & \(\checkmark\) & some & limited & &\\
-Agricultural copula--CVaR & & partial & \(\checkmark\) & \(\checkmark\) & &\\
-Climate forecast valuation & & partial & some & & & partial\\
-This study & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) &
-\(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+Agricultural ML reviews & \(\bullet\) & \(--\) & \(--\) & \(--\) & \(--\) & \(--\)\\
+Crop-planning optimization & \(--\) & \(\bullet\) & \(\circ\) & \(\circ\) & \(--\) & \(--\)\\
+Agricultural copula--CVaR & \(--\) & \(\circ\) & \(\bullet\) & \(\bullet\) & \(--\) & \(--\)\\
+Climate forecast valuation & \(--\) & \(\circ\) & \(\circ\) & \(--\) & \(--\) & \(\circ\)\\
+Present study & \(\bullet\) & \(\bullet\) & \(\bullet\) &
+\(\bullet\) & \(\bullet\) & \(\bullet\)\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The novelty is thus a conjunction, not a claim that no previous study has used
-any individual ingredient. We connect a genuine agronomic rank to a complete
-stochastic operational model; give a valid reversal frontier; separate
-variance, dependence and CVaR notions of diversification; and determine when
-information complements, substitutes for or is unrelated to flexibility.
+Table~1 identifies how the study combines established research strands; it
+does not imply exhaustive novelty. The model connects a historical
+relative-yield performance index to stochastic operational allocation,
+characterizes a reversal frontier, distinguishes variance and downside-risk
+criteria for diversification, and identifies conditions under which
+information complements or substitutes for flexibility. The next section
+formalizes these elements in a common crop-planning model.

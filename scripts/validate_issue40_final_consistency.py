@@ -136,6 +136,33 @@ def language_scan() -> dict[str, list[str]]:
             page.extract_text() or "" for page in PdfReader(pdf).pages
         )
     forbidden = {
+        "prohibited workflow terms": (
+            r"\bissue\b",
+            r"\bgoal\b",
+            r"\bprompt\b",
+            r"\bcodex\b",
+            r"\bgithub\b",
+            r"\bpull request\b",
+            r"\bPR\b",
+            r"\bbranch\b",
+            r"\bcommit\b",
+            r"\brepository\b",
+            r"\bpipeline\b",
+            r"\bvalidator\b",
+            r"\bvalidation gate\b",
+            r"\bmanifest\b",
+            r"\bchecksum\b",
+            r"\bSHA\b",
+            r"\bscript name\b",
+            r"\bbuild command\b",
+            r"\bimplementation path\b",
+            r"\bacceptance criteria\b",
+            r"\baudit log\b",
+            r"\brepair log\b",
+            r"\bsource file\b",
+            r"\bgenerated file\b",
+            r"\boutput file\b",
+        ),
         "revision-history semantics": (
             r"return(?:s|ed)?\s+to\s+(?:its\s+)?intended\s+foundation",
             r"restor(?:e|ed|ing)\s+(?:the\s+)?(?:exclusion\s+)?definition",
@@ -143,9 +170,17 @@ def language_scan() -> dict[str, list[str]]:
             r"previous\s+version",
             r"earlier\s+version",
             r"supervisor\s+draft",
+            r"internal\s+reconstruction",
         ),
-        "workflow metadata": (
-            r"\bissue\s*#?\s*40\b", r"\bpull request\b", r"\bcodex\b"
+        "defensive implementation language": (
+            r"hidden\s+penalty",
+            r"hard[- ]coded",
+            r"all\s+outputs\s+were\s+retained",
+            r"retained\s+null",
+            r"not\s+a\s+weakness",
+            r"narrow\s+by\s+design",
+            r"logically\s+modest",
+            r"appropriate\s+limitation\s+to\s+emphasize",
         ),
     }
     hits = {

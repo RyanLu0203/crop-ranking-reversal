@@ -1,12 +1,12 @@
 {
   "byte_identical": true,
   "first_build_sha256": {
-    "main_manuscript.pdf": "63d1aee15a56857576eff603a9e6791f4a20de5309f56c3e946299040c01ceed",
-    "supplementary_information.pdf": "92709b9d5bb32d9b1c1c0d68449544a3c401ef536965b229a8a75f2ec8892574"
+    "main_manuscript.pdf": "320e37c61a3f4706bc7afe33dc19a6594635eeaf17cdecf698ccd8f536508aa8",
+    "supplementary_information.pdf": "1c80baeff1afba167dcd61625610774bcb56b26a8682fd1e863f80af75d85cc7"
   },
   "second_build_sha256": {
-    "main_manuscript.pdf": "63d1aee15a56857576eff603a9e6791f4a20de5309f56c3e946299040c01ceed",
-    "supplementary_information.pdf": "92709b9d5bb32d9b1c1c0d68449544a3c401ef536965b229a8a75f2ec8892574"
+    "main_manuscript.pdf": "320e37c61a3f4706bc7afe33dc19a6594635eeaf17cdecf698ccd8f536508aa8",
+    "supplementary_information.pdf": "1c80baeff1afba167dcd61625610774bcb56b26a8682fd1e863f80af75d85cc7"
   },
   "source_date_epoch": "1785081600",
   "status": "PASS"

@@ -17,7 +17,7 @@
       "audits/issue40_visual_qa/main_manuscript_pages_09-12.png",
       "audits/issue40_visual_qa/main_manuscript_pages_13-16.png",
       "audits/issue40_visual_qa/main_manuscript_pages_17-20.png",
-      "audits/issue40_visual_qa/main_manuscript_pages_21-22.png"
+      "audits/issue40_visual_qa/main_manuscript_pages_21-21.png"
     ],
     "main_manuscript_pages": "audits/issue40_visual_qa/main_manuscript_page_contact.png",
     "protanopia": "audits/issue40_visual_qa/figure_contact_protanopia.png",
@@ -28,7 +28,7 @@
     "supplementary_information_pages": "audits/issue40_visual_qa/supplementary_information_page_contact.png"
   },
   "page_counts": {
-    "main_manuscript.pdf": 22,
+    "main_manuscript.pdf": 21,
     "supplementary_information.pdf": 8
   },
   "status": "GENERATED_FOR_MANUAL_INSPECTION"

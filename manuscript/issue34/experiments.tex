@@ -3,14 +3,14 @@
 \subsection{Calibration}
 
 Kansas was selected because corn, soybean and winter wheat have complete
-public observations in every 2016--2024 analysis year and
-form a relevant diversified crop set. The 2016--2023 observations calibrate
-the score and margins; 2024 is excluded from the score and retained for
-external evaluation.
+public observations in every 2016--2024 analysis year and form a relevant
+diversified crop set. Observations from 2016--2023 calibrate the performance
+index and margins; 2024 is reserved for external evaluation.
 
-The score for crop \(i\) is the mean of Kansas yield divided by same-year
-national NASS yield over 2016--2023. It measures relative historical yield
-potential, not revenue. Scores are \ScoreCorn{} for corn, \ScoreSoy{} for
+The historical relative-yield performance index for crop \(i\) is the mean of
+Kansas yield divided by same-year national NASS yield over 2016--2023. It
+measures pre-decision relative-yield performance rather than revenue. Index
+values are \ScoreCorn{} for corn, \ScoreSoy{} for
 soybean and \ScoreWheat{} for winter wheat. Real per-acre margin combines
 Kansas yield, national harvest price, national operating cost and CPI-U
 conversion to 2024 dollars. Mean margins are \(\$\,\MarginCorn\),
@@ -38,17 +38,17 @@ sensitivity dimension.
 The expected-profit endpoint without loss-CVaR assigns \PolicyExpectedCorn{}
 to corn, \PolicyExpectedSoy{} to soybean and \PolicyExpectedWheat{} to winter
 wheat. It produces a complete rank reversal,
-but not a strong reversal because winter wheat remains positively allocated;
+but not a strong exclusion reversal because winter wheat remains positively allocated;
 its loss-CVaR
 \(\$\,\PrimaryNoRiskCVaR\), exceeding the primary risk ceiling. The
-minimum-CVaR endpoint attains \(\$\,\PrimaryMinCVaR\) but sacrifices expected
+minimum loss-CVaR endpoint attains \(\$\,\PrimaryMinCVaR\) but sacrifices expected
 profit. The midpoint ceiling is \(\$\,\PrimaryCVaR\).
 
 The full optimum assigns \PrimaryCorn{} to corn, \PrimarySoy{} to soybean and
 \PrimaryWheat{} to winter wheat. The highest-ranked crop therefore receives
-the least land, a selected complete rank reversal involving both pairs, but
-not a strong exclusion reversal. The land and
-CVaR restrictions bind; idle land is zero. Expected profit is
+the least land, producing a selected complete rank reversal involving both
+pairs but no strong exclusion reversal. The land and
+loss-CVaR restrictions bind; idle land is zero. Expected profit is
 \(\$\,\PrimaryProfit\) per normalized acre and realized finite-scenario
 loss-CVaR equals the ceiling to numerical precision. Maximum primal,
 stationarity and complementarity residuals are \(\KKTPrimal\),
@@ -56,10 +56,10 @@ stationarity and complementarity residuals are \(\KKTPrimal\),
 
 This Kansas result is margin-induced: the score--margin separation favours
 soybean economically even though winter wheat ranks agronomically first, and
-the expected-profit endpoint is already inverted. The CVaR ceiling raises
+the expected-profit endpoint is already inverted. The loss-CVaR ceiling raises
 winter wheat from \PolicyExpectedWheat{} to \PrimaryWheat{} and therefore
 moderates rather than
-creates the top-crop inversion. Operational constraints delimit the available
+creates the complete rank reversal. Operational constraints delimit the available
 path between those endpoints.
 
 \subsection{Conditional phase diagram}
@@ -78,14 +78,15 @@ dependence paths.
 Setting every crop lower bound to zero makes strong exclusion feasible without
 altering the score, scenario laws, risk path or remaining operational
 constraints. On that grid, \AllZeroPairwise{} cells show selected pairwise
-reversal, \AllZeroComplete{} show selected complete reversal, and
-\AllZeroStrong{} show selected strong reversal; possible and universal strong
-counts are \AllZeroPossibleStrong{} and \AllZeroUniversalStrong. The smallest
+reversal, \AllZeroComplete{} show selected complete rank reversal, and
+\AllZeroStrong{} show selected strong exclusion reversal; possible and
+universal strong exclusion counts are \AllZeroPossibleStrong{} and
+\AllZeroUniversalStrong. The smallest
 selected share of top-ranked winter wheat is \AllZeroMinTop, so no exclusion
 boundary or excluded crop exists on the evaluated grid. The targeted
 sensitivity that removes only winter wheat's lower bound similarly gives
-\TopZeroPairwise{} pairwise, \TopZeroComplete{} complete and
-\TopZeroStrong{} strong cells. These are substantive null results under
+\TopZeroPairwise{} pairwise, \TopZeroComplete{} complete rank reversal and
+\TopZeroStrong{} strong exclusion reversal cells. These are substantive null results under
 specifications in which exit is admissible.
 
 The nonmonotonic cells are substantively important. Increasing dependence can
@@ -102,20 +103,20 @@ ordering statistic.
 \caption{\textbf{Ranking reversal occupies a family- and risk-dependent
 phase.} \textbf{a--c}, Classification across risk tolerance and Kendall's
 \(\tau\) for Gaussian, Student-\(t\) and Clayton copulas; the compact key
-distinguishes no reversal, pairwise-only reversal and complete reversal.
+distinguishes no reversal, pairwise-only reversal and complete rank reversal.
 Strong exclusion is structurally inadmissible here because all crop minima
 are positive; zero-lower-bound results are reported separately.
 \textbf{d}, The first
 selected-reversal risk tolerance varies non-monotonically across the named
-	family paths. All \PhaseCells{} evaluated cells, including \PhaseMultiple{}
-multiple-optimum cells, are retained.}
+family paths. All \PhaseCells{} parameter combinations are shown, including
+\PhaseMultiple{} multiple-optimum cases.}
 \label{fig:phase}
 \end{figure}
 
 \subsection{Diversification failure under matched rank dependence}
 
 The comparison \(x^0\) is the matched-Gaussian expected-profit allocation.
-The Selected Gaussian mean--variance policy and tail-aware model use the same marginal means
+The selected Gaussian mean--variance policy and tail-aware model use the same marginal means
 and standard deviations and matched Kendall's \(\tau=0.25\). The Student-\(t\)
 law nevertheless has lower-tail coefficient \LowerTailCoefficient, whereas
 the Gaussian copula has zero asymptotic tail dependence. We solve a complete
@@ -134,16 +135,17 @@ At the selected point, Gaussian variance falls from
 feasibility is \CanonicalMVOperationalFeasible. The allocation changes by
 \DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
 evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\) and
-the Selected Gaussian mean--variance policy has loss-CVaR
+the selected Gaussian mean--variance policy has loss-CVaR
 \(\$\,\DiversificationGaussianCVaR\), exceeding the common ceiling
 \(\$\,\DiversificationRiskCeiling\) by \(\$\,\DiversificationCeilingGap\).
 Its risk-ceiling feasibility is \CanonicalMVRiskFeasible.
 The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
 by \(\$\,\DiversificationTailGap\). The weak and strong failure criteria hold
-over \(\gamma\) intervals \(\DiversificationWeakGammaInterval\) and
-\(\DiversificationStrongGammaInterval\), respectively.
+for
+\(\gamma\in[\DiversificationWeakGammaInterval]\) and
+\(\gamma\in[\DiversificationStrongGammaInterval]\), respectively.
 
-Because the tail-aware optimum binds the common CVaR ceiling, its tail
+Because the tail-aware optimum binds the common loss-CVaR ceiling, its tail
 improvement and the Gaussian policy's ceiling violation are numerically equal
 at the selected point; these are therefore two expressions of one tail-risk
 gap, not independent confirmations. Across
@@ -152,7 +154,7 @@ variance reduction, scenario count, seed, dependence, confidence level, risk
 tolerance and marginal family, \DiversificationSensitivityStrongCases{}
 satisfy the strong criterion. The result identifies a specified region in
 which Gaussian variance diversification does not protect the joint lower
-tail; it is not a universal claim.
+tail. Its scope is the specified policy comparison and sensitivity domain.
 
 \begin{figure}[t]
 \centering
@@ -160,7 +162,7 @@ tail; it is not a universal claim.
 \caption{\textbf{Variance diversification can fail in the joint lower tail.}
 \textbf{a}, Complete Gaussian mean--variance frontier, the fixed variance
 reduction target and the resulting failure interval. \textbf{b},
-Solver-derived allocations \(x^0\), \(x^{MV}\) and \(x^T\).
+Optimized allocations \(x^0\), \(x^{MV}\) and \(x^T\).
 \textbf{c}, Student-\(t\) evaluation loss-CVaR for the same policies under a
 common ceiling. The tail-inferiority and ceiling-violation gaps coincide
 numerically because \(x^T\) binds that ceiling. Gaussian and Student-\(t\)
@@ -171,9 +173,9 @@ lower-tail dependence.}
 
 \subsection{Mechanism isolation and policy robustness}
 
-The suitability-proportional, winner-take-all and equal-share policies are
-projected by Eq.~\ref{eq:projection} before evaluation. Suitability
-proportional earns \(\$\,\PolicySuitabilityProfit\) with loss-CVaR
+The score-proportional, winner-take-all and equal-share policies are projected
+by Eq.~\ref{eq:projection} before evaluation. The score-proportional policy
+earns \(\$\,\PolicySuitabilityProfit\) with loss-CVaR
 \(\$\,\PolicySuitabilityCVaR\) and does not
 reverse. The raw winner-take-all prescription \((0,0,1)\) projects to
 \((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
@@ -182,27 +184,28 @@ reverse. The raw winner-take-all prescription \((0,0,1)\) projects to
 \(\$\,\ProjectionWinnerLtwoCVaR\), and does not reverse. Equal share earns
 \(\$\,\PolicyEqualProfit\) with loss-CVaR \(\$\,\PolicyEqualCVaR\). The
 expected-profit endpoint earns \(\$\,\PolicyExpectedProfit\) but violates the
-CVaR ceiling. The full model earns less expected
-profit because it buys certified downside protection.
+loss-CVaR ceiling. The risk restriction lowers expected profit relative to the
+unconstrained expected-profit endpoint.
 
 Projection choice matters for one benchmark. The alternative \(L^1\) rule
 maps the same winner target to
 \((\ProjectionWinnerLoneCorn,\ProjectionWinnerLoneSoy,
-\ProjectionWinnerLoneWheat)\), which reverses the Soybean--Corn pair; both
-projections remain risk-feasible. Suitability-proportional and equal-share
+\ProjectionWinnerLoneWheat)\), which reverses the soybean--corn pair; both
+projections remain risk-feasible. Score-proportional and equal-share
 policies are already feasible and are unchanged. Heuristic reversal is
 therefore reported as projection-sensitive rather than as a property of the
 raw score-winner rule.
 
-The controlled risk experiment uses the Kansas Soybean--Corn score and
+The controlled risk experiment uses the Kansas soybean--corn index and
 margin ordering: soybean has both the higher score and a mean-margin advantage
 of \(\$\,\RiskMeanGap\). A mean-preserving 10\% severe
 soybean drought-or-basis event shifts \(\$\,\RiskShock\) per acre into the
 downside state and compensates non-adverse states exactly. At loose risk
 tolerance, soybean and corn receive \RiskLooseSoy{} and \RiskLooseCorn{};
 under the tight ceiling they receive \RiskTightSoy{} and \RiskTightCorn{}.
-This is a genuine risk-induced pairwise crossing with score and mean order
-held fixed. A probability-by-magnitude sensitivity map evaluates
+Tightening the loss-CVaR ceiling therefore reverses the soybean--corn
+allocation order while preserving the index and expected-margin order. A
+probability-by-magnitude sensitivity map evaluates
 \RiskShockCells{} stress combinations: \RiskShockCrossingCells{} cross,
 \RiskShockNoCrossingCells{} remain feasible without crossing and
 \RiskShockInfeasibleCells{} are infeasible. In the focal cell, the first
@@ -211,20 +214,22 @@ stresses isolate a mechanism; they do not estimate the probability or severity
 of a Kansas farm shock.
 
 The operational experiment holds the score, margin scenarios and a
-deliberately nonbinding risk ceiling fixed. Adding the observed Kansas
-constraint sequence changes active sets but does not by itself reverse the
-Soybean--Corn pair. A controlled soybean rotation-cap path crosses the ranking
-boundary first at cap \OperationalCrossingCap. Null stages are retained; this
-path is a structural mechanism, not an estimate of a private Kansas
+deliberately nonbinding risk ceiling fixed. Adding the baseline calibrated
+constraint sequence changes active sets but does not reverse the
+soybean--corn pair. A controlled soybean rotation-cap path crosses the ranking
+boundary first at cap \OperationalCrossingCap. The preceding stages remain
+non-reversing; the path demonstrates a structural mechanism rather than
+estimating a private Kansas
 constraint (Fig.~\ref{fig:policies}).
 
-Every one-at-a-time sensitivity dimension retains selected pairwise reversal:
+Selected pairwise reversal persists across every one-at-a-time sensitivity
+dimension:
 \(\alpha\), constraint regime, dependence family, dependence parameter,
 marginal family, sample window, scenario count, seed and solver. Strong
 exclusion is structurally inadmissible in those positive-lower-bound runs.
-The all-zero and top-crop-zero analyses make exclusion admissible but retain
-the strong-reversal null across numerical-zero tolerances from \(10^{-8}\) to
-\(10^{-2}\).
+The all-zero and top-crop-zero analyses make exclusion admissible, but no
+strong exclusion reversal occurs across numerical-zero tolerances from
+\(10^{-8}\) to \(10^{-2}\).
 The solver
 comparisons use HiGHS, dual simplex and interior point; scenario counts are
 256, 512 and 1,024; sample windows begin in 2016, 2017 or 2018. These
@@ -236,13 +241,13 @@ replication.
 \includegraphics[width=\textwidth]{figures/issue34/Figure4.pdf}
 \caption{\textbf{Three reversal mechanisms have distinct counterfactual
 signatures.} \textbf{a}, Kansas score and mean-margin ranks separate, so the
-primary top-crop inversion is margin-induced. \textbf{b}, With soybean higher
+primary complete rank reversal is margin-induced. \textbf{b}, With soybean higher
 in both score and mean margin, tightening the shared loss-CVaR ceiling under a
-mean-preserving downside stress crosses the Soybean--Corn allocation order.
+mean-preserving downside stress crosses the soybean--corn allocation order.
 \textbf{c}, Probability-by-magnitude sensitivity distinguishes crossing,
 non-crossing and infeasible stress cells. \textbf{d}, With risk nonbinding,
 tightening only the soybean rotation cap produces an operational crossing;
-all preceding null constraint stages remain in the source data.}
+the preceding constraint stages do not cross the allocation order.}
 \label{fig:policies}
 \end{figure}
 
@@ -274,7 +279,8 @@ restricted complementarity theorem.
 solved value grid.} \textbf{a,b}, Information value under post-signal acreage
 reallocation and shock buffering. \textbf{c,d}, Adjacent-grid
 cross-differences for the same paths, computed as
-\([V(q_2,\phi_2)-V(q_1,\phi_2)]-[V(q_2,\phi_1)-V(q_1,\phi_1)]\).
+\([V(\xi_2,\phi_2)-V(\xi_1,\phi_2)]-
+[V(\xi_2,\phi_1)-V(\xi_1,\phi_1)]\).
 Values are optimized under one shared ex-ante loss-CVaR ceiling.}
 \label{fig:information}
 \end{figure}
@@ -284,15 +290,17 @@ Values are optimized under one shared ex-ante loss-CVaR ceiling.}
 Sixty-four historical resamples re-estimate scores and margins, regenerate
 scenarios and resolve the full optimum. Selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64 resamples, a frequency of
-	\BootstrapProbability. The exact Clopper--Pearson 95\% binomial interval for
-	that resample frequency is
-\([\BootstrapProbabilityLow,\BootstrapProbabilityHigh]\); it is not a
-bootstrap percentile interval or a farm-level prevalence interval. The first-reversal
+\BootstrapProbability. The exact Clopper--Pearson 95\% binomial interval for
+that resample frequency is
+\([\BootstrapProbabilityLow,\BootstrapProbabilityHigh]\). This binomial
+interval describes the frequency among historical resamples rather than a
+farm population. The first-reversal
 risk-tolerance index averages \BootstrapFirstMean{} with interval
 \([\BootstrapFirstLow,\BootstrapFirstHigh]\), revealing substantial
 uncertainty in the boundary even though reversal itself is common. Mean
 bootstrap allocations are 0.277 for corn, 0.527 for soybean and 0.196 for
 winter wheat; their percentile intervals are wide because only eight years
-enter each calibration. This is the appropriate limitation to emphasize:
-the qualitative reversal is stable, while its exact frontier and crop shares
-remain imprecise.
+enter each calibration. The eight-year calibration therefore yields stable
+qualitative reversal but imprecise crop shares and reversal boundaries. The
+external panel next examines score--acreage disagreement beyond the Kansas
+calibration without assigning a causal mechanism to observed acreage.

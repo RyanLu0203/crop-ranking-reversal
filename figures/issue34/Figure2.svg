@@ -358,7 +358,13 @@ L 243.061951 42.48
     <text style="fill: #024e52; font: 700 8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="164.123533" y="29.00685" transform="rotate(-0 164.123533 29.00685)">b</text>
    </g>
    <g id="text_29">
-    <text style="fill: #024e52; font: 7px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="169.970823" y="36.48" transform="rotate(-0 169.970823 36.48)">Student T</text>
+    <!-- Student-$t$ -->
+    <g style="fill: #024e52" transform="translate(169.970823 36.48)">
+     <text>
+      <tspan style="font: 7px 'Arial'" x="0 4.668945 6.61377 10.506836 14.399902 18.292969 22.186035 24.130859" y="-0.90625">Student-</tspan>
+      <tspan style="font: oblique 7px 'DejaVu Sans'" x="26.461914" y="-0.90625">t</tspan>
+     </text>
+    </g>
    </g>
   </g>
   <g id="axes_3">
@@ -735,43 +741,49 @@ L 466.56 161.424
    </g>
    <g id="legend_1">
     <g id="text_58">
-     <text style="fill: #024e52; font: 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="424.598859" y="52.067813" transform="rotate(-0 424.598859 52.067813)">Copula family</text>
+     <text style="fill: #024e52; font: 6px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="423.955875" y="52.067813" transform="rotate(-0 423.955875 52.067813)">Copula family</text>
     </g>
     <g id="line2d_47">
-     <path d="M 424.204594 58.352156
-L 428.844594 58.352156
-L 433.484594 58.352156
+     <path d="M 422.918625 58.352156
+L 427.558625 58.352156
+L 432.198625 58.352156
 " style="fill: none; stroke: #024e52; stroke-width: 1.3; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#m4c0c67408b" x="428.844594" y="58.352156" style="fill: #024e52; stroke: #024e52"/>
+      <use xlink:href="#m4c0c67408b" x="427.558625" y="58.352156" style="fill: #024e52; stroke: #024e52"/>
      </g>
     </g>
     <g id="text_59">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="438.124594" y="60.382156" transform="rotate(-0 438.124594 60.382156)">gaussian</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="436.838625" y="60.382156" transform="rotate(-0 436.838625 60.382156)">Gaussian</text>
     </g>
     <g id="line2d_48">
-     <path d="M 424.204594 66.624406
-L 428.844594 66.624406
-L 433.484594 66.624406
+     <path d="M 422.918625 66.556438
+L 427.558625 66.556438
+L 432.198625 66.556438
 " style="fill: none; stroke: #8a83a0; stroke-width: 1.3; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#mfd4ec9171e" x="428.844594" y="66.624406" style="fill: #8a83a0; stroke: #8a83a0; stroke-linejoin: miter"/>
+      <use xlink:href="#mfd4ec9171e" x="427.558625" y="66.556438" style="fill: #8a83a0; stroke: #8a83a0; stroke-linejoin: miter"/>
      </g>
     </g>
     <g id="text_60">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="438.124594" y="68.654406" transform="rotate(-0 438.124594 68.654406)">student t</text>
+     <!-- Student-$t$ -->
+     <g style="fill: #024e52" transform="translate(436.838625 68.586438)">
+      <text>
+       <tspan style="font: 5.8px 'Arial'" x="0 3.835205 5.432739 8.630615 11.828491 15.026367 18.224243 19.821777" y="-0.625">Student-</tspan>
+       <tspan style="font: oblique 5.8px 'DejaVu Sans'" x="21.736572" y="-0.625">t</tspan>
+      </text>
+     </g>
     </g>
     <g id="line2d_49">
-     <path d="M 424.204594 74.828688
-L 428.844594 74.828688
-L 433.484594 74.828688
+     <path d="M 422.918625 74.831406
+L 427.558625 74.831406
+L 432.198625 74.831406
 " style="fill: none; stroke: #33c5b2; stroke-width: 1.3; stroke-linecap: square"/>
      <g>
-      <use xlink:href="#m870b5b603c" x="428.844594" y="74.828688" style="fill: #33c5b2; stroke: #33c5b2; stroke-linejoin: miter"/>
+      <use xlink:href="#m870b5b603c" x="427.558625" y="74.831406" style="fill: #33c5b2; stroke: #33c5b2; stroke-linejoin: miter"/>
      </g>
     </g>
     <g id="text_61">
-     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="438.124594" y="76.858688" transform="rotate(-0 438.124594 76.858688)">clayton</text>
+     <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="436.838625" y="76.861406" transform="rotate(-0 436.838625 76.861406)">Clayton</text>
     </g>
    </g>
   </g>
@@ -813,18 +825,18 @@ z
 " style="fill: #024e52; stroke: #024e52; stroke-linejoin: miter"/>
    </g>
    <g id="text_66">
-    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="154.663937" y="202.773281" transform="rotate(-0 154.663937 202.773281)">Complete</text>
+    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="154.663937" y="202.773281" transform="rotate(-0 154.663937 202.773281)">Complete rank</text>
    </g>
    <g id="patch_23">
-    <path d="M 187.605219 202.773281
-L 195.725219 202.773281
-L 195.725219 198.713281
-L 187.605219 198.713281
+    <path d="M 200.498437 202.773281
+L 208.618437 202.773281
+L 208.618437 198.713281
+L 200.498437 198.713281
 z
 " style="fill: url(#h067b671d93); stroke: #8a83a0; stroke-linejoin: miter"/>
    </g>
    <g id="text_67">
-    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="200.365219" y="202.773281" transform="rotate(-0 200.365219 202.773281)">Strong unavailable†</text>
+    <text style="fill: #024e52; font: 5.8px 'Arial', 'DejaVu Sans', 'Liberation Sans', sans-serif; text-anchor: start" x="213.258437" y="202.773281" transform="rotate(-0 213.258437 202.773281)">Strong exclusion unavailable†</text>
    </g>
   </g>
  </g>

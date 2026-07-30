@@ -24,9 +24,10 @@
 \section{Definitions and complete model notation}
 
 Pairwise reversal is \(s_i>s_j,\ x_i<x_j\). Complete rank reversal means that
-the top-ranked crop receives less than every lower-ranked crop. Strong reversal
-uses exclusion: \(s_i>s_j,\ x_i=0<x_j\). These definitions separate a strict
-allocation-order inversion from complete exclusion of the higher-ranked crop.
+the top-ranked crop receives less than every lower-ranked crop. Strong
+exclusion reversal requires \(s_i>s_j,\ x_i=0<x_j\). These definitions
+separate an allocation-order reversal from exclusion of the higher-ranked
+crop.
 
 \begin{longtable}{p{2.2cm}p{11.8cm}}
 \toprule
@@ -39,7 +40,7 @@ Symbol & Definition\\
 \endhead
 \(i=1,\ldots,n\) & crop index\\
 \(\omega\) & joint price--yield--cost state\\
-\(s_i\) & external pre-decision agronomic or predictive score\\
+\(s_i\) & pre-decision historical relative-yield performance index\\
 \(x_i\) & planted area or normalized land share\\
 \(\widetilde P_i,\widetilde Y_i,\widetilde C_i\) & stochastic price, yield and cost\\
 \(\widetilde\pi_i\) & stochastic per-acre margin
@@ -52,20 +53,26 @@ Symbol & Definition\\
 \(K,k\) & contractual-minimum rows and requirements\\
 \(G,h\) & shared-capacity rows and limits\\
 \(\ell,u\) & crop-specific lower and upper area bounds\\
-\(\alpha\) & CVaR confidence level\\
+\(\alpha\) & loss-CVaR confidence level\\
 \(\kappa\) & loss-CVaR ceiling\\
 \(\rho\) & normalized risk-tolerance path index\\
+\(\eta\) & loss-CVaR-ceiling multiplier\\
+\(\nu^A,\nu^B,\nu^R\) & land, budget and rotation multipliers\\
+\(\nu^K,\nu^G\) & sign-converted contract and shared-capacity multipliers\\
+\(\nu^\ell,\nu^u\) & lower- and upper-bound multipliers\\
 \(\mathcal X\) & operational feasible set\\
 \(\mathcal S_\kappa\) & complete optimal set under ceiling \(\kappa\)\\
 \(\sigma\) & deterministic selector for one reported optimum\\
 \(\theta\) & parameter along a named joint-law family\\
+\(\xi\) & signal accuracy\\
 \(\phi\) & operational-flexibility or buffering parameter\\
 \bottomrule
 \end{longtable}
 
 \section{Full finite-scenario linear programme}
 
-For scenario probabilities \(w_m>0\) summing to one, the implemented primal is
+For scenario probabilities \(w_m>0\) summing to one, the finite-scenario
+formulation is
 \begin{align}
 \max_{x,v,q}\quad & \mu^\top x\\
 \text{s.t.}\quad
@@ -77,8 +84,8 @@ For scenario probabilities \(w_m>0\) summing to one, the implemented primal is
 &-\pi_m^\top x-v-q_m\le0,\qquad m=1,\ldots,M,\\
 &q_m\ge0,\qquad v\in\R.
 \end{align}
-There is no hidden penalty term and no post-solution adjustment of the
-optimized policy.
+The objective contains expected profit only; risk and operational effects
+enter through the explicit constraints.
 
 \subsection{Heuristic-policy comparison set and projection}
 
@@ -89,7 +96,7 @@ For raw heuristic \(x^h\), the principal comparison allocation is
 \]
 subject to \(\ind^\top x=1\), the crop lower and upper bounds, operating
 budget, corn rotation cap, soybean contract minimum, planting-labour capacity
-and harvest-equipment capacity. Idle land is not allowed. The CVaR ceiling is
+and harvest-equipment capacity. Idle land is not allowed. The loss-CVaR ceiling is
 not included in this projection set; projected policies are evaluated against
 it afterwards. The unweighted objective is strictly convex, so the Euclidean
 projection is unique. SLSQP uses objective tolerance \(10^{-10}\), followed by
@@ -103,12 +110,12 @@ only benchmark comparison policies, not any optimized model solution.
 
 \subsection{KKT equations}
 
-Let \(\eta\) be the CVaR-ceiling multiplier, \(t_m\) the multiplier for
+Let \(\eta\) be the loss-CVaR-ceiling multiplier, \(t_m\) the multiplier for
 scenario excess row \(m\), and \(z_m\) the multiplier on \(q_m\ge0\). Together
 with the operational multipliers defined in the main text, stationarity is
 \begin{align}
-0={}&-\mu+\gamma\ind+\beta c+R^\top\rho-K^\top\chi+
-G^\top\lambda-a+b-\sum_mt_m\pi_m,\\
+0={}&-\mu+\nu^A\ind+\nu^B c+R^\top\nu^R-K^\top\nu^K+
+G^\top\nu^G-\nu^\ell+\nu^u-\sum_mt_m\pi_m,\\
 0={}&\eta-\sum_mt_m,\\
 0={}&\frac{\eta w_m}{1-\alpha}-t_m-z_m,\qquad m=1,\ldots,M.
 \end{align}
@@ -157,17 +164,17 @@ therefore form a complete certificate.
 For the population convex formulation, write the Lagrangian using loss-CVaR
 as a convex function. Under Slater's condition or another convex constraint
 qualification, KKT conditions are necessary; convexity makes them sufficient.
-Pairwise subtraction of acreage stationarity cancels \(\gamma\) but leaves
+Pairwise subtraction of acreage stationarity cancels \(\nu^A\) but leaves
 budget, rotation, contract, shared-resource and bound terms. No algebraic
 operation on this local equality recovers an acreage ordering without the
 global feasible geometry.
 
 \subsection{Proof of named-family ordering}
 
-For integrable random losses, CVaR is a law-invariant coherent risk measure and
+For integrable random losses, loss-CVaR is a law-invariant coherent risk measure and
 is monotone under convex order. Thus
 \(L_{\theta_1}(x)\preceq_{\mathrm{cx}}L_{\theta_2}(x)\) implies the stated
-CVaR inequality at each \(x\). Pointwise inequality gives containment of the
+loss-CVaR inequality at each \(x\). Pointwise inequality gives containment of the
 two risk sublevel sets. Maximizing the same expected-profit objective over
 nested sets gives the optimal-value order. Coordinate monotonicity does not
 follow because the supporting face can change when the feasible set contracts.
@@ -182,7 +189,7 @@ constant policy also attains the informed optimum, proving zero value. If
 unique posterior optima differ on events with positive probability and at
 least one difference is strict, expected improvement is positive. This
 posterior-optimum strictness step is not applied when contingent actions share
-a binding ex-ante CVaR budget.
+a binding ex-ante loss-CVaR budget.
 
 Increasing differences and nested action sets yield monotone posterior actions
 under standard monotone comparative statics. Strictness on a positive-
@@ -196,11 +203,11 @@ continuous along the contraction path, it must decline somewhere. Those
 intervals are substitutive. Total optimized value may still rise with
 \(\phi\).
 
-For the complete shared-CVaR numerical programme, interaction is classified
+For the complete shared ex-ante loss-CVaR numerical programme, interaction is classified
 without extending that theorem:
 \[
-\Delta_{q,\phi}V=[V(q_2,\phi_2)-V(q_1,\phi_2)]
--[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\Delta_{\xi,\phi}V=[V(\xi_2,\phi_2)-V(\xi_1,\phi_2)]
+-[V(\xi_2,\phi_1)-V(\xi_1,\phi_1)].
 \]
 The sign is computed on each adjacent grid rectangle.
 
@@ -211,7 +218,7 @@ The sign is computed on each adjacent grid rectangle.
 \caption{Kansas calibration and primary allocation.}
 \begin{tabular}{lrrrr}
 \toprule
-Crop & score & mean margin & margin s.d. & full-model share\\
+Crop & performance index & mean margin & margin s.d. & full-model share\\
  & & \multicolumn{2}{c}{real 2024 US\$ per acre} &\\
 \midrule
 Corn & \ScoreCorn & \MarginCorn & 94.9 & \PrimaryCorn\\
@@ -252,7 +259,7 @@ Total land is 1.0, operating budget is US\$330, planting-labour capacity is
 \toprule
 Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
 \midrule
-Suitability proportional, Euclidean & \PolicySuitabilityCorn &
+Score proportional, Euclidean & \PolicySuitabilityCorn &
 \PolicySuitabilitySoy & \PolicySuitabilityWheat &
 \PolicySuitabilityProfit & \PolicySuitabilityCVaR & yes\\
 Winner take all, Euclidean & \ProjectionWinnerLtwoCorn &
@@ -264,7 +271,7 @@ Expected profit & \PolicyExpectedCorn & \PolicyExpectedSoy &
 \PolicyExpectedWheat & \PolicyExpectedProfit & \PolicyExpectedCVaR & no\\
 Full loss-CVaR & \PrimaryCorn & \PrimarySoy & \PrimaryWheat &
 \PrimaryProfit & \PrimaryCVaR & yes\\
-Minimum-CVaR endpoint & \PolicyMinimumCorn & \PolicyMinimumSoy &
+Minimum loss-CVaR endpoint & \PolicyMinimumCorn & \PolicyMinimumSoy &
 \PolicyMinimumWheat & \PolicyMinimumProfit & \PolicyMinimumCVaR & yes\\
 \bottomrule
 \end{tabular}
@@ -272,7 +279,7 @@ Minimum-CVaR endpoint & \PolicyMinimumCorn & \PolicyMinimumSoy &
 
 The expected-profit endpoint is reported as an endpoint rather than as a
 mean--variance comparison policy. The diversification comparison uses one
-Selected Gaussian mean--variance policy.
+selected Gaussian mean--variance policy.
 Its \(x^0\) is the matched-Gaussian expected-profit allocation; all
 \DiversificationFrontierPoints{} points over \(\gamma\in[0,0.03]\) are solved;
 and \(x^{MV}\) is the first point to attain the fixed
@@ -280,14 +287,15 @@ and \(x^{MV}\) is the first point to attain the fixed
 reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \(x^T\), and Student-\(t\) evaluation loss-CVaR is
 \(\$\,\DiversificationTailGap\) higher. The weak and strong criteria hold over
-\(\gamma\) intervals \DiversificationWeakGammaInterval{} and
-\DiversificationStrongGammaInterval{}. Because \(x^T\) binds the common
+\(\gamma\in[\DiversificationWeakGammaInterval]\) and
+\(\gamma\in[\DiversificationStrongGammaInterval]\), respectively. Because
+\(x^T\) binds the common
 ceiling, the tail-inferiority and ceiling-violation gaps are numerically
 dependent.
 
 \begin{table}[h]
 \centering\small
-\caption{Canonical Selected Gaussian mean--variance policy. Operational
+\caption{Selected Gaussian mean--variance policy. Operational
 feasibility applies to the common full-investment set; risk feasibility is
 evaluated under the Student-\(t\) law.}
 \begin{tabular}{lrrrr}
@@ -339,55 +347,58 @@ to \((\ProjectionWinnerLoneCorn,\ProjectionWinnerLoneSoy,
 compared with the Euclidean allocation
 \((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
 \ProjectionWinnerLtwoWheat)\). Both are risk-feasible, but only the \(L^1\)
-allocation reverses the Soybean--Corn pair. The score-winner reversal
+allocation reverses the soybean--corn pair. The score-winner reversal
 classification is therefore projection-sensitive.
 
 One-factor sensitivity contains \DiversificationSensitivityCases{} cases
 covering scenario count, seed, Kendall's \(\tau\), Student-\(t\) copula degrees
-of freedom, CVaR confidence level, risk-ceiling location, evaluation-law
+of freedom, loss-CVaR confidence level, risk-ceiling location, evaluation-law
 marginal specification and the 10\%, 15\% and 20\% selection targets.
 \DiversificationSensitivityStrongCases{} cases satisfy the selected-policy
-weak and strong criteria. The retained null is the 20\% target, which selects
-\(\gamma=0.0089\), just beyond the focal strong-failure interval; its positive
+weak and strong criteria. Under the 20\% target, the selected value
+\(\gamma=0.0089\) lies just beyond the focal strong-failure interval; its positive
 tail gap is smaller than the declared risk tolerance
 \(\varepsilon_r\).
 
 \section{Phase-diagram summary}
 
-The mechanism-isolation outputs retain every evaluated cell. In the margin
-layer, top-ranked winter wheat has the lowest public-data mean margin and
-the expected-profit endpoint is already completely inverted; CVaR raises its
-share. In the risk layer, Soybean has the higher score and mean margin, while
+The mechanism-isolation analysis covers every evaluated parameter
+combination. In the margin layer, top-ranked winter wheat has the lowest
+public-data mean margin and
+the expected-profit endpoint already has a complete rank reversal; loss-CVaR
+raises its share. In the risk layer, soybean has the higher index and mean
+margin, while
 a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
 the loose-to-tight allocation crossing reported in the main text. Across the
 probability-by-magnitude map, \RiskShockCrossingCells{} of
 \RiskShockCells{} cells cross, \RiskShockNoCrossingCells{} remain feasible
 without crossing and \RiskShockInfeasibleCells{} are infeasible. In the
-operational layer, the observed constraint-addition sequence and its null
-crossing result precede the complete soybean rotation-cap grid; the first
-crossing is at \OperationalCrossingCap. These controlled paths do not estimate
-the prevalence of either mechanism.
+operational layer, the baseline calibrated constraint sequence remains
+non-reversing before the soybean rotation-cap path is evaluated; the first
+crossing is at \OperationalCrossingCap. These controlled paths demonstrate
+mechanisms rather than their population frequency.
 
 Across all \PhaseCells{} principal cells, selected pairwise reversal occurs in
 \PhaseReversal{} and selected complete rank reversal in \PhaseComplete.
 Strong exclusion is structurally inadmissible because every crop has a
-positive lower bound; its zero is not interpreted as a discovered phase
-frequency. Complete family-by-\(\tau\) tables, all three ranked-pair face
-extrema and possible, universal and selected classifications are retained for
-every cell.
+positive lower bound. Complete family-by-\(\tau\) tables report all three
+ranked-pair face extrema and possible, universal and selected classifications
+for every parameter combination.
 
 \begin{table}[h]
 \centering\small
 \caption{Lower-bound sensitivity at numerical-zero tolerance \(10^{-4}\).
-The principal strong count is structural; the relaxed-specification counts
-are testable null results.}
+The principal strong exclusion count is structurally unavailable; the relaxed
+specifications permit exclusion.}
 \begingroup
-\setlength{\tabcolsep}{3.5pt}
+\setlength{\tabcolsep}{2.2pt}
 \begin{tabular}{>{\raggedright\arraybackslash}p{4.0cm}rrrrrr}
 \toprule
-Lower-bound specification & pairwise & complete &
-\shortstack{selected\\strong} &
-\shortstack{possible\\strong} & \shortstack{universal\\strong} &
+Lower-bound specification & \shortstack{pairwise\\reversal} &
+\shortstack{complete rank\\reversal} &
+\shortstack{selected\\strong exclusion} &
+\shortstack{possible\\strong exclusion} &
+\shortstack{universal\\strong exclusion} &
 \shortstack{multiple/\\infeasible}\\
 \midrule
 Positive crop minima & \PhaseReversal & \PhaseComplete & structural &
@@ -395,7 +406,7 @@ structural & structural & \PhaseMultiple/0\\
 All crop minima zero & \AllZeroPairwise & \AllZeroComplete &
 \AllZeroStrong & \AllZeroPossibleStrong & \AllZeroUniversalStrong &
 \AllZeroMultiple/\AllZeroInfeasible\\
-Top-crop minimum zero & \TopZeroPairwise & \TopZeroComplete &
+Highest-ranked crop minimum zero & \TopZeroPairwise & \TopZeroComplete &
 \TopZeroStrong & \TopZeroPossibleStrong & \TopZeroUniversalStrong &
 \TopZeroMultiple/\TopZeroInfeasible\\
 \bottomrule
@@ -407,31 +418,34 @@ Top-crop minimum zero & \TopZeroPairwise & \TopZeroComplete &
 \centering
 \includegraphics[width=\textwidth]{figures/issue34/SupplementaryFigure1.pdf}
 \caption{\textbf{Lower-bound sensitivity makes crop exit admissible but does
-not produce strong exclusion on the evaluated grid.} \textbf{a}, Minimum
+not produce strong exclusion reversal on the evaluated grid.} \textbf{a}, Minimum
 winter-wheat allocation over the complete optimal face under the principal,
-all-zero and top-crop-zero lower-bound specifications. All remain bounded away
-from numerical zero. \textbf{b}, Selected pairwise, complete and strong counts
+all-zero and highest-ranked-crop-zero lower-bound specifications. All remain bounded away
+from numerical zero. \textbf{b}, Selected pairwise reversal, complete rank
+reversal and strong exclusion reversal counts
 at tolerance $10^{-4}$. Hatching marks the principal strong count as
-structurally unavailable; the two relaxed strong counts are genuine null
-results. All 165 cells per specification are retained.}
+structurally unavailable; neither relaxed specification produces strong
+exclusion reversal. All 165 parameter combinations are shown for each
+specification.}
 \label{fig:lower-bound-sensitivity}
 \end{figure}
 
 No selected, possible or universal exclusion is found after crop exit becomes
-admissible. Hence no first strong-reversal boundary, excluded crop or active
+admissible. Hence no first strong exclusion reversal boundary, excluded crop or active
 constraint at an exclusion transition exists on the evaluated grid. The
-minimum selected top-crop share under all-zero bounds is \AllZeroMinTop.
+minimum selected highest-ranked-crop share under all-zero bounds is
+\AllZeroMinTop.
 
 \section{Robustness and uncertainty}
 
-The one-at-a-time robustness file reports selected pairwise and selected complete
-classifications separately for confidence level,
+The one-at-a-time robustness analysis reports selected pairwise and selected
+complete rank reversal classifications separately for confidence level,
 constraint regime, dependence family and parameter, marginal law, sample
 window, scenario count, random seed and solver. Its strong classification is
 structurally unavailable because all crop lower bounds are positive. In the
-all-zero and top-crop-zero phases, strong reversal remains absent for every
-zero tolerance from \(10^{-8}\) to \(10^{-2}\); pairwise and complete counts
-change only at the coarser ordering tolerances reported in the source table.
+all-zero and highest-ranked-crop-zero phases, strong exclusion reversal remains
+absent for every zero tolerance from \(10^{-8}\) to \(10^{-2}\); pairwise and
+complete rank reversal counts change only at the coarser ordering tolerances.
 
 The 64 historical bootstrap replications produce mean shares 0.277 for corn,
 0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals
@@ -439,12 +453,12 @@ are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. Reversal probability
 is treated separately: selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64
 resamples. Its exact Clopper--Pearson binomial interval is
-[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]; this is not a
-percentile bootstrap interval. The first-reversal
+[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]. The interval describes
+the binomial frequency among resamples. The first-reversal
 index mean is \BootstrapFirstMean{} with interval
 [\BootstrapFirstLow,\BootstrapFirstHigh]. The broad boundary interval is
-consistent with an eight-year calibration and is not hidden by the large
-number of simulated scenarios.
+consistent with an eight-year calibration; simulated scenarios do not add
+independent historical information.
 
 \section{Information--flexibility details}
 
@@ -485,15 +499,16 @@ The leakage-free relative-yield specification uses 651 crop-transition rows.
 Its prior-leader effect is \LaggedEffect{} with interval
 [\LaggedLow,\LaggedHigh]. The estimand is descriptive because the panel does
 not observe farm objectives, local prices or costs, credit, rotation history,
-contracts, risk preferences or received forecasts. State acreage is never
-substituted for an optimizer output.
+contracts, risk preferences or received forecasts. The state acreage panel is
+therefore used for descriptive comparison rather than as an optimized
+allocation.
 
 \section{Data availability}
 
 The analysis uses public USDA NASS, USDA ERS and US Bureau of Labor Statistics
 files joined by crop and year. The public source reports, analysis-ready
 tables and figure source data needed to reproduce the reported results will be
-deposited in a versioned public archive upon publication. No confidential
+deposited in a public archive upon publication. No confidential
 farm-level data are used.
 
 \section{Code availability}

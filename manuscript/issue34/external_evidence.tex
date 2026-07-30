@@ -20,7 +20,7 @@ inversion intensity and whether the top-ranked crop differs from the acreage
 leader. State-cluster bootstrap intervals preserve within-state serial
 dependence.
 
-\subsection{Descriptive prevalence and definition sensitivity}
+\subsection{Descriptive frequency and definition sensitivity}
 
 Top-rank disagreement is \RelativeYieldRate{} for relative yield,
 \RevenueRate{} for standardized revenue, \OperatingMarginRate{} for operating
@@ -32,28 +32,28 @@ cannot be interpreted as profit inefficiency, while a margin-based
 disagreement remains incomplete because local basis, heterogeneous costs,
 contracts, beliefs and risk limits are unobserved.
 
-The leakage-free temporal check uses prior relative-yield potential to predict
+The leakage-free temporal check uses the prior relative-yield index to predict
 the following change in acreage share with crop, state and decision-year fixed
 effects. It includes 651 crop-transition rows. The estimated effect is
 \LaggedEffect{} share units with interval
 \([\LaggedLow,\LaggedHigh]\), which includes zero. Thus the panel does not
-show that a crop's earlier score leadership leads to a larger next-year share
+show that a crop's earlier index leadership leads to a larger next-year share
 change. This null is consistent with many mechanisms, including persistent
-rotations, adjustment cost and a score that does not measure private profit;
+rotations, adjustment cost and an index that does not measure private profit;
 it is not evidence that agronomic information has no value.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/issue34/Figure6.pdf}
-\caption{\textbf{Resampling quantifies short-record sensitivity, not
-farm-level prevalence.} \textbf{a}, Top-rank disagreement rates and
+\caption{\textbf{Resampling quantifies short-record sensitivity.}
+\textbf{a}, Top-rank disagreement rates and
 state-cluster bootstrap distributions in \StateYears{} state-years. Half
-densities use all 5,000 draws, dots show a fixed 72-draw display subset, thick
+densities use all 5,000 draws, dots show 72 displayed bootstrap draws, thick
 bars show the interquartile range and white ticks the median; diamonds and thin
 bars are the observed estimates and bootstrap 95\% intervals. \textbf{b},
 Selected pairwise reversal occurs in \BootstrapReversalCount{} of 64
 historical resamples; the bar is the exact Clopper--Pearson 95\% binomial
-interval. \textbf{c}, Leakage-free lagged association between prior score
+interval. \textbf{c}, Leakage-free lagged association between prior index
 leadership and next-year acreage-share change, shown with the same bootstrap
 distribution grammar as panel a.}
 \label{fig:external}
@@ -61,12 +61,13 @@ distribution grammar as panel a.}
 
 \subsection{Evidence boundary}
 
-The external layer validates three limited propositions. Score--acreage
-disagreement exists at a meaningful scale; it varies across definitions; and
-aggregate data do not show a leakage-free lagged response to the genuine
-relative-yield score. It does not identify the full model's CVaR mechanism,
-estimate private risk aversion, reveal the active constraint set, or establish
-welfare. Those claims require farm-level expectations, resource capacities,
-contract terms and decision timing. Treating the state panel as descriptive
-is not a weakness to hide; it prevents aggregate acreage from being used to
-``confirm'' a mechanism that it cannot identify.
+The state panel documents score--acreage disagreement and its sensitivity to
+the ranking definition. It also yields no detectable leakage-free lagged
+association between prior relative-yield leadership and the following change
+in acreage share. Aggregate state data do not identify the model's loss-CVaR
+mechanism, private risk preferences, active constraints or welfare effects.
+Identification of those quantities requires farm-level expectations, resource
+capacities, contract terms and decision timing. The evidence is therefore
+interpreted as descriptive disagreement rather than a causal test of the
+mechanisms. These identification boundaries determine the managerial and
+policy implications developed next.

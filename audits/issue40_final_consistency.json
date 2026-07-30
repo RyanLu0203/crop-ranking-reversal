@@ -75,8 +75,9 @@
     }
   },
   "language_scan": {
-    "revision-history semantics": [],
-    "workflow metadata": []
+    "defensive implementation language": [],
+    "prohibited workflow terms": [],
+    "revision-history semantics": []
   },
   "status": "PASS",
   "strong_reversal": {

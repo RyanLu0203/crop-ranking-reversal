@@ -42,16 +42,16 @@ from \(x_1<x_2\Longleftrightarrow z<A/2\). Under upper-half monotonicity,
 the lowest risk on that half is attained at \(A/2\), giving the last
 equivalence. \(\square\)
 
-The theorem is narrow by design. It characterizes acreage directly while
-retaining expected-margin ordering, operational bounds and the full joint
-loss law. If \(r_\theta(A/2)\) is continuous and strictly increasing along a
-named family and crosses \(\kappa\), there is a unique family-specific
+The theorem applies to a fixed-land two-crop model with ordered expected
+margins, operational bounds and a nonempty risk-feasible set. If
+\(r_\theta(A/2)\) is continuous and strictly increasing along a specified
+dependence path and crosses \(\kappa\), there is a unique family-specific
 threshold \(\theta^*\) solving
 \(r_{\theta^*}(A/2)=\kappa\). Without strict monotonicity or crossing, the
-scientific object is the reversal set
+reversal set is
 \(\{\theta:\sup\mathcal K_{\theta,\kappa}<A/2\}\); it may contain several
-components. This is why a universal ``higher tail dependence causes
-reversal'' statement is not valid.
+components. Higher tail dependence therefore need not produce a monotone or
+universal reversal response.
 
 \subsection{Full-model optimality and selection}
 
@@ -65,12 +65,12 @@ satisfy primal feasibility, dual feasibility, stationarity
 Eq.~\ref{eq:kkt} and complementarity.
 \end{theorem}
 
-The proof follows convex KKT sufficiency or, in the implemented model, linear
-programming strong duality. The theorem matters because incomplete
-stationarity can assign a residual margin difference to ``risk'' even when
-budget, contract or shared capacity is active. It also clarifies the role of
-multiple optima. KKT validates a point; optimal-face analysis determines whether the
-ranking relation holds throughout all equivalent optima.
+The proof follows convex KKT sufficiency or finite-dimensional linear
+programming strong duality. Incomplete stationarity can assign a residual
+margin difference to ``risk'' even when budget, contract or shared capacity is
+active. KKT provides pointwise optimality conditions; optimal-face analysis
+determines whether the ranking relation holds throughout all equivalent
+optima.
 
 \subsection{Dependence paths}
 
@@ -88,18 +88,19 @@ If the domain is all of \(\mathcal X\), the risk-feasible set under
 profit cannot increase. Individual crop shares need not be monotone.
 \end{proposition}
 
-CVaR is monotone in convex order, yielding the risk and feasible-set
+Loss-CVaR is monotone in convex order, yielding the risk and feasible-set
 inclusions. But set inclusion does not order coordinates of different
 optimizers. We therefore report Gaussian, Student-\(t\) and Clayton results
-family by family, and we retain active-set transitions, multiple optima and
+family by family, including active-set transitions, multiple optima and
 disconnected regions.
 
 \subsection{An executable diversification-failure criterion}
 
-Let \(x^{MV}\) denote the \emph{Selected Gaussian mean--variance policy}: the
-first solved point on the declared Gaussian frontier that attains the fixed
-15\% variance-reduction target relative to \(x^0\). Let \(x^T\) be the full
-loss-CVaR optimum under the declared tail law.
+Let \(x^{MV}\) denote the \emph{selected Gaussian mean--variance policy}: the
+first point on the specified Gaussian frontier that attains a 15\%
+variance-reduction target relative to the expected-profit benchmark \(x^0\).
+Let \(x^T\) denote the tail-aware policy under the Student-\(t\) evaluation
+law.
 
 \begin{definition}[Diversification failure]
 Conventional diversification fails when
@@ -125,20 +126,20 @@ If \(x^T\) is feasible and the preceding three conditions hold,
 violates the declared risk ceiling.
 \end{proposition}
 
-This statement is logically modest but empirically useful. It separates
-variance reduction, matched Gaussian dependence, evaluation-law loss-CVaR and
-allocation disagreement. It does not assert that every diversified portfolio
-fails or that tail dependence can be summarized by one coefficient. If
+The criterion separates Gaussian variance reduction, allocation disagreement
+and downside-risk infeasibility under the heavy-tail evaluation law. It
+applies to the specified benchmark comparison rather than every diversified
+portfolio. If
 \(\CVaR_{\alpha,T}[L(x^T)]=\kappa\), the tail-inferiority and ceiling-violation
 inequalities coincide numerically and must not be counted as independent
 evidence.
 
 \subsection{Information, complementarity and substitution}
 
-Nature draws state \(\omega\), produces a noisy signal \(S\), and leaves a
-fraction of the plan adjustable. The producer observes \(S\), chooses a
-signal-contingent action and then realizes margin. Loss-CVaR is evaluated
-ex ante over the combined state--signal distribution.
+A state \(\omega\) is realized and produces a noisy signal \(S\), while a
+fraction of the planting plan remains adjustable. The producer observes
+\(S\), chooses a signal-contingent action and subsequently realizes margin.
+Loss-CVaR is evaluated ex ante over the combined state--signal distribution.
 
 \begin{theorem}[Restricted information value]
 In a posterior-separable model, or when the shared ex-ante risk restriction is
@@ -153,7 +154,7 @@ The constant policy reproduces the no-information solution, proving
 nonnegativity. A common posterior optimum proves zero value. Strict posterior
 improvement integrates to positive value in the stated submodel. It does not
 establish strictness when signal-contingent actions share a binding ex-ante
-CVaR budget. Nested action sets raise both
+loss-CVaR budget. Nested action sets raise both
 informed and uninformed optimized values, but their difference need not be
 monotone.
 
@@ -178,12 +179,14 @@ flexibility substitutes for information there.
 \end{proposition}
 
 These results do not support unconditional supermodularity. For the complete
-shared-ex-ante-CVaR numerical programme we instead compute, on every adjacent
+shared ex-ante loss-CVaR numerical programme we instead compute, on every adjacent
 grid rectangle,
 \[
-\Delta_{q,\phi}V=
-[V(q_2,\phi_2)-V(q_1,\phi_2)]
--[V(q_2,\phi_1)-V(q_1,\phi_1)].
+\Delta_{\xi,\phi}V=
+[V(\xi_2,\phi_2)-V(\xi_1,\phi_2)]
+-[V(\xi_2,\phi_1)-V(\xi_1,\phi_1)].
 \]
 Positive, zero/boundary and negative cross-differences are numerical
-classifications, not an extension of the restricted theorem.
+classifications, not an extension of the restricted theorem. The numerical
+experiments next evaluate the reversal, diversification and
+information--flexibility results under a common calibration.
