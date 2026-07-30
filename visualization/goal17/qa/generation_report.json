@@ -1,0 +1,12 @@
+{
+  "contact_sheets": {
+    "deuteranopia": "visualization/goal17/qa/contact_sheet_deuteranopia.png",
+    "full": "visualization/goal17/qa/contact_sheet_full.png",
+    "grayscale": "visualization/goal17/qa/contact_sheet_grayscale.png",
+    "protanopia": "visualization/goal17/qa/contact_sheet_protanopia.png"
+  },
+  "figures": 8,
+  "manifest": "figures/goal17/figure_manifest.csv",
+  "renderer_bounds_failures": 0,
+  "renderer_title_collisions": 0
+}

@@ -1,0 +1,70 @@
+\section{External descriptive evidence}
+
+\subsection{Purpose and construction}
+
+The external analysis asks whether score--acreage disagreement is visible
+beyond the Kansas calibration. It does not treat observed state acreage as a
+solution to Eq.~\ref{eq:canonical}. USDA NASS annual state reports yield
+\StateYears{} complete state-years across \States{} states from 2016 through
+2024 for corn, soybean and winter wheat. National harvest prices and operating
+and total costs come from USDA ERS, and BLS CPI-U supplies the real-dollar
+conversion. Suppressed or missing acreage and yield are not imputed.
+
+Four ranking definitions are computed before comparison with planted-acreage
+share. Relative yield is state yield divided by same-year national yield.
+Standardized revenue multiplies state yield by national price. Operating
+margin subtracts national operating cost; total-cost margin subtracts total
+cost. The latter three are transparent accounting measures rather than local
+or private expected profits. For each state-year we calculate pairwise
+inversion intensity and whether the top-ranked crop differs from the acreage
+leader. State-cluster bootstrap intervals preserve within-state serial
+dependence.
+
+\subsection{Descriptive frequency and definition sensitivity}
+
+Top-rank disagreement is \RelativeYieldRate{} for relative yield,
+\RevenueRate{} for standardized revenue, \OperatingMarginRate{} for operating
+margin and \TotalCostRate{} for total-cost margin. The corresponding
+state-cluster intervals are all well above zero. The ordering across
+definitions is itself a result: a claim about ranking reversal inherits the
+scientific meaning of the score being ranked. Relative-yield disagreement
+cannot be interpreted as profit inefficiency, while a margin-based
+disagreement remains incomplete because local basis, heterogeneous costs,
+contracts, beliefs and risk limits are unobserved.
+
+The leakage-free temporal check uses the prior relative-yield index to predict
+the following change in acreage share with crop, state and decision-year fixed
+effects. It includes 651 crop-transition rows. The estimated effect is
+\LaggedEffect{} share units with interval
+\([\LaggedLow,\,\LaggedHigh]\), which includes zero. Thus the panel does not
+show that a crop's earlier index leadership leads to a larger next-year share
+change. This null is consistent with many mechanisms, including persistent
+rotations, adjustment cost and an index that does not measure private profit;
+it is not evidence that agronomic information has no value.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/issue34/Figure6.pdf}
+\caption{\textbf{Resampling quantifies short-record sensitivity.}
+\textbf{a}, Top-rank disagreement rates and
+state-cluster bootstrap distributions in \StateYears{} state-years. Half
+densities use all 5,000 draws, dots show 72 displayed bootstrap draws, thick
+bars show the interquartile range and white ticks the median; diamonds and thin
+bars are the observed estimates and bootstrap 95\% intervals. \textbf{b},
+Selected pairwise reversal occurs in \BootstrapReversalCount{} of 64
+historical resamples; the bar is the exact Clopper--Pearson 95\% binomial
+interval. \textbf{c}, Leakage-free lagged association between prior index
+leadership and next-year acreage-share change, shown with the same bootstrap
+distribution grammar as panel a.}
+\label{fig:external}
+\end{figure}
+
+\subsection{Evidence boundary}
+
+The state panel documents score--acreage disagreement across ranking
+definitions. It yields no detectable leakage-free lagged association between
+prior relative-yield leadership and the following acreage-share change.
+Aggregate state data do not identify the model's loss-CVaR mechanism, private
+risk preferences, active constraints or welfare effects. Identification
+requires farm-level expectations, resource capacities, contract terms and
+decision timing. The evidence is descriptive, not causal.

@@ -1,0 +1,9 @@
+ranking_definition,specification,term,estimate,ci_low,ci_high,state_clusters,crop_transitions,design_rank,design_columns,bootstrap_replications,fixed_effects,claim_level
+operating_margin,primary_top,prior_score_top,0.00206894421426,-0.00406073515321,0.00844309808464,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+operating_margin,rank_sensitivity,prior_score_rank,-0.00100545046406,-0.00475819023498,0.00238981041173,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+relative_yield,primary_top,prior_score_top,-0.00416841230383,-0.0122869155688,0.005558466183,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+relative_yield,rank_sensitivity,prior_score_rank,-0.00133298590438,-0.0057382874518,0.00266260650073,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+standardized_revenue,primary_top,prior_score_top,0.00691739681254,-0.0034908976641,0.00953793040661,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+standardized_revenue,rank_sensitivity,prior_score_rank,-0.00511845271327,-0.01642863824,0.00221806021376,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+total_cost_margin,primary_top,prior_score_top,-0.00212806635243,-0.00774042799011,0.00289924310106,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL
+total_cost_margin,rank_sensitivity,prior_score_rank,0.00135449317796,-0.00188496949026,0.00571691265218,31,651,11,11,5000,crop;decision_year;state,DESCRIPTIVE_ASSOCIATION_NOT_CAUSAL

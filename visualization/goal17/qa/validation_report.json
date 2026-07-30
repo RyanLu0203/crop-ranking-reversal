@@ -1,0 +1,11 @@
+{
+  "candidate_concepts": 12,
+  "errors": [],
+  "final_figures": 8,
+  "minimum_font_pt": 5.5,
+  "passed": true,
+  "renderer_bounds_failures": 0,
+  "renderer_title_collisions": 0,
+  "svg_and_pdf_palette_validation": "PASS",
+  "validator": "goal17_visualization"
+}

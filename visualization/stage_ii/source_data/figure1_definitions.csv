@@ -1,0 +1,4 @@
+reversal_type,definition,status
+possible,some optimizer reverses,optimal-face property
+universal,every optimizer reverses,optimal-face property
+selected,reported optimizer reverses,selection dependent

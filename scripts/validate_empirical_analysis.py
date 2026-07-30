@@ -130,7 +130,10 @@ def main() -> int:
     require(len(empirical_parameters) == 5, "empirical parameter registry incomplete")
     require(all(row["config_path"] == "empirical/configs/empirical_design.yaml" for row in empirical_parameters), "empirical parameter config mismatch")
     with (ROOT / "evidence_registry/numbers.csv").open(newline="", encoding="utf-8") as handle:
-        empirical_numbers = [row for row in csv.DictReader(handle) if row["number_id"].startswith("NUM-EMP-")]
+        empirical_numbers = [
+            row for row in csv.DictReader(handle)
+            if row["number_id"].startswith("NUM-EMP-") and row["number_id"].removeprefix("NUM-EMP-").isdigit()
+        ]
     require({row["number_id"] for row in empirical_numbers} == {f"NUM-EMP-{i:03d}" for i in range(1, 7)}, "empirical number registry incomplete")
     for row in empirical_numbers:
         path = ROOT / row["output_file"]

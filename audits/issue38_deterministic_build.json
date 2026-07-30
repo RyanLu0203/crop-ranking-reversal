@@ -1,0 +1,13 @@
+{
+  "byte_identical": true,
+  "first_build_sha256": {
+    "main_manuscript.pdf": "4efc366130f5ebd6874fe5a9f1ba3abf10293c62bb4afa7e509856bae3c8014b",
+    "supplementary_information.pdf": "9463371c961db634ea922cbda85cd232af6b4afc92acb4e186b4f18342fed816"
+  },
+  "second_build_sha256": {
+    "main_manuscript.pdf": "4efc366130f5ebd6874fe5a9f1ba3abf10293c62bb4afa7e509856bae3c8014b",
+    "supplementary_information.pdf": "9463371c961db634ea922cbda85cd232af6b4afc92acb4e186b4f18342fed816"
+  },
+  "source_date_epoch": "1785081600",
+  "status": "PASS"
+}

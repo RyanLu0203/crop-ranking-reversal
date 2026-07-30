@@ -1,0 +1,13 @@
+ranking_definition,year,pairwise_inversions,pairwise_ties,inversion_intensity,top_rank_reversal,score_informative,score_top_crops,acreage_top_crops,claim_level
+relative_yield,2022,0,3,0,False,False,corn;soybeans;winter_wheat,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+relative_yield,2023,0,3,0,False,False,corn;soybeans;winter_wheat,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+relative_yield,2024,0,3,0,False,False,corn;soybeans;winter_wheat,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+standardized_revenue,2022,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+standardized_revenue,2023,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+standardized_revenue,2024,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+operating_margin,2022,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+operating_margin,2023,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+operating_margin,2024,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+total_cost_margin,2022,0,0,0,False,True,corn,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+total_cost_margin,2023,3,0,1,True,True,winter_wheat,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK
+total_cost_margin,2024,3,0,1,True,True,winter_wheat,corn,NATIONAL_DESCRIPTIVE_AGGREGATION_CHECK

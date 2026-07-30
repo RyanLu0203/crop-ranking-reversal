@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple
 
 import numpy as np
 
@@ -56,6 +56,7 @@ def allocation_metrics(
     upper_bounds: Optional[Iterable[float]] = None,
     rotation_caps: Optional[Dict[str, float]] = None,
     contract_minimums: Optional[Dict[str, float]] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
 ) -> Dict[str, float]:
     allocation_arr = np.asarray(list(allocation), dtype=float)
     costs_arr = np.asarray(list(costs), dtype=float)
@@ -90,6 +91,19 @@ def allocation_metrics(
             allocation_arr[names.index(crop)] < float(minimum) - 1e-6
             for crop, minimum in contract_minimums.items()
         ))
+    if shared_capacity_constraints:
+        violations = []
+        for spec in shared_capacity_constraints.values():
+            raw = spec["coefficients"]
+            coefficients = (
+                np.asarray([float(raw.get(name, 0.0)) for name in names])
+                if isinstance(raw, Mapping)
+                else np.asarray(list(raw), dtype=float)
+            )
+            violations.append(
+                float(coefficients @ allocation_arr) > float(spec["capacity"]) + 1e-6
+            )
+        metrics["shared_capacity_violation"] = bool(any(violations))
     for idx, value in enumerate(allocation_arr):
         name = names[idx]
         metrics[f"acres_{name}"] = float(value)
@@ -164,6 +178,7 @@ def constraint_diagnostics(
     crop_names: List[str],
     cvar_loss: Optional[float] = None,
     cvar_limit: Optional[float] = None,
+    shared_capacity_constraints: Optional[Mapping[str, Mapping[str, Any]]] = None,
 ) -> Dict[str, float]:
     x = np.asarray(list(allocation), dtype=float)
     costs_arr = np.asarray(list(costs), dtype=float)
@@ -181,6 +196,18 @@ def constraint_diagnostics(
         for crop, cap in rotation_caps.items():
             idx = crop_names.index(crop)
             diagnostics[f"rotation_slack_{crop}"] = float(cap - x[idx])
+    if shared_capacity_constraints:
+        for name, spec in shared_capacity_constraints.items():
+            raw = spec["coefficients"]
+            coefficients = (
+                np.asarray([float(raw.get(crop, 0.0)) for crop in crop_names])
+                if isinstance(raw, Mapping)
+                else np.asarray(list(raw), dtype=float)
+            )
+            diagnostics[f"shared_capacity_usage_{name}"] = float(coefficients @ x)
+            diagnostics[f"shared_capacity_slack_{name}"] = float(
+                float(spec["capacity"]) - coefficients @ x
+            )
     if cvar_loss is not None and cvar_limit is not None:
         diagnostics["cvar_loss"] = float(cvar_loss)
         diagnostics["cvar_slack"] = float(cvar_limit - cvar_loss)

@@ -1,0 +1,100 @@
+\section{Introduction}
+
+Crop recommendations are often communicated as an order: crop \(i\) is
+preferred to crop \(j\), or a predictive model assigns \(i\) the higher
+performance score. Acreage planning instead requires a vector of land
+commitments before prices, yields and operating conditions are fully known.
+The two orders can differ when margins co-move in adverse years or when
+budgets, rotations, contracts, labour and machinery restrict feasible crop
+shares. A producer may therefore plant less of the highest-ranked crop while
+still using the information contained in the ranking.
+
+We define this event as \emph{crop-ranking reversal}. For \(s_i>s_j\),
+pairwise reversal occurs when \(x_i<x_j\) in an optimized acreage plan. A
+complete rank reversal occurs when the top-ranked crop receives less land than
+every lower-ranked crop. Strong exclusion reversal additionally requires
+\(x_i=0<x_j\). We ask which margin, downside-risk and operational mechanisms
+move an optimum across these ranking boundaries. We also examine whether
+variance diversification protects the lower tail and when information becomes
+more or less valuable as operational flexibility changes.
+
+The analysis keeps the external score separate from the economic objective.
+The Kansas application uses a pre-decision historical relative-yield
+performance index based on state yield relative to same-year national yield.
+Expected margins are constructed independently from yield, national harvest
+price and operating cost. Joint downside risk is represented separately
+because marginal dispersion and rank correlation do not determine joint tail
+exposure. Gaussian, Student-\(t\) and Clayton copulas can share Kendall's
+\(\tau\) while assigning different probabilities to simultaneous crop losses.
+
+Operational feasibility then links economic margins and joint risk to acreage.
+The model maximizes expected profit subject to a loss-CVaR ceiling and a
+polyhedral set containing land, crop bounds, budget, rotation, contract,
+labour and equipment constraints. Its finite-scenario form is a linear
+programme. Optimal-face bounds distinguish reversal that is possible at some
+optimum, universal across all optima or selected by a specified deterministic
+rule. The complete Karush--Kuhn--Tucker system separates downside-risk effects
+from simultaneously active operational constraints.
+
+The first theoretical result characterizes reversal in a fixed-land two-crop
+model. When the higher-ranked crop also has the higher expected margin, its
+optimal share is the right endpoint of the risk-feasible interval. Reversal
+occurs exactly when that endpoint lies below the equal-share allocation. Under
+upper-half risk monotonicity, the criterion reduces to loss-CVaR at equal share
+exceeding the ceiling. A unique dependence threshold additionally requires
+continuity, strict monotonicity and crossing within a specified joint-law
+family. Otherwise, the reversal region can be disconnected.
+
+The Kansas experiment illustrates how the mechanisms differ. In Kansas,
+winter wheat ranks first by the historical relative-yield performance index but has the
+lowest calibrated mean margin and receives the smallest optimized land share.
+The resulting complete rank reversal is margin-induced, while the binding
+loss-CVaR ceiling increases the winter-wheat share and moderates the reversal.
+Separate controlled experiments preserve the soybean--corn score and
+expected-margin order. Tightening the loss-CVaR ceiling produces a
+risk-induced reversal, whereas tightening a soybean rotation cap produces an
+operationally induced reversal. Positive crop minimums preclude strong
+exclusion reversal in the principal specification. Allowing crop exit leaves
+the strong exclusion count at zero on the evaluated grid.
+
+The diversification analysis compares three policies under common operational
+constraints. A selected Gaussian mean--variance policy is the first point on
+the matched-Kendall frontier to meet a fixed \DiversificationTarget\% variance
+reduction relative to the expected-profit benchmark. It reduces Gaussian
+variance but exceeds the Student-\(t\) evaluation-law loss-CVaR ceiling.
+Operationally strong failure occurs for
+\(\gamma\in[\DiversificationStrongGammaInterval]\). Because the tail-aware
+policy binds the common ceiling, tail inferiority and ceiling violation
+measure the same loss-CVaR gap in this experiment.
+
+Information value depends on the action that flexibility enables. Post-signal
+acreage adjustment can make a more accurate pre-plant signal increasingly
+valuable. Shock-buffering flexibility can instead reduce the distinction
+between predicted states and lower the incremental value of information.
+Under the shared ex-ante loss-CVaR model, signed cross-differences classify
+these information--flexibility interactions without extending the theorem
+beyond its separable or nonbinding-risk assumptions.
+
+An external 31-state panel finally assesses descriptive score--acreage
+disagreement. It documents substantial variation across ranking definitions,
+but the lagged association between prior score leadership and next-year
+acreage change includes zero. The panel therefore describes observed
+frequencies without identifying private objectives, constraints or risk
+preferences. Figure~\ref{fig:architecture} summarizes the progression from an
+external score to margins, joint risk, operational feasibility and optimized
+allocation.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/issue34/Figure1.pdf}
+\caption{\textbf{From performance index to risk-constrained operational
+allocation.} \textbf{a}, The index remains external to the profit objective.
+Stochastic margins and their joint law enter expected profit and loss-CVaR,
+while land, budget, rotation, contract and shared-capacity restrictions define
+the feasible set. \textbf{b}, The historical relative-yield performance index
+ranks winter wheat first. \textbf{c}, Mean margins are calculated separately;
+bars show one standard deviation across eight calibration years. \textbf{d},
+The full-model optimum assigns the smallest share to winter wheat, producing a
+selected complete rank reversal without crop exclusion.}
+\label{fig:architecture}
+\end{figure}

@@ -1,0 +1,16 @@
+dataset,tolerance,classified_rows,selected_pairwise_reversal_count,selected_complete_rank_reversal_count,selected_strong_reversal_count
+phase_165_cells,1e-08,165,143,96,0
+robustness,1e-08,32,32,26,0
+historical_bootstrap,1e-08,64,62,50,0
+phase_165_cells,1e-06,165,143,96,0
+robustness,1e-06,32,32,26,0
+historical_bootstrap,1e-06,64,62,50,0
+phase_165_cells,0.0001,165,143,96,0
+robustness,0.0001,32,32,26,0
+historical_bootstrap,0.0001,64,62,50,0
+phase_165_cells,0.001,165,143,96,0
+robustness,0.001,32,32,26,0
+historical_bootstrap,0.001,64,62,50,0
+phase_165_cells,0.01,165,140,93,0
+robustness,0.01,32,32,24,0
+historical_bootstrap,0.01,64,62,49,0

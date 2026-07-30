@@ -1,0 +1,16 @@
+lower_bound_specification,lower_bound_Corn,lower_bound_Soybean,lower_bound_Winter_Wheat,strong_reversal_structurally_inadmissible,near_zero_tolerance,cells,feasible_cells,infeasible_cells,multiple_optimum_cells,selected_pairwise_reversal_cells,possible_pairwise_reversal_cells,universal_pairwise_reversal_cells,selected_complete_rank_reversal_cells,possible_complete_rank_reversal_cells,universal_complete_rank_reversal_cells,selected_strong_reversal_cells,possible_strong_reversal_cells,universal_strong_reversal_cells,minimum_selected_top_crop_allocation,minimum_optimal_face_top_crop_allocation,first_selected_strong_copula_family,first_selected_strong_kendall_tau,first_selected_strong_risk_tolerance,first_selected_strong_excluded_pair,first_selected_strong_active_constraints,first_strong_boundary_status
+principal_positive_lower_bounds,0.05,0.1,0.05,True,1e-08,165,165,0,150,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+principal_positive_lower_bounds,0.05,0.1,0.05,True,1e-06,165,165,0,38,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+principal_positive_lower_bounds,0.05,0.1,0.05,True,0.0001,165,165,0,2,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+principal_positive_lower_bounds,0.05,0.1,0.05,True,0.001,165,165,0,0,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+principal_positive_lower_bounds,0.05,0.1,0.05,True,0.01,165,165,0,0,140,140,140,93,93,93,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+all_zero_lower_bounds,0,0,0,False,1e-08,165,165,0,150,143,143,143,95,95,95,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+all_zero_lower_bounds,0,0,0,False,1e-06,165,165,0,38,143,143,143,95,95,95,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+all_zero_lower_bounds,0,0,0,False,0.0001,165,165,0,2,143,143,143,95,95,95,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+all_zero_lower_bounds,0,0,0,False,0.001,165,165,0,0,143,143,143,95,95,95,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+all_zero_lower_bounds,0,0,0,False,0.01,165,165,0,0,141,141,141,92,92,92,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+highest_ranked_crop_zero_lower_bound,0.05,0.1,0,False,1e-08,165,165,0,150,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+highest_ranked_crop_zero_lower_bound,0.05,0.1,0,False,1e-06,165,165,0,38,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+highest_ranked_crop_zero_lower_bound,0.05,0.1,0,False,0.0001,165,165,0,2,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+highest_ranked_crop_zero_lower_bound,0.05,0.1,0,False,0.001,165,165,0,0,143,143,143,96,96,96,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid
+highest_ranked_crop_zero_lower_bound,0.05,0.1,0,False,0.01,165,165,0,0,140,140,140,93,93,93,0,0,0,0.0700283487798,0.0700283331902,,,,,,none_on_evaluated_grid

@@ -1,0 +1,28 @@
+{
+  "accessibility_modes": [
+    "full",
+    "grayscale",
+    "deuteranopia",
+    "protanopia"
+  ],
+  "approved_palette": "ISSUE34_NATURE_REFERENCE_2026_07_27",
+  "backend": "Python/Matplotlib",
+  "declared_ordinary_font_range_px": [
+    5.4,
+    7.0
+  ],
+  "figure_count": 7,
+  "figure_title_font_px": 9.0,
+  "final_width_mm": 183,
+  "manual_review_status": "PENDING_PAGE_AND_CONTACT_SHEET_INSPECTION",
+  "maximum_svg_font_px": 9.0,
+  "minimum_svg_font_note": "Values below 5 pt are automatic mathematical super/subscripts; ordinary text is constrained to the declared 5.4--7.0 pt range.",
+  "minimum_svg_font_px": 4.06,
+  "panel_label_font_px": 8.0,
+  "readability_widths_mm": [
+    89,
+    183
+  ],
+  "renderer_bounds_failures": 0,
+  "renderer_title_collisions": 0
+}

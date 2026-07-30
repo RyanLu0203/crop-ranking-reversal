@@ -5,8 +5,8 @@
 - Add funding bodies and grant numbers after author verification.
 - Confirm the target journal and adapt its current template, word limits and reporting checklist.
 - Confirm whether each raw public-source snapshot may be redistributed or should be replaced by retrieval instructions in the submission archive.
-- Obtain supervisor decisions on framing, title, target audience and the prominence of the descriptive empirical result.
 - Decide whether to collect farm-level constraints/expectations or extend the state panel before external submission.
-- Increase independent simulation replications under a preregistered revision before promoting reversal prevalence or dependence-region claims.
+- Any future promotion of E1/E3/E4/E5 requires a new preregistered design or added replications; current Stage II status remains adverse.
 - Perform journal-specific language editing, author proof review and final accessibility checks.
+- Preserve the six-colour card and rerun the final-size collision and accessibility validators after any figure or caption change.
 - Re-run the complete clean build after any scientific or metadata change.

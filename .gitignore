@@ -17,6 +17,7 @@ dist/
 *.out
 *.run.xml
 *.synctex.gz
+*.toc
 *.xdv
 tmp/
 scratch/

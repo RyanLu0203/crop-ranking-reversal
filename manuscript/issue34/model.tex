@@ -1,0 +1,135 @@
+\section{Stochastic crop-planning model}
+
+\subsection{Scores, margins and joint uncertainty}
+
+Let \(i=1,\ldots,n\) index crops and \(x_i\) denote planted area. A
+pre-decision historical relative-yield performance index \(s_i\) induces a
+crop order. The index is external to the optimization model; no cardinal
+transformation of \(s\) is used as a margin.
+For state \(\omega\), stochastic per-acre margin and portfolio profit are
+\begin{equation}
+\widetilde\pi_i(\omega)=\widetilde P_i(\omega)\widetilde
+Y_i(\omega)-\widetilde C_i(\omega),\qquad
+\widetilde\Pi(x,\omega)=\sum_i x_i\widetilde\pi_i(\omega).
+\end{equation}
+The joint distribution includes within-crop price--yield dependence and
+cross-crop co-movement. Let \(\mu_i=\E[\widetilde\pi_i]\) and define loss
+\(L(x,\omega)=-\widetilde\Pi(x,\omega)\). A larger loss-CVaR is worse; because
+profitable portfolios can have negative loss-CVaR, ``more negative'' means
+safer under this convention.
+
+\subsection{Operational feasibility}
+
+The operational set is
+\begin{equation}
+\mathcal X=\left\{x\in\R_+^n:
+\ind^\top x\le A,\quad c^\top x\le B,\quad
+Rx\le r,\quad Kx\ge k,\quad Gx\le h,\quad
+\ell\le x\le u\right\}.
+\label{eq:operations}
+\end{equation}
+Here \(A\) is available land, \(c\) and \(B\) describe pre-plant cash
+requirements, \(R\) contains rotation caps, \(K\) contains contract minimums,
+and \(G\) contains shared labour, equipment, irrigation or storage rows. Idle
+land is \(A-\ind^\top x\) and is reported even when it is not assigned a
+separate variable. Together, the constraints define the feasible planting
+decisions before acreage is optimized.
+
+\subsection{Heuristic-policy projection}
+
+Let \(x^h\) be a raw score-proportional, score-winner or equal-share
+prescription. Its principal comparison policy is the unique Euclidean
+projection
+\begin{equation}
+\widehat x^{\,h}_2
+=\operatorname*{arg\,min}_{x\in\mathcal X_h}
+\frac12\lVert x-x^h\rVert_2^2,
+\label{eq:projection}
+\end{equation}
+where \(\mathcal X_h\) imposes \(\ind^\top x=A\), the crop bounds, budget,
+rotation, contract, labour and equipment constraints in
+Eq.~\ref{eq:operations}. Idle land is therefore excluded from the comparison
+set. The loss-CVaR ceiling is not part of the projection; loss-CVaR and risk
+feasibility are evaluated after projection. Strict convexity gives a unique
+principal projection. An unweighted \(L^1\) projection provides a sensitivity
+comparison; on a non-unique \(L^1\)-optimal face, a fixed crop-order weighted
+linear objective selects one allocation deterministically.
+
+\subsection{Loss-CVaR ceiling}
+
+For confidence level \(\alpha\),
+\begin{equation}
+r_\alpha(x)=\CVaR_\alpha[L(x)]
+=\min_{v\in\R}\left\{v+\frac{1}{1-\alpha}
+\E[(L(x)-v)_+]\right\}.
+\end{equation}
+The producer solves
+\begin{equation}
+\max_{x\in\mathcal X}\ \mu^\top x
+\quad\text{subject to}\quad r_\alpha(x)\le\kappa.
+\label{eq:canonical}
+\end{equation}
+For scenarios \(m=1,\ldots,M\) with probabilities \(w_m\), free threshold
+\(v\) and excess variables \(q_m\ge0\), the risk restriction is
+\begin{align}
+v+\frac{1}{1-\alpha}\sum_m w_mq_m&\le\kappa,\\
+q_m&\ge-\pi_m^\top x-v.
+\end{align}
+The resulting programme is linear. The risk ceiling is indexed by
+\(\rho\in[0,\,1]\):
+\begin{equation}
+\kappa(\rho)=\kappa_{\min}+\rho
+\left(\kappa_{\mathrm{EP}}-\kappa_{\min}\right),
+\label{eq:riskpath}
+\end{equation}
+where \(\kappa_{\min}\) is minimum attainable loss-CVaR and
+\(\kappa_{\mathrm{EP}}\) is the loss-CVaR of the unconstrained
+expected-profit endpoint. This makes risk tolerance comparable across joint
+laws without transferring an arbitrary dollar ceiling.
+
+\subsection{Reversal and optimal faces}
+
+\begin{definition}[Pairwise, complete rank and strong exclusion reversal]
+For a pair \(s_i>s_j\), an allocation reverses the ranking if \(x_i<x_j\).
+A complete rank reversal occurs when the highest-ranked crop has less area
+than every lower-ranked crop. A strong exclusion reversal requires
+\(s_i>s_j\) and \(x_i=0<x_j\).
+\end{definition}
+
+Positive crop lower bounds preclude strong exclusion reversal in the principal
+specification. Sensitivity analyses evaluate this outcome after setting either
+all lower bounds or only the highest-ranked crop's lower bound to zero.
+
+Let
+\[
+\mathcal S_\kappa=\argmax\{\mu^\top x:x\in\mathcal X,\,
+r_\alpha(x)\le\kappa\}
+\]
+be the complete optimal set. Reversal is \emph{possible} if it occurs at some
+\(x\in\mathcal S_\kappa\), \emph{universal} if it occurs at every such point,
+and \emph{selected} if it occurs at the point chosen by a specified
+deterministic selector. Pairwise classification follows the minimum and
+maximum of \(x_j-x_i\) on the objective-equivalent face; one optimal vertex
+does not establish universal reversal. Ordering and operational zero use numerical
+tolerances of \(10^{-4}\) normalized land share; sensitivity spans
+\(10^{-8}\) to \(10^{-2}\).
+
+\subsection{Full stationarity system}
+
+Let nonnegative multipliers
+\(\eta,\nu^A,\nu^B,\nu^R,\nu^K,\nu^G,\nu^\ell,\nu^u\)
+correspond to loss-CVaR, land, budget, rotation, sign-converted contract,
+shared capacity, lower bounds and upper bounds. For a loss-CVaR subgradient
+\(d\in\partial r_\alpha(x^*)\), acreage stationarity is
+\begin{equation}
+-\mu+\eta d+\nu^A\ind+\nu^B c+R^\top\nu^R-K^\top\nu^K+
+G^\top\nu^G-\nu^\ell+\nu^u=0.
+\label{eq:kkt}
+\end{equation}
+Pairwise subtraction cancels the common land multiplier but retains budget,
+shared-resource and crop-bound pressures. Equation~\ref{eq:kkt} is a marginal
+balance rather than an acreage-ordering formula. The finite-scenario KKT
+system also includes stationarity for \(v\) and every \(q_m\), including
+fractional tail weights when the loss distribution has atoms. These
+conditions provide the optimality basis for the reversal frontier developed
+next.

@@ -1,0 +1,12 @@
+{
+  "acreage_shares_sum_to_one": true,
+  "bootstrap_replications": 5000,
+  "causal_claims_absent": true,
+  "county_claims_absent": true,
+  "design_frozen": true,
+  "no_duplicate_rows": true,
+  "no_lookahead": true,
+  "status": "PASS",
+  "three_crops_per_state_year": true,
+  "years_contiguous": true
+}

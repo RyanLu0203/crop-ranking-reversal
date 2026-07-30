@@ -1,0 +1,35 @@
+{
+  "figure_count": 6,
+  "figure_modes": [
+    "full",
+    "grayscale",
+    "deuteranopia",
+    "protanopia"
+  ],
+  "note": "Colour-vision simulations are QA transforms, not diagnostic models. PASS is assigned only after manual inspection at contact-sheet and full-page scale.",
+  "outputs": {
+    "deuteranopia": "audits/issue40_visual_qa/figure_contact_deuteranopia.png",
+    "full": "audits/issue40_visual_qa/figure_contact_full.png",
+    "grayscale": "audits/issue40_visual_qa/figure_contact_grayscale.png",
+    "main_manuscript_page_details": [
+      "audits/issue40_visual_qa/main_manuscript_pages_01-04.png",
+      "audits/issue40_visual_qa/main_manuscript_pages_05-08.png",
+      "audits/issue40_visual_qa/main_manuscript_pages_09-12.png",
+      "audits/issue40_visual_qa/main_manuscript_pages_13-16.png",
+      "audits/issue40_visual_qa/main_manuscript_pages_17-20.png",
+      "audits/issue40_visual_qa/main_manuscript_pages_21-21.png"
+    ],
+    "main_manuscript_pages": "audits/issue40_visual_qa/main_manuscript_page_contact.png",
+    "protanopia": "audits/issue40_visual_qa/figure_contact_protanopia.png",
+    "supplementary_information_page_details": [
+      "audits/issue40_visual_qa/supplementary_information_pages_01-04.png",
+      "audits/issue40_visual_qa/supplementary_information_pages_05-08.png"
+    ],
+    "supplementary_information_pages": "audits/issue40_visual_qa/supplementary_information_page_contact.png"
+  },
+  "page_counts": {
+    "main_manuscript.pdf": 21,
+    "supplementary_information.pdf": 8
+  },
+  "status": "GENERATED_FOR_MANUAL_INSPECTION"
+}

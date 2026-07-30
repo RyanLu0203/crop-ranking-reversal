@@ -1,0 +1,145 @@
+\section{Methods}
+
+\subsection{Data sources and transformations}
+
+State acreage and yield are obtained from USDA NASS annual reports
+\citep{usdanass2019crop,usdanass2022crop,usdanass2025crop}. National crop
+yield and harvest price are from USDA NASS, and operating and total costs are
+from USDA ERS \citep{usdaers2026costs}. Annual CPI-U from the US Bureau of
+Labor Statistics converts monetary values to 2024 dollars
+\citep{bls2026cpi}. Crop-year panels are formed by complete-case joins; no
+missing or suppressed agricultural value is imputed.
+
+The Kansas historical relative-yield performance index uses 2016--2023. For
+each crop and year, state yield is divided by the national yield of the same
+crop; the index is the eight-year mean. Margin is state yield times national
+harvest price minus national
+operating cost, then expressed in real 2024 dollars. Student-\(t\), Gaussian
+and empirical-quantile marginals are calibrated to the historical means and
+dispersion. The primary index intentionally excludes the 2024 evaluation
+year.
+
+\subsection{Scenario generation and optimization}
+
+Common random numbers are used within each model contrast. Primary
+optimization uses 512 equally weighted scenarios and seed 202607270034.
+Copula correlation is derived from matched Kendall's \(\tau\). The
+Student-\(t\) copula uses four degrees of freedom and Student-\(t\) marginals
+use five. Linear programmes are solved with HiGHS. Every solution is
+re-evaluated from scenario profit, resource use and constraint violation, and
+its primal--dual conditions are checked.
+
+Minimum loss-CVaR and expected-profit endpoints are solved separately for each
+joint law. Equation~\ref{eq:riskpath} produces eleven risk ceilings. To
+characterize objective-equivalent allocations, expected profit is constrained
+to its optimum within numerical tolerance and each ranked-pair difference is
+minimized and maximized. Complete rank reversal and exclusion feasibility are checked
+on the same optimal face. The deterministic HiGHS allocation defines the
+selected classification; universal and possible classifications use the face
+bounds. Ordering and zero tolerances are \(10^{-4}\) normalized land share,
+with sensitivity from \(10^{-8}\) to \(10^{-2}\).
+
+The principal phase uses lower bounds 0.05, 0.10 and 0.05 for corn, soybean
+and winter wheat. Strong exclusion reversal is consequently infeasible by
+construction. Two complete sensitivity phases hold every other model
+component: one sets all three lower bounds to zero, and one sets only the
+highest-ranked winter wheat lower bound to zero. Each phase is re-solved at
+zero tolerances \(10^{-8},10^{-6},10^{-4},10^{-3}\) and \(10^{-2}\), including
+selected solutions and possible/universal classifications on the complete
+optimal face.
+
+\subsection{Diversification comparison}
+
+The benchmark \(x^0\) maximizes expected profit under the matched Gaussian
+model. For each \(\gamma\in\{0,10^{-4},\ldots,0.03\}\), \(x^{MV}(\gamma)\)
+maximizes Gaussian mean minus \(\gamma\) times Gaussian variance, subject to
+the same full-investment and operational constraints. The selected Gaussian
+mean--variance policy is chosen without reference to its tail
+outcome: it is
+the smallest \(\gamma\) that reduces Gaussian variance by at least 15\%
+relative to \(x^0\). Targets of 10\% and 20\% are sensitivity cases.
+
+The tail-aware policy \(x^T\) maximizes expected profit subject to a common
+Student-\(t\) loss-CVaR ceiling. All three allocations are then evaluated
+under that Student-\(t\) law. Weak failure requires the fixed Gaussian
+variance target, a nonzero allocation difference and higher evaluation
+loss-CVaR for \(x^{MV}\) than for \(x^T\). Strong failure additionally
+requires \(x^{MV}\) to violate the common ceiling. Sensitivity varies target,
+scenario count, seed, dependence strength, copula degrees of freedom,
+confidence level, risk tolerance and marginal family one factor at a time.
+
+\subsection{Mechanism isolation and robustness}
+
+For a raw heuristic \(x^h\), the principal projection minimizes
+\(\frac12\lVert x-x^h\rVert_2^2\) subject to full investment, crop bounds,
+budget, rotation, soybean contract, planting-labour and harvest-equipment
+constraints. Idle land is not allowed in this comparison set. The loss-CVaR
+ceiling is excluded from projection and evaluated afterwards. The strictly
+convex problem is solved by SLSQP with objective tolerance \(10^{-10}\);
+feasibility is checked independently at \(10^{-8}\).
+
+An alternative unweighted \(L^1\) projection is solved by HiGHS. If its closest
+face is non-unique, a second linear programme minimizes a fixed crop-order
+weighted allocation with weights 1, 2 and 3 for corn, soybean and winter wheat,
+respectively, while remaining within \(10^{-10}\) of the minimum \(L^1\)
+distance. Raw targets, both projected allocations and both distances are
+reported. Expected-profit, full loss-CVaR and minimum-CVaR endpoints use the
+same constraints. Robustness varies one dimension at a time: confidence
+level, dependence family and parameter, marginal model, historical window,
+scenario count, seed, solver and removal of each constraint group. The
+analysis covers null, nonmonotone, multiple-optimum and infeasible cases.
+
+The risk-isolation path preserves the Kansas soybean--corn index and mean
+orders and applies a mean-preserving severe soybean downside event. Its
+probability ranges from 2\% to 20\%, adverse gross-revenue share from 10\% to
+60\%, and risk tolerance from 0 to 1. The operational path uses fixed margin
+scenarios. With a nonbinding risk ceiling, it adds the baseline calibrated
+constraint groups sequentially before tightening only the soybean rotation
+cap. These controlled stresses identify mathematical mechanisms rather than
+estimating private farm constraints or shock probabilities.
+
+Historical uncertainty uses 64 calibration-year resamples. Each re-estimates
+scores and margins, regenerates scenarios and resolves the frontier.
+Continuous quantities use resample percentile intervals.
+
+Binary reversal frequencies use exact Clopper--Pearson binomial intervals.
+Neither interval treats simulated scenarios as independent empirical
+observations.
+
+\subsection{Information and flexibility}
+
+The binary state is constructed from the corn-minus-soybean relative-yield
+advantage around its historical median. Signal accuracy ranges from 0.5 to
+1.0. A feasible constant policy is always available, providing an exact
+signal-ignorability check. The acreage-recourse path changes the share
+adjustable after signal arrival. The buffering path contracts state-dependent
+margins toward their common mean while preserving signal-contingent actions.
+One loss-CVaR ceiling applies to the full ex-ante state--signal loss
+distribution. Numerical information values below \(10^{-7}\) are classified
+as zero. For each adjacent \(\xi_1<\xi_2\), \(\phi_1<\phi_2\) rectangle,
+interaction is the solved cross-difference
+\([V(\xi_2,\phi_2)-V(\xi_1,\phi_2)]-
+[V(\xi_2,\phi_1)-V(\xi_1,\phi_1)]\).
+
+\subsection{External descriptive analysis}
+
+For the 31-state panel, pairwise inversion intensity counts discordant pairs
+among the three crops. Top-rank disagreement equals one when the highest-index
+crop is not the largest-acreage crop. Confidence intervals use state-cluster
+resampling. The lagged model predicts next-year acreage-share change from the
+previous relative-yield leader and previous acreage share, with crop, state
+and decision-year fixed effects. It uses no contemporaneous index to predict
+the same year's acreage.
+
+\subsection{Data availability}
+
+The public source reports, analysis-ready tables and figure source data needed
+to reproduce the reported results will be deposited in a public
+archive upon publication. No confidential farm-level data are used.
+
+\subsection{Code availability}
+
+Analysis code sufficient to regenerate the numerical results and figures will
+be deposited with the source data upon publication. Additional mathematical
+proofs, phase classifications, data dictionaries and numerical diagnostics
+are provided in Supplementary Information.
