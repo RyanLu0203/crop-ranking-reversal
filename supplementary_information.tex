@@ -193,9 +193,9 @@ posterior-optimum strictness step is not applied when contingent actions share
 a binding ex-ante loss-CVaR budget.
 
 Increasing differences and nested action sets yield monotone posterior actions
-under standard monotone comparative statics. Strictness on a positive-
-probability event makes the information gain larger at the higher acreage-
-flexibility level. This is the conditional complementarity result.
+under standard monotone comparative statics. Strictness on a
+positive-probability event makes the information gain larger at a higher level
+of acreage flexibility. This is the conditional complementarity result.
 
 For buffering, at \(\phi=1\) all state margins equal \(\bar\pi\); posterior
 optimization problems are identical and the common-action condition gives
@@ -220,7 +220,7 @@ The sign is computed on each adjacent grid rectangle.
 \begin{tabular}{lrrrr}
 \toprule
 Crop & performance index & mean margin & margin s.d. & full-model share\\
- & & \multicolumn{2}{c}{real 2024 US\$ per acre} &\\
+ & & \multicolumn{2}{c}{real 2024 \(\text{US\$ acre}^{-1}\)} &\\
 \midrule
 Corn & \ScoreCorn & \MarginCorn & 94.9 & \PrimaryCorn\\
 Soybean & \ScoreSoy & \MarginSoy & 104.0 & \PrimarySoy\\
@@ -246,8 +246,9 @@ Harvest-equipment coefficient & 1.05 & 0.82 & 0.62\\
 \end{tabularx}
 \end{table}
 
-Total land is 1.0, operating budget is US\$330, planting-labour capacity is
-0.82 and harvest-equipment capacity is 0.88. The full model uses
+Total land is normalized to 1.0, so the operating-budget limit is US\$330 per
+acre. Planting-labour capacity is 0.82 and harvest-equipment capacity is 0.88.
+The full model uses
 \(\alpha=0.95\), \(\rho=0.5\), 512 optimization scenarios and seed
 202607270034.
 
@@ -255,8 +256,8 @@ Total land is 1.0, operating budget is US\$330, planting-labour capacity is
 
 \begin{table}[h]
 \centering\small
-\caption{Primary policy outcomes. Profit and loss-CVaR are reported in real
-2024 US\$ per acre; a larger loss-CVaR is worse.}
+\caption{Primary policy outcomes. Profit and loss-CVaR use real 2024
+\(\text{US\$ acre}^{-1}\); a larger loss-CVaR is worse.}
 \begin{tabular}{lrrrrrl}
 \toprule
 Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
@@ -288,7 +289,7 @@ and \(x^{MV}\) is the first point to attain the fixed
 \DiversificationTarget\% Gaussian variance-reduction target. At that point the
 reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \(x^T\), and Student-\(t\) evaluation loss-CVaR is
-US\$\(\DiversificationTailGap\) per acre higher. Both the weak and
+US\$\DiversificationTailGap{} per acre higher. Both the weak and
 operationally strong
 diversification-failure criteria hold for
 \(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
@@ -297,10 +298,11 @@ binds the common loss-CVaR ceiling.
 
 \begin{table}[h]
 \centering\small
-\caption{Selected Gaussian mean--variance policy. Expected profits and
-loss-CVaR are reported in real 2024 US\$ per acre. Operational feasibility
-applies to the common full-investment set; risk feasibility is evaluated under
-the Student-\(t\) law.}
+\caption{Selected Gaussian mean--variance policy. Mean-profit and loss-CVaR
+entries use real 2024 \(\text{US\$ acre}^{-1}\); Gaussian variance uses
+\(\text{US\$}^{2}\text{ acre}^{-2}\). Operational feasibility applies to the
+common full-investment set; risk feasibility is evaluated under the
+Student-\(t\) law.}
 \begin{tabular}{lrrrr}
 \toprule
 \(\gamma\) & Corn & Soybean & Winter wheat & operational/risk feasible\\
@@ -371,7 +373,7 @@ public-data mean margin and
 the expected-profit endpoint already has a complete rank reversal; loss-CVaR
 raises its share. In the risk layer, soybean has the higher index and mean
 margin, while
-a mean-preserving 10\% downside event of \(\$\,\RiskShock\) per acre produces
+a mean-preserving 10\% downside event of US\$\RiskShock{} per acre produces
 the loose-to-tight allocation crossing reported in the main text. Across the
 probability-by-magnitude map, \RiskShockCrossingCells{} of the
 \RiskShockCells{} stress combinations produce an allocation crossing,
@@ -382,8 +384,8 @@ non-reversing before the soybean rotation-cap path is evaluated; the first
 crossing is at \OperationalCrossingCap. These controlled paths demonstrate
 mechanisms rather than their population frequency.
 
-Across all \PhaseCells{} principal cells, selected pairwise reversal occurs in
-\PhaseReversal{} and selected complete rank reversal in \PhaseComplete.
+The \PhaseCells{} principal cells contain \PhaseReversal{} selected pairwise
+reversals and \PhaseComplete{} selected complete rank reversals.
 Strong exclusion is structurally inadmissible because every crop has a
 positive lower bound. Complete family-by-\(\tau\) tables report all three
 ranked-pair face extrema and possible, universal and selected classifications
@@ -469,17 +471,16 @@ independent historical information.
 \section{Information--flexibility details}
 
 The state split contains four low and four high relative-yield-advantage
-years. Signal accuracy takes six values and flexibility takes six values on
-each path, producing 72 cells. Adjacent-grid classifications are
+years. Signal accuracy and flexibility each take six values on both paths
+(72 cells). Adjacent-grid classifications are
 \InfoPositiveCells{} positive cross-differences, \InfoNegativeCells{} negative
 cross-differences, \InfoZeroCells{} zero-information and
-\InfoBoundaryCells{} zero/boundary. Every signal-contingent problem is
-feasible and the minimum computed value of information differs from zero only
-at floating-point scale.
+\InfoBoundaryCells{} zero/boundary. All problems are feasible; minimum
+information value differs from zero only at floating-point scale.
 
 At perfect signal accuracy, post-signal acreage reallocation raises
 information value monotonically from zero at no adjustable acreage to
-\(\$\,\MaxInformationValue\) at full adjustment. Under shock buffering, the
+US\$\MaxInformationValue{} per acre at full adjustment. Under shock buffering, the
 corresponding information value declines toward zero as the state margins are
 contracted to a common vector. This comparison is about interaction; buffering
 can still increase the no-information optimized value.

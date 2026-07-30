@@ -11,11 +11,13 @@ The historical relative-yield performance index for crop \(i\) is the mean of
 Kansas yield divided by same-year national NASS yield over 2016--2023. It
 measures pre-decision relative-yield performance rather than revenue. Index
 values are \ScoreCorn{} for corn, \ScoreSoy{} for
-soybean and \ScoreWheat{} for winter wheat. Real per-acre margin combines
-Kansas yield, national harvest price, national operating cost and CPI-U
-conversion to 2024 dollars. Mean margins are \(\$\,\MarginCorn\),
-\(\$\,\MarginSoy\) and \(\$\,\MarginWheat\), respectively. These aggregate
-inputs are transparent calibration values, not farm-level profits.
+soybean and \ScoreWheat{} for winter wheat. Total land is normalized to one.
+Monetary outcomes are reported in real 2024 US dollars per normalized acre,
+referred to as per acre thereafter. The margin calibration combines Kansas
+yield, national harvest price, national operating cost and CPI-U conversion.
+Mean margins are US\$\MarginCorn{} per acre, US\$\MarginSoy{} per acre and
+US\$\MarginWheat{} per acre, respectively. These aggregate inputs are
+transparent calibration values, not farm-level profits.
 
 The primary marginal law is Student-\(t\) with five degrees of freedom. The
 primary joint law is a Student-\(t\) copula with four degrees of freedom and
@@ -25,31 +27,31 @@ Student-\(t\) and Clayton copulas; and \(\tau\in\{0,0.15,0.30,0.45,0.60\}\).
 The eight annual observations cannot estimate extreme tails precisely, so
 these are structural stress paths rather than fitted farm copulas.
 
-Land is normalized to one. Crop lower bounds are 0.05, 0.10 and 0.05; upper
-bounds are 0.55, 0.65 and 0.60. The operating budget is \(\$330\), corn is
-capped at 0.50 by rotation, soybean has a 0.10 contract minimum, and planting
-labour and harvest equipment have shared crop-specific coefficients. The
-primary confidence level is 0.95 and risk tolerance \(\rho=0.5\). All
-counterfactuals use the same full constraint system unless a constraint is the
-sensitivity dimension.
+Crop lower bounds are 0.05, 0.10 and 0.05; upper bounds are 0.55, 0.65 and
+0.60. The operating-budget limit is US\$330 per acre, corn is capped at 0.50
+by rotation, soybean has a 0.10 contract minimum, and planting labour and
+harvest equipment have shared crop-specific coefficients. The primary
+confidence level is 0.95 and risk tolerance \(\rho=0.5\). All counterfactuals
+use the same full constraint system unless a constraint is the sensitivity
+dimension.
 
 \subsection{Primary reversal}
 
 The expected-profit endpoint without loss-CVaR assigns \PolicyExpectedCorn{}
 to corn, \PolicyExpectedSoy{} to soybean and \PolicyExpectedWheat{} to winter
 wheat. It produces a complete rank reversal but not a strong exclusion reversal
-because winter wheat remains positively allocated. Its loss-CVaR is
-US\$\(\PrimaryNoRiskCVaR\) per acre, exceeding the primary risk ceiling.
+because winter wheat remains positively allocated. It has a loss-CVaR of
+\(\PrimaryNoRiskCVaR\) US\$/acre, exceeding the primary risk ceiling.
 The minimum loss-CVaR endpoint attains a loss-CVaR of
-US\$\(\PrimaryMinCVaR\) per acre but sacrifices expected profit. The
-midpoint ceiling is US\$\(\PrimaryCVaR\) per acre.
+\(\PrimaryMinCVaR\) US\$/acre but sacrifices expected profit. The midpoint
+ceiling is \(\PrimaryCVaR\) US\$/acre.
 
 The full optimum assigns \PrimaryCorn{} to corn, \PrimarySoy{} to soybean and
 \PrimaryWheat{} to winter wheat. The highest-ranked crop therefore receives
 the least land, producing a selected complete rank reversal involving both
 pairs but no strong exclusion reversal. The land and
 loss-CVaR restrictions bind; idle land is zero. Expected profit is
-\(\$\,\PrimaryProfit\) per normalized acre and realized finite-scenario
+US\$\PrimaryProfit{} per acre and realized finite-scenario
 loss-CVaR equals the ceiling to numerical precision. Maximum primal,
 stationarity and complementarity residuals are \(\KKTPrimal\),
 \(\KKTStationarity\) and \(\KKTComplementarity\), respectively.
@@ -119,9 +121,9 @@ The comparison \(x^0\) is the matched-Gaussian expected-profit allocation.
 The selected Gaussian mean--variance policy and tail-aware model use the same marginal means
 and standard deviations and matched Kendall's \(\tau=0.25\). The Student-\(t\)
 law nevertheless has lower-tail coefficient \LowerTailCoefficient, whereas
-the Gaussian copula has zero asymptotic tail dependence. We solve a complete
-\DiversificationFrontierPoints-point Gaussian mean--variance frontier over
-\(\gamma\in[0,\,0.03]\), with increments of \(10^{-4}\). The selected
+the Gaussian copula has zero asymptotic tail dependence. A
+\DiversificationFrontierPoints-point Gaussian mean--variance frontier spans
+\(\gamma\in[0,\,0.03]\) in increments of \(10^{-4}\). The selected
 \(\gamma=\DiversificationGamma\) is the smallest value attaining the fixed,
 outcome-independent target of at least \DiversificationTarget\% variance
 reduction relative to \(x^0\).
@@ -131,28 +133,8 @@ At the selected point, Gaussian variance falls from
 \((\DiversificationVarianceReduction\%)\). The canonical policy allocates
 \CanonicalMVCorn{} to corn, \CanonicalMVSoy{} to soybean and
 \CanonicalMVWheat{} to winter wheat; Gaussian expected profit is
-\(\$\,\CanonicalMVGaussianExpectedProfit\) per acre. The selected policy
-satisfies all operational constraints but violates the Student-\(t\)
-loss-CVaR ceiling. Its evaluation loss-CVaR is
-US\$\(\DiversificationGaussianCVaR\) per acre, exceeding the ceiling of
-US\$\(\DiversificationRiskCeiling\) per acre by
-US\$\(\DiversificationCeilingGap\) per acre. The allocation changes by
-\DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
-evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\).
-The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
-by US\$\(\DiversificationTailGap\) per acre. Both the weak and operationally
-strong diversification-failure criteria hold for
-\(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
-share the same interval in this experiment because the tail-aware optimum
-binds the common loss-CVaR ceiling. Its tail improvement and the Gaussian
-policy's ceiling violation are numerically equal at the selected point and
-therefore express the same tail-risk gap. Across
-\DiversificationSensitivityCases{} one-factor perturbations of target
-variance reduction, scenario count, seed, dependence, confidence level, risk
-tolerance and marginal family, \DiversificationSensitivityStrongCases{}
-satisfy the strong criterion. The result identifies a specified region in
-which Gaussian variance diversification does not protect the joint lower
-tail. Its scope is the specified policy comparison and sensitivity domain.
+US\$\CanonicalMVGaussianExpectedProfit{} per acre. The selected policy is
+operationally feasible but violates the Student-\(t\) loss-CVaR ceiling.
 
 \begin{figure}[t]
 \centering
@@ -169,20 +151,41 @@ lower-tail dependence.}
 \label{fig:diversification}
 \end{figure}
 
+Its evaluation loss-CVaR is
+\(\DiversificationGaussianCVaR\) US\$/acre, exceeding the ceiling of
+\(\DiversificationRiskCeiling\) US\$/acre by
+US\$\DiversificationCeilingGap{} per acre. The allocation changes by
+\DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
+evaluation law, expected profit is US\$\CanonicalMVExpectedProfit{} per acre.
+The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
+by US\$\DiversificationTailGap{} per acre. Both the weak and operationally
+strong diversification-failure criteria hold for
+\(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
+share the same interval in this experiment because the tail-aware optimum
+binds the common loss-CVaR ceiling. Its tail improvement and the Gaussian
+policy's ceiling violation are numerically equal at the selected point and
+therefore express the same tail-risk gap. Across
+\DiversificationSensitivityCases{} one-factor perturbations of target
+variance reduction, scenario count, seed, dependence, confidence level, risk
+tolerance and marginal family, \DiversificationSensitivityStrongCases{}
+satisfy the strong criterion. The result identifies a specified region in
+which Gaussian variance diversification does not protect the joint lower
+tail. Its scope is the specified policy comparison and sensitivity domain.
+
 \subsection{Mechanism isolation and policy robustness}
 
 The score-proportional, winner-take-all and equal-share policies are projected
 by Eq.~\ref{eq:projection} before evaluation. The score-proportional policy
-earns US\$\(\PolicySuitabilityProfit\) per acre with loss-CVaR
-US\$\(\PolicySuitabilityCVaR\) per acre and does not
+earns US\$\PolicySuitabilityProfit{} per acre with a loss-CVaR of
+\(\PolicySuitabilityCVaR\) US\$/acre and does not
 reverse. The raw winner-take-all prescription \((0,0,1)\) projects to
 \((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
 \ProjectionWinnerLtwoWheat)\) under the principal Euclidean rule, earns
-US\$\(\ProjectionWinnerLtwoProfit\) per acre, has loss-CVaR
-US\$\(\ProjectionWinnerLtwoCVaR\) per acre, and does not reverse. Equal share
-earns US\$\(\PolicyEqualProfit\) per acre with loss-CVaR
-US\$\(\PolicyEqualCVaR\) per acre. The expected-profit endpoint earns
-US\$\(\PolicyExpectedProfit\) per acre but violates the loss-CVaR ceiling.
+US\$\ProjectionWinnerLtwoProfit{} per acre, has a loss-CVaR of
+\(\ProjectionWinnerLtwoCVaR\) US\$/acre, and does not reverse. Equal share
+earns US\$\PolicyEqualProfit{} per acre with a loss-CVaR of
+\(\PolicyEqualCVaR\) US\$/acre. The expected-profit endpoint earns
+US\$\PolicyExpectedProfit{} per acre but violates the loss-CVaR ceiling.
 The risk restriction lowers expected profit relative to the unconstrained
 expected-profit endpoint.
 
@@ -197,11 +200,11 @@ raw score-winner rule.
 
 The controlled risk experiment uses the Kansas soybean--corn index and
 margin ordering: soybean has both the higher score and a mean-margin advantage
-of \(\$\,\RiskMeanGap\). A mean-preserving 10\% severe
-soybean drought-or-basis event shifts \(\$\,\RiskShock\) per acre into the
-downside state and compensates non-adverse states exactly. At loose risk
-tolerance, soybean and corn receive \RiskLooseSoy{} and \RiskLooseCorn{};
-under the tight ceiling they receive \RiskTightSoy{} and \RiskTightCorn{}.
+of US\$\RiskMeanGap{} per acre. A mean-preserving 10\% severe soybean
+drought-or-basis event shifts US\$\RiskShock{} per acre into the downside
+state and compensates non-adverse states exactly. At loose risk tolerance,
+soybean and corn receive \RiskLooseSoy{} and \RiskLooseCorn{}; under the tight
+ceiling they receive \RiskTightSoy{} and \RiskTightCorn{}.
 Tightening the loss-CVaR ceiling therefore reverses the soybean--corn
 allocation order while preserving the index and expected-margin order. A
 probability-by-magnitude sensitivity map evaluates
@@ -261,10 +264,10 @@ not replaced by a separate risk budget for each signal.
 With post-signal acreage reallocation, no adjustable share or an uninformative
 signal gives zero value. As accuracy and the adjustable share rise, posterior
 allocations diverge and information value reaches
-\(\$\,\MaxInformationValue\) per acre. With shock buffering, more
+US\$\MaxInformationValue{} per acre. With shock buffering, more
 flexibility instead contracts state-specific margins toward a common vector.
 At perfect signal accuracy, information value declines from approximately
-\(\$4.4\) without buffering to numerical zero under full buffering. The
+US\$4.4 per acre without buffering to numerical zero under full buffering. The
 adjacent grid contains \InfoPositiveCells{} positive,
 \InfoNegativeCells{} negative, \InfoZeroCells{} zero-information and
 \InfoBoundaryCells{} zero/boundary classifications. These are discrete
@@ -298,8 +301,8 @@ risk-tolerance index averages \BootstrapFirstMean{} with interval
 \([\BootstrapFirstLow,\,\BootstrapFirstHigh]\), revealing substantial
 uncertainty in the boundary even though reversal itself is common. Mean
 bootstrap allocations are 0.277 for corn, 0.527 for soybean and 0.196 for
-winter wheat; their percentile intervals are wide because only eight years
-enter each calibration. The eight-year calibration therefore yields stable
-qualitative reversal but imprecise crop shares and reversal boundaries. The
-external panel next examines score--acreage disagreement beyond the Kansas
-calibration without assigning a causal mechanism to observed acreage.
+winter wheat. Their percentile intervals are wide.
+
+The eight-year calibration yields stable qualitative reversal but imprecise
+crop shares and reversal boundaries. These uncertainty results motivate an
+external descriptive assessment beyond the Kansas calibration.

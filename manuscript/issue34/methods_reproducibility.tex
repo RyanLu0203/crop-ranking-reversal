@@ -90,18 +90,18 @@ scenario count, seed, solver and removal of each constraint group. The
 analysis covers null, nonmonotone, multiple-optimum and infeasible cases.
 
 The risk-isolation path preserves the Kansas soybean--corn index and mean
-orders, then applies a mean-preserving severe soybean downside event.
-Probability ranges from 2\% to 20\% and adverse gross-revenue share from 10\%
-to 60\%; risk tolerance spans 0 to 1. The operational path fixes margin
-scenarios and a nonbinding risk ceiling, adds the baseline calibrated
-constraint groups sequentially and then tightens only the soybean rotation
-cap. These
-controlled stresses identify mathematical mechanisms rather than estimating
-private farm constraints or shock probabilities.
+orders and applies a mean-preserving severe soybean downside event. Its
+probability ranges from 2\% to 20\%, adverse gross-revenue share from 10\% to
+60\%, and risk tolerance from 0 to 1. The operational path uses fixed margin
+scenarios. With a nonbinding risk ceiling, it adds the baseline calibrated
+constraint groups sequentially before tightening only the soybean rotation
+cap. These controlled stresses identify mathematical mechanisms rather than
+estimating private farm constraints or shock probabilities.
 
-Historical uncertainty resamples calibration years 64 times. Each replication
-re-estimates scores and margins, regenerates scenarios and resolves the
-frontier. Continuous quantities use historical-resample percentile intervals.
+Historical uncertainty uses 64 calibration-year resamples. Each re-estimates
+scores and margins, regenerates scenarios and resolves the frontier.
+Continuous quantities use resample percentile intervals.
+
 Binary reversal frequencies use exact Clopper--Pearson binomial intervals.
 Neither interval treats simulated scenarios as independent empirical
 observations.

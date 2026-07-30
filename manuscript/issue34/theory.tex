@@ -103,15 +103,15 @@ Let \(x^T\) denote the tail-aware policy under the Student-\(t\) evaluation
 law.
 
 \begin{definition}[Diversification failure]
-Conventional diversification fails when
+Conventional diversification fails when all three conditions hold:
 \begin{align}
 \operatorname{Var}_G[\Pi(x^{MV})]&<
 \operatorname{Var}_G[\Pi(x^0)],\\
 \CVaR_{\alpha,T}[L(x^{MV})]&>
 \CVaR_{\alpha,T}[L(x^T)],\\
-x^{MV}&\ne x^T,
+x^{MV}&\ne x^T.
 \end{align}
-where \(x^0\) is the expected-profit policy under the matched Gaussian law.
+Here, \(x^0\) is the expected-profit policy under the matched Gaussian law.
 In computation, allocation disagreement requires
 \(\lVert x^{MV}-x^T\rVert_1>\varepsilon_x\), and tail inferiority requires
 \(\CVaR_{\alpha,T}[L(x^{MV})]>

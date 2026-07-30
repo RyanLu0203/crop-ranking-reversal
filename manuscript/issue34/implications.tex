@@ -19,14 +19,11 @@ feasible counterfactuals and characterize the optimal face.
 
 \subsection{Downside-risk governance}
 
-The Kansas experiment shows the cost of treating the selected Gaussian
-mean--variance policy as tail safe. Under matched rank dependence, that policy earns a
-higher mean but violates the Student-\(t\) evaluation-law loss-CVaR ceiling. This
-suggests a governance test for decision-support systems: report the allocation
-under at least one
-heavy-tailed joint stress law, evaluate it under the same downside-risk
-metric used for the farmer's tolerance, and disclose whether the policy
-remains feasible. The test is more informative than reporting a diversification
+The selected Gaussian mean--variance policy is not tail safe in the Kansas
+experiment. It earns a higher mean but violates the loss-CVaR ceiling under
+the matched Student-\(t\) evaluation law. Governance should therefore test a
+policy under a heavy-tailed joint law and the farmer's downside-risk metric,
+then report feasibility. This test is more informative than a diversification
 index or pairwise correlation alone.
 
 The result does not justify universal conservatism. A very tight risk ceiling
