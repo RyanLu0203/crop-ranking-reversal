@@ -73,8 +73,8 @@ def f(x, n=3):
     return f"{float(x):.{n}f}"
 
 def interval_tex(value):
-    """Format a closed positive interval with a comma between endpoints."""
-    return str(value).replace("-", ",", 1)
+    """Format a closed positive interval with spaced comma-separated endpoints."""
+    return str(value).replace("-", r",\,", 1)
 
 rows = [
     macro("DesignHash", s["design_sha256"][:12]),

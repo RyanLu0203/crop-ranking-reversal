@@ -56,7 +56,7 @@ Symbol & Definition\\
 \(\alpha\) & loss-CVaR confidence level\\
 \(\kappa\) & loss-CVaR ceiling\\
 \(\rho\) & normalized risk-tolerance path index\\
-\(\eta\) & loss-CVaR-ceiling multiplier\\
+\(\eta\) & loss-CVaR ceiling multiplier\\
 \(\nu^A,\nu^B,\nu^R\) & land, budget and rotation multipliers\\
 \(\nu^K,\nu^G\) & sign-converted contract and shared-capacity multipliers\\
 \(\nu^\ell,\nu^u\) & lower- and upper-bound multipliers\\
@@ -110,7 +110,7 @@ only benchmark comparison policies, not any optimized model solution.
 
 \subsection{KKT equations}
 
-Let \(\eta\) be the loss-CVaR-ceiling multiplier, \(t_m\) the multiplier for
+Let \(\eta\) be the loss-CVaR ceiling multiplier, \(t_m\) the multiplier for
 scenario excess row \(m\), and \(z_m\) the multiplier on \(q_m\ge0\). Together
 with the operational multipliers defined in the main text, stationarity is
 \begin{align}
@@ -142,7 +142,7 @@ objective has the unique maximizer \(\sup\mathcal K_{\theta,\kappa}\).
 The pair reverses when \(z<A-z\), equivalently \(z<A/2\). Hence reversal holds
 if and only if the right endpoint of the entire risk-feasible interval lies
 below \(A/2\), which is equivalent to no feasible point on
-\([A/2,\overline z]\). If risk is nondecreasing on that upper half, the
+\([A/2,\,\overline z]\). If risk is nondecreasing on that upper half, the
 minimum upper-half risk occurs at \(A/2\), so the upper half is infeasible if
 and only if \(r_\theta(A/2)>\kappa\). Existence of a feasible lower-half point
 ensures that this inequality indicates reversal rather than infeasibility.
@@ -255,7 +255,8 @@ Total land is 1.0, operating budget is US\$330, planting-labour capacity is
 
 \begin{table}[h]
 \centering\small
-\caption{Primary policy outcomes. A larger loss-CVaR is worse.}
+\caption{Primary policy outcomes. Profit and loss-CVaR are reported in real
+2024 US\$ per acre; a larger loss-CVaR is worse.}
 \begin{tabular}{lrrrrrl}
 \toprule
 Policy & Corn & Soy & Wheat & Profit & loss-CVaR & risk feasible\\
@@ -282,12 +283,13 @@ The expected-profit endpoint is reported as an endpoint rather than as a
 mean--variance comparison policy. The diversification comparison uses one
 selected Gaussian mean--variance policy.
 Its \(x^0\) is the matched-Gaussian expected-profit allocation; all
-\DiversificationFrontierPoints{} points over \(\gamma\in[0,0.03]\) are solved;
+\DiversificationFrontierPoints{} points over \(\gamma\in[0,\,0.03]\) are solved;
 and \(x^{MV}\) is the first point to attain the fixed
 \DiversificationTarget\% Gaussian variance-reduction target. At that point the
 reduction is \DiversificationVarianceReduction\%, the allocation differs from
 \(x^T\), and Student-\(t\) evaluation loss-CVaR is
-\(\$\,\DiversificationTailGap\) higher. Both the weak and operationally strong
+US\$\(\DiversificationTailGap\) per acre higher. Both the weak and
+operationally strong
 diversification-failure criteria hold for
 \(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
 share the same interval in this experiment because the tail-aware optimum
@@ -295,9 +297,10 @@ binds the common loss-CVaR ceiling.
 
 \begin{table}[h]
 \centering\small
-\caption{Selected Gaussian mean--variance policy. Operational
-feasibility applies to the common full-investment set; risk feasibility is
-evaluated under the Student-\(t\) law.}
+\caption{Selected Gaussian mean--variance policy. Expected profits and
+loss-CVaR are reported in real 2024 US\$ per acre. Operational feasibility
+applies to the common full-investment set; risk feasibility is evaluated under
+the Student-\(t\) law.}
 \begin{tabular}{lrrrr}
 \toprule
 \(\gamma\) & Corn & Soybean & Winter wheat & operational/risk feasible\\
@@ -448,18 +451,18 @@ all-zero and highest-ranked-crop-zero phases, strong exclusion reversal remains
 absent for every zero tolerance from \(10^{-8}\) to \(10^{-2}\); pairwise and
 complete rank reversal counts change only at the coarser ordering tolerances.
 
-The 64 historical bootstrap replications produce mean shares 0.277 for corn,
-0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile intervals
-are [0.125, 0.368], [0.258, 0.650] and [0.070, 0.404]. The binary reversal
-frequency across historical resamples is treated separately. Selected pairwise
-reversal occurs in
+Sixty-four historical bootstrap replications produce mean shares 0.277 for
+corn, 0.527 for soybean and 0.196 for winter wheat. Their 95\% percentile
+intervals are \([0.125,\,0.368]\), \([0.258,\,0.650]\) and
+\([0.070,\,0.404]\). The binary reversal frequency across historical resamples
+is treated separately. Selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64
 resamples. Its exact Clopper--Pearson binomial interval is
-[\BootstrapProbabilityLow,\BootstrapProbabilityHigh]. The interval describes
+\([\BootstrapProbabilityLow,\,\BootstrapProbabilityHigh]\). The interval describes
 the frequency among historical resamples, not a farm-population probability.
 The first-reversal
 index mean is \BootstrapFirstMean{} with interval
-[\BootstrapFirstLow,\BootstrapFirstHigh]. The broad boundary interval is
+\([\BootstrapFirstLow,\,\BootstrapFirstHigh]\). The broad boundary interval is
 consistent with an eight-year calibration; simulated scenarios do not add
 independent historical information.
 
@@ -500,7 +503,7 @@ Total-cost margin & \TotalCostRate & 0.701 & 0.857\\
 
 The leakage-free relative-yield specification uses 651 crop-transition rows.
 Its prior-leader effect is \LaggedEffect{} with interval
-[\LaggedLow,\LaggedHigh]. The estimand is descriptive because the panel does
+\([\LaggedLow,\,\LaggedHigh]\). The estimand is descriptive because the panel does
 not observe farm objectives, local prices or costs, credit, rotation history,
 contracts, risk preferences or received forecasts. The state acreage panel is
 therefore used for descriptive comparison rather than as an optimized

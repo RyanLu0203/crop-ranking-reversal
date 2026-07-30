@@ -37,12 +37,12 @@ sensitivity dimension.
 
 The expected-profit endpoint without loss-CVaR assigns \PolicyExpectedCorn{}
 to corn, \PolicyExpectedSoy{} to soybean and \PolicyExpectedWheat{} to winter
-wheat. It produces a complete rank reversal,
-but not a strong exclusion reversal because winter wheat remains positively allocated;
-its loss-CVaR
-\(\$\,\PrimaryNoRiskCVaR\), exceeding the primary risk ceiling. The
-minimum loss-CVaR endpoint attains \(\$\,\PrimaryMinCVaR\) but sacrifices expected
-profit. The midpoint ceiling is \(\$\,\PrimaryCVaR\).
+wheat. It produces a complete rank reversal but not a strong exclusion reversal
+because winter wheat remains positively allocated. Its loss-CVaR is
+US\$\(\PrimaryNoRiskCVaR\) per acre, exceeding the primary risk ceiling.
+The minimum loss-CVaR endpoint attains a loss-CVaR of
+US\$\(\PrimaryMinCVaR\) per acre but sacrifices expected profit. The
+midpoint ceiling is US\$\(\PrimaryCVaR\) per acre.
 
 The full optimum assigns \PrimaryCorn{} to corn, \PrimarySoy{} to soybean and
 \PrimaryWheat{} to winter wheat. The highest-ranked crop therefore receives
@@ -121,7 +121,7 @@ and standard deviations and matched Kendall's \(\tau=0.25\). The Student-\(t\)
 law nevertheless has lower-tail coefficient \LowerTailCoefficient, whereas
 the Gaussian copula has zero asymptotic tail dependence. We solve a complete
 \DiversificationFrontierPoints-point Gaussian mean--variance frontier over
-\(\gamma\in[0,0.03]\), with increments of \(10^{-4}\). The selected
+\(\gamma\in[0,\,0.03]\), with increments of \(10^{-4}\). The selected
 \(\gamma=\DiversificationGamma\) is the smallest value attaining the fixed,
 outcome-independent target of at least \DiversificationTarget\% variance
 reduction relative to \(x^0\).
@@ -134,14 +134,14 @@ At the selected point, Gaussian variance falls from
 \(\$\,\CanonicalMVGaussianExpectedProfit\) per acre. The selected policy
 satisfies all operational constraints but violates the Student-\(t\)
 loss-CVaR ceiling. Its evaluation loss-CVaR is
-US\(\$\,\DiversificationGaussianCVaR\) per acre, exceeding the ceiling of
-US\(\$\,\DiversificationRiskCeiling\) per acre by
-US\(\$\,\DiversificationCeilingGap\) per acre. The allocation changes by
+US\$\(\DiversificationGaussianCVaR\) per acre, exceeding the ceiling of
+US\$\(\DiversificationRiskCeiling\) per acre by
+US\$\(\DiversificationCeilingGap\) per acre. The allocation changes by
 \DiversificationAllocationLone{} in \(L^1\) distance. Under the Student-\(t\)
 evaluation law, expected profit is \(\$\,\CanonicalMVExpectedProfit\).
 The tail-aware policy changes the allocation and lowers evaluation loss-CVaR
-by \(\$\,\DiversificationTailGap\). Both the weak and operationally strong
-diversification-failure criteria hold for
+by US\$\(\DiversificationTailGap\) per acre. Both the weak and operationally
+strong diversification-failure criteria hold for
 \(\gamma\in[\DiversificationStrongGammaInterval]\). The two classifications
 share the same interval in this experiment because the tail-aware optimum
 binds the common loss-CVaR ceiling. Its tail improvement and the Gaussian
@@ -173,17 +173,18 @@ lower-tail dependence.}
 
 The score-proportional, winner-take-all and equal-share policies are projected
 by Eq.~\ref{eq:projection} before evaluation. The score-proportional policy
-earns \(\$\,\PolicySuitabilityProfit\) with loss-CVaR
-\(\$\,\PolicySuitabilityCVaR\) and does not
+earns US\$\(\PolicySuitabilityProfit\) per acre with loss-CVaR
+US\$\(\PolicySuitabilityCVaR\) per acre and does not
 reverse. The raw winner-take-all prescription \((0,0,1)\) projects to
 \((\ProjectionWinnerLtwoCorn,\ProjectionWinnerLtwoSoy,
 \ProjectionWinnerLtwoWheat)\) under the principal Euclidean rule, earns
-\(\$\,\ProjectionWinnerLtwoProfit\), has loss-CVaR
-\(\$\,\ProjectionWinnerLtwoCVaR\), and does not reverse. Equal share earns
-\(\$\,\PolicyEqualProfit\) with loss-CVaR \(\$\,\PolicyEqualCVaR\). The
-expected-profit endpoint earns \(\$\,\PolicyExpectedProfit\) but violates the
-loss-CVaR ceiling. The risk restriction lowers expected profit relative to the
-unconstrained expected-profit endpoint.
+US\$\(\ProjectionWinnerLtwoProfit\) per acre, has loss-CVaR
+US\$\(\ProjectionWinnerLtwoCVaR\) per acre, and does not reverse. Equal share
+earns US\$\(\PolicyEqualProfit\) per acre with loss-CVaR
+US\$\(\PolicyEqualCVaR\) per acre. The expected-profit endpoint earns
+US\$\(\PolicyExpectedProfit\) per acre but violates the loss-CVaR ceiling.
+The risk restriction lowers expected profit relative to the unconstrained
+expected-profit endpoint.
 
 Projection choice matters for one benchmark. The alternative \(L^1\) rule
 maps the same winner target to
@@ -290,11 +291,11 @@ scenarios and resolve the full optimum. Selected pairwise reversal occurs in
 \BootstrapReversalCount{} of 64 resamples, a frequency of
 \BootstrapProbability. The exact Clopper--Pearson 95\% binomial interval for
 that resample frequency is
-\([\BootstrapProbabilityLow,\BootstrapProbabilityHigh]\). This binomial
+\([\BootstrapProbabilityLow,\,\BootstrapProbabilityHigh]\). This binomial
 interval describes the frequency among historical resamples rather than a
 farm population. The first-reversal
 risk-tolerance index averages \BootstrapFirstMean{} with interval
-\([\BootstrapFirstLow,\BootstrapFirstHigh]\), revealing substantial
+\([\BootstrapFirstLow,\,\BootstrapFirstHigh]\), revealing substantial
 uncertainty in the boundary even though reversal itself is common. Mean
 bootstrap allocations are 0.277 for corn, 0.527 for soybean and 0.196 for
 winter wheat; their percentile intervals are wide because only eight years
