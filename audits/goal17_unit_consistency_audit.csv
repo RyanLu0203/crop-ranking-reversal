@@ -1,0 +1,4 @@
+macro,source_file,source_field,source_share_value,conversion,expected_percentage_points,generated_display,registry_unit,status
+LaggedOperatingContrast,empirical/goal16/outputs/temporal_model.csv,estimate,0.002068944214,100 * share change,0.21,0.21,percentage points,PASS
+LaggedOperatingLow,empirical/goal16/outputs/temporal_model.csv,ci_low,-0.004060735153,100 * share change,-0.41,-0.41,percentage points,PASS
+LaggedOperatingHigh,empirical/goal16/outputs/temporal_model.csv,ci_high,0.008443098085,100 * share change,0.84,0.84,percentage points,PASS

@@ -48,7 +48,7 @@ def apply_nature_style() -> None:
             "font.family": "sans-serif",
             "font.sans-serif": ["Arial", "DejaVu Sans", "Liberation Sans"],
             "svg.fonttype": "none",
-            "svg.hashsalt": "CRR-GOAL16-NATURE-VIS-2026-07-22",
+            "svg.hashsalt": "CRR-GOAL17-NATURE-VIS-2026-07-22",
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
             "font.size": 6.8,

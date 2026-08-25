@@ -1,0 +1,33 @@
+{
+  "figures": [
+    {
+      "figure": "Figure1",
+      "before": "audits/goal17_final_editorial_before_after/Figure1_before.png",
+      "before_sha256": "e6a284d78c7806c8f02203988f0f94c09509c505df1620c688dededca982c86f",
+      "after": "audits/goal17_final_editorial_before_after/Figure1_after.png",
+      "after_sha256": "9a748ff0733df5e42124a68138d6c2ec07368382b5507a6e3d5653c3cf18af43",
+      "comparison": "audits/goal17_final_editorial_before_after/Figure1_before_after.png",
+      "comparison_sha256": "99bc37b6437e6441861175f33a94e767d67e56294ebb93fe3be531e29d4167de"
+    },
+    {
+      "figure": "Figure2",
+      "before": "audits/goal17_final_editorial_before_after/Figure2_before.png",
+      "before_sha256": "aaa9af205e0f2c3252b3d83e4cfa443499925a40b59bd1b41f2c2bc40339f732",
+      "after": "audits/goal17_final_editorial_before_after/Figure2_after.png",
+      "after_sha256": "0472a11ce4acf17e07223fad3650d8aa25224816a928768fda1712928f8958c5",
+      "comparison": "audits/goal17_final_editorial_before_after/Figure2_before_after.png",
+      "comparison_sha256": "671d20fc644bc77f135bef58dd0b75274a4e9341cf621a7b49a297984beafff5"
+    },
+    {
+      "figure": "Figure5",
+      "before": "audits/goal17_final_editorial_before_after/Figure5_before.png",
+      "before_sha256": "5d91402346b15c2abfa79af5430e1e2c76863186435f37cf22056fa5be85a247",
+      "after": "audits/goal17_final_editorial_before_after/Figure5_after.png",
+      "after_sha256": "b5b6df179a1f69f1ecb89c70f6704dcda033af0716043f2f95ef1c0b672ac880",
+      "comparison": "audits/goal17_final_editorial_before_after/Figure5_before_after.png",
+      "comparison_sha256": "f4a7b57ed3ff494e4274ffd6f06426d78ce23025303a871698304f53d0188eb4"
+    }
+  ],
+  "contact_sheet": "audits/goal17_final_editorial_before_after/before_after_contact_sheet.png",
+  "contact_sheet_sha256": "71e69d68c3b3394830a0147a9dbebeffbb82d2e4c6eb23047d25e3e2853a86ef"
+}
