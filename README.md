@@ -1,68 +1,104 @@
-# Crop ranking reversal
+# Why crop rankings do not determine land allocation
 
-Canonical research-engineering repository for rebuilding the crop-ranking-reversal paper from the immutable teacher Draft.
+> A reproducible theory, simulation, and official-data study of the gap between **ordinal crop rankings** and **cardinal acreage decisions**.
 
-## Evidence boundary
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Reproducible research](https://img.shields.io/badge/research-reproducible-2F6B4F)](#reproduce-the-study)
+[![Status: scientific draft](https://img.shields.io/badge/status-scientific_draft-C58A2B)](#research-status)
 
-The teacher Draft fixes the research question and multi-crop stochastic model architecture. Its citations, datasets, parameters, numerical examples, thresholds, figures, tables, results, and conclusions are illustrative only. They cannot enter the manuscript without independent full-source verification and reproducible regeneration.
+[Read the main paper](output/pdf/crop_ranking_reversal_main_supervisor_review.pdf) · [Read the Supplementary Information](output/pdf/crop_ranking_reversal_supplementary_supervisor_review.pdf) · [Explore the figures](figures/goal17/main) · [Reproduce the study](#reproduce-the-study)
 
-Synthetic tests validate mathematics and software only; they are never empirical evidence.
+![Conceptual architecture linking observed crop ranks and acreage orders to the hidden decision system](figures/goal17/main/Figure1.png)
 
-## Issue execution contract
+## The question
 
-Work through the existing Issues in dependency order:
+Crop-ranking systems answer an ordinal question: **which crop scores higher?** Farmers and planners face a different, cardinal question: **how much land should each crop receive?**
 
-1. #1 baseline, evidence governance, and repository structure
-2. #2 theory repair and proofs
-3. #3 verified literature foundation
-4. #4 official data and parameter provenance
-5. #5 frozen simulation design and optimization engine
-6. #6 main numerical experiments
-7. #7 full empirical rerun and robustness
-8. #8 Nature-style figures and tables
-9. #9 manuscript and supplementary rewrite
-10. #10 clean build, QA, and first compiled draft
+This paper asks what can—and cannot—be inferred when a public crop ranking disagrees with observed acreage. Its central conclusion is:
 
-For each Issue:
+> **A crop ranking alone does not identify an acreage allocation.** The conversion from prediction to prescription also requires cardinal margins, joint uncertainty, operational constraints, downside-risk conventions, and a rule for selecting among multiple optima.
 
-- read its full scope, prohibitions, dependencies, deliverables, and acceptance criteria;
-- inspect existing branches, PRs, files, and validation evidence before editing;
-- work on a dedicated `codex/issue-N-*` branch (or a documented dependent-Issue group);
-- commit with the Issue number, push, and open/update a PR;
-- comment on the Issue with deliverables, exact commands, results, paths, limitations, and whether the next dependency is unblocked;
-- never close an acceptance criterion using a smoke test whose scope is narrower than the criterion.
+## What this study does
 
-Issues #6 and #7 may run in parallel only after their dependencies are satisfied and their definitions and evidence registries are synchronized.
+| Evidence layer | What we do | What it establishes |
+|---|---|---|
+| **Theory** | Formulate a set-valued, multi-crop stochastic programme with operational constraints and loss-CVaR | Distinguishes *possible*, *universal*, and *selected* ranking reversal; proves that ranks alone do not identify acreage |
+| **Mechanism atlas** | Construct exact examples for cardinal margins, operational restrictions, downside risk, and multiple optima | Shows why visually similar rank–acreage disagreement can arise from different mechanisms |
+| **Pre-specified simulation** | Run six experiment families with optimal-face audits, replay checks, solver checks, and family-wise precision gates | Identifies operational displacement and information–flexibility interactions in their declared simulation domains |
+| **Official-data analysis** | Reconstruct a US state panel for corn, soybeans, and wheat from USDA and BLS sources | Documents how rank–acreage disagreement changes across score definitions, states, years, and aggregation levels |
+| **Reproducibility** | Freeze source snapshots, generate figures and manuscript inputs, validate claims, and build the PDFs twice | Makes the computational path from data and model to paper auditable |
 
-## Repository layout
+## Main findings
 
-- `baselines/teacher_draft/`: immutable teacher TeX/PDF and hash contract
-- `theory/`: audited specifications, proofs, and Issue #2 repair work
-- `literature/`: Issue #3 search synthesis
-- `data/`: Issue #4 official-source snapshots and processing specifications
-- `simulation/`, `optimization/`: Issues #5–#6 engines and registered outputs
-- `empirical/`: Issue #7 pipeline
-- `visualization/`, `figures/`, `tables/`: Issue #8 generated visual system
-- `manuscript/`, `supplementary/`: canonical modular LaTeX sources
-- `output/`: deterministic supervisor-review PDFs, compile logs, page QA and release checksums
-- `evidence_registry/`, `audits/`, `provenance/`: claim-level governance and reproducibility records
+### 1. Operational constraints can force universal reversal
 
-## Reproducible setup
+In the assigned-intervention experiment, the baseline allocates all land to corn. Contract, rotation, budget, and crop-bound interventions instead produce soybean-majority allocations in every treated cell. Reversal holds across the **complete optimal face**, not only at one solver-selected point, and all **24/24 family-wise intervals** pass the pre-specified precision criterion.
 
-Python 3.11 is canonical. With [`uv`](https://docs.astral.sh/uv/):
+### 2. Information and flexibility do not have a universal relationship
+
+The value of information depends on the actions it can change. Across constructive environments, the information–flexibility interaction is positive, exactly zero, or substitutive. Better information is therefore not automatically more valuable under a larger action set.
+
+### 3. Public acreage disagreement is descriptive, not a mechanism test
+
+The official panel contains **744 complete state–crop–year rows**, covering **248 complete state-years in 31 states from 2016–2024**. Concurrent operating-margin inversion intensity is **0.411** (state-cluster 95% interval: **0.346–0.475**), but the result changes with the score definition and aggregation level. Every primary strictly lagged acreage-share interval includes zero.
+
+These data make disagreement visible; they do **not** identify private objectives, constraints, beliefs, dependence, risk preferences, causality, or welfare.
+
+### 4. Inconclusive experiments remain visible
+
+Four of the six pre-specified simulation families reached their replication ceilings without satisfying every experiment-level precision gate. They remain in the Supplementary Information rather than being promoted through isolated significant or visually persuasive contrasts.
+
+## The identification boundary
+
+```text
+Observed                     Required decision system                 Model output
+────────                     ────────────────────                 ────────────
+crop ranking  ─┐               cardinal margins  ─┐
+               ├── disagreement   joint uncertainty ├── optimal face ── selected allocation
+acreage order ─┘               feasible set       │
+                               selection rule     ─┘
+```
+
+A mismatch between the two observed objects does not reveal which hidden component generated it. Mechanism claims become available only when the corresponding component is observed, assigned, or credibly estimated.
+
+## Reproduce the study
+
+Python 3.11 is the canonical runtime. The locked environment uses [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
+git clone git@github.com:RyanLu0203/crop-ranking-reversal.git
+cd crop-ranking-reversal
 uv sync --locked --extra test
 make paper
 make check
 ```
 
-`make paper` performs two isolated deterministic builds of each PDF, renders all pages and validates the release package. `make check` runs every repository, theory, literature, data, simulation, empirical, visual, manuscript and final-package validator plus the canonical test suite.
+- `make paper` performs isolated deterministic builds of the main paper and Supplementary Information, renders the pages, and validates the release package.
+- `make check` runs the repository, theory, literature, data, simulation, empirical, visualization, manuscript, and final-package validators together with the canonical test suite.
+- Frozen raw files are never overwritten. [`scripts/download_official_data.py`](scripts/download_official_data.py) verifies their bytes and reports source revisions in a separate staging directory.
 
-## Current milestone
+## Repository map
 
-Issues #1--#10 are integrated in the Stage I package labelled **“First compiled draft for supervisor review.”** Commit `4d6c14d` is the theory-repair and reproducibility foundation, not the final scientific manuscript.
+| Path | Contents |
+|---|---|
+| [`manuscript/`](manuscript) and [`supplementary/`](supplementary) | Modular LaTeX sources and generated manuscript inputs |
+| [`theory/`](theory) | Model specification, theorem audit, proofs, counterexamples, and edge cases |
+| [`optimization/`](optimization) | CVaR optimizer, optimal-face audit, benchmark policies, and mechanism checks |
+| [`simulation/`](simulation) | Frozen experiment designs, scenarios, confirmatory outputs, and seeds |
+| [`empirical/`](empirical) | Official-data parsing, score construction, panel analysis, and validation |
+| [`data/`](data) | Frozen source snapshots, contracts, processed panels, and provenance |
+| [`figures/`](figures) and [`tables/`](tables) | Publication assets in screen and submission formats |
+| [`evidence_registry/`](evidence_registry), [`audits/`](audits), and [`provenance/`](provenance) | Claim-level evidence boundaries, checksums, and reproducibility records |
+| [`output/`](output) | Built PDFs, QA contact sheets, logs, manifests, and release archive |
 
-GOAL-11 / Issue #21 and GOAL-14 / Issue #24 are supervisor-approved. The GOAL-12 / Issue #22 confirmatory package is now frozen under `simulation/stage_ii/` for supervisor review. E2 and E6 passed all prospective precision gates; E1, E3, E4 and E5 reached the replication ceiling with explicit precision failures. These artifacts do not alter the Stage I theorem repair or manuscript.
+## Research status
 
-Later phases remain locked in the fixed order GOAL-13 visualization → GOAL-15 empirical strengthening. The manuscript may be rebuilt only after all scientific phases pass. Run `make check` to exercise all three Stage II fail-closed validators with the canonical suite.
+This repository contains a **scientific draft for supervisor review**, not a published paper. Author names, affiliations, venue, DOI, and final citation are intentionally not claimed here. The teacher draft in [`baselines/teacher_draft/`](baselines/teacher_draft) fixes the research question and model architecture but is not treated as empirical evidence; every promoted result is independently regenerated and validated.
+
+## Responsible interpretation
+
+The practical message is procedural. A system that recommends acreage should disclose the decision model connecting scores to feasible actions. When that model is unavailable, the defensible claim concerns **ranking correspondence**, not optimal land allocation. The study does not estimate farm-level welfare, infer private constraints from public acreage, or claim that every observed reversal is rational or optimal.
+
+## Citation
+
+A citable release and final bibliographic record will be added after authorship and submission details are confirmed. Until then, please cite this repository by title and commit hash so that the exact research artifact remains identifiable.
