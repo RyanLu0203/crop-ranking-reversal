@@ -1,0 +1,15 @@
+{
+  "command": "python scripts/run_goal16_empirical.py",
+  "design_id": "CRR-GOAL16-EMPIRICAL-2026-07-22",
+  "design_sha256": "4041606f32364c7495cc643d9f7f568e3c57c6af12b50c6e8fafba340056226e",
+  "input_hashes": {
+    "data/processed/canonical_crop_year_panel.csv": "ddaf1a2aec05966c284865897b98d09371e015f9ca61ff302b85b787dca7be76",
+    "empirical/configs/goal16_empirical_design.yaml": "4041606f32364c7495cc643d9f7f568e3c57c6af12b50c6e8fafba340056226e",
+    "empirical/goal16/EMPIRICAL_REDESIGN.md": "53f963131796340b9ff93c70490253c31111c6c213db23b9e69dfff13d513f5b",
+    "empirical/goal16/raw/usda_nass/crop_production_2018_summary.pdf": "659b038284fe830330b7329eb0eca9ae4f6b06ff12b77a5b874adfc9818db0fd",
+    "empirical/goal16/raw/usda_nass/crop_production_2021_summary.pdf": "e54c9e6270e4c527e5496c4925111a3ea898d33009b99cf7c69cc978d2bbf080",
+    "empirical/goal16/raw/usda_nass/crop_production_2024_summary.pdf": "0e3add3bc4c95c8ea5061d8e1e75d166e5d9a4a73dcf9204784be6697e94c0c9",
+    "empirical/goal16/raw/usda_nass/crop_production_2025_summary.pdf": "16a04c3eedbf789140bb942cdc7f6da6cc821063d25fda03ac9e2fb7f2612155"
+  },
+  "manual_output_edits": false
+}

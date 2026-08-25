@@ -1,0 +1,13 @@
+ranking_definition,signature,estimate,observations,definition,claim_level
+operating_margin,margin_separation,-0.0129462790952,248,Spearman association of top-second score gap with inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+operating_margin,allocation_persistence,-0.0486494306774,651,Spearman association of prior acreage share with subsequent share change,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+operating_margin,rank_share_inversion,0.411290322581,248,Mean concurrent pairwise inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+relative_yield,margin_separation,0.399776177271,248,Spearman association of top-second score gap with inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+relative_yield,allocation_persistence,-0.0486494306774,651,Spearman association of prior acreage share with subsequent share change,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+relative_yield,rank_share_inversion,0.704301075269,248,Mean concurrent pairwise inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+standardized_revenue,margin_separation,0.0941248431754,248,Spearman association of top-second score gap with inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+standardized_revenue,allocation_persistence,-0.0486494306774,651,Spearman association of prior acreage share with subsequent share change,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+standardized_revenue,rank_share_inversion,0.295698924731,248,Mean concurrent pairwise inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+total_cost_margin,margin_separation,0.129871322175,248,Spearman association of top-second score gap with inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+total_cost_margin,allocation_persistence,-0.0486494306774,651,Spearman association of prior acreage share with subsequent share change,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST
+total_cost_margin,rank_share_inversion,0.620967741935,248,Mean concurrent pairwise inversion intensity,MODEL_LINKED_SIGNATURE_NOT_MECHANISM_TEST

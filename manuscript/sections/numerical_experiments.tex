@@ -1,39 +1,18 @@
-\section{Confirmatory mechanism experiments}
+\section{Operational constraints identify reversal}
 
-Six experiments were frozen before execution, each with named estimands, family-wise intervals, sequential checks and a maximum replication ceiling. The resulting evidence graph contains \SimulationRawRows{} raw rows, \SimulationContrasts{} contrasts and \SimulationScenarios{} scenario-registry rows. Promotion is experiment-level: every registered primary interval must meet its precision target. Under this rule \PassedExperiments{} experiments pass and \FailedExperiments{} fail. Feasible-only filtering is prohibited; all \RegisteredInfeasible{} registered infeasible rows remain in the adverse ledger.
+The operational experiment assigns budget, rotation, contract and dominant-crop-bound interventions while holding the ranking and scenario law fixed (Fig.~\ref{fig:operations}). The base allocation assigns corn share \EtwoBaseCorn{}. Each treated cell instead assigns a soybean majority: contract or rotation interventions produce corn and soybean shares \EtwoForcedCorn{} and \EtwoForcedSoy{}, while the tighter budget produces \EtwoBudgetCorn{} and \EtwoBudgetSoy{}. Possible, universal and selected reversal coincide in every treated cell, including the bound anchor.
 
-\subsection{Operational interventions identify reversal}
+The intervention factorial distinguishes three claims. First, the factor matrix records which components of the feasible set are assigned rather than inferred. Second, optimization over the complete objective-equivalent face asks whether reversal is possible, universal or dependent on the selected vertex. Third, the contrast family measures allocation displacement, expected-margin change and the change in selected reversal probability against the common baseline. The risk ceiling and scenario law are identical across cells, so changes cannot be attributed to a redesigned dependence model.
 
-E2 isolates budget, rotation, contract and dominant-crop-bound interventions while holding the ranking and scenario law fixed (Fig.~\ref{fig:operations}). The unconstrained base assigns share \EtwoBaseCorn{} to corn. Every treated cell instead assigns a soybean majority: contract or rotation interventions produce corn/soybean shares \EtwoForcedCorn{}/\EtwoForcedSoy{}, while the tighter budget produces \EtwoBudgetCorn{}/\EtwoBudgetSoy{}. Possible, selected and universal reversal equal one in every treated cell, including the bound anchor.
+All \EtwoPassedIntervals{} of \EtwoIntervals{} family-wise intervals meet their precision targets at \EtwoReplications{} replications per cell. The optimal-face classifications rule out selection dependence, and the local KKT check shows that the loss-CVaR term is inactive in these cells. Because the intervention is assigned within a controlled simulation, the experiment identifies an operational displacement mechanism in its declared domain. It does not estimate how often that mechanism operates in agriculture.
 
-All \EtwoPassedIntervals{} of \EtwoIntervals{} registered family-wise intervals pass at \EtwoReplications{} replications. Allocation $L_1$ changes are 1.10 or 1.365 relative to the base, and the selected-reversal change is one in each contrast. Because the intervention is assigned by design and the risk term is inactive in the audited cells, the experiment identifies an operational displacement mechanism within its declared simulation domain. It does not estimate the prevalence of that mechanism in observed agriculture.
+The mechanism fingerprint clarifies the allocation response. In the baseline, margin pressure is balanced at the Corn boundary. Contract or rotation changes expose a Soybean-majority solution at Corn share \EtwoForcedCorn{}, while the budget intervention moves the solution farther to \EtwoBudgetCorn{}. Direct-forcing cells combine restrictions whose KKT pressures jointly balance the same margin difference. The zero tail-risk pressure rules out downside risk as the active channel in this experiment; it does not imply that risk is generally irrelevant to crop allocation.
 
-E3 asks a different question: whether moving along a CVaR frontier changes allocation and reversal. Some individual contrasts appear numerically sharp, but the experiment-level gate fails at its 64-replication ceiling. The full E3 inventory is therefore shown as adverse evidence in Fig.~\ref{fig:operations} and Supplementary Fig.~S2; it is not used to claim an empirical risk effect or a general monotone frontier.
+Inference is experiment-level rather than contrast-level. The remaining simulation families each reach their pre-specified ceiling without meeting every primary precision criterion. Isolated precise contrasts therefore do not support experiment-level conclusions. Their complete results appear in Supplementary Figs.~S1--S3. All \InfeasibleOutcomes{} infeasible outcomes remain in those results; no feasible-only subset enters a positive claim.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure4.pdf}
-\caption{\textbf{Operational interventions identify reversal in E2.} Each E2 cell has $n=\EtwoReplications{}$; \EtwoPassedIntervals{}/\EtwoIntervals{} registered family-wise intervals pass. E3 risk-frontier results are displayed as adverse evidence only because its experiment-level precision gate fails at the $n=64$ ceiling.}
+\includegraphics[width=\textwidth]{../figures/goal17/main/Figure4.pdf}
+\caption{\textbf{Assigned operational interventions identify reversal.} The aligned top row links the factorial intervention design to selected allocation, universal-reversal classification, margin change and local pressure class. The lower panels report three families of contrasts, the KKT pressure fingerprint and confirmatory facts. Each cell has $n=\EtwoReplications{}$ and all \EtwoPassedIntervals{}/\EtwoIntervals{} intervals meet the pre-specified precision criterion.}
 \label{fig:operations}
 \end{figure}
-
-\subsection{Information value depends on what flexibility enables}
-
-E6 tests a quadrant interaction between signal information and feasible-action flexibility. Define the interaction as the objective-value difference-in-differences between informative versus uninformative signals under flexible versus restricted action sets. Ignoring a signal remains feasible, so information value is non-negative in each action set; exact ignore-signal and garbling checks verify that implementation invariant.
-
-The interaction has all three theoretically admissible signs (Fig.~\ref{fig:information}). When flexibility unlocks state-contingent specialization, the estimate is \EsixPositive{} with 95\% family-wise interval [\EsixPositiveLow{}, \EsixPositiveHigh{}]. When flexibility adds a robust fallback option, the estimate is \EsixSubstitution{} [\EsixSubstitutionLow{}, \EsixSubstitutionHigh{}], because flexibility is already valuable without the signal. When the added option is dominated, the interaction is exactly \EsixNull{}. All three intervals pass at \EsixReplications{} replications.
-
-This sign pattern is stronger than a single positive example: it shows why information and flexibility cannot be assumed to be universally complementary. Information is actionable when it changes the state-contingent decision, but the incremental value of the signal depends on the alternatives that flexibility adds. E5 dependence-misspecification contrasts remain adjacent as adverse evidence. Their experiment-level precision gate fails at 64 replications, so they cannot support a promoted claim about copula misspecification, regret or downside risk.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure5.pdf}
-\caption{\textbf{Information--flexibility interaction is positive, null or substitutive.} E6 reports three registered interaction estimands ($n=\EsixReplications{}$ each) with exact ignore-signal and garbling checks. E5 cross-law diagnostics remain non-promoted because the experiment-level precision gate fails at $n=64$.}
-\label{fig:information}
-\end{figure}
-
-\subsection{Adverse evidence and numerical integrity}
-
-E1, E3, E4 and E5 reach the registered ceiling without satisfying every primary precision interval. Their estimates, intervals, stopping reasons and infeasible cells remain visible in Supplementary Figs.~S1 and S2. Failed experiments are not pooled with E2 or E6, and passing sub-contrasts do not rescue a failed experiment. This rule prevents selective promotion after looking at the results.
-
-Numerical diagnostics support implementation integrity across both promoted and adverse experiments. Reverse-order replay passes \ReplayPasses{}/\ReplayTotal{} checks, solver sensitivity passes \SolverPasses{}/\SolverTotal{}, the maximum KKT residual is $\KKTResidual$, and the maximum Shapley efficiency residual is $\ShapleyResidual$ (Supplementary Fig.~S3). These checks show that the recorded results are reproducible and internally consistent; they do not turn imprecise estimands into evidence.

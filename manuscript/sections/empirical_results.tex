@@ -1,19 +1,47 @@
-\section{Empirical patterns and aggregation boundaries}
+\section{Empirical patterns are definition-dependent}
 
-Concurrent score and acreage orders differ materially in the admitted state sample (Fig.~\ref{fig:empirical}). For operating margin, inversion intensity is \OperatingInversion{} with a state-cluster 95\% interval of \OperatingInversionLow{}--\OperatingInversionHigh{}; the score leader differs from the acreage leader in \OperatingTopRate\% of state-years. The corresponding inversion intensities are 0.706 for relative yield, 0.351 for standardized revenue and 0.680 for total-cost margin. Thus rank disagreement is visible but inherits the definition of the ordinal object.
+The official-data analysis extends the common state panel to \EmpiricalStartYear--\EmpiricalEndYear{} (Fig.~\ref{fig:empirical}). It contains \NCropRows{} complete state--crop--year rows, \NStateYears{} complete state-years and \NStates{} states. State acreage and yield come from non-overlapping USDA National Agricultural Statistics Service annual-report blocks. National prices and costs come from USDA Economic Research Service series, and the matched CPI-U series converts monetary variables to real dollars. Missing or suppressed acreage and yield are not imputed.
 
-State and year panels show that the aggregate is not spatially or temporally uniform. Leave-one-state-out operating-margin inversion intensity ranges from 0.586 to 0.617, while yearly estimates range from 0.547 to 0.692. These summaries are descriptive: the panel is short, the state sample is selected by three-crop completeness, and the cluster intervals quantify finite-sample stability under the frozen resampling design rather than causal uncertainty.
+\subsection{Sample construction and score definitions}
 
-The lagged transition test does not provide positive evidence that a previously higher score predicts a larger subsequent acreage-share change. For operating margin, the top-minus-other contrast is \LaggedOperatingContrast{} with interval [\LaggedOperatingLow{}, \LaggedOperatingHigh{}]. The analogous intervals for relative yield, standardized revenue and total-cost margin also include zero. Across definitions, the score leader can change substantially more often than the acreage leader; the latter changes in only \AcreageTopChanges{} of 51 state transitions. This is consistent with acreage inertia, but it does not identify the source of inertia.
+The parser reads \ParsedCropRows{} state--crop--year rows. Requiring both acreage and yield retains \NonmissingCropRows{} rows; requiring all three crops in the same state-year retains \NCropRows{} crop rows, or \NStateYears{} state-years. Coverage is \EarlyCoverageStates{} states in each of the first three years, \MiddleCoverageStates{} states from 2019 through 2023 and \FinalCoverageStates{} states in 2024. The missingness summary contains \MissingAcreageRows{} missing acreage value and \MissingYieldRows{} missing yield values. Complete-case selection is therefore visible rather than treated as an implicit balanced panel.
 
-National aggregation changes the pattern. Operating-margin and standardized-revenue inversion intensities are both \NationalOperatingInversion{} nationally, whereas total-cost-margin inversion intensity is \NationalTotalCostInversion{}. Relative yield produces \NationalRelativeYieldTies{} pairwise national ties and therefore no informative national comparison. The national results neither refute state heterogeneity nor validate a particular score. They show that the spatial support of a ranking-reversal statement must be declared.
+Four accounting definitions deliberately vary what is meant by a ``high'' crop score. Relative yield compares state yield with the same crop's national yield. Standardized revenue multiplies state yield by the national crop price. Operating margin subtracts operating cost, whereas total-cost margin subtracts the broader cost measure. Prices and costs are national inputs, so neither margin is a farm-level realized profit. Acreage share is always reported as a proportion of the three-crop total in estimation and as percentage-point change when multiplied by 100 in figures.
 
-The combined empirical result is deliberately asymmetric. Concurrent inversions are frequent in this panel, but a temporally ordered response of acreage shares is unresolved and national patterns depend on the accounting definition. Public aggregate data therefore document a phenomenon compatible with the model's ordinal--cardinal distinction without selecting among margin, operational, risk, dependence or multiplicity mechanisms.
-
-\begin{figure}[t]
+\begin{table}[t]
 \centering
-\includegraphics[width=\textwidth]{../figures/stage_ii/main/Figure6.pdf}
-\caption{\textbf{Admitted-data heterogeneity and aggregation boundary.} Evidence covers \NStateYears{} state-years in \NStates{} states (\EmpiricalStartYear--\EmpiricalEndYear). Across 51 transitions per definition, every 95\% state-cluster interval for the prior-score-top versus other-crop mean share change includes zero. Concurrent inversion intensity varies by definition, state, year and national aggregation. Relative yield is nationally tied. No private-objective, constraint, CVaR, copula, causal, welfare or optimal-acreage inference is made.}
+\caption{\textbf{Empirical score definitions and interpretation.} Every definition is constructed before comparison with observed planted-acreage shares.}
+\label{tab:scores}
+\small
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{4.0cm}}
+\toprule
+Definition & Construction & Interpretation boundary \\
+\midrule
+Relative yield & State yield divided by same-year national yield for that crop & Productivity index; nationally tied by construction \\
+Standardized revenue & State yield times national crop price, standardized within state-year & Gross accounting score, not local revenue \\
+Operating margin & Standardized revenue less national operating cost & Excludes local basis and heterogeneous cost \\
+Total-cost margin & Standardized revenue less national total cost & Broad accounting score, not private expected profit \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Concurrent score and acreage orders differ materially. Operating-margin inversion intensity is \OperatingInversion{} with a state-cluster 95\% interval of \OperatingInversionLow{} to \OperatingInversionHigh{}, and its score leader differs from the acreage leader in \OperatingTopRate{}\% of complete state-years. Relative yield, standardized revenue and total-cost margin give different patterns, showing that an inversion statement inherits the accounting definition used to construct the score. The state map further shows that the operating-margin pattern is not spatially uniform.
+
+Inversion intensity counts discordant crop pairs among the three available pairs and therefore ranges from zero to one. Top-rank disagreement asks only whether the score and acreage leaders differ. Kendall's tau-b retains ties and supplies an ordinal association measure even when two crops receive the same score; Spearman correlation is reported when defined. These estimands answer different questions and are not interchangeable. State distributions and annual paths in Fig.~\ref{fig:empirical} show that definition sensitivity is present both across place and over time rather than being an artefact of one national mean.
+
+The strictly lagged analysis does not provide positive evidence that a previously leading score predicts a larger subsequent acreage-share change. For operating margin, the prior-leader coefficient is \LaggedOperatingContrast{} percentage points with interval \LaggedOperatingLow{} to \LaggedOperatingHigh{} percentage points. The other three primary intervals also include zero. Across the \TransitionsPerDefinition{} transitions per definition, the acreage leader changes in \AcreageTopChanges{} operating-margin transitions while score-leader movement is definition-specific. This is compatible with persistence, but the aggregate data do not measure rotations, adjustment costs, contracts or farmer expectations.
+
+The temporal specification compares next-year acreage-share change for the prior score leader with other crops while controlling for prior acreage share and crop, decision-year and state fixed effects. It contains \CropTransitionRows{} crop-transition rows, uses \BootstrapReplications{} state-cluster draws and never uses a contemporaneous score to predict the same year's share. A rank-sensitivity specification replaces the top-score indicator with prior rank. Persistence and transition summaries separately classify whether the score leader, acreage leader, both or neither change between adjacent years. These summaries describe adjustment patterns; they do not supply an instrument or a causal adoption design.
+
+Aggregation changes the empirical statement. Operating-margin inversion intensity is \NationalOperatingInversion{} nationally and total-cost-margin inversion is \NationalTotalCostInversion{}. Relative yield is tied by construction in all \NationalRelativeYieldTies{} national years and is therefore non-informative rather than rank-aligned. The national summaries neither validate a preferred score nor negate state heterogeneity; they show that the spatial support of any ranking-reversal claim must be declared.
+
+Support checks reinforce that boundary. Omitting one state at a time leaves mean operating-margin inversion between \LosoOperatingMin{} and \LosoOperatingMax{}. Annual coverage and missingness are shown explicitly, and no suppressed value is filled from another source. The map uses official Census state geometry only to locate admitted observations; white states are outside the complete-case panel. Supplementary Fig.~S6 reports the ranked distributions, annual paths, lagged estimates, transitions and sample counts at larger scale.
+
+The evidence boundary is asymmetric. Public data identify acreage, yield and transparent accounting relations, and they support descriptive rank agreement and transition estimands. They do not reveal private objectives, constraints, beliefs, downside-risk limits or a selected optimum. Model-linked signatures are therefore reported as compatibility checks, not mechanism tests. The full annual, leave-one-state-out and sample-flow checks appear in Supplementary Fig.~S5.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{../figures/goal17/main/Figure6.pdf}
+\caption{\textbf{Spatial, definitional, temporal and aggregation boundaries in official data.} Panel a maps operating-margin inversion intensity on official Census state geometry; white states lie outside the \NStateYears{} complete state-years in \NStates{} states from \EmpiricalStartYear{} to \EmpiricalEndYear{}. Lagged coefficients are shown in percentage points with intervals from \BootstrapReplications{} state-cluster draws. Every primary strictly lagged interval includes zero. Observed acreage is not interpreted as a model optimum.}
 \label{fig:empirical}
 \end{figure}
-\clearpage

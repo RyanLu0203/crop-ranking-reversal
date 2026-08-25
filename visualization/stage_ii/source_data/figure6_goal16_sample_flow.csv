@@ -1,0 +1,5 @@
+stage,retained,excluded_from_prior_stage
+parsed state-crop-year rows,1035,0
+nonmissing acreage and yield,971,64
+complete three-crop rows,744,227
+complete state-years,248,

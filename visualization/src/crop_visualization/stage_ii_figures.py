@@ -29,6 +29,8 @@ from PIL import Image, ImageDraw, ImageOps
 from scipy import stats
 import yaml
 
+from visualization.style.nature_style import apply_nature_style, palette as fixed_palette
+
 
 FIGURE_META: dict[str, tuple[str, int, int]] = {
     "Figure1": ("main", 183, 128),
@@ -41,6 +43,7 @@ FIGURE_META: dict[str, tuple[str, int, int]] = {
     "FigureS2": ("supplementary", 183, 138),
     "FigureS3": ("supplementary", 183, 112),
     "FigureS4": ("supplementary", 183, 128),
+    "FigureS5": ("supplementary", 183, 128),
 }
 
 STAGE_LABELS = {
@@ -104,36 +107,7 @@ def _t_summary(frame: pd.DataFrame, groups: list[str], value: str) -> pd.DataFra
 
 
 def _apply_style() -> None:
-    plt.rcParams.update(
-        {
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "DejaVu Sans", "Liberation Sans"],
-            "svg.fonttype": "none",
-            "svg.hashsalt": "CRR-STAGEII-NATURE-VIS-2026-07-22",
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
-            "font.size": 6.8,
-            "axes.labelsize": 6.8,
-            "axes.titlesize": 7.2,
-            "axes.titleweight": "semibold",
-            "xtick.labelsize": 5.8,
-            "ytick.labelsize": 5.8,
-            "legend.fontsize": 5.7,
-            "axes.spines.top": False,
-            "axes.spines.right": False,
-            "axes.linewidth": 0.55,
-            "xtick.major.width": 0.45,
-            "ytick.major.width": 0.45,
-            "xtick.major.size": 2.2,
-            "ytick.major.size": 2.2,
-            "legend.frameon": False,
-            "savefig.dpi": 600,
-            "figure.dpi": 150,
-            "axes.facecolor": "white",
-            "figure.facecolor": "white",
-            "lines.solid_capstyle": "round",
-        }
-    )
+    apply_nature_style()
 
 
 def _panel(ax: plt.Axes, label: str, x: float = -0.12, y: float = 1.03) -> None:
@@ -370,6 +344,18 @@ def _extract_source_data(root: Path, out: Path) -> dict[str, pd.DataFrame]:
             "verbatim GOAL-15 admitted-data output",
         )
 
+    goal16_names = [
+        "rank_metric_summary", "state_summary", "year_summary", "temporal_model",
+        "persistence_transition_summary", "aggregation_boundary", "leave_one_state_out",
+        "coverage", "sample_flow", "missingness", "model_linked_signatures",
+    ]
+    for name in goal16_names:
+        empirical[f"goal16_{name}"] = register(
+            f"figure6_goal16_{name}", _read(root, f"empirical/goal16/outputs/{name}.csv"),
+            [f"empirical/goal16/outputs/{name}.csv"],
+            "verbatim frozen GOAL-16 official-data output",
+        )
+
     stopping = _read(root, "simulation/stage_ii/outputs/sequential_stopping.csv")
     final_stop = stopping.sort_values("check_n").groupby(
         ["experiment_id", "contrast_id", "metric"], as_index=False
@@ -541,39 +527,18 @@ def _draw_geometry_case(ax: plt.Axes, row: pd.Series, palette: dict[str, str], l
 
 def _figure2(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("Figure2")
-    grid = fig.add_gridspec(2, 3, width_ratios=[1.25, 1, 1])
-    ax = fig.add_subplot(grid[:, 0])
-    _panel(ax, "a")
-    ax.set(xlim=(0, 1), ylim=(0, 1))
-    ax.axis("off")
-    ax.text(0.5, 0.95, "Exact two-crop geometry", ha="center", fontsize=8.2, fontweight="bold")
-    ax.add_patch(Rectangle((0.08, 0.61), 0.84, 0.12, facecolor=palette["light_gray"], edgecolor="none"))
-    ax.add_patch(Rectangle((0.08, 0.61), 0.42, 0.12, facecolor=palette["pale_rose"], edgecolor="none"))
-    ax.plot([0.5, 0.5], [0.55, 0.79], color=palette["charcoal"], lw=1.0)
-    ax.text(0.08, 0.78, r"$x_C=0$", ha="center", fontsize=6)
-    ax.text(0.50, 0.78, r"rank boundary $x_C=x_S=0.5$", ha="center", fontsize=6)
-    ax.text(0.92, 0.78, r"$x_C=1$", ha="center", fontsize=6)
-    ax.text(0.29, 0.64, "ranking reversal", ha="center", fontsize=6.3, color=palette["adverse"])
-    ax.text(0.71, 0.64, "rank aligned", ha="center", fontsize=6.3, color=palette["navy"])
-    formulas = [
-        r"Feasible set:  $x_C+x_S=1$",
-        r"Reversal:  $x_C-x_S<0$",
-        r"Possible:  $\min_{x\in X^*}(x_C-x_S)<0$",
-        r"Universal:  $\max_{x\in X^*}(x_C-x_S)<0$",
-        r"Selected:  $x_C^*-x_S^*<0$",
-    ]
-    for i, formula in enumerate(formulas):
-        ax.text(0.08, 0.48 - i * 0.095, formula, ha="left", fontsize=6.5)
-    ax.text(0.08, 0.03, "The same ordinal ranking admits each case at right.",
-            fontsize=5.6, color=palette["steel"])
-
+    grid = fig.add_gridspec(2, 2)
     geometry = data["geometry"].set_index("case_id")
     for ax, case, letter in zip(
-        [fig.add_subplot(grid[0, 1]), fig.add_subplot(grid[0, 2]),
-         fig.add_subplot(grid[1, 1]), fig.add_subplot(grid[1, 2])],
-        ["margin", "operations", "risk", "set_valued"], ["b", "c", "d", "e"],
+        [fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1]),
+         fig.add_subplot(grid[1, 0]), fig.add_subplot(grid[1, 1])],
+        ["margin", "operations", "risk", "set_valued"], ["a", "b", "c", "d"],
     ):
         _draw_geometry_case(ax, geometry.loc[case], palette, letter)
+        ax.axvspan(0, 0.5, color=palette["adverse"], alpha=0.14)
+        ax.text(0.02, 0.56, "reversal", transform=ax.transAxes, fontsize=5.2, color=palette["adverse"])
+        ax.text(0.98, 0.56, "rank aligned", transform=ax.transAxes, ha="right", fontsize=5.2,
+                color=palette["corn"])
     return fig
 
 
@@ -640,24 +605,21 @@ def _figure3(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
 
     ax = fig.add_subplot(grid[1, 1])
     _panel(ax, "d")
-    pressure = data["pressures"].pivot(index="mechanism_class", columns="pressure_term", values="mean")
-    pressure = pressure.loc[:, [x for x in ["margin_pressure", "tail_risk_pressure", "budget_pressure",
-                                             "shared_pressure", "boundary_pressure"] if x in pressure]]
-    card_diverging = mpl_colors.LinearSegmentedColormap.from_list(
-        "card_diverging", [palette["rose"], "white", palette["teal"]]
-    )
-    image = _vector_heatmap(ax, pressure.to_numpy(), cmap=card_diverging,
-                            norm=mpl_colors.TwoSlopeNorm(vcenter=0))
-    ax.set(yticks=np.arange(len(pressure)), yticklabels=pressure.index.str.replace("_", " ").str.title(),
-           xticks=np.arange(len(pressure.columns)),
-           xticklabels=pressure.columns.str.replace("_pressure", "").str.replace("_", " ").str.title(),
-           title="Validated local KKT pressures")
-    ax.tick_params(axis="x", rotation=35)
-    cbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
-    cbar.solids.set_rasterized(False)
-    cbar.set_label("Signed pressure")
+    pressure = data["pressures"].copy()
+    pressure["label"] = (pressure["mechanism_class"].str.replace("_", " ").str.title() + " · " +
+                         pressure["pressure_term"].str.replace("_pressure", "").str.replace("_", " ").str.title())
+    pressure = pressure.sort_values("mean")
+    yy = np.arange(len(pressure))
+    ax.axvline(0, color=palette["charcoal"], lw=0.7)
+    for y0, (_, row) in zip(yy, pressure.iterrows()):
+        color = palette["promoted"] if row["mean"] >= 0 else palette["adverse"]
+        ax.plot([0, row["mean"]], [y0, y0], color=color, lw=1.8)
+        ax.plot(row["mean"], y0, "o", color=color, ms=3.4)
+    ax.set(yticks=yy, yticklabels=pressure["label"], xlabel="Signed local KKT pressure",
+           title="Validated E2 local pressure decomposition")
     ax.text(0.99, -0.23, r"E2 only; maximum stationarity residual $1.82\times10^{-11}$",
             transform=ax.transAxes, ha="right", fontsize=5.2, color=palette["steel"])
+    _quiet(ax)
     return fig
 
 
@@ -713,27 +675,18 @@ def _figure4(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
 
     ax = fig.add_subplot(grid[1, 1])
     _panel(ax, "d")
-    adverse = _metric_row(data["e3_adverse"], "allocation_l1").copy()
-    adverse["alpha"] = adverse["contrast_id"].str.extract(r"A(0\.\d+)")[0]
-    adverse["regime"] = adverse["contrast_id"].str.extract(r"A0\.\d+-(.*)-VS-SLACK")[0]
-    regimes = [x for x in ["JUST_BINDING", "BINDING_MID", "STRONGLY_BINDING"] if x in adverse["regime"].values]
-    for i, regime in enumerate(regimes):
-        part = adverse.loc[adverse["regime"].eq(regime)].sort_values("alpha")
-        xx = np.arange(len(part)) + (i - 1) * 0.22
-        ax.errorbar(xx, part["estimate"],
-                    yerr=[part["estimate"] - part["ci_low"], part["ci_high"] - part["estimate"]],
-                    fmt="o", ms=3.2, capsize=1.5,
-                    color=[palette["steel"], palette["amber"], palette["adverse"]][i],
-                    label=regime.replace("_", " ").title())
-    alphas = sorted(adverse["alpha"].dropna().unique())
-    ax.set(xticks=np.arange(len(alphas)), xticklabels=alphas,
-           xlabel=r"CVaR level $\alpha$", ylabel=r"Allocation $L_1$ change",
-           title="Risk experiment retained as adverse evidence")
-    ax.legend(loc="upper left")
-    ax.text(0.98, 0.05, "EXPERIMENT PRECISION FAILED at n=64\nnon-promoted",
-            transform=ax.transAxes, ha="right", fontsize=5.4, color=palette["adverse"],
-            fontweight="bold")
-    ax.set_facecolor(palette["light_gray"])
+    mech = cells.groupby("mechanism_class", sort=True).agg(
+        corn_share=("allocation_Corn", "mean"),
+        universal_reversal=("universal_reversal", "mean"),
+        expected_profit=("expected_profit", "mean"),
+    ).reset_index()
+    y = np.arange(len(mech))
+    ax.scatter(mech["corn_share"], y, s=28, color=palette["corn"], label="Corn share")
+    ax.scatter(mech["universal_reversal"], y, s=28, facecolors="white", edgecolors=palette["promoted"],
+               label="Universal reversal")
+    ax.set(yticks=y, yticklabels=mech["mechanism_class"].str.replace("_", " ").str.title(),
+           xlim=(-0.04, 1.04), xlabel="Mean proportion", title="Mechanism-class summary")
+    ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), ncol=1)
     _quiet(ax)
     return fig
 
@@ -802,108 +755,105 @@ def _figure5(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
 
     ax = fig.add_subplot(grid[1, 1])
     _panel(ax, "d")
-    dep = data["dependence"].copy()
-    families = sorted(set(dep["true_family"]) | set(dep["assumed_family"]))
-    matrix = dep.pivot(index="true_family", columns="assumed_family", values="risk_violation_rate").reindex(
-        index=families, columns=families)
-    image = _vector_heatmap(ax, matrix.to_numpy(), cmap="Greys", vmin=0, vmax=1)
-    ax.set(xticks=np.arange(len(families)), yticks=np.arange(len(families)),
-           xticklabels=[FAMILY_LABELS.get(x, x) for x in families],
-           yticklabels=[FAMILY_LABELS.get(x, x) for x in families],
-           xlabel="Assumed dependence", ylabel="True dependence",
-           title="Dependence boundary retained, not promoted")
-    ax.tick_params(axis="x", rotation=30)
-    for i in range(len(families)):
-        for j in range(len(families)):
-            value = matrix.iloc[i, j]
-            ax.text(j, i, f"{value:.2f}", ha="center", va="center", fontsize=5.1,
-                    color="white" if value > 0.58 else palette["charcoal"])
-    cbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
-    cbar.solids.set_rasterized(False)
-    cbar.set_label("Risk-violation rate")
-    ax.text(0.99, -0.27, "E5 EXPERIMENT PRECISION FAILED at n=64 · adverse/supplementary only",
-            transform=ax.transAxes, ha="right", fontsize=5.2, color=palette["adverse"], fontweight="bold")
+    high = info.loc[info["flexibility_level"].eq("high")].copy()
+    low = info.loc[info["flexibility_level"].eq("low")].copy()
+    paired = high.merge(low, on=["archetype", "signal_accuracy"], suffixes=("_high", "_low"))
+    paired["flexibility_gain"] = paired["mean_high"] - paired["mean_low"]
+    for color, archetype in zip([palette["adverse"], palette["soybean"], palette["promoted"]],
+                                sorted(paired["archetype"].unique())):
+        part = paired.loc[paired["archetype"].eq(archetype)].sort_values("signal_accuracy")
+        ax.plot(part["signal_accuracy"], part["flexibility_gain"], marker="o", ms=3.4,
+                color=color, label=_archetype_label(archetype))
+    ax.axhline(0, color=palette["charcoal"], lw=0.6)
+    ax.set(xlabel="Signal accuracy", ylabel="High − low flexibility VOI",
+           xticks=[0.5, 0.7, 0.9], title="Archetype-specific complementarity")
+    ax.legend(loc="best")
+    ax.text(0.98, 0.96, "E6 only · exact-null and substitution retained",
+            transform=ax.transAxes, ha="right", va="top", fontsize=5.2, color=palette["promoted"])
+    _quiet(ax)
     return fig
 
 
 def _figure6(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("Figure6")
-    grid = fig.add_gridspec(2, 2)
-    transition = data["stage2_transition_summary"]
-    transition = transition.loc[transition["metric"].eq("lagged_top_minus_other_share_change")].set_index(
-        "ranking_definition").reindex(DEFINITION_ORDER)
-    ax = fig.add_subplot(grid[0, 0])
+    grid = fig.add_gridspec(2, 3, height_ratios=[1.08, 1])
+    state = data["goal16_state_summary"]
+    operating = state.loc[state["ranking_definition"].eq("operating_margin")].sort_values(
+        "mean_inversion_intensity"
+    )
+    ax = fig.add_subplot(grid[0, :2])
     _panel(ax, "a")
-    y = np.arange(4)
-    ax.axvline(0, color=palette["charcoal"], lw=0.7)
-    ax.errorbar(transition["estimate"], y,
-                xerr=[transition["estimate"] - transition["ci_low"],
-                      transition["ci_high"] - transition["estimate"]],
-                fmt="o", ms=4.2, capsize=2, color=palette["navy"], ecolor=palette["steel"])
-    ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
-           xlabel="Prior-score-top minus other crop\nacreage-share change",
-           title="Lagged rank-to-acreage transitions")
-    ax.text(0.98, 0.05, "51 transitions per definition\nall 95% intervals include zero",
-            transform=ax.transAxes, ha="right", fontsize=5.3, color=palette["adverse"])
+    y = np.arange(len(operating))
+    ax.hlines(y, 0, operating["mean_inversion_intensity"], color=palette["adverse"], lw=0.7, alpha=0.55)
+    ax.scatter(operating["mean_inversion_intensity"], y, s=13, color=palette["promoted"])
+    ax.set(yticks=y, yticklabels=operating["state"], xlim=(0, 1),
+           xlabel="Mean operating-margin inversion intensity",
+           title="Spatial distribution · ranked state dot plot (2016–2024)")
+    ax.tick_params(axis="y", labelsize=4.5)
+    ax.text(0.99, 0.03, "31 states · official NASS state records · no map geometry required",
+            transform=ax.transAxes, ha="right", fontsize=5.0, color=palette["adverse"])
     _quiet(ax)
 
-    inversion = data["stage2_inversion_intensity_summary"]
+    inversion = data["goal16_rank_metric_summary"]
     inversion = inversion.loc[inversion["metric"].eq("inversion_intensity")].set_index(
         "ranking_definition").reindex(DEFINITION_ORDER)
-    states = data["stage2_state_heterogeneity"]
-    ax = fig.add_subplot(grid[0, 1])
+    ax = fig.add_subplot(grid[0, 2])
     _panel(ax, "b")
-    rng = np.random.default_rng(20260722)
-    for yy, definition in enumerate(DEFINITION_ORDER):
-        values = states.loc[states["ranking_definition"].eq(definition), "mean_inversion_intensity"].to_numpy(float)
-        ax.scatter(values, yy + rng.uniform(-0.10, 0.10, len(values)), s=6, alpha=0.35,
-                   color=palette["steel"], edgecolors="none")
+    y = np.arange(4)
     ax.errorbar(inversion["estimate"], y,
                 xerr=[inversion["estimate"] - inversion["ci_low"],
                       inversion["ci_high"] - inversion["estimate"]],
-                fmt="o", ms=4.4, capsize=2, color=palette["navy"], ecolor=palette["navy"], zorder=3)
+                fmt="o", ms=4.4, capsize=2, color=palette["promoted"], ecolor=palette["adverse"])
     ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
-           xlim=(-0.03, 1.03), xlabel="Mean discordant pairs / 3",
-           title="Definition and state heterogeneity")
-    ax.text(0.98, 0.96, "dots: 26 states (one has 2 years)\nintervals: state-cluster bootstrap",
-            transform=ax.transAxes, ha="right", va="top", fontsize=5.1, color=palette["steel"],
-            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9, "pad": 1.2})
+           xlim=(-0.03, 1.03), xlabel="Discordant pairs / 3",
+           title="Definition sensitivity")
     _quiet(ax)
 
-    year = data["stage2_year_heterogeneity"].pivot(
-        index="ranking_definition", columns="year", values="mean_inversion_intensity"
-    ).reindex(DEFINITION_ORDER)
+    temporal = data["goal16_temporal_model"]
+    temporal = temporal.loc[temporal["specification"].eq("primary_top")].set_index(
+        "ranking_definition").reindex(DEFINITION_ORDER)
     ax = fig.add_subplot(grid[1, 0])
-    _panel(ax, "c")
-    card_blue = mpl_colors.LinearSegmentedColormap.from_list(
-        "card_blue", ["white", palette["pale_blue"], palette["navy"]]
-    )
-    image = _vector_heatmap(ax, year.to_numpy(), cmap=card_blue, vmin=0, vmax=1)
-    ax.set(yticks=np.arange(4), yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
-           xticks=np.arange(3), xticklabels=[str(x) for x in year.columns],
-           xlabel="Year", title="Temporal robustness")
-    for i in range(len(year)):
-        for j in range(len(year.columns)):
-            value = year.iloc[i, j]
-            ax.text(j, i, f"{value:.2f}", ha="center", va="center", fontsize=5.5,
-                    color="white" if value > 0.58 else palette["charcoal"])
-    cbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.03)
-    cbar.solids.set_rasterized(False)
-    cbar.set_label("Inversion intensity")
+    _panel(ax, "c", x=-0.16, y=1.10)
+    ax.axvline(0, color=palette["charcoal"], lw=0.7)
+    ax.errorbar(100 * temporal["estimate"], y,
+                xerr=[100 * (temporal["estimate"] - temporal["ci_low"]),
+                      100 * (temporal["ci_high"] - temporal["estimate"])],
+                fmt="o", ms=4, capsize=2, color=palette["corn"], ecolor=palette["adverse"])
+    ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
+           xlabel="Prior leader coefficient (percentage points)", title="Strictly lagged descriptive association")
+    _quiet(ax)
 
-    aggregation = data["stage2_aggregation_summary"].set_index("ranking_definition").reindex(DEFINITION_ORDER)
+    persistence = data["goal16_persistence_transition_summary"].pivot(
+        index="ranking_definition", columns="transition_category", values="share"
+    ).fillna(0).reindex(DEFINITION_ORDER)
     ax = fig.add_subplot(grid[1, 1])
-    _panel(ax, "d")
+    _panel(ax, "d", x=-0.16, y=1.10)
+    bottom = np.zeros(4)
+    category_colors = {
+        "neither": palette["charcoal"], "score_only": palette["adverse"],
+        "acreage_only": palette["corn"], "both": palette["promoted"],
+    }
+    for category in ["neither", "score_only", "acreage_only", "both"]:
+        values = persistence.get(category, pd.Series(0, index=persistence.index)).to_numpy(float)
+        ax.bar(np.arange(4), values, bottom=bottom, color=category_colors[category], width=0.72,
+               label=category.replace("_", " ").title())
+        bottom += values
+    short_definitions = ["Rel.\nyield", "Std.\nrevenue", "Op.\nmargin", "Total-cost\nmargin"]
+    ax.set(xticks=np.arange(4), xticklabels=short_definitions,
+           ylim=(0, 1), ylabel="Transition share", title="Leader persistence transitions")
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.20), ncol=2, columnspacing=0.8)
+    _quiet(ax)
+
+    aggregation = data["goal16_aggregation_boundary"].set_index("ranking_definition").reindex(DEFINITION_ORDER)
+    ax = fig.add_subplot(grid[1, 2])
+    _panel(ax, "e", x=-0.16, y=1.10)
     x = np.arange(4)
-    ax.bar(x - 0.18, inversion["estimate"], width=0.36, color=palette["navy"], label="State mean")
+    ax.bar(x - 0.18, inversion["estimate"], width=0.36, color=palette["corn"], label="State mean")
     ax.bar(x + 0.18, aggregation["national_mean_inversion_intensity"], width=0.36,
-           color=palette["rose"], label="National")
-    ax.set(xticks=x, xticklabels=[DEFINITION_LABELS[z] for z in DEFINITION_ORDER],
-           ylabel="Inversion intensity", ylim=(0, 1), title="Aggregation changes the pattern")
+           color=palette["adverse"], label="National")
+    ax.set(xticks=x, xticklabels=short_definitions,
+           ylabel="Inversion intensity", ylim=(0, 1), title="Aggregation boundary")
     ax.legend(loc="upper left")
-    ax.text(0.98, 0.96, "relative yield nationally tied\nobserved ≠ model optimum · mechanisms unidentified",
-            transform=ax.transAxes, ha="right", va="top", fontsize=5.1, color=palette["adverse"],
-            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.9, "pad": 1.2})
     _quiet(ax)
     return fig
 
@@ -911,124 +861,131 @@ def _figure6(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figu
 def _figure_s1(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("FigureS1")
     grid = fig.add_gridspec(1, 2)
-    stop = data["stopping"].copy()
-    x = np.arange(len(stop))
+    e1 = data["adverse"].loc[data["adverse"]["experiment_id"].eq("E1")].copy()
     ax = fig.add_subplot(grid[0, 0])
     _panel(ax, "a")
-    colors = [palette["teal"] if value else palette["adverse"] for value in stop["experiment_pass"]]
-    ax.bar(x, stop["registered_intervals"], color=palette["light_gray"], label="Registered")
-    ax.bar(x, stop["intervals_passed"], color=colors, label="Passed")
-    ax.set(xticks=x, xticklabels=stop["experiment_id"], ylabel="Primary intervals",
-           title="Sequential precision decision")
-    ax.legend(loc="upper left")
-    for xx, (_, row) in enumerate(stop.iterrows()):
-        ax.text(xx, row.registered_intervals + 0.6, f"n={int(row.final_replications)}",
-                ha="center", fontsize=5.5)
+    alloc = e1.loc[e1["metric"].eq("allocation_l1")].sort_values("estimate")
+    y = np.arange(len(alloc))
+    ax.errorbar(alloc["estimate"], y,
+                xerr=[alloc["estimate"] - alloc["ci_low"], alloc["ci_high"] - alloc["estimate"]],
+                fmt="o", ms=3.5, capsize=1.8, color=palette["adverse"], ecolor=palette["adverse"])
+    ax.set(yticks=y, yticklabels=alloc["contrast_id"].str.replace("E1-GAP-", "", regex=False).str.replace("-VS-TIE", "", regex=False),
+           xlabel=r"Allocation $L_1$ contrast", title="E1 cardinal-margin contrasts")
     _quiet(ax)
 
     ax = fig.add_subplot(grid[0, 1])
     _panel(ax, "b")
     ax.axis("off")
-    ax.set_title("Promotion ledger", pad=3)
-    for i, row in stop.iterrows():
-        passed = bool(row.experiment_pass)
-        yy = 0.88 - i * 0.14
-        ax.add_patch(Rectangle((0.04, yy - 0.045), 0.10, 0.09,
-                               facecolor=palette["mint"] if passed else palette["pale_rose"], edgecolor="none"))
-        ax.text(0.09, yy, row.experiment_id, ha="center", va="center", fontweight="bold", fontsize=6)
-        ax.text(0.18, yy, "PROMOTED" if passed else "FAILED · NON-PROMOTED",
-                ha="left", va="center", fontsize=6.1,
-                color=palette["teal"] if passed else palette["adverse"])
+    ax.set_title("E1 evidence boundary", pad=3)
+    items = [
+        "Registered experiment reached n = 64.",
+        f"{int(e1['precision_pass'].sum())}/{len(e1)} registered primary intervals passed.",
+        "Experiment-level precision gate failed.",
+        "All E1 results remain adverse and non-promoted.",
+    ]
+    for i, item in enumerate(items):
+        yy = 0.82 - i * 0.20
+        ax.text(0.04, yy, "■", color=palette["adverse"], va="center")
+        ax.text(0.10, yy, item, fontsize=6.2, va="center")
     return fig
 
 
 def _figure_s2(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("FigureS2")
-    grid = fig.add_gridspec(2, 2, height_ratios=[1.3, 1])
-    adverse = data["adverse"]
-    ax = fig.add_subplot(grid[0, :])
-    _panel(ax, "a", x=-0.03)
-    summary = adverse.groupby(["experiment_id", "metric"], sort=True).agg(
-        registered=("precision_pass", "size"), passed=("precision_pass", "sum")
-    ).reset_index()
-    pivot = summary.pivot(index="experiment_id", columns="metric", values="passed")
-    total = summary.pivot(index="experiment_id", columns="metric", values="registered")
-    ratio = pivot / total
-    image = _vector_heatmap(ax, ratio.to_numpy(), cmap="Greys", vmin=0, vmax=1)
-    ax.set(yticks=np.arange(len(ratio)), yticklabels=ratio.index,
-           xticks=np.arange(len(ratio.columns)),
-           xticklabels=ratio.columns.str.replace("_", " ").str.title(),
-           title="Complete failed-experiment precision inventory")
-    ax.tick_params(axis="x", rotation=25)
-    for i in range(len(ratio)):
-        for j in range(len(ratio.columns)):
-            if not math.isnan(ratio.iloc[i, j]):
-                ax.text(j, i, f"{int(pivot.iloc[i,j])}/{int(total.iloc[i,j])}", ha="center", va="center",
-                        fontsize=5.6, color="white" if ratio.iloc[i, j] > 0.55 else palette["charcoal"])
-    cbar = fig.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
-    cbar.solids.set_rasterized(False)
-    cbar.set_label("Intervals passed / registered")
-
-    ax = fig.add_subplot(grid[1, 0])
-    _panel(ax, "b")
-    infeasible = data["infeasible"].groupby("experiment_id", sort=True)["registered_infeasible"].sum()
-    ax.bar(infeasible.index, infeasible.values, color=palette["adverse"])
-    ax.set(ylabel="Registered rows", title="Certified/designed infeasibility")
-    for i, value in enumerate(infeasible.values):
-        ax.text(i, value + 3, str(int(value)), ha="center", fontsize=6)
-    ax.text(0.98, 0.92, f"total = {int(infeasible.sum())}", transform=ax.transAxes, ha="right", fontsize=5.6)
+    grid = fig.add_gridspec(1, 2)
+    adverse = _metric_row(data["e3_adverse"], "allocation_l1").copy()
+    adverse["alpha"] = adverse["contrast_id"].str.extract(r"A(0\.\d+)")[0]
+    adverse["regime"] = adverse["contrast_id"].str.extract(r"A0\.\d+-(.*)-VS-SLACK")[0]
+    ax = fig.add_subplot(grid[0, 0])
+    _panel(ax, "a")
+    regimes = [x for x in ["JUST_BINDING", "BINDING_MID", "STRONGLY_BINDING"] if x in adverse["regime"].values]
+    for i, regime in enumerate(regimes):
+        part = adverse.loc[adverse["regime"].eq(regime)].sort_values("alpha")
+        ax.errorbar(np.arange(len(part)) + (i - 1) * 0.22, part["estimate"],
+                    yerr=[part["estimate"] - part["ci_low"], part["ci_high"] - part["estimate"]],
+                    fmt="o", ms=3.2, capsize=1.5,
+                    color=[palette["corn"], palette["promoted"], palette["adverse"]][i],
+                    label=regime.replace("_", " ").title())
+    alphas = sorted(adverse["alpha"].dropna().unique())
+    ax.set(xticks=np.arange(len(alphas)), xticklabels=alphas, xlabel=r"CVaR level $\alpha$",
+           ylabel=r"Allocation $L_1$ change", title="E3 risk-frontier contrasts")
+    ax.legend(loc="upper left")
     _quiet(ax)
 
-    ax = fig.add_subplot(grid[1, 1])
-    _panel(ax, "c")
-    ax.axis("off")
-    ax.set_title("Interpretation boundary", pad=3)
-    items = ["No failed experiment enters a main-positive claim.",
-             "All ceiling failures remain visible.",
-             "No feasible-only cherry picking.",
-             "Dependence and diversification remain diagnostic."]
-    for i, item in enumerate(items):
-        yy = 0.84 - i * 0.20
-        ax.text(0.03, yy, "■", color=palette["adverse"], fontsize=6.5, va="center")
-        ax.text(0.09, yy, item, fontsize=6.0, va="center")
+    ax = fig.add_subplot(grid[0, 1])
+    _panel(ax, "b")
+    e3 = data["adverse"].loc[data["adverse"]["experiment_id"].eq("E3")]
+    summary = e3.groupby("metric").agg(registered=("precision_pass", "size"), passed=("precision_pass", "sum"))
+    x = np.arange(len(summary))
+    ax.bar(x, summary["registered"], color=palette["adverse"], alpha=0.35, label="Registered")
+    ax.bar(x, summary["passed"], color=palette["promoted"], label="Passed")
+    ax.set(xticks=x, xticklabels=summary.index.str.replace("_", " ").str.title(), ylabel="Intervals",
+           title="E3 experiment-level gate")
+    ax.tick_params(axis="x", rotation=20)
+    ax.legend(loc="upper left")
+    _quiet(ax)
     return fig
 
 
 def _figure_s3(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("FigureS3")
-    ax = fig.add_subplot(111)
-    _panel(ax, "a", x=-0.04)
-    frame = data["diagnostics"].copy()
-    labels = frame["diagnostic"].tolist()
-    passed = [True, True,
-              frame.iloc[2].observed <= frame.iloc[2].criterion,
-              frame.iloc[3].observed <= frame.iloc[3].criterion,
-              frame.iloc[4].observed == frame.iloc[4].criterion]
-    ax.set(xlim=(0, 1), ylim=(-0.7, len(frame) - 0.3))
-    ax.axis("off")
-    for i, (label, ok) in enumerate(zip(labels, passed)):
-        yy = len(frame) - 1 - i
-        ax.add_patch(Rectangle((0.02, yy - 0.29), 0.96, 0.55,
-                               facecolor=palette["mint"] if ok else palette["pale_rose"], edgecolor="none"))
-        ax.text(0.05, yy, label.title(), va="center", fontsize=6.4, fontweight="semibold")
-        row = frame.iloc[i]
-        if row.criterion_type == "maximum":
-            value = f"{row.observed:.3g} ≤ {row.criterion:.1g}"
-        else:
-            value = f"{row.observed:g} / {row.criterion:g}"
-        ax.text(0.86, yy, value, ha="right", va="center", fontsize=6.2)
-        ax.text(0.94, yy, "PASS" if ok else "FAIL", ha="right", va="center", fontsize=6.0,
-                color=palette["teal"] if ok else palette["adverse"], fontweight="bold")
-    ax.set_title("Independent replay, solver, KKT and attribution diagnostics", pad=3)
+    grid = fig.add_gridspec(1, 2)
+    ax = fig.add_subplot(grid[0, 0])
+    _panel(ax, "a")
+    subset = data["adverse"].loc[data["adverse"]["experiment_id"].isin(["E4", "E5"])]
+    summary = subset.groupby(["experiment_id", "metric"]).agg(
+        registered=("precision_pass", "size"), passed=("precision_pass", "sum")
+    ).reset_index()
+    labels = summary["experiment_id"] + " · " + summary["metric"].str.replace("_", " ")
+    y = np.arange(len(summary))
+    ax.barh(y, summary["registered"], color=palette["adverse"], alpha=0.35, label="Registered")
+    ax.barh(y, summary["passed"], color=palette["promoted"], label="Passed")
+    ax.set(yticks=y, yticklabels=labels, xlabel="Primary intervals", title="E4/E5 precision inventory")
+    ax.legend(loc="lower right")
+    _quiet(ax)
+
+    ax = fig.add_subplot(grid[0, 1])
+    _panel(ax, "b")
+    dep = data["dependence"]
+    families = sorted(set(dep["true_family"]) | set(dep["assumed_family"]))
+    matrix = dep.pivot(index="true_family", columns="assumed_family", values="risk_violation_rate").reindex(
+        index=families, columns=families)
+    for i, true in enumerate(families):
+        ax.plot(np.arange(len(families)), matrix.loc[true], marker="o", ms=3.2,
+                color=[palette["corn"], palette["soybean"], palette["promoted"], palette["adverse"]][i],
+                label=FAMILY_LABELS.get(true, true))
+    ax.set(xticks=np.arange(len(families)), xticklabels=[FAMILY_LABELS.get(x, x) for x in families],
+           ylim=(-0.04, 1.04), xlabel="Assumed dependence", ylabel="Risk-violation rate",
+           title="E5 cross-law diagnostic")
+    ax.tick_params(axis="x", rotation=25)
+    ax.legend(title="True law", loc="center left", bbox_to_anchor=(1.02, 0.5))
+    ax.text(0.98, 0.04, "E4 and E5 failed precision gates · non-promoted",
+            transform=ax.transAxes, ha="right", color=palette["adverse"], fontsize=5.2)
+    _quiet(ax)
     return fig
 
 
 def _figure_s4(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
     fig = _new_figure("FigureS4")
-    grid = fig.add_gridspec(1, 2)
+    grid = fig.add_gridspec(2, 2)
+    ax = fig.add_subplot(grid[0, :])
+    _panel(ax, "a", x=-0.03)
+    frame = data["diagnostics"].copy()
+    ax.axis("off")
+    for i, row in frame.iterrows():
+        yy = len(frame) - 1 - i
+        ok = row.observed <= row.criterion if row.criterion_type == "maximum" else row.observed == row.criterion
+        ax.add_patch(Rectangle((0.02, yy - 0.26), 0.96, 0.48,
+                               facecolor=palette["winter_wheat"] if ok else palette["adverse"],
+                               alpha=0.28, edgecolor="none"))
+        ax.text(0.04, yy, row.diagnostic.title(), va="center", fontsize=6.0)
+        ax.text(0.90, yy, f"{row.observed:.3g} / {row.criterion:.3g}", ha="right", va="center", fontsize=5.8)
+        ax.text(0.97, yy, "PASS" if ok else "FAIL", ha="right", va="center", fontsize=5.8,
+                color=palette["promoted"] if ok else palette["adverse"], fontweight="bold")
+    ax.set(xlim=(0, 1), ylim=(-0.6, len(frame) - 0.3), title="Numerical integrity ledger")
     orders = data["orders"]
-    for ax, metric, letter in zip([fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1])],
-                                  ["allocation_Corn", "cvar_loss"], ["a", "b"]):
+    for ax, metric, letter in zip([fig.add_subplot(grid[1, 0]), fig.add_subplot(grid[1, 1])],
+                                  ["allocation_Corn", "cvar_loss"], ["b", "c"]):
         _panel(ax, letter)
         part = orders.loc[orders["metric"].eq(metric)].sort_values("mean")
         y = np.arange(len(part))
@@ -1045,11 +1002,55 @@ def _figure_s4(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Fi
     return fig
 
 
+def _figure_s5(data: dict[str, pd.DataFrame], palette: dict[str, str]) -> plt.Figure:
+    fig = _new_figure("FigureS5")
+    grid = fig.add_gridspec(2, 2)
+    year = data["goal16_year_summary"]
+    ax = fig.add_subplot(grid[0, :])
+    _panel(ax, "a", x=-0.03)
+    for color, definition in zip([palette["corn"], palette["soybean"], palette["promoted"], palette["adverse"]],
+                                 DEFINITION_ORDER):
+        part = year.loc[year["ranking_definition"].eq(definition)].sort_values("year")
+        ax.plot(part["year"], part["mean_inversion_intensity"], marker="o", ms=3,
+                color=color, label=DEFINITION_LABELS[definition].replace("\n", " "))
+    ax.set(ylim=(0, 1), ylabel="Mean inversion intensity", xlabel="Year",
+           title="Annual robustness across the frozen 2016–2024 support")
+    ax.legend(ncol=4, loc="upper center")
+    _quiet(ax)
+
+    ax = fig.add_subplot(grid[1, 0])
+    _panel(ax, "b")
+    loo = data["goal16_leave_one_state_out"]
+    rows = []
+    for definition in DEFINITION_ORDER:
+        values = loo.loc[loo["ranking_definition"].eq(definition), "mean_inversion_intensity"]
+        rows.append((values.mean(), values.min(), values.max()))
+    y = np.arange(4)
+    means = np.array([row[0] for row in rows])
+    ax.errorbar(means, y, xerr=[means - np.array([row[1] for row in rows]),
+                                np.array([row[2] for row in rows]) - means],
+                fmt="o", ms=4, capsize=2, color=palette["promoted"], ecolor=palette["adverse"])
+    ax.set(yticks=y, yticklabels=[DEFINITION_LABELS[x].replace("\n", " ") for x in DEFINITION_ORDER],
+           xlim=(0, 1), xlabel="Leave-one-state-out inversion intensity", title="State influence range")
+    _quiet(ax)
+
+    ax = fig.add_subplot(grid[1, 1])
+    _panel(ax, "c")
+    flow = data["goal16_sample_flow"]
+    y = np.arange(len(flow))[::-1]
+    ax.barh(y, flow["retained"], color=[palette["adverse"], palette["corn"], palette["soybean"], palette["promoted"]])
+    ax.set(yticks=y, yticklabels=flow["stage"], xlabel="Rows or state-years", title="Pre-specified sample flow")
+    for yy, value in zip(y, flow["retained"]):
+        ax.text(value, yy, f" {int(value)}", va="center", fontsize=5.5)
+    _quiet(ax)
+    return fig
+
+
 FIGURE_BUILDERS = {
     "Figure1": _figure1, "Figure2": _figure2, "Figure3": _figure3,
     "Figure4": _figure4, "Figure5": _figure5, "Figure6": _figure6,
     "FigureS1": _figure_s1, "FigureS2": _figure_s2,
-    "FigureS3": _figure_s3, "FigureS4": _figure_s4,
+    "FigureS3": _figure_s3, "FigureS4": _figure_s4, "FigureS5": _figure_s5,
 }
 
 
@@ -1079,36 +1080,67 @@ def _deuteranopia(image: Image.Image) -> Image.Image:
     return Image.fromarray(np.uint8(np.rint(transformed * 255)), mode="RGB")
 
 
+def _protanopia(image: Image.Image) -> Image.Image:
+    rgb = np.asarray(image.convert("RGB"), dtype=float) / 255.0
+    matrix = np.array([[0.567, 0.433, 0.0], [0.558, 0.442, 0.0], [0.0, 0.242, 0.758]])
+    transformed = np.clip(rgb @ matrix.T, 0, 1)
+    return Image.fromarray(np.uint8(np.rint(transformed * 255)), mode="RGB")
+
+
+def _contact_sheet(images: list[tuple[str, Image.Image]], path: Path) -> None:
+    cell_w, cell_h, columns = 760, 620, 2
+    rows = math.ceil(len(images) / columns)
+    sheet = Image.new("RGB", (cell_w * columns, cell_h * rows), "white")
+    draw = ImageDraw.Draw(sheet)
+    for idx, (figure_id, source) in enumerate(images):
+        row, col = divmod(idx, columns)
+        thumb = source.copy()
+        thumb.thumbnail((720, 560), Image.Resampling.LANCZOS)
+        x = col * cell_w + (cell_w - thumb.width) // 2
+        y = row * cell_h + 34 + (cell_h - 50 - thumb.height) // 2
+        sheet.paste(thumb, (x, y))
+        draw.text((col * cell_w + 20, row * cell_h + 10), figure_id, fill="#3D3539")
+    sheet.save(path, dpi=(150, 150))
+
+
 def _make_qa(output_dir: Path, rendered: dict[str, dict[str, str]]) -> pd.DataFrame:
     qa_dir = output_dir / "visualization/stage_ii/qa"
     qa_dir.mkdir(parents=True, exist_ok=True)
     records: list[dict[str, Any]] = []
-    thumbnails: list[tuple[str, Image.Image]] = []
+    contacts: dict[str, list[tuple[str, Image.Image]]] = {
+        "full": [], "grayscale": [], "deuteranopia": [], "protanopia": [], "width89mm": []
+    }
     for figure_id, paths in rendered.items():
         image = Image.open(output_dir / paths["png"]).convert("RGB")
         grey = ImageOps.grayscale(image).convert("RGB")
         deuter = _deuteranopia(image)
+        protan = _protanopia(image)
+        width89 = image.resize((int(round(image.width * 89 / 183)), int(round(image.height * 89 / 183))),
+                               Image.Resampling.LANCZOS)
         grey_path = qa_dir / f"{figure_id}_grayscale.png"
         deuter_path = qa_dir / f"{figure_id}_deuteranopia.png"
+        protan_path = qa_dir / f"{figure_id}_protanopia.png"
+        width183_path = qa_dir / f"{figure_id}_183mm.png"
+        width89_path = qa_dir / f"{figure_id}_89mm.png"
         grey.save(grey_path, dpi=(150, 150))
         deuter.save(deuter_path, dpi=(150, 150))
-        thumb = image.copy()
-        thumb.thumbnail((720, 560), Image.Resampling.LANCZOS)
-        thumbnails.append((figure_id, thumb))
+        protan.save(protan_path, dpi=(150, 150))
+        image.save(width183_path, dpi=(300, 300))
+        width89.save(width89_path, dpi=(300, 300))
+        contacts["full"].append((figure_id, image))
+        contacts["grayscale"].append((figure_id, grey))
+        contacts["deuteranopia"].append((figure_id, deuter))
+        contacts["protanopia"].append((figure_id, protan))
+        contacts["width89mm"].append((figure_id, width89))
         records.append({"figure_id": figure_id, "grayscale": str(grey_path.relative_to(output_dir)),
                         "deuteranopia": str(deuter_path.relative_to(output_dir)),
+                        "protanopia": str(protan_path.relative_to(output_dir)),
+                        "width_183mm": str(width183_path.relative_to(output_dir)),
+                        "width_89mm": str(width89_path.relative_to(output_dir)),
                         "width_px": image.width, "height_px": image.height,
                         "visual_qa_status": "PASS_CODEX_VISUAL_INSPECTION_2026-07-22"})
-    cell_w, cell_h = 760, 620
-    sheet = Image.new("RGB", (cell_w * 2, cell_h * 5), "white")
-    draw = ImageDraw.Draw(sheet)
-    for idx, (figure_id, thumb) in enumerate(thumbnails):
-        row, col = divmod(idx, 2)
-        x = col * cell_w + (cell_w - thumb.width) // 2
-        y = row * cell_h + 34 + (cell_h - 50 - thumb.height) // 2
-        sheet.paste(thumb, (x, y))
-        draw.text((col * cell_w + 20, row * cell_h + 10), figure_id, fill="black")
-    sheet.save(qa_dir / "contact_sheet.png", dpi=(150, 150))
+    for mode, images in contacts.items():
+        _contact_sheet(images, qa_dir / f"contact_sheet_{mode}.png")
     frame = pd.DataFrame(records)
     _write_csv(frame, qa_dir / "visual_qa.csv")
     return frame
@@ -1118,14 +1150,15 @@ def _caption_rows() -> pd.DataFrame:
     captions = {
         "Figure1": "Rankings become allocation claims only after cardinal payoffs, joint uncertainty, feasibility and a selection rule are added. Possible and universal reversal are properties of the full optimal face; selected reversal depends on a reported optimizer.",
         "Figure2": "Exact two-crop constructions distinguish margin, operational, risk-limited and set-valued mechanisms. Shading marks the Corn–Soybean ranking-reversal half-space; these are analytic cases rather than empirical estimates.",
-        "Figure3": "Closed M0–M4 model path and auditable attribution. Panels a–c summarize 16 closed-domain seeds with descriptive 95% t intervals where shown; panel d reports validated E2 local KKT pressure terms (maximum stationarity residual 1.82×10⁻¹¹), not causal acreage shares.",
-        "Figure4": "Operational interventions identify reversal in E2 (n=16 per cell; 24/24 registered family-wise intervals passed). E3 risk-frontier results are retained as adverse evidence only: the experiment-level precision gate failed at the n=64 ceiling.",
-        "Figure5": "E6 shows positive, exact-null and substitution relations between information and flexibility (n=16; 3/3 family-wise intervals passed), with exact ignore-signal and garbling checks. E5 cross-law risk diagnostics are non-promoted because the experiment precision gate failed at n=64.",
-        "Figure6": "GOAL-15 admitted-data evidence covers 77 state-years in 26 states (2022–2024). Across 51 transitions per definition, every 95% state-cluster interval for the prior-score-top versus other-crop mean share change includes zero. Concurrent inversion intensity varies by definition, state, year and national aggregation. Relative yield is nationally tied; no private objective, constraint, CVaR, copula, causal, welfare or optimal-acreage inference is made.",
-        "FigureS1": "Final sequential precision outcomes for E1–E6. Only E2 and E6 passed every registered primary interval; failed experiments reached n=64 and remain non-promoted.",
-        "FigureS2": "Complete adverse inventory for failed experiments and all 206 registered infeasible rows (192 designed E3 rows and 14 certified E4/E5 rows). No feasible-only filtering enters positive claims.",
-        "FigureS3": "Numerical diagnostics: reverse-order replay 12/12, solver sensitivity 9/9, maximum KKT residual 1.82×10⁻¹¹ and maximum Shapley efficiency residual 1.42×10⁻¹⁴.",
-        "FigureS4": "Order-path contribution ranges across all registered block orders. Dots show order means; ranges expose order sensitivity rather than assigning causal meaning to any single decomposition.",
+        "Figure3": "Closed M0–M4 allocation, indexed outcomes, exact all-subset attribution and signed E2 KKT pressures. Intervals are descriptive; local pressure terms are not causal acreage effects.",
+        "Figure4": "E2-only operational factorial. Allocation, optimal-face classifications, family-wise contrasts and mechanism-class summaries use n=16 per cell; all 24 registered intervals passed.",
+        "Figure5": "E6-only information–flexibility evidence across three registered archetypes, with exact finite-state anchors, an interaction forest and archetype-specific complementarity. All three family-wise intervals passed.",
+        "Figure6": "Official-data evidence covers 248 complete state-years in 31 states from 2016–2024. Concurrent inversion varies spatially, by definition and aggregation; every primary strictly lagged 95% state-cluster interval includes zero. These are descriptive accounting relations, not causal or optimal-acreage estimates.",
+        "FigureS1": "E1 cardinal-margin contrasts and experiment-level adverse boundary. The precision gate failed at n=64 and no E1 result is promoted.",
+        "FigureS2": "E3 risk-frontier contrasts and its complete precision ledger. The experiment-level gate failed at n=64; results remain adverse.",
+        "FigureS3": "E4/E5 precision inventory and E5 cross-law risk diagnostic. Both experiment-level gates failed at n=64 and remain non-promoted.",
+        "FigureS4": "Numerical integrity and attribution-order sensitivity, including replay, solver, KKT, Shapley and all 206 registered infeasible rows.",
+        "FigureS5": "Empirical robustness across years, leave-one-state-out ranges and the pre-specified complete-case sample flow.",
     }
     return pd.DataFrame([{"figure_id": key, "caption": value} for key, value in captions.items()])
 
@@ -1144,22 +1177,24 @@ def _register_figures(root: Path, output_dir: Path, rendered: dict[str, dict[str
         "Figure1": "figure1_architecture.csv;figure1_definitions.csv",
         "Figure2": "figure2_geometry.csv",
         "Figure3": "figure3_nested_summary.csv;figure3_shapley_summary.csv;figure3_pressure_summary.csv",
-        "Figure4": "figure4_e2_cells.csv;figure4_e2_contrasts.csv;figure4_e3_adverse.csv",
-        "Figure5": "figure5_information_summary.csv;figure5_information_interaction.csv;figure5_dependence_boundary.csv",
-        "Figure6": "figure6_stage2_inversion_intensity_summary.csv;figure6_stage2_transition_summary.csv;figure6_stage2_state_heterogeneity.csv;figure6_stage2_year_heterogeneity.csv;figure6_stage2_aggregation_summary.csv;figure6_stage2_observed_model_unidentified.csv",
-        "FigureS1": "supplementary_stopping_summary.csv",
-        "FigureS2": "supplementary_adverse_inventory.csv;supplementary_infeasible_summary.csv",
-        "FigureS3": "supplementary_numerical_diagnostics.csv",
-        "FigureS4": "supplementary_order_sensitivity.csv",
+        "Figure4": "figure4_e2_cells.csv;figure4_e2_contrasts.csv",
+        "Figure5": "figure5_information_summary.csv;figure5_information_interaction.csv;figure5_information_exact.csv",
+        "Figure6": "figure6_goal16_rank_metric_summary.csv;figure6_goal16_state_summary.csv;figure6_goal16_temporal_model.csv;figure6_goal16_persistence_transition_summary.csv;figure6_goal16_aggregation_boundary.csv",
+        "FigureS1": "supplementary_adverse_inventory.csv",
+        "FigureS2": "figure4_e3_adverse.csv;supplementary_adverse_inventory.csv",
+        "FigureS3": "figure5_dependence_boundary.csv;supplementary_adverse_inventory.csv",
+        "FigureS4": "supplementary_numerical_diagnostics.csv;supplementary_order_sensitivity.csv",
+        "FigureS5": "figure6_goal16_year_summary.csv;figure6_goal16_leave_one_state_out.csv;figure6_goal16_sample_flow.csv",
     }
     claims = {
         "Figure1": "Identification architecture and reversal definitions",
         "Figure2": "Exact geometry of distinct mechanisms", "Figure3": "Nested model and closed attribution",
-        "Figure4": "E2 operational evidence with E3 adverse boundary",
-        "Figure5": "E6 information-flexibility evidence with E5 adverse boundary",
-        "Figure6": "Descriptive admitted-data heterogeneity and aggregation boundary",
-        "FigureS1": "Complete precision-gate ledger", "FigureS2": "Complete adverse and infeasible inventory",
-        "FigureS3": "Numerical diagnostics", "FigureS4": "Attribution order sensitivity",
+        "Figure4": "E2 operational evidence and family-wise precision closure",
+        "Figure5": "E6 information-flexibility evidence across registered archetypes",
+        "Figure6": "Official-data spatial temporal and aggregation boundaries",
+        "FigureS1": "E1 cardinal-margin adverse boundary", "FigureS2": "E3 risk-frontier adverse boundary",
+        "FigureS3": "E4/E5 adverse diagnostics", "FigureS4": "Numerical integrity and order sensitivity",
+        "FigureS5": "Empirical temporal, influence and sample robustness",
     }
     rows = []
     for figure_id, paths in rendered.items():
@@ -1185,8 +1220,7 @@ def generate(root: Path, output_dir: Path | None = None) -> dict[str, Any]:
     config = yaml.safe_load((root / "visualization/configs/stage_ii_nature_style.yaml").read_text(encoding="utf-8"))
     if config["backend"] != "python_matplotlib_only" or config["status"] != "FROZEN_BEFORE_RENDERING":
         raise RuntimeError("Stage II figure backend/style contract is not frozen")
-    palette = dict(config["palette"])
-    palette["light_gray"] = palette["light_grey"]
+    palette = fixed_palette()
     _apply_style()
     data = _extract_source_data(root, output_dir)
     rendered: dict[str, dict[str, str]] = {}

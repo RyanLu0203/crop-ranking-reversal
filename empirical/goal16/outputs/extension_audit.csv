@@ -1,0 +1,4 @@
+extension,status,coverage,blocker
+state panel backward,RECONSTRUCTED,2016-2024,
+state panel forward to 2025,AUDITED_NOT_INCLUDED,2025 NASS and ERS available,2025 lacks the same complete 12-month CPI-U construction used by the frozen real-dollar pipeline; overlapping years remain on the pre-specified non-overlapping report blocks.
+county panel,AUDITED_NOT_RECONSTRUCTED,not computed,"The official all-crops bulk file is authoritative and public but not a bounded crop-specific retrieval; no Quick Stats API key is available in the runtime, so a reproducible targeted county extraction was not executed."

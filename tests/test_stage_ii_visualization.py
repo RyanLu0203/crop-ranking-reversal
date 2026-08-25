@@ -10,8 +10,8 @@ sys.path.insert(0, str(ROOT / "visualization/src"))
 from crop_visualization.stage_ii_figures import FIGURE_META, _geometry_data  # noqa: E402
 
 
-def test_stage_ii_contract_has_six_main_and_four_supplementary_figures():
-    assert len(FIGURE_META) == 10
+def test_stage_ii_contract_has_six_main_and_five_supplementary_figures():
+    assert len(FIGURE_META) == 11
     assert sum(section == "main" for section, _, _ in FIGURE_META.values()) == 6
 
 

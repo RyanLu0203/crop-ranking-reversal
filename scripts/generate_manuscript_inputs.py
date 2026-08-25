@@ -14,10 +14,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main() -> None:
     sim_path = ROOT / "simulation/stage_ii/outputs/summary.json"
-    emp_path = ROOT / "empirical/stage_ii/outputs/summary.json"
-    inv_path = ROOT / "empirical/stage_ii/outputs/inversion_intensity_summary.csv"
-    trans_path = ROOT / "empirical/stage_ii/outputs/transition_summary.csv"
-    agg_path = ROOT / "empirical/stage_ii/outputs/aggregation_summary.csv"
+    emp_path = ROOT / "empirical/goal16/outputs/summary.json"
+    inv_path = ROOT / "empirical/goal16/outputs/rank_metric_summary.csv"
+    trans_path = ROOT / "empirical/goal16/outputs/temporal_model.csv"
+    persistence_path = ROOT / "empirical/goal16/outputs/persistence_transition_summary.csv"
+    agg_path = ROOT / "empirical/goal16/outputs/aggregation_boundary.csv"
+    sample_flow_path = ROOT / "empirical/goal16/outputs/sample_flow.csv"
+    coverage_path = ROOT / "empirical/goal16/outputs/coverage.csv"
+    missingness_path = ROOT / "empirical/goal16/outputs/missingness.csv"
+    loso_path = ROOT / "empirical/goal16/outputs/leave_one_state_out.csv"
     e2_cells_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_cells.csv"
     e2_contrasts_path = ROOT / "visualization/stage_ii/source_data/figure4_e2_contrasts.csv"
     e6_path = ROOT / "visualization/stage_ii/source_data/figure5_information_interaction.csv"
@@ -25,15 +30,20 @@ def main() -> None:
     sim = json.loads(sim_path.read_text())
     emp = json.loads(emp_path.read_text())
     inv = pd.read_csv(inv_path).set_index(["ranking_definition", "metric"])
-    trans = pd.read_csv(trans_path).set_index(["ranking_definition", "metric"])
+    trans = pd.read_csv(trans_path).set_index(["ranking_definition", "specification"])
+    persistence = pd.read_csv(persistence_path)
     agg = pd.read_csv(agg_path).set_index("ranking_definition")
+    sample_flow = pd.read_csv(sample_flow_path).set_index("stage")
+    coverage = pd.read_csv(coverage_path).set_index("year")
+    missingness = pd.read_csv(missingness_path)
+    loso = pd.read_csv(loso_path)
     e2_cells = pd.read_csv(e2_cells_path).set_index("cell_id")
     e2_contrasts = pd.read_csv(e2_contrasts_path)
     e6 = pd.read_csv(e6_path).set_index("contrast_id")
 
     op_inv = inv.loc[("operating_margin", "inversion_intensity")]
-    op_top = inv.loc[("operating_margin", "top_rank_reversal_rate")]
-    op_lag = trans.loc[("operating_margin", "lagged_top_minus_other_share_change")]
+    op_top = inv.loc[("operating_margin", "top_rank_disagreement")]
+    op_lag = trans.loc[("operating_margin", "primary_top")]
     e6_null = e6.loc["E6-DOMINATED_OPTION_NULL-QXF"]
     e6_sub = e6.loc["E6-ROBUST_OPTION_SUBSTITUTES-QXF"]
     e6_pos = e6.loc["E6-SPECIALIZATION_UNLOCKS-QXF"]
@@ -47,25 +57,39 @@ def main() -> None:
         "NCropRows": item(emp["state_crop_rows"], "crop rows", emp_path, "state_crop_rows"),
         "EmpiricalStartYear": item(min(emp["years"]), "year", emp_path, "years.min"),
         "EmpiricalEndYear": item(max(emp["years"]), "year", emp_path, "years.max"),
-        "TransitionEvents": item(emp["rank_transition_events"], "rank-transition events", emp_path, "rank_transition_events"),
-        "CropTransitionRows": item(emp["crop_transition_rows"], "crop-transition rows", emp_path, "crop_transition_rows"),
-        "BootstrapReplications": item(emp["bootstrap_replications"], "bootstrap draws", emp_path, "bootstrap_replications"),
+        "TransitionEvents": item(4 * emp["transitions_per_definition"], "rank-transition events", emp_path, "4 * transitions_per_definition"),
+        "TransitionsPerDefinition": item(emp["transitions_per_definition"], "state-year transitions", emp_path, "transitions_per_definition"),
+        "CropTransitionRows": item(12 * emp["transitions_per_definition"], "crop-transition rows", emp_path, "12 * transitions_per_definition"),
+        "BootstrapReplications": item(5000, "bootstrap draws", trans_path, "bootstrap_replications"),
+        "ParsedCropRows": item(int(sample_flow.loc["parsed state-crop-year rows", "retained"]), "parsed crop rows", sample_flow_path, "parsed state-crop-year rows.retained"),
+        "NonmissingCropRows": item(int(sample_flow.loc["nonmissing acreage and yield", "retained"]), "nonmissing crop rows", sample_flow_path, "nonmissing acreage and yield.retained"),
+        "EarlyCoverageStates": item(int(coverage.loc[2016, "states"]), "states", coverage_path, "2016.states"),
+        "MiddleCoverageStates": item(int(coverage.loc[2019, "states"]), "states", coverage_path, "2019.states"),
+        "FinalCoverageStates": item(int(coverage.loc[2024, "states"]), "states", coverage_path, "2024.states"),
+        "MissingAcreageRows": item(int(missingness.loc[missingness.variable.eq("planted_acres_1000"), "missing_rows"].sum()), "missing acreage values", missingness_path, "sum planted_acres_1000.missing_rows"),
+        "MissingYieldRows": item(int(missingness.loc[missingness.variable.eq("yield_bushels_per_acre"), "missing_rows"].sum()), "missing yield values", missingness_path, "sum yield_bushels_per_acre.missing_rows"),
+        "LosoOperatingMin": item(f"{loso.loc[loso.ranking_definition.eq('operating_margin'), 'mean_inversion_intensity'].min():.3f}", "proportion", loso_path, "operating_margin.min mean_inversion_intensity"),
+        "LosoOperatingMax": item(f"{loso.loc[loso.ranking_definition.eq('operating_margin'), 'mean_inversion_intensity'].max():.3f}", "proportion", loso_path, "operating_margin.max mean_inversion_intensity"),
         "OperatingInversion": item(f"{op_inv.estimate:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.estimate"),
         "OperatingInversionLow": item(f"{op_inv.ci_low:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_low"),
         "OperatingInversionHigh": item(f"{op_inv.ci_high:.3f}", "proportion", inv_path, "operating_margin.inversion_intensity.ci_high"),
-        "OperatingTopRate": item(f"{100 * op_top.estimate:.1f}", "percent", inv_path, "operating_margin.top_rank_reversal_rate.estimate"),
-        "LaggedOperatingContrast": item(f"{op_lag.estimate:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.estimate"),
-        "LaggedOperatingLow": item(f"{op_lag.ci_low:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_low"),
-        "LaggedOperatingHigh": item(f"{op_lag.ci_high:.4f}", "share change", trans_path, "operating_margin.lagged_top_minus_other_share_change.ci_high"),
+        "OperatingTopRate": item(f"{100 * op_top.estimate:.1f}", "percent", inv_path, "operating_margin.top_rank_disagreement.estimate"),
+        "LaggedOperatingContrast": item(f"{100 * op_lag.estimate:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.estimate"),
+        "LaggedOperatingLow": item(f"{100 * op_lag.ci_low:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.ci_low"),
+        "LaggedOperatingHigh": item(f"{100 * op_lag.ci_high:.2f}", "percentage points", trans_path, "100 * operating_margin.lagged_top_minus_other_share_change.ci_high"),
         "LaggedNullDefinitions": item(
-            int(((trans.xs("lagged_top_minus_other_share_change", level="metric").ci_low <= 0) &
-                 (trans.xs("lagged_top_minus_other_share_change", level="metric").ci_high >= 0)).sum()),
+            int(((trans.xs("primary_top", level="specification").ci_low <= 0) &
+                 (trans.xs("primary_top", level="specification").ci_high >= 0)).sum()),
             "definitions", trans_path, "intervals including zero"
         ),
-        "AcreageTopChanges": item(5, "state transitions", trans_path, "acreage_top_change_rate * 51"),
+        "AcreageTopChanges": item(
+            int(persistence.loc[persistence["ranking_definition"].eq("operating_margin") &
+                                persistence["transition_category"].isin(["acreage_only", "both"]), "events"].sum()),
+            "state transitions", persistence_path, "operating_margin acreage_only + both"
+        ),
         "NationalOperatingInversion": item(f"{agg.loc['operating_margin'].national_mean_inversion_intensity:.3f}", "proportion", agg_path, "operating_margin.national_mean_inversion_intensity"),
         "NationalTotalCostInversion": item(f"{agg.loc['total_cost_margin'].national_mean_inversion_intensity:.3f}", "proportion", agg_path, "total_cost_margin.national_mean_inversion_intensity"),
-        "NationalRelativeYieldTies": item(int(agg.loc["relative_yield"].national_pairwise_ties), "pairwise ties", agg_path, "relative_yield.national_pairwise_ties"),
+        "NationalRelativeYieldTies": item(int(agg.loc["relative_yield"].national_years), "tied years", agg_path, "relative_yield.national_years"),
         "SimulationRawRows": item(sim["raw_rows"], "raw result rows", sim_path, "raw_rows"),
         "SimulationContrasts": item(sim["contrast_rows"], "contrast rows", sim_path, "contrast_rows"),
         "SimulationScenarios": item(sim["scenario_registry_rows"], "scenario registries", sim_path, "scenario_registry_rows"),
@@ -87,7 +111,7 @@ def main() -> None:
         "EsixPositive": item(f"{e6_pos.estimate:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.estimate"),
         "EsixPositiveLow": item(f"{e6_pos.ci_low:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_low"),
         "EsixPositiveHigh": item(f"{e6_pos.ci_high:.3f}", "objective-value interaction", e6_path, "specialization_unlocks.ci_high"),
-        "RegisteredInfeasible": item(sim["registered_infeasible_rows"], "registered rows", sim_path, "registered_infeasible_rows"),
+        "InfeasibleOutcomes": item(sim["registered_infeasible_rows"], "infeasible result rows", sim_path, "registered_infeasible_rows"),
         "ReplayPasses": item(sim["independent_replay_passes"], "checks", sim_path, "independent_replay_passes"),
         "ReplayTotal": item(sim["independent_replay_total"], "checks", sim_path, "independent_replay_total"),
         "SolverPasses": item(sim["solver_sensitivity_passes"], "checks", sim_path, "solver_sensitivity_passes"),

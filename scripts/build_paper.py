@@ -10,6 +10,7 @@ from pathlib import Path
 import platform
 import shutil
 import subprocess
+import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 BUILD=ROOT/"build/paper"
@@ -74,8 +75,8 @@ def main()->None:
     if BUILD.exists(): shutil.rmtree(BUILD)
     for rel in ["pdf","logs","reproducibility"]: (OUTPUT/rel).mkdir(parents=True,exist_ok=True)
     env=os.environ.copy(); env.update({"SOURCE_DATE_EPOCH":SOURCE_DATE_EPOCH,"FORCE_SOURCE_DATE":"1","TZ":"UTC","BIBINPUTS":str(ROOT)+os.pathsep})
-    run(["uv","run","--python","3.11","python","scripts/generate_manuscript_inputs.py"],cwd=ROOT,env=env)
-    run(["uv","run","--python","3.11","python","scripts/validate_manuscript.py"],cwd=ROOT,env=env)
+    run([sys.executable,"scripts/generate_manuscript_inputs.py"],cwd=ROOT,env=env)
+    run([sys.executable,"scripts/validate_manuscript.py"],cwd=ROOT,env=env)
     entries={"manuscript":ROOT/"manuscript/main.tex","supplementary":ROOT/"supplementary/supplementary.tex"}
     results={}
     for name,entry in entries.items():

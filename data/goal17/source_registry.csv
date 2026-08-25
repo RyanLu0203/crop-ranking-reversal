@@ -1,0 +1,2 @@
+source_id,publisher,vintage,layer,url,file,features,sha256
+census_tigerweb_states_2024_5m,United States Census Bureau,ACS 2024,Generalized states 5M (MapServer layer 8),https://tigerweb.geo.census.gov/arcgis/rest/services/Generalized_ACS2024/State_County/MapServer/8/query?where=1%3D1&outFields=GEOID%2CSTUSAB&returnGeometry=true&outSR=4326&f=geojson,data/goal17/raw/census_states_2024_5m.geojson,56,256c479aeeefa1443ad4fbb728485c58cb45940bf1af8a4caf2089a0ca618a31

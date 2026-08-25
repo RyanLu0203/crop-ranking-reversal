@@ -1,0 +1,16 @@
+ranking_definition,transition_category,events,share
+operating_margin,acreage_only,7,0.0322580645161
+operating_margin,both,17,0.0783410138249
+operating_margin,neither,101,0.465437788018
+operating_margin,score_only,92,0.423963133641
+relative_yield,acreage_only,21,0.0967741935484
+relative_yield,both,3,0.0138248847926
+relative_yield,neither,166,0.764976958525
+relative_yield,score_only,27,0.124423963134
+standardized_revenue,acreage_only,24,0.110599078341
+standardized_revenue,neither,191,0.880184331797
+standardized_revenue,score_only,2,0.00921658986175
+total_cost_margin,acreage_only,18,0.0829493087558
+total_cost_margin,both,6,0.0276497695853
+total_cost_margin,neither,130,0.599078341014
+total_cost_margin,score_only,63,0.290322580645

@@ -1,8 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=2.35cm]{geometry}
-\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,natbib}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,natbib,tabularx,array}
 \usepackage[T1]{fontenc}
-\usepackage[hidelinks,pdftitle={When crop rankings do not determine land allocations},pdfauthor={Authors to be confirmed},pdfsubject={Stage II final scientific draft}]{hyperref}
+\usepackage[hidelinks,pdftitle={Why crop rankings do not determine land allocation},pdfauthor={Authors to be confirmed},pdfsubject={Stage II final scientific draft}]{hyperref}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{xcolor}
 \newtheorem{theorem}{Theorem}
@@ -21,17 +21,17 @@
 \maketitle
 \input{sections/abstract.tex}
 \input{sections/introduction.tex}
-\input{sections/related_literature.tex}
-\input{sections/model.tex}
 \input{sections/structural_results.tex}
 \input{sections/numerical_experiments.tex}
-\input{sections/data_empirical_design.tex}
-\input{sections/empirical_results.tex}
 \input{sections/robustness_extensions.tex}
+\input{sections/empirical_results.tex}
 \input{sections/discussion.tex}
 \input{sections/conclusion.tex}
 \input{sections/methods.tex}
 \input{frontmatter/declarations.tex}
 \bibliographystyle{plainnat}
+\begingroup
+\footnotesize
 \bibliography{references}
+\endgroup
 \end{document}
