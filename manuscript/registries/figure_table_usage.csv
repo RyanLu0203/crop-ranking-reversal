@@ -1,9 +1,14 @@
 asset_id,manuscript_location,source_registry,source_path,evidence_status,caption_boundary
-Figure1,Main Introduction,evidence_registry/figures.csv,figures/main/Figure1.pdf,THEORY_AND_BOUNDARY,Separates theory simulation empirical and mechanism claims
-Figure2,Main Empirical results,evidence_registry/figures.csv,figures/main/Figure2.pdf,DESCRIPTIVE_IDENTIFIED,No optimality CVaR or causal interpretation
-FigureS1,Supplementary numerical protocol,evidence_registry/figures.csv,figures/supplementary/FigureS1.pdf,NONHEADLINE,Diagnostic landscape not a threshold
-FigureS2,Main numerical experiments and Supplementary,evidence_registry/figures.csv,figures/supplementary/FigureS2.pdf,NONHEADLINE,Zero of five convergence rows pass
-FigureS3,Supplementary empirical robustness,evidence_registry/figures.csv,figures/supplementary/FigureS3.pdf,DESCRIPTIVE_ROBUSTNESS,Low-powered and null checks retained
-Table1,Supplementary source package,evidence_registry/tables.csv,tables/main/Table1_sample_and_definitions.tex,DESCRIPTIVE_IDENTIFIED,Sample and definition outcomes
-TableS1,Supplementary source package,evidence_registry/tables.csv,tables/supplementary/TableS1_simulation_gates.tex,NONHEADLINE,Failed simulation gate
-TableS2,Supplementary source package,evidence_registry/tables.csv,tables/supplementary/TableS2_claim_boundaries.tex,CLAIM_BOUNDARY,Permitted and prohibited interpretations
+Figure1,Main Introduction,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure1.pdf,THEORY_AND_IDENTIFICATION,Separates rankings from cardinal allocation and distinguishes optimal-set definitions
+Figure2,Main Model,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure2.pdf,EXACT_THEORY_CONSTRUCTIONS,Analytic cases are not empirical estimates
+Figure3,Main Structural results,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure3.pdf,THEORY_LINKED_NUMERICAL_ACCOUNTING,Shapley and KKT terms are not causal acreage effects
+Figure4,Main Operational results,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure4.pdf,PROMOTED_E2_ONLY,Operational-intervention evidence only
+Figure5,Main Information results,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure5.pdf,PROMOTED_E6_ONLY,Information-flexibility evidence only
+Figure6,Main Empirical patterns,figures/goal17/figure_manifest.csv,figures/goal17/main/Figure6.pdf,DESCRIPTIVE_EMPIRICAL,No private objective constraint CVaR copula causal welfare or optimum inference
+FigureS1,Supplementary simulation,visualization/stage_ii/figure_manifest.csv,figures/stage_ii/supplementary/FigureS1.pdf,INCONCLUSIVE_E1,E1 precision criterion not met
+FigureS2,Supplementary simulation,visualization/stage_ii/figure_manifest.csv,figures/stage_ii/supplementary/FigureS2.pdf,INCONCLUSIVE_E3,E3 precision criterion not met
+FigureS3,Supplementary simulation,visualization/stage_ii/figure_manifest.csv,figures/stage_ii/supplementary/FigureS3.pdf,INCONCLUSIVE_E4_E5,E4 and E5 precision criteria not met
+FigureS4,Supplementary simulation,visualization/stage_ii/figure_manifest.csv,figures/stage_ii/supplementary/FigureS4.pdf,NUMERICAL_INTEGRITY,Replay solver KKT Shapley infeasibility and order checks
+FigureS5,Supplementary empirical,visualization/stage_ii/figure_manifest.csv,figures/stage_ii/supplementary/FigureS5.pdf,EMPIRICAL_ROBUSTNESS,Annual leave-one-state-out and sample-flow checks
+FigureS6,Supplementary empirical,figures/goal17/figure_manifest.csv,figures/goal17/supplementary/FigureS6.pdf,DESCRIPTIVE_EMPIRICAL,Expanded diagnostics remain descriptive and white map units are outside the panel
+FigureS7,Supplementary simulation,figures/goal17/figure_manifest.csv,figures/goal17/supplementary/FigureS7.pdf,PROMOTED_E2_ONLY,Response surfaces and pressure channels are intervention-specific diagnostics

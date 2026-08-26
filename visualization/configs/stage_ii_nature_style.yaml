@@ -1,0 +1,65 @@
+style_id: CRR-GOAL16-NATURE-VIS-2026-07-22
+target_journal: Nature Food
+backend: python_matplotlib_only
+status: FROZEN_BEFORE_RENDERING
+authorization: https://github.com/RyanLu0203/crop-ranking-reversal/pull/28#issuecomment-5040939632
+dimensions_mm:
+  Figure1: [183, 128]
+  Figure2: [183, 128]
+  Figure3: [183, 145]
+  Figure4: [183, 145]
+  Figure5: [183, 145]
+  Figure6: [183, 150]
+  FigureS1: [183, 118]
+  FigureS2: [183, 138]
+  FigureS3: [183, 112]
+  FigureS4: [183, 128]
+  FigureS5: [183, 128]
+typography:
+  family: [Arial, Helvetica, DejaVu Sans, sans-serif]
+  body_pt: 6.8
+  ticks_pt: 5.8
+  legend_pt: 5.7
+  panel_label_pt: 8.0
+  svg_fonttype: none
+  svg_hashsalt: CRR-GOAL16-NATURE-VIS-2026-07-22
+  pdf_fonttype: 42
+palette:
+  charcoal: '#3D3539'
+  promoted: '#0F9EA8'
+  soybean: '#008B82'
+  corn: '#45728F'
+  winter_wheat: '#8CD1B2'
+  adverse: '#8B84A3'
+  paper: '#FFFFFF'
+semantic_mapping:
+  corn: corn
+  soybean: soybean
+  winter_wheat: winter_wheat
+  positive_supported: promoted
+  exact_null: charcoal
+  substitution: adverse
+  adverse_non_promoted: adverse
+  observed_acreage: charcoal
+  calibrated_model: corn
+  unidentified: adverse
+exports:
+  primary: svg
+  vector: [svg, pdf]
+  raster: [png_300dpi, tiff_600dpi]
+  deterministic_metadata_date: '2026-07-22'
+accessibility:
+  minimum_text_contrast_ratio: 4.5
+  grayscale_required: true
+  deuteranopia_simulation_required: true
+  protanopia_simulation_required: true
+  widths_mm: [183, 89]
+prohibitions:
+  - rainbow_colormap
+  - decorative_gradient
+  - hidden_precision_failure
+  - smoothing_across_active_set_changes
+  - manually_adjusted_plot_data
+  - rasterized_chart_text
+  - causal_language_for_kkt_pressure
+  - empirical_optimum_inference

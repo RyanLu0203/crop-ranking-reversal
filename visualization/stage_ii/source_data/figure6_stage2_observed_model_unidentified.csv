@@ -1,0 +1,10 @@
+construct,evidence_layer,observed_output,model_output,boundary
+state planted acreage,DIRECTLY_OBSERVED,yes,no,aggregate outcome; not an optimizer
+state realized yield,DIRECTLY_OBSERVED,yes,no,concurrent outcome; lagged use is pre-decision proxy
+standardized revenue and margins,ACCOUNTING_CONSTRUCTED,yes,no,national price/cost mismatch
+rank transitions and inversion intensity,DESCRIPTIVE_DERIVED,yes,no,ordering summaries only
+E2 allocations and KKT pressures,MODEL_GENERATED,no,yes,controlled synthetic evidence
+E6 information value,MODEL_GENERATED,no,yes,controlled finite/synthetic evidence
+"private budgets, rotations and contracts",UNIDENTIFIED,no,no,not in admitted data
+"farmer objective, CVaR limit and beliefs",UNIDENTIFIED,no,no,not recoverable from aggregate acreage
+copula causality and welfare,UNIDENTIFIED,no,no,no causal design or farm law

@@ -1,0 +1,869 @@
+ranking_definition,state,decision_year,score_leader_changed,acreage_leader_changed,transition_category,prior_top_minus_other_share_change,prior_score_leaders,current_score_leaders,prior_acreage_leaders,current_acreage_leaders
+operating_margin,Alabama,2017,True,False,score_only,-0.0520408163265,winter_wheat,soybeans,soybeans,soybeans
+operating_margin,Alabama,2018,True,False,score_only,-0.0235294117647,soybeans,winter_wheat,soybeans,soybeans
+operating_margin,Alabama,2019,True,True,both,-0.0409982174688,winter_wheat,corn,soybeans,corn
+operating_margin,Alabama,2020,False,False,neither,-0.00689914112733,corn,corn,corn,corn
+operating_margin,Alabama,2021,False,False,neither,-0.0305009587728,corn,corn,corn,corn
+operating_margin,Alabama,2022,True,True,both,-0.0982142857143,corn,winter_wheat,corn,soybeans
+operating_margin,Alabama,2023,False,False,neither,0.0260290556901,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Alabama,2024,False,False,neither,-0.124484654146,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Arkansas,2017,False,False,neither,0.0679145739248,soybeans,soybeans,soybeans,soybeans
+operating_margin,Arkansas,2018,True,False,score_only,-0.0216156198936,soybeans,corn,soybeans,soybeans
+operating_margin,Arkansas,2019,False,False,neither,0.0866122353443,corn,corn,soybeans,soybeans
+operating_margin,Arkansas,2020,False,False,neither,-0.0677812414807,corn,corn,soybeans,soybeans
+operating_margin,Arkansas,2021,False,False,neither,0.0515613838147,corn,corn,soybeans,soybeans
+operating_margin,Arkansas,2022,False,False,neither,-0.0518515221649,corn,corn,soybeans,soybeans
+operating_margin,Arkansas,2023,False,False,neither,0.0549153212758,corn,corn,soybeans,soybeans
+operating_margin,Arkansas,2024,False,False,neither,-0.110235061041,corn,corn,soybeans,soybeans
+operating_margin,Delaware,2017,False,False,neither,-0.0327978580991,soybeans,soybeans,corn,corn
+operating_margin,Delaware,2018,True,True,both,0.0361445783133,soybeans,winter_wheat,corn,corn;soybeans
+operating_margin,Delaware,2019,True,True,both,-0.0460843373494,winter_wheat,corn,corn;soybeans,corn
+operating_margin,Delaware,2020,True,False,score_only,-0.0270833333333,corn,soybeans,corn,corn
+operating_margin,Delaware,2021,True,False,score_only,0.0405982905983,soybeans,corn,corn,corn
+operating_margin,Delaware,2022,False,True,acreage_only,-0.0730769230769,corn,corn,corn,corn;soybeans
+operating_margin,Delaware,2023,True,True,both,0.0481481481481,corn,winter_wheat,corn;soybeans,corn
+operating_margin,Delaware,2024,False,False,neither,-0.0270655270655,winter_wheat,winter_wheat,corn,corn
+operating_margin,Florida,2017,True,False,score_only,-0.145078605605,soybeans,corn,corn,corn
+operating_margin,Florida,2018,False,False,neither,0.105092276145,corn,corn,corn,corn
+operating_margin,Georgia,2017,False,False,neither,-0.0045211473019,corn,corn,corn,corn
+operating_margin,Georgia,2018,False,False,neither,0.0086036758357,corn,corn,corn,corn
+operating_margin,Georgia,2019,False,False,neither,0.190992710864,corn,corn,corn,corn
+operating_margin,Georgia,2020,False,False,neither,-0.0312807075008,corn,corn,corn,corn
+operating_margin,Georgia,2021,False,False,neither,-0.0301810865191,corn,corn,corn,corn
+operating_margin,Georgia,2022,False,False,neither,-0.0590659340659,corn,corn,corn,corn
+operating_margin,Georgia,2023,False,False,neither,0.0679945054945,corn,corn,corn,corn
+operating_margin,Georgia,2024,True,False,score_only,-0.0508540372671,corn,soybeans,corn,corn
+operating_margin,Illinois,2017,False,False,neither,0.0311863024868,soybeans,soybeans,corn,corn
+operating_margin,Illinois,2018,True,False,score_only,0.0102098014094,soybeans,corn,corn,corn
+operating_margin,Illinois,2019,False,False,neither,0.00983835477319,corn,corn,corn,corn
+operating_margin,Illinois,2020,True,False,score_only,0.0181011870787,corn,soybeans,corn,corn
+operating_margin,Illinois,2021,True,False,score_only,0.0170772892409,soybeans,corn,corn,corn
+operating_margin,Illinois,2022,False,True,acreage_only,-0.0128171622024,corn,corn,corn,corn;soybeans
+operating_margin,Illinois,2023,True,True,both,0.0222450833287,corn,soybeans,corn;soybeans,corn
+operating_margin,Illinois,2024,True,True,both,0.0307942690266,soybeans,corn,corn,corn;soybeans
+operating_margin,Indiana,2017,False,False,neither,0.0381951119198,soybeans,soybeans,soybeans,soybeans
+operating_margin,Indiana,2018,False,False,neither,-0.00132654676468,soybeans,soybeans,soybeans,soybeans
+operating_margin,Indiana,2019,True,False,score_only,-0.0138410262709,soybeans,corn,soybeans,soybeans
+operating_margin,Indiana,2020,True,False,score_only,0.00844874388015,corn,soybeans,soybeans,soybeans
+operating_margin,Indiana,2021,True,False,score_only,-0.00920136026776,soybeans,corn,soybeans,soybeans
+operating_margin,Indiana,2022,False,False,neither,-0.0197541703248,corn,corn,soybeans,soybeans
+operating_margin,Indiana,2023,True,False,score_only,0.0285511984719,corn,winter_wheat,soybeans,soybeans
+operating_margin,Indiana,2024,True,False,score_only,-0.0123866021465,winter_wheat,corn,soybeans,soybeans
+operating_margin,Iowa,2017,False,False,neither,0.0350106091923,soybeans,soybeans,corn,corn
+operating_margin,Iowa,2018,True,False,score_only,0.00277108480743,soybeans,corn,corn,corn
+operating_margin,Kansas,2017,False,False,neither,0.079095036672,soybeans,soybeans,winter_wheat,winter_wheat
+operating_margin,Kansas,2018,False,False,neither,-0.0252429784954,soybeans,soybeans,winter_wheat,winter_wheat
+operating_margin,Kansas,2019,True,False,score_only,-0.0199283492471,soybeans,corn,winter_wheat,winter_wheat
+operating_margin,Kansas,2020,True,False,score_only,-0.00899881282153,corn,soybeans,winter_wheat,winter_wheat
+operating_margin,Kansas,2021,True,False,score_only,-0.00386554621849,soybeans,corn,winter_wheat,winter_wheat
+operating_margin,Kansas,2022,False,False,neither,-0.0168067226891,corn,corn,winter_wheat,winter_wheat
+operating_margin,Kansas,2023,False,False,neither,0.00964225952963,corn,corn,winter_wheat,winter_wheat
+operating_margin,Kansas,2024,True,False,score_only,0.0409238160596,corn,soybeans,winter_wheat,winter_wheat
+operating_margin,Kentucky,2017,False,False,neither,0.0734210526316,soybeans,soybeans,soybeans,soybeans
+operating_margin,Kentucky,2018,True,False,score_only,0.0115567282322,soybeans,corn,soybeans,soybeans
+operating_margin,Kentucky,2019,False,False,neither,0.096341628203,corn,corn,soybeans,soybeans
+operating_margin,Kentucky,2020,True,False,score_only,-0.0509666204528,corn,soybeans,soybeans,soybeans
+operating_margin,Kentucky,2021,True,False,score_only,-0.0148244108632,soybeans,corn,soybeans,soybeans
+operating_margin,Kentucky,2022,True,False,score_only,-0.0484753098564,corn,winter_wheat,soybeans,soybeans
+operating_margin,Kentucky,2023,False,False,neither,0.0226389946687,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Kentucky,2024,True,False,score_only,-0.0154298721329,winter_wheat,corn,soybeans,soybeans
+operating_margin,Louisiana,2017,False,False,neither,0.0802458100559,soybeans,soybeans,soybeans,soybeans
+operating_margin,Louisiana,2018,False,False,neither,0.0431922064731,soybeans,soybeans,soybeans,soybeans
+operating_margin,Maryland,2017,False,False,neither,-0.0425212069151,soybeans,soybeans,soybeans,soybeans
+operating_margin,Maryland,2018,False,False,neither,0.0468978200898,soybeans,soybeans,soybeans,soybeans
+operating_margin,Maryland,2019,True,True,both,-0.0471403227169,soybeans,corn,soybeans,corn
+operating_margin,Maryland,2020,True,True,both,-0.0275791624106,corn,soybeans,corn,soybeans
+operating_margin,Maryland,2021,True,False,score_only,0.0120820271682,soybeans,corn,soybeans,soybeans
+operating_margin,Maryland,2022,False,False,neither,-0.053743398571,corn,corn,soybeans,soybeans
+operating_margin,Maryland,2023,True,True,both,0.0716530483972,corn,winter_wheat,soybeans,corn
+operating_margin,Maryland,2024,False,True,acreage_only,-0.00844407530454,winter_wheat,winter_wheat,corn,soybeans
+operating_margin,Michigan,2017,True,True,both,0.071414258098,soybeans,winter_wheat,corn,soybeans
+operating_margin,Michigan,2018,False,True,acreage_only,0.00599388307534,winter_wheat,winter_wheat,soybeans,corn;soybeans
+operating_margin,Michigan,2019,True,True,both,0.0417088552994,winter_wheat,corn,corn;soybeans,corn
+operating_margin,Michigan,2020,True,False,score_only,0.00334907745001,corn,soybeans,corn,corn
+operating_margin,Michigan,2021,True,False,score_only,-0.0236464448793,soybeans,corn,corn,corn
+operating_margin,Michigan,2022,False,False,neither,-0.00120112026436,corn,corn,corn,corn
+operating_margin,Michigan,2023,True,False,score_only,0.0256629597947,corn,winter_wheat,corn,corn
+operating_margin,Michigan,2024,False,False,neither,-0.0548600883652,winter_wheat,winter_wheat,corn,corn
+operating_margin,Minnesota,2017,True,True,both,0.0468378830085,soybeans,corn,corn,soybeans
+operating_margin,Minnesota,2018,False,True,acreage_only,0.00933806657583,corn,corn,soybeans,corn
+operating_margin,Mississippi,2017,False,False,neither,0.120573642573,soybeans,soybeans,soybeans,soybeans
+operating_margin,Mississippi,2018,True,False,score_only,0.0173874231629,soybeans,corn,soybeans,soybeans
+operating_margin,Mississippi,2019,False,False,neither,0.158206821145,corn,corn,soybeans,soybeans
+operating_margin,Mississippi,2020,True,False,score_only,-0.12883192389,corn,soybeans,soybeans,soybeans
+operating_margin,Mississippi,2021,True,False,score_only,-0.0939039408867,soybeans,corn,soybeans,soybeans
+operating_margin,Mississippi,2022,False,False,neither,-0.0686360116645,corn,corn,soybeans,soybeans
+operating_margin,Mississippi,2023,True,False,score_only,0.0925252459655,corn,soybeans,soybeans,soybeans
+operating_margin,Mississippi,2024,False,False,neither,0.152273888605,soybeans,soybeans,soybeans,soybeans
+operating_margin,Missouri,2017,False,False,neither,0.0483229708582,soybeans,soybeans,soybeans,soybeans
+operating_margin,Missouri,2018,False,False,neither,-0.023720449885,soybeans,soybeans,soybeans,soybeans
+operating_margin,Missouri,2019,True,False,score_only,-0.00526616384741,soybeans,corn,soybeans,soybeans
+operating_margin,Missouri,2020,True,False,score_only,-0.0132317770615,corn,soybeans,soybeans,soybeans
+operating_margin,Missouri,2021,True,False,score_only,-0.0370782980089,soybeans,corn,soybeans,soybeans
+operating_margin,Missouri,2022,False,False,neither,-0.0447476525822,corn,corn,soybeans,soybeans
+operating_margin,Missouri,2023,True,False,score_only,0.0660042242704,corn,winter_wheat,soybeans,soybeans
+operating_margin,Missouri,2024,True,False,score_only,-0.0140701002687,winter_wheat,corn,soybeans,soybeans
+operating_margin,Nebraska,2017,False,False,neither,0.047266433875,soybeans,soybeans,corn,corn
+operating_margin,Nebraska,2018,True,False,score_only,-0.000955421130265,soybeans,corn,corn,corn
+operating_margin,Nebraska,2019,False,False,neither,0.0647016862203,corn,corn,corn,corn
+operating_margin,Nebraska,2020,True,False,score_only,-0.00410015995969,corn,soybeans,corn,corn
+operating_margin,Nebraska,2021,True,False,score_only,0.0330436472056,soybeans,corn,corn,corn
+operating_margin,Nebraska,2022,False,False,neither,-0.0225722816484,corn,corn,corn,corn
+operating_margin,Nebraska,2023,False,False,neither,0.0321494182486,corn,corn,corn,corn
+operating_margin,Nebraska,2024,True,False,score_only,0.00805631555588,corn,soybeans,corn,corn
+operating_margin,New Jersey,2017,False,False,neither,0.0182926829268,soybeans,soybeans,soybeans,soybeans
+operating_margin,New Jersey,2018,True,False,score_only,0.0576923076923,soybeans,winter_wheat,soybeans,soybeans
+operating_margin,New Jersey,2019,True,False,score_only,0.0107531212243,winter_wheat,corn,soybeans,soybeans
+operating_margin,New Jersey,2020,True,False,score_only,-0.00169696650793,corn,soybeans,soybeans,soybeans
+operating_margin,New Jersey,2021,True,False,score_only,0.0377259431486,soybeans,corn,soybeans,soybeans
+operating_margin,New Jersey,2022,True,False,score_only,-0.0820895522388,corn,winter_wheat,soybeans,soybeans
+operating_margin,New Jersey,2023,False,False,neither,0.0540158371041,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,New York,2017,False,False,neither,-0.0321207961565,soybeans,soybeans,corn,corn
+operating_margin,New York,2018,False,False,neither,0.0341945288754,soybeans,soybeans,corn,corn
+operating_margin,New York,2019,True,False,score_only,-0.059346787042,soybeans,corn,corn,corn
+operating_margin,New York,2020,True,False,score_only,-0.104101652348,corn,soybeans,corn,corn
+operating_margin,New York,2021,True,False,score_only,0.00257393927471,soybeans,corn,corn,corn
+operating_margin,New York,2022,True,False,score_only,-0.0194117647059,corn,winter_wheat,corn,corn
+operating_margin,New York,2023,False,False,neither,0.0061038961039,winter_wheat,winter_wheat,corn,corn
+operating_margin,New York,2024,True,False,score_only,-0.013317010858,winter_wheat,soybeans,corn,corn
+operating_margin,North Carolina,2017,False,False,neither,0.0237032492808,soybeans,soybeans,soybeans,soybeans
+operating_margin,North Carolina,2018,True,False,score_only,-0.0192793656326,soybeans,winter_wheat,soybeans,soybeans
+operating_margin,North Carolina,2019,False,False,neither,-0.0742215020431,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,North Carolina,2020,True,False,score_only,0.0677841545353,winter_wheat,soybeans,soybeans,soybeans
+operating_margin,North Carolina,2021,True,False,score_only,0.0193498452012,soybeans,corn,soybeans,soybeans
+operating_margin,North Carolina,2022,True,False,score_only,-0.0605882352941,corn,winter_wheat,soybeans,soybeans
+operating_margin,North Carolina,2023,False,False,neither,-0.00547231270358,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,North Carolina,2024,False,False,neither,-0.0246300763749,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,North Dakota,2017,False,False,neither,0.0632981211335,soybeans,soybeans,soybeans,soybeans
+operating_margin,North Dakota,2018,True,False,score_only,0.0155478938019,soybeans,corn,soybeans,soybeans
+operating_margin,North Dakota,2019,False,False,neither,0.105377888435,corn,corn,soybeans,soybeans
+operating_margin,North Dakota,2020,False,False,neither,-0.193677127774,corn,corn,soybeans,soybeans
+operating_margin,North Dakota,2021,False,False,neither,0.159680435843,corn,corn,soybeans,soybeans
+operating_margin,North Dakota,2022,True,False,score_only,-0.0321619414281,corn,winter_wheat,soybeans,soybeans
+operating_margin,North Dakota,2023,False,False,neither,0.00435530626969,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,North Dakota,2024,True,False,score_only,-0.0047806236193,winter_wheat,corn,soybeans,soybeans
+operating_margin,Ohio,2017,False,False,neither,0.0408118647049,soybeans,soybeans,soybeans,soybeans
+operating_margin,Ohio,2018,False,False,neither,-0.0166852057842,soybeans,soybeans,soybeans,soybeans
+operating_margin,Ohio,2019,True,False,score_only,0.0144239213161,soybeans,corn,soybeans,soybeans
+operating_margin,Ohio,2020,True,False,score_only,0.0370694177304,corn,soybeans,soybeans,soybeans
+operating_margin,Ohio,2021,True,False,score_only,-0.00830564784053,soybeans,corn,soybeans,soybeans
+operating_margin,Ohio,2022,False,False,neither,-0.0236632608287,corn,corn,soybeans,soybeans
+operating_margin,Ohio,2023,True,False,score_only,0.0339622641509,corn,winter_wheat,soybeans,soybeans
+operating_margin,Ohio,2024,False,False,neither,-0.0213768115942,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Oklahoma,2017,False,False,neither,0.0548547431585,soybeans,soybeans,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2018,True,False,score_only,-0.00183860042273,soybeans,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2019,False,False,neither,0.0205087750234,corn,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2020,False,False,neither,-0.00577965844504,corn,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2021,False,False,neither,-0.00858408109248,corn,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2022,False,False,neither,0.00519404864423,corn,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2023,False,False,neither,0.00727462303497,corn,corn,winter_wheat,winter_wheat
+operating_margin,Oklahoma,2024,True,False,score_only,0.0189051209551,corn,winter_wheat,winter_wheat,winter_wheat
+operating_margin,Pennsylvania,2017,False,False,neither,0.0107000820655,soybeans,soybeans,corn,corn
+operating_margin,Pennsylvania,2018,True,False,score_only,0.0177002815594,soybeans,winter_wheat,corn,corn
+operating_margin,Pennsylvania,2019,True,False,score_only,-0.0138672768879,winter_wheat,corn,corn,corn
+operating_margin,Pennsylvania,2020,True,False,score_only,-0.019298245614,corn,soybeans,corn,corn
+operating_margin,Pennsylvania,2021,True,False,score_only,0.00488038277512,soybeans,corn,corn,corn
+operating_margin,Pennsylvania,2022,True,False,score_only,-0.0972943722944,corn,winter_wheat,corn,corn
+operating_margin,Pennsylvania,2023,False,False,neither,0.00793650793651,winter_wheat,winter_wheat,corn,corn
+operating_margin,Pennsylvania,2024,False,False,neither,-0.0265700483092,winter_wheat,winter_wheat,corn,corn
+operating_margin,South Carolina,2017,False,False,neither,-0.0225563909774,soybeans,soybeans,soybeans,soybeans
+operating_margin,South Carolina,2018,True,False,score_only,0.00793650793651,soybeans,winter_wheat,soybeans,soybeans
+operating_margin,South Carolina,2019,False,True,acreage_only,-0.0143901863647,winter_wheat,winter_wheat,soybeans,corn
+operating_margin,South Carolina,2020,True,False,score_only,0.0699457419203,winter_wheat,soybeans,corn,corn
+operating_margin,South Carolina,2021,True,False,score_only,0.0699476650564,soybeans,corn,corn,corn
+operating_margin,South Carolina,2022,True,True,both,-0.0841265757654,corn,winter_wheat,corn,soybeans
+operating_margin,South Carolina,2023,False,False,neither,-0.0233625790655,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,South Carolina,2024,False,False,neither,-0.0396551724138,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,South Dakota,2017,False,False,neither,0.0401872887657,soybeans,soybeans,corn,corn
+operating_margin,South Dakota,2018,True,True,both,0.0281672976843,soybeans,corn,corn,soybeans
+operating_margin,South Dakota,2019,False,True,acreage_only,0.0742662552459,corn,corn,soybeans,corn
+operating_margin,South Dakota,2020,True,True,both,-0.0478030429181,corn,soybeans,corn,soybeans
+operating_margin,South Dakota,2021,True,True,both,-0.0492181728638,soybeans,corn,soybeans,corn
+operating_margin,South Dakota,2022,False,False,neither,-0.00550983208131,corn,corn,corn,corn
+operating_margin,South Dakota,2023,True,False,score_only,0.0286036737235,corn,soybeans,corn,corn
+operating_margin,South Dakota,2024,True,False,score_only,0.0485916110916,soybeans,corn,corn,corn
+operating_margin,Tennessee,2017,False,False,neither,0.0551964558065,soybeans,soybeans,soybeans,soybeans
+operating_margin,Tennessee,2018,True,False,score_only,0.00212008783221,soybeans,corn,soybeans,soybeans
+operating_margin,Tennessee,2019,False,False,neither,0.155439582497,corn,corn,soybeans,soybeans
+operating_margin,Tennessee,2020,True,False,score_only,-0.0899818706775,corn,soybeans,soybeans,soybeans
+operating_margin,Tennessee,2021,True,False,score_only,-0.0979546353212,soybeans,corn,soybeans,soybeans
+operating_margin,Tennessee,2022,True,False,score_only,-0.0843556674007,corn,winter_wheat,soybeans,soybeans
+operating_margin,Tennessee,2023,False,False,neither,0.0214165009369,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Tennessee,2024,False,False,neither,-0.0376675449651,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,Texas,2017,False,False,neither,0.012110754333,soybeans,soybeans,winter_wheat,winter_wheat
+operating_margin,Texas,2018,False,False,neither,-0.00461709486166,soybeans,soybeans,winter_wheat,winter_wheat
+operating_margin,Texas,2019,True,False,score_only,-0.0214687262598,soybeans,corn,winter_wheat,winter_wheat
+operating_margin,Texas,2020,True,False,score_only,-0.0580475338419,corn,soybeans,winter_wheat,winter_wheat
+operating_margin,Texas,2021,True,False,score_only,-0.00349639813384,soybeans,corn,winter_wheat,winter_wheat
+operating_margin,Texas,2022,False,False,neither,0.00847033286565,corn,corn,winter_wheat,winter_wheat
+operating_margin,Texas,2023,False,False,neither,-0.00855065099685,corn,corn,winter_wheat,winter_wheat
+operating_margin,Texas,2024,True,False,score_only,0.000616566884103,corn,soybeans,winter_wheat,winter_wheat
+operating_margin,Virginia,2017,False,False,neither,-0.0114503816794,soybeans,soybeans,soybeans,soybeans
+operating_margin,Virginia,2018,True,False,score_only,-0.00261225437553,soybeans,winter_wheat,soybeans,soybeans
+operating_margin,Virginia,2019,True,False,score_only,-0.0530550888673,winter_wheat,corn,soybeans,soybeans
+operating_margin,Virginia,2020,True,False,score_only,-0.00568475452196,corn,soybeans,soybeans,soybeans
+operating_margin,Virginia,2021,True,False,score_only,0.0459119496855,soybeans,corn,soybeans,soybeans
+operating_margin,Virginia,2022,False,False,neither,-0.084772995283,corn,corn,soybeans,soybeans
+operating_margin,Virginia,2023,True,False,score_only,0.0784466911765,corn,winter_wheat,soybeans,soybeans
+operating_margin,Virginia,2024,False,False,neither,-0.0508678881389,winter_wheat,winter_wheat,soybeans,soybeans
+operating_margin,West Virginia,2017,False,False,neither,-0.0114812189936,soybeans,soybeans,corn,corn
+operating_margin,West Virginia,2018,False,False,neither,0.0420479302832,soybeans,soybeans,corn,corn
+operating_margin,Wisconsin,2017,False,False,neither,0.0470228526078,soybeans,soybeans,corn,corn
+operating_margin,Wisconsin,2018,True,False,score_only,0.00532901301136,soybeans,corn,corn,corn
+operating_margin,Wisconsin,2019,False,False,neither,0.0694541680737,corn,corn,corn,corn
+operating_margin,Wisconsin,2020,True,False,score_only,-0.025609189919,corn,soybeans,corn,corn
+operating_margin,Wisconsin,2021,True,False,score_only,-0.00133262872504,soybeans,corn,corn,corn
+operating_margin,Wisconsin,2022,False,False,neither,-0.0191558153955,corn,corn,corn,corn
+operating_margin,Wisconsin,2023,True,False,score_only,0.0191558153955,corn,winter_wheat,corn,corn
+operating_margin,Wisconsin,2024,False,False,neither,-0.00125081388575,winter_wheat,winter_wheat,corn,corn
+relative_yield,Alabama,2017,False,False,neither,-0.0520408163265,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Alabama,2018,False,False,neither,0.0137254901961,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Alabama,2019,False,True,acreage_only,-0.0409982174688,winter_wheat,winter_wheat,soybeans,corn
+relative_yield,Alabama,2020,False,False,neither,-0.00091519219036,winter_wheat,winter_wheat,corn,corn
+relative_yield,Alabama,2021,False,False,neither,0.0406879194631,winter_wheat,winter_wheat,corn,corn
+relative_yield,Alabama,2022,False,True,acreage_only,0.00892857142857,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,Alabama,2023,False,False,neither,0.0260290556901,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Alabama,2024,False,False,neither,-0.124484654146,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2017,False,False,neither,-0.0652766639936,corn,corn,soybeans,soybeans
+relative_yield,Arkansas,2018,True,False,score_only,0.0267901286295,corn,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2019,True,False,score_only,-0.0170487988737,winter_wheat,corn,soybeans,soybeans
+relative_yield,Arkansas,2020,True,False,score_only,-0.0677812414807,corn,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2021,False,False,neither,0.0161598122257,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2022,False,False,neither,0.00346270251024,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2023,False,False,neither,0.00468339865521,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Arkansas,2024,True,False,score_only,-0.0319862390233,winter_wheat,soybeans,soybeans,soybeans
+relative_yield,Delaware,2017,False,False,neither,0.0118250780901,winter_wheat,winter_wheat,corn,corn
+relative_yield,Delaware,2018,False,True,acreage_only,2.77555756156e-17,winter_wheat,winter_wheat,corn,corn;soybeans
+relative_yield,Delaware,2019,False,True,acreage_only,-0.0460843373494,winter_wheat,winter_wheat,corn;soybeans,corn
+relative_yield,Delaware,2020,False,False,neither,0.0527777777778,winter_wheat,winter_wheat,corn,corn
+relative_yield,Delaware,2021,False,False,neither,-0.0470085470085,winter_wheat,winter_wheat,corn,corn
+relative_yield,Delaware,2022,False,True,acreage_only,0.0692307692308,winter_wheat,winter_wheat,corn,corn;soybeans
+relative_yield,Delaware,2023,False,True,acreage_only,-0.0037037037037,winter_wheat,winter_wheat,corn;soybeans,corn
+relative_yield,Delaware,2024,False,False,neither,-0.0270655270655,winter_wheat,winter_wheat,corn,corn
+relative_yield,Florida,2017,False,False,neither,0.12047163363,corn,corn,corn,corn
+relative_yield,Florida,2018,False,False,neither,0.105092276145,corn,corn,corn,corn
+relative_yield,Georgia,2017,False,False,neither,-0.0045211473019,corn,corn,corn,corn
+relative_yield,Georgia,2018,True,False,score_only,0.0086036758357,corn,winter_wheat,corn,corn
+relative_yield,Georgia,2019,False,False,neither,-0.0989239847275,winter_wheat,winter_wheat,corn,corn
+relative_yield,Georgia,2020,False,False,neither,0.0525712414019,winter_wheat,winter_wheat,corn,corn
+relative_yield,Georgia,2021,False,False,neither,-0.00855130784708,winter_wheat,winter_wheat,corn,corn
+relative_yield,Georgia,2022,False,False,neither,-0.00824175824176,winter_wheat,winter_wheat,corn,corn
+relative_yield,Georgia,2023,False,False,neither,-0.0364010989011,winter_wheat,winter_wheat,corn,corn
+relative_yield,Georgia,2024,False,False,neither,-0.0329968944099,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2017,False,False,neither,-0.00147122335552,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2018,False,False,neither,0.00654628443306,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2019,False,False,neither,0.00602995937712,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2020,False,False,neither,-0.007642901577,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2021,False,False,neither,0.00656234562538,winter_wheat,winter_wheat,corn,corn
+relative_yield,Illinois,2022,False,True,acreage_only,-0.00130775013496,winter_wheat,winter_wheat,corn,corn;soybeans
+relative_yield,Illinois,2023,False,True,acreage_only,0.0124548981036,winter_wheat,winter_wheat,corn;soybeans,corn
+relative_yield,Illinois,2024,False,True,acreage_only,-0.00464347329207,winter_wheat,winter_wheat,corn,corn;soybeans
+relative_yield,Indiana,2017,False,False,neither,-0.00521375851078,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2018,False,False,neither,0.0025193241077,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2019,False,False,neither,0.00608065964922,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2020,False,False,neither,-0.00683102919212,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2021,False,False,neither,0.00547480935932,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2022,False,False,neither,-0.00658472344162,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2023,False,False,neither,0.0153092645406,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Indiana,2024,False,False,neither,-0.0123866021465,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Iowa,2017,True,False,score_only,-0.0344390914818,corn,winter_wheat,corn,corn
+relative_yield,Iowa,2018,False,False,neither,4.4337356919e-06,winter_wheat,winter_wheat,corn,corn
+relative_yield,Kansas,2017,False,False,neither,-0.0977220691529,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2018,True,False,score_only,0.0205938624015,winter_wheat,soybeans,winter_wheat,winter_wheat
+relative_yield,Kansas,2019,True,False,score_only,-0.0199283492471,soybeans,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2020,False,False,neither,-0.0243134151167,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2021,False,False,neither,0.047731092437,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2022,False,False,neither,-2.77555756156e-17,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2023,False,False,neither,0.0512154533586,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kansas,2024,False,False,neither,-0.0461041304789,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Kentucky,2017,False,False,neither,-0.00931578947368,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2018,False,False,neither,-0.0138997361478,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2019,False,False,neither,0.00788356364102,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2020,False,False,neither,0.013755075901,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2021,False,False,neither,-0.00408672948121,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2022,False,False,neither,0.00819397993311,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2023,False,False,neither,0.0226389946687,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Kentucky,2024,False,False,neither,-0.0154298721329,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Louisiana,2017,True,False,score_only,-0.0770055865922,corn,soybeans,soybeans,soybeans
+relative_yield,Louisiana,2018,True,False,score_only,0.0431922064731,soybeans,winter_wheat,soybeans,soybeans
+relative_yield,Maryland,2017,False,False,neither,0.0394609685386,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Maryland,2018,False,False,neither,-0.0364310055715,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Maryland,2019,False,True,acreage_only,-0.0183745881558,winter_wheat,winter_wheat,soybeans,corn
+relative_yield,Maryland,2020,False,True,acreage_only,0.0157686414709,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,Maryland,2021,False,False,neither,-0.00685736677116,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Maryland,2022,False,False,neither,0.014645187059,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Maryland,2023,False,True,acreage_only,-0.0158480739876,winter_wheat,winter_wheat,soybeans,corn
+relative_yield,Maryland,2024,False,True,acreage_only,-0.00844407530454,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,Michigan,2017,False,True,acreage_only,-0.0364055353859,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,Michigan,2018,False,True,acreage_only,0.00599388307534,winter_wheat,winter_wheat,soybeans,corn;soybeans
+relative_yield,Michigan,2019,False,True,acreage_only,0.0417088552994,winter_wheat,winter_wheat,corn;soybeans,corn
+relative_yield,Michigan,2020,False,False,neither,-0.0455819798917,winter_wheat,winter_wheat,corn,corn
+relative_yield,Michigan,2021,False,False,neither,0.0332273320287,winter_wheat,winter_wheat,corn,corn
+relative_yield,Michigan,2022,False,False,neither,-0.0413361144638,winter_wheat,winter_wheat,corn,corn
+relative_yield,Michigan,2023,False,False,neither,0.0408468776732,winter_wheat,winter_wheat,corn,corn
+relative_yield,Michigan,2024,False,False,neither,-0.0548600883652,winter_wheat,winter_wheat,corn,corn
+relative_yield,Minnesota,2017,False,True,acreage_only,-0.0467326962251,corn,corn,corn,soybeans
+relative_yield,Minnesota,2018,True,True,both,0.00933806657583,corn,winter_wheat,soybeans,corn
+relative_yield,Mississippi,2017,True,False,score_only,-0.110923937054,corn,winter_wheat,soybeans,soybeans
+relative_yield,Mississippi,2018,True,False,score_only,0.00533634391522,winter_wheat,soybeans,soybeans,soybeans
+relative_yield,Mississippi,2019,False,False,neither,-0.156910796004,soybeans,soybeans,soybeans,soybeans
+relative_yield,Mississippi,2020,False,False,neither,0.134645877378,soybeans,soybeans,soybeans,soybeans
+relative_yield,Mississippi,2021,True,False,score_only,-0.0939039408867,soybeans,winter_wheat,soybeans,soybeans
+relative_yield,Mississippi,2022,False,False,neither,0.00336919452362,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Mississippi,2023,True,False,score_only,0.0080852031042,winter_wheat,soybeans,soybeans,soybeans
+relative_yield,Mississippi,2024,False,False,neither,0.152273888605,soybeans,soybeans,soybeans,soybeans
+relative_yield,Missouri,2017,False,False,neither,-0.00802865239485,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2018,False,False,neither,0.0139138147067,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2019,False,False,neither,-0.0167895718197,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2020,False,False,neither,-0.0196007070812,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2021,False,False,neither,0.0229598449593,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2022,False,False,neither,-0.00282947686117,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2023,False,False,neither,0.0206195014663,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Missouri,2024,False,False,neither,-0.0140701002687,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Nebraska,2017,False,False,neither,0.047266433875,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2018,False,False,neither,-0.000955421130265,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2019,False,False,neither,-0.0639674746156,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2020,False,False,neither,0.021153618563,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2021,False,False,neither,0.0330436472056,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2022,False,False,neither,0.0165977595169,soybeans,soybeans,corn,corn
+relative_yield,Nebraska,2023,True,False,score_only,-0.0459277403552,soybeans,corn,corn,corn
+relative_yield,Nebraska,2024,True,False,score_only,0.00805631555588,corn,soybeans,corn,corn
+relative_yield,New Jersey,2017,False,False,neither,-0.0104268292683,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2018,False,False,neither,-0.0340384615385,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2019,False,False,neither,0.0107531212243,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2020,False,False,neither,0.0392275513694,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2021,False,False,neither,-0.0168004200105,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2022,False,False,neither,0.0195346795435,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New Jersey,2023,False,False,neither,0.0540158371041,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,New York,2017,False,False,neither,0.0328071379547,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2018,False,False,neither,-0.0417933130699,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2019,False,False,neither,-0.00677110993096,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2020,False,False,neither,0.0501299250289,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2021,False,False,neither,0.00145911207292,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2022,False,False,neither,-0.0119607843137,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2023,False,False,neither,0.0061038961039,winter_wheat,winter_wheat,corn,corn
+relative_yield,New York,2024,False,False,neither,-0.013317010858,winter_wheat,winter_wheat,corn,corn
+relative_yield,North Carolina,2017,False,False,neither,0.0194671264173,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2018,False,False,neither,0.00643734750784,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2019,False,False,neither,-0.0742215020431,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2020,False,False,neither,0.0677841545353,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2021,False,False,neither,-0.00145123839009,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2022,False,False,neither,0.0194117647059,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2023,False,False,neither,-0.00547231270358,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Carolina,2024,False,False,neither,-0.0246300763749,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2017,False,False,neither,-0.052963914114,corn,corn,soybeans,soybeans
+relative_yield,North Dakota,2018,True,False,score_only,-0.0182130473732,corn,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2019,False,False,neither,0.00130116051702,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2020,False,False,neither,-0.00612939026809,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2021,False,False,neither,0.0040487613162,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2022,False,False,neither,0.00618902085921,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2023,False,False,neither,0.00435530626969,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,North Dakota,2024,False,False,neither,-0.0047806236193,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2017,False,False,neither,-0.0151244515683,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2018,False,False,neither,2.77555756156e-17,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2019,False,False,neither,0.0169267021837,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2020,False,False,neither,-0.0106443434167,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2021,False,False,neither,0.00830564784053,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2022,False,False,neither,-0.0114398545728,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2023,False,False,neither,0.023427672956,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Ohio,2024,False,False,neither,-0.0213768115942,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Oklahoma,2017,True,False,score_only,-0.0482684699242,winter_wheat,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2018,False,False,neither,-0.00564822124322,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2019,False,False,neither,0.0205087750234,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2020,False,False,neither,-0.00577965844504,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2021,False,False,neither,-0.00858408109248,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2022,False,False,neither,0.00519404864423,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2023,False,False,neither,0.00727462303497,corn,corn,winter_wheat,winter_wheat
+relative_yield,Oklahoma,2024,True,False,score_only,0.0189051209551,corn,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Pennsylvania,2017,False,False,neither,0.0150243040212,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2018,False,False,neither,-0.0112940134347,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2019,False,False,neither,-0.0138672768879,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2020,False,False,neither,0.0284210526316,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2021,False,False,neither,0.0356698564593,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2022,False,False,neither,0.0301948051948,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2023,False,False,neither,0.00793650793651,winter_wheat,winter_wheat,corn,corn
+relative_yield,Pennsylvania,2024,False,False,neither,-0.0265700483092,winter_wheat,winter_wheat,corn,corn
+relative_yield,South Carolina,2017,False,False,neither,0.0554511278195,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,South Carolina,2018,False,False,neither,-0.0125661375661,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,South Carolina,2019,False,True,acreage_only,-0.0143901863647,winter_wheat,winter_wheat,soybeans,corn
+relative_yield,South Carolina,2020,False,False,neither,0.0699457419203,winter_wheat,winter_wheat,corn,corn
+relative_yield,South Carolina,2021,False,False,neither,0.000100644122383,winter_wheat,winter_wheat,corn,corn
+relative_yield,South Carolina,2022,False,True,acreage_only,0.0092134036532,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,South Carolina,2023,False,False,neither,-0.0233625790655,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,South Carolina,2024,False,False,neither,-0.0396551724138,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,South Dakota,2017,True,False,score_only,-0.0364085602159,winter_wheat,soybeans,corn,corn
+relative_yield,South Dakota,2018,True,True,both,0.0281672976843,soybeans,winter_wheat,corn,soybeans
+relative_yield,South Dakota,2019,False,True,acreage_only,0.0424180196055,winter_wheat,winter_wheat,soybeans,corn
+relative_yield,South Dakota,2020,False,True,acreage_only,-0.0579338699924,winter_wheat,winter_wheat,corn,soybeans
+relative_yield,South Dakota,2021,True,True,both,0.0066024378232,winter_wheat,soybeans,soybeans,corn
+relative_yield,South Dakota,2022,True,False,score_only,-0.00430844012373,soybeans,winter_wheat,corn,corn
+relative_yield,South Dakota,2023,False,False,neither,0.00542052125956,winter_wheat,winter_wheat,corn,corn
+relative_yield,South Dakota,2024,False,False,neither,-0.00636188136188,winter_wheat,winter_wheat,corn,corn
+relative_yield,Tennessee,2017,False,False,neither,-0.00657273585591,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2018,False,False,neither,0.00461876277732,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2019,False,False,neither,-0.0436370935367,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2020,False,False,neither,0.00165178271671,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2021,False,False,neither,0.0418778532658,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2022,False,False,neither,0.0107825661459,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2023,False,False,neither,0.0214165009369,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Tennessee,2024,False,False,neither,-0.0376675449651,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Texas,2017,False,False,neither,-0.0400469857678,corn,corn,winter_wheat,winter_wheat
+relative_yield,Texas,2018,True,False,score_only,-0.0193206521739,corn,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Texas,2019,True,False,score_only,-0.0208153963029,winter_wheat,corn,winter_wheat,winter_wheat
+relative_yield,Texas,2020,False,False,neither,-0.0580475338419,corn,corn,winter_wheat,winter_wheat
+relative_yield,Texas,2021,True,False,score_only,-0.0486438052156,corn,soybeans,winter_wheat,winter_wheat
+relative_yield,Texas,2022,True,False,score_only,0.00930910551252,soybeans,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Texas,2023,False,False,neither,0.0183470198386,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+relative_yield,Texas,2024,True,False,score_only,0.000804217674917,winter_wheat,soybeans,winter_wheat,winter_wheat
+relative_yield,Virginia,2017,False,False,neither,0,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2018,False,False,neither,0.0218993991815,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2019,False,False,neither,-0.0530550888673,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2020,False,False,neither,0.035142118863,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2021,False,False,neither,-0.0123689727463,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2022,False,False,neither,0.0374557783019,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2023,False,False,neither,-0.0342371323529,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,Virginia,2024,False,False,neither,-0.0508678881389,winter_wheat,winter_wheat,soybeans,soybeans
+relative_yield,West Virginia,2017,False,False,neither,0.0146704464918,winter_wheat,winter_wheat,corn,corn
+relative_yield,West Virginia,2018,True,False,score_only,-0.0115468409586,winter_wheat,soybeans,corn,corn
+relative_yield,Wisconsin,2017,False,False,neither,-0.014170957042,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2018,False,False,neither,0.00646284556697,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2019,False,False,neither,-0.00586849626475,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2020,False,False,neither,-0.0117621252327,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2021,False,False,neither,0.0289234044835,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2022,False,False,neither,0.00267959961024,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2023,False,False,neither,-0.00502701745062,winter_wheat,winter_wheat,corn,corn
+relative_yield,Wisconsin,2024,False,False,neither,-0.00125081388575,winter_wheat,winter_wheat,corn,corn
+standardized_revenue,Alabama,2017,False,False,neither,-0.00510204081633,corn,corn,soybeans,soybeans
+standardized_revenue,Alabama,2018,False,False,neither,0.00980392156863,corn,corn,soybeans,soybeans
+standardized_revenue,Alabama,2019,False,True,acreage_only,0.16152474976,corn,corn,soybeans,corn
+standardized_revenue,Alabama,2020,False,False,neither,-0.00689914112733,corn,corn,corn,corn
+standardized_revenue,Alabama,2021,False,False,neither,-0.0305009587728,corn,corn,corn,corn
+standardized_revenue,Alabama,2022,False,True,acreage_only,-0.0982142857143,corn,corn,corn,soybeans
+standardized_revenue,Alabama,2023,False,False,neither,0.023607748184,corn,corn,soybeans,soybeans
+standardized_revenue,Alabama,2024,False,False,neither,-0.012024736601,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2017,False,False,neither,-0.0652766639936,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2018,False,False,neither,0.0267901286295,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2019,False,False,neither,0.0866122353443,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2020,False,False,neither,-0.0677812414807,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2021,False,False,neither,0.0515613838147,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2022,False,False,neither,-0.0518515221649,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2023,False,False,neither,0.0549153212758,corn,corn,soybeans,soybeans
+standardized_revenue,Arkansas,2024,False,False,neither,-0.110235061041,corn,corn,soybeans,soybeans
+standardized_revenue,Delaware,2017,False,False,neither,0.0209727800089,corn,corn,corn,corn
+standardized_revenue,Delaware,2018,False,True,acreage_only,-0.0361445783133,corn,corn,corn,corn;soybeans
+standardized_revenue,Delaware,2019,False,True,acreage_only,0.0792921686747,corn,corn,corn;soybeans,corn
+standardized_revenue,Delaware,2020,False,False,neither,-0.0270833333333,corn,corn,corn,corn
+standardized_revenue,Delaware,2021,False,False,neither,0.00641025641026,corn,corn,corn,corn
+standardized_revenue,Delaware,2022,False,True,acreage_only,-0.0730769230769,corn,corn,corn,corn;soybeans
+standardized_revenue,Delaware,2023,False,True,acreage_only,0.0481481481481,corn,corn,corn;soybeans,corn
+standardized_revenue,Delaware,2024,False,False,neither,-0.0135327635328,corn,corn,corn,corn
+standardized_revenue,Florida,2017,False,False,neither,0.12047163363,corn,corn,corn,corn
+standardized_revenue,Florida,2018,False,False,neither,0.105092276145,corn,corn,corn,corn
+standardized_revenue,Georgia,2017,False,False,neither,-0.0045211473019,corn,corn,corn,corn
+standardized_revenue,Georgia,2018,False,False,neither,0.0086036758357,corn,corn,corn,corn
+standardized_revenue,Georgia,2019,False,False,neither,0.190992710864,corn,corn,corn,corn
+standardized_revenue,Georgia,2020,False,False,neither,-0.0312807075008,corn,corn,corn,corn
+standardized_revenue,Georgia,2021,False,False,neither,-0.0301810865191,corn,corn,corn,corn
+standardized_revenue,Georgia,2022,False,False,neither,-0.0590659340659,corn,corn,corn,corn
+standardized_revenue,Georgia,2023,False,False,neither,0.0679945054945,corn,corn,corn,corn
+standardized_revenue,Georgia,2024,False,False,neither,-0.0508540372671,corn,corn,corn,corn
+standardized_revenue,Illinois,2017,False,False,neither,-0.0297150791312,corn,corn,corn,corn
+standardized_revenue,Illinois,2018,False,False,neither,-0.0167560858424,corn,corn,corn,corn
+standardized_revenue,Illinois,2019,False,False,neither,0.00983835477319,corn,corn,corn,corn
+standardized_revenue,Illinois,2020,False,False,neither,0.0181011870787,corn,corn,corn,corn
+standardized_revenue,Illinois,2021,False,False,neither,-0.0236396348662,corn,corn,corn,corn
+standardized_revenue,Illinois,2022,False,True,acreage_only,-0.0128171622024,corn,corn,corn,corn;soybeans
+standardized_revenue,Illinois,2023,False,True,acreage_only,0.0222450833287,corn,corn,corn;soybeans,corn
+standardized_revenue,Illinois,2024,False,True,acreage_only,-0.0261507957345,corn,corn,corn,corn;soybeans
+standardized_revenue,Indiana,2017,False,False,neither,-0.032981353409,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2018,False,False,neither,-0.00119277734303,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2019,False,False,neither,0.00776036662163,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2020,False,False,neither,0.00844874388015,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2021,False,False,neither,0.00372655090844,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2022,False,False,neither,-0.0197541703248,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2023,False,False,neither,0.0285511984719,corn,corn,soybeans,soybeans
+standardized_revenue,Indiana,2024,False,False,neither,-0.0302919874277,corn,corn,soybeans,soybeans
+standardized_revenue,Iowa,2017,False,False,neither,-0.0344390914818,corn,corn,corn,corn
+standardized_revenue,Iowa,2018,False,False,neither,-0.00277551854312,corn,corn,corn,corn
+standardized_revenue,Kansas,2017,False,False,neither,0.0186270324809,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2018,False,False,neither,0.00464911609398,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2019,False,False,neither,0.0751520450641,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2020,False,False,neither,-0.00899881282153,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2021,False,False,neither,-0.0438655462185,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2022,False,False,neither,-0.0168067226891,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2023,False,False,neither,0.00964225952963,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kansas,2024,False,False,neither,0.0409238160596,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Kentucky,2017,False,False,neither,-0.0641052631579,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2018,False,False,neither,0.00234300791557,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2019,False,False,neither,0.096341628203,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2020,False,False,neither,-0.0509666204528,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2021,False,False,neither,0.0189111403444,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2022,False,False,neither,-0.0484753098564,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2023,False,False,neither,0.0479055597867,corn,corn,soybeans,soybeans
+standardized_revenue,Kentucky,2024,False,False,neither,-0.0777277476491,corn,corn,soybeans,soybeans
+standardized_revenue,Louisiana,2017,False,False,neither,-0.0770055865922,corn,corn,soybeans,soybeans
+standardized_revenue,Louisiana,2018,False,False,neither,-0.0388291241516,corn,corn,soybeans,soybeans
+standardized_revenue,Maryland,2017,False,False,neither,0.00306023837646,corn,corn,soybeans,soybeans
+standardized_revenue,Maryland,2018,False,False,neither,-0.0104668145183,corn,corn,soybeans,soybeans
+standardized_revenue,Maryland,2019,False,True,acreage_only,0.0655149108727,corn,corn,soybeans,corn
+standardized_revenue,Maryland,2020,False,True,acreage_only,-0.0275791624106,corn,corn,corn,soybeans
+standardized_revenue,Maryland,2021,False,False,neither,-0.00522466039707,corn,corn,soybeans,soybeans
+standardized_revenue,Maryland,2022,False,False,neither,-0.053743398571,corn,corn,soybeans,soybeans
+standardized_revenue,Maryland,2023,False,True,acreage_only,0.0716530483972,corn,corn,soybeans,corn
+standardized_revenue,Maryland,2024,False,True,acreage_only,-0.0343300110742,corn,corn,corn,soybeans
+standardized_revenue,Michigan,2017,False,True,acreage_only,-0.0350087227121,corn,corn,corn,soybeans
+standardized_revenue,Michigan,2018,False,True,acreage_only,0.0014940764264,corn,corn,soybeans,corn;soybeans
+standardized_revenue,Michigan,2019,False,True,acreage_only,0.0209089134176,corn,corn,corn;soybeans,corn
+standardized_revenue,Michigan,2020,False,False,neither,0.00334907745001,corn,corn,corn,corn
+standardized_revenue,Michigan,2021,False,False,neither,-0.00958088714938,corn,corn,corn,corn
+standardized_revenue,Michigan,2022,False,False,neither,-0.00120112026436,corn,corn,corn,corn
+standardized_revenue,Michigan,2023,False,False,neither,0.0256629597947,corn,corn,corn,corn
+standardized_revenue,Michigan,2024,False,False,neither,-0.0184094256259,corn,corn,corn,corn
+standardized_revenue,Minnesota,2017,False,True,acreage_only,-0.0467326962251,corn,corn,corn,soybeans
+standardized_revenue,Minnesota,2018,False,True,acreage_only,0.00933806657583,corn,corn,soybeans,corn
+standardized_revenue,Mississippi,2017,False,False,neither,-0.110923937054,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2018,False,False,neither,-0.0227237670781,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2019,False,False,neither,0.158206821145,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2020,False,False,neither,-0.12883192389,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2021,False,False,neither,0.0698331840573,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2022,False,False,neither,-0.0686360116645,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2023,False,False,neither,0.0925252459655,corn,corn,soybeans,soybeans
+standardized_revenue,Mississippi,2024,False,False,neither,-0.125600408789,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2017,False,False,neither,-0.0402943184633,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2018,False,False,neither,0.00980663517829,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2019,False,False,neither,0.0220557356671,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2020,False,False,neither,-0.0132317770615,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2021,False,False,neither,0.0141184530496,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2022,False,False,neither,-0.0447476525822,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2023,False,False,neither,0.0660042242704,corn,corn,soybeans,soybeans
+standardized_revenue,Missouri,2024,False,False,neither,-0.048049063164,corn,corn,soybeans,soybeans
+standardized_revenue,Nebraska,2017,False,False,neither,-0.0247409367869,corn,corn,corn,corn
+standardized_revenue,Nebraska,2018,False,False,neither,0.00297242129416,corn,corn,corn,corn
+standardized_revenue,Nebraska,2019,False,False,neither,0.0647016862203,corn,corn,corn,corn
+standardized_revenue,Nebraska,2020,False,False,neither,-0.00410015995969,corn,corn,corn,corn
+standardized_revenue,Nebraska,2021,False,False,neither,-0.0342654102807,corn,corn,corn,corn
+standardized_revenue,Nebraska,2022,False,False,neither,-0.0225722816484,corn,corn,corn,corn
+standardized_revenue,Nebraska,2023,False,False,neither,0.0321494182486,corn,corn,corn,corn
+standardized_revenue,Nebraska,2024,False,False,neither,0.00805631555588,corn,corn,corn,corn
+standardized_revenue,New Jersey,2017,False,False,neither,-0.00786585365854,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2018,False,False,neither,-0.0236538461538,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2019,False,False,neither,0.0508658880387,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2020,False,False,neither,-0.00169696650793,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2021,False,False,neither,-0.0209255231381,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2022,False,False,neither,-0.0820895522388,corn,corn,soybeans,soybeans
+standardized_revenue,New Jersey,2023,False,False,neither,0.0336538461538,corn,corn,soybeans,soybeans
+standardized_revenue,New York,2017,False,False,neither,-0.000686341798216,corn,corn,corn,corn
+standardized_revenue,New York,2018,False,False,neither,0.00759878419453,corn,corn,corn,corn
+standardized_revenue,New York,2019,False,False,neither,0.0661178969729,corn,corn,corn,corn
+standardized_revenue,New York,2020,False,False,neither,-0.104101652348,corn,corn,corn,corn
+standardized_revenue,New York,2021,False,False,neither,-0.00403305134763,corn,corn,corn,corn
+standardized_revenue,New York,2022,False,False,neither,-0.0194117647059,corn,corn,corn,corn
+standardized_revenue,New York,2023,False,False,neither,0.00298701298701,corn,corn,corn,corn
+standardized_revenue,New York,2024,False,False,neither,-0.00970832446242,corn,corn,corn,corn
+standardized_revenue,North Carolina,2017,False,False,neither,-0.0431703756981,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2018,False,False,neither,0.0128420181248,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2019,False,False,neither,0.074608989714,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2020,False,False,neither,-0.0381089025756,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2021,False,False,neither,-0.0178986068111,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2022,False,False,neither,-0.0605882352941,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2023,False,False,neither,0.0541693811075,corn,corn,soybeans,soybeans
+standardized_revenue,North Carolina,2024,True,False,score_only,-0.00853798179009,corn,soybeans,soybeans,soybeans
+standardized_revenue,North Dakota,2017,False,False,neither,-0.052963914114,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2018,False,False,neither,-0.0182130473732,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2019,False,False,neither,0.105377888435,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2020,False,False,neither,-0.193677127774,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2021,False,False,neither,0.159680435843,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2022,False,False,neither,-0.0321619414281,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2023,False,False,neither,0.078428445227,corn,corn,soybeans,soybeans
+standardized_revenue,North Dakota,2024,False,False,neither,-0.0288187875807,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2017,False,False,neither,-0.0256874131366,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2018,False,False,neither,0.0166852057842,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2019,False,False,neither,-0.0313506234998,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2020,False,False,neither,0.0370694177304,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2021,False,False,neither,3.81639164715e-17,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2022,False,False,neither,-0.0236632608287,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2023,False,False,neither,0.0339622641509,corn,corn,soybeans,soybeans
+standardized_revenue,Ohio,2024,False,False,neither,-0.0314381270903,corn,corn,soybeans,soybeans
+standardized_revenue,Oklahoma,2017,False,False,neither,-0.00658627323427,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2018,False,False,neither,-0.00564822124322,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2019,False,False,neither,0.0205087750234,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2020,False,False,neither,-0.00577965844504,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2021,False,False,neither,-0.00858408109248,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2022,False,False,neither,0.00519404864423,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2023,False,False,neither,0.00727462303497,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Oklahoma,2024,False,False,neither,0.0189051209551,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Pennsylvania,2017,False,False,neither,-0.0257243860867,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2018,False,False,neither,-0.00640626812473,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2019,False,False,neither,0.0398932112891,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2020,False,False,neither,-0.019298245614,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2021,False,False,neither,-0.0405502392344,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2022,False,False,neither,-0.0972943722944,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2023,False,False,neither,0.015873015873,corn,corn,corn,corn
+standardized_revenue,Pennsylvania,2024,False,False,neither,-0.0183316080055,corn,corn,corn,corn
+standardized_revenue,South Carolina,2017,False,False,neither,-0.0328947368421,corn,corn,soybeans,soybeans
+standardized_revenue,South Carolina,2018,False,False,neither,0.00462962962963,corn,corn,soybeans,soybeans
+standardized_revenue,South Carolina,2019,False,True,acreage_only,0.0964850200519,corn,corn,soybeans,corn
+standardized_revenue,South Carolina,2020,False,False,neither,-0.00389242745931,corn,corn,corn,corn
+standardized_revenue,South Carolina,2021,False,False,neither,-0.0700483091787,corn,corn,corn,corn
+standardized_revenue,South Carolina,2022,False,True,acreage_only,-0.0841265757654,corn,corn,corn,soybeans
+standardized_revenue,South Carolina,2023,False,False,neither,0.0612630075495,corn,corn,soybeans,soybeans
+standardized_revenue,South Carolina,2024,False,False,neither,-0.0105603448276,corn,corn,soybeans,soybeans
+standardized_revenue,South Dakota,2017,False,False,neither,-0.00377872854976,corn,corn,corn,corn
+standardized_revenue,South Dakota,2018,False,True,acreage_only,-0.0225172202727,corn,corn,corn,soybeans
+standardized_revenue,South Dakota,2019,False,True,acreage_only,0.0742662552459,corn,corn,soybeans,corn
+standardized_revenue,South Dakota,2020,False,True,acreage_only,-0.0478030429181,corn,corn,corn,soybeans
+standardized_revenue,South Dakota,2021,False,True,acreage_only,0.0426157350406,corn,corn,soybeans,corn
+standardized_revenue,South Dakota,2022,False,False,neither,-0.00550983208131,corn,corn,corn,corn
+standardized_revenue,South Dakota,2023,False,False,neither,0.0286036737235,corn,corn,corn,corn
+standardized_revenue,South Dakota,2024,False,False,neither,-0.0422297297297,corn,corn,corn,corn
+standardized_revenue,Tennessee,2017,False,False,neither,-0.0486237199506,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2018,False,False,neither,-0.00673885060953,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2019,False,False,neither,0.155439582497,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2020,False,False,neither,-0.0899818706775,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2021,False,False,neither,0.0560767820554,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2022,False,False,neither,-0.0843556674007,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2023,False,False,neither,0.0376426904551,corn,corn,soybeans,soybeans
+standardized_revenue,Tennessee,2024,False,False,neither,-0.106369572689,corn,corn,soybeans,soybeans
+standardized_revenue,Texas,2017,False,False,neither,-0.0400469857678,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2018,False,False,neither,-0.0193206521739,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2019,False,False,neither,0.0422841225627,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2020,False,False,neither,-0.0580475338419,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2021,False,False,neither,-0.0486438052156,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2022,False,False,neither,0.00847033286565,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2023,False,False,neither,-0.00855065099685,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Texas,2024,False,False,neither,0.000616566884103,corn,corn,winter_wheat,winter_wheat
+standardized_revenue,Virginia,2017,False,False,neither,0.0114503816794,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2018,False,False,neither,-0.019287144806,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2019,False,False,neither,0.0746750375807,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2020,False,False,neither,-0.00568475452196,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2021,False,False,neither,-0.0335429769392,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2022,False,False,neither,-0.084772995283,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2023,False,False,neither,0.0784466911765,corn,corn,soybeans,soybeans
+standardized_revenue,Virginia,2024,False,False,neither,-0.0167791706847,corn,corn,soybeans,soybeans
+standardized_revenue,West Virginia,2017,False,False,neither,-0.0114812189936,soybeans,soybeans,corn,corn
+standardized_revenue,West Virginia,2018,True,False,score_only,0.0420479302832,soybeans,corn,corn,corn
+standardized_revenue,Wisconsin,2017,False,False,neither,-0.0328518955658,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2018,False,False,neither,-0.0117918585783,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2019,False,False,neither,0.0694541680737,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2020,False,False,neither,-0.025609189919,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2021,False,False,neither,-0.0275907757584,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2022,False,False,neither,-0.0191558153955,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2023,False,False,neither,0.0191558153955,corn,corn,corn,corn
+standardized_revenue,Wisconsin,2024,False,False,neither,-0.0265583770261,corn,corn,corn,corn
+total_cost_margin,Alabama,2017,False,False,neither,-0.0520408163265,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Alabama,2018,False,False,neither,0.0137254901961,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Alabama,2019,False,True,acreage_only,-0.0409982174688,winter_wheat,winter_wheat,soybeans,corn
+total_cost_margin,Alabama,2020,False,False,neither,-0.00091519219036,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Alabama,2021,False,False,neither,0.0406879194631,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Alabama,2022,False,True,acreage_only,0.00892857142857,winter_wheat,winter_wheat,corn,soybeans
+total_cost_margin,Alabama,2023,False,False,neither,0.0260290556901,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Alabama,2024,False,False,neither,-0.124484654146,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Arkansas,2017,False,False,neither,0.0679145739248,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Arkansas,2018,True,False,score_only,-0.0216156198936,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Arkansas,2019,True,False,score_only,-0.0170487988737,winter_wheat,corn,soybeans,soybeans
+total_cost_margin,Arkansas,2020,True,False,score_only,-0.0677812414807,corn,soybeans,soybeans,soybeans
+total_cost_margin,Arkansas,2021,True,False,score_only,-0.0677211960404,soybeans,corn,soybeans,soybeans
+total_cost_margin,Arkansas,2022,False,False,neither,-0.0518515221649,corn,corn,soybeans,soybeans
+total_cost_margin,Arkansas,2023,True,False,score_only,0.0549153212758,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,Arkansas,2024,False,False,neither,-0.0319862390233,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Delaware,2017,False,False,neither,0.0118250780901,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Delaware,2018,False,True,acreage_only,2.77555756156e-17,winter_wheat,winter_wheat,corn,corn;soybeans
+total_cost_margin,Delaware,2019,False,True,acreage_only,-0.0460843373494,winter_wheat,winter_wheat,corn;soybeans,corn
+total_cost_margin,Delaware,2020,False,False,neither,0.0527777777778,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Delaware,2021,True,False,score_only,-0.0470085470085,winter_wheat,corn,corn,corn
+total_cost_margin,Delaware,2022,True,True,both,-0.0730769230769,corn,winter_wheat,corn,corn;soybeans
+total_cost_margin,Delaware,2023,False,True,acreage_only,-0.0037037037037,winter_wheat,winter_wheat,corn;soybeans,corn
+total_cost_margin,Delaware,2024,False,False,neither,-0.0270655270655,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Florida,2017,False,False,neither,-0.145078605605,soybeans,soybeans,corn,corn
+total_cost_margin,Florida,2018,True,False,score_only,-0.00153793574846,soybeans,winter_wheat,corn,corn
+total_cost_margin,Georgia,2017,True,False,score_only,0.0790471560525,winter_wheat,soybeans,corn,corn
+total_cost_margin,Georgia,2018,True,False,score_only,-0.0596706549895,soybeans,winter_wheat,corn,corn
+total_cost_margin,Georgia,2019,False,False,neither,-0.0989239847275,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Georgia,2020,True,False,score_only,0.0525712414019,winter_wheat,corn,corn,corn
+total_cost_margin,Georgia,2021,False,False,neither,-0.0301810865191,corn,corn,corn,corn
+total_cost_margin,Georgia,2022,False,False,neither,-0.0590659340659,corn,corn,corn,corn
+total_cost_margin,Georgia,2023,True,False,score_only,0.0679945054945,corn,winter_wheat,corn,corn
+total_cost_margin,Georgia,2024,False,False,neither,-0.0329968944099,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Illinois,2017,False,False,neither,0.0311863024868,soybeans,soybeans,corn,corn
+total_cost_margin,Illinois,2018,False,False,neither,0.0102098014094,soybeans,soybeans,corn,corn
+total_cost_margin,Illinois,2019,True,False,score_only,-0.0158683141503,soybeans,corn,corn,corn
+total_cost_margin,Illinois,2020,True,False,score_only,0.0181011870787,corn,soybeans,corn,corn
+total_cost_margin,Illinois,2021,True,False,score_only,0.0170772892409,soybeans,corn,corn,corn
+total_cost_margin,Illinois,2022,False,True,acreage_only,-0.0128171622024,corn,corn,corn,corn;soybeans
+total_cost_margin,Illinois,2023,True,True,both,0.0222450833287,corn,winter_wheat,corn;soybeans,corn
+total_cost_margin,Illinois,2024,False,True,acreage_only,-0.00464347329207,winter_wheat,winter_wheat,corn,corn;soybeans
+total_cost_margin,Indiana,2017,False,False,neither,0.0381951119198,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Indiana,2018,True,False,score_only,-0.00132654676468,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Indiana,2019,False,False,neither,0.00608065964922,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Indiana,2020,True,False,score_only,-0.00683102919212,winter_wheat,soybeans,soybeans,soybeans
+total_cost_margin,Indiana,2021,True,False,score_only,-0.00920136026776,soybeans,corn,soybeans,soybeans
+total_cost_margin,Indiana,2022,True,False,score_only,-0.0197541703248,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,Indiana,2023,False,False,neither,0.0153092645406,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Indiana,2024,False,False,neither,-0.0123866021465,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Iowa,2017,False,False,neither,0.0350106091923,soybeans,soybeans,corn,corn
+total_cost_margin,Iowa,2018,False,False,neither,0.00277108480743,soybeans,soybeans,corn,corn
+total_cost_margin,Kansas,2017,True,False,score_only,0.079095036672,soybeans,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2018,True,False,score_only,0.0205938624015,winter_wheat,soybeans,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2019,True,False,score_only,-0.0199283492471,soybeans,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2020,True,False,score_only,-0.0243134151167,winter_wheat,soybeans,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2021,True,False,score_only,-0.00386554621849,soybeans,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2022,False,False,neither,-2.77555756156e-17,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2023,False,False,neither,0.0512154533586,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kansas,2024,False,False,neither,-0.0461041304789,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Kentucky,2017,True,False,score_only,0.0734210526316,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Kentucky,2018,False,False,neither,-0.0138997361478,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Kentucky,2019,False,False,neither,0.00788356364102,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Kentucky,2020,True,False,score_only,0.013755075901,winter_wheat,soybeans,soybeans,soybeans
+total_cost_margin,Kentucky,2021,True,False,score_only,-0.0148244108632,soybeans,corn,soybeans,soybeans
+total_cost_margin,Kentucky,2022,True,False,score_only,-0.0484753098564,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,Kentucky,2023,False,False,neither,0.0226389946687,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Kentucky,2024,False,False,neither,-0.0154298721329,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Louisiana,2017,False,False,neither,0.0802458100559,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Louisiana,2018,True,False,score_only,0.0431922064731,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Maryland,2017,False,False,neither,0.0394609685386,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Maryland,2018,False,False,neither,-0.0364310055715,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Maryland,2019,False,True,acreage_only,-0.0183745881558,winter_wheat,winter_wheat,soybeans,corn
+total_cost_margin,Maryland,2020,False,True,acreage_only,0.0157686414709,winter_wheat,winter_wheat,corn,soybeans
+total_cost_margin,Maryland,2021,False,False,neither,-0.00685736677116,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Maryland,2022,False,False,neither,0.014645187059,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Maryland,2023,False,True,acreage_only,-0.0158480739876,winter_wheat,winter_wheat,soybeans,corn
+total_cost_margin,Maryland,2024,False,True,acreage_only,-0.00844407530454,winter_wheat,winter_wheat,corn,soybeans
+total_cost_margin,Michigan,2017,False,True,acreage_only,-0.0364055353859,winter_wheat,winter_wheat,corn,soybeans
+total_cost_margin,Michigan,2018,False,True,acreage_only,0.00599388307534,winter_wheat,winter_wheat,soybeans,corn;soybeans
+total_cost_margin,Michigan,2019,False,True,acreage_only,0.0417088552994,winter_wheat,winter_wheat,corn;soybeans,corn
+total_cost_margin,Michigan,2020,False,False,neither,-0.0455819798917,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Michigan,2021,False,False,neither,0.0332273320287,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Michigan,2022,False,False,neither,-0.0413361144638,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Michigan,2023,False,False,neither,0.0408468776732,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Michigan,2024,False,False,neither,-0.0548600883652,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Minnesota,2017,False,True,acreage_only,0.0468378830085,soybeans,soybeans,corn,soybeans
+total_cost_margin,Minnesota,2018,True,True,both,-0.00946293144789,soybeans,winter_wheat,soybeans,corn
+total_cost_margin,Mississippi,2017,False,False,neither,0.120573642573,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Mississippi,2018,False,False,neither,0.0173874231629,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Mississippi,2019,True,False,score_only,-0.156910796004,soybeans,corn,soybeans,soybeans
+total_cost_margin,Mississippi,2020,True,False,score_only,-0.12883192389,corn,soybeans,soybeans,soybeans
+total_cost_margin,Mississippi,2021,True,False,score_only,-0.0939039408867,soybeans,corn,soybeans,soybeans
+total_cost_margin,Mississippi,2022,False,False,neither,-0.0686360116645,corn,corn,soybeans,soybeans
+total_cost_margin,Mississippi,2023,True,False,score_only,0.0925252459655,corn,soybeans,soybeans,soybeans
+total_cost_margin,Mississippi,2024,False,False,neither,0.152273888605,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,Missouri,2017,True,False,score_only,0.0483229708582,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2018,False,False,neither,0.0139138147067,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2019,False,False,neither,-0.0167895718197,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2020,True,False,score_only,-0.0196007070812,winter_wheat,soybeans,soybeans,soybeans
+total_cost_margin,Missouri,2021,True,False,score_only,-0.0370782980089,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2022,False,False,neither,-0.00282947686117,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2023,False,False,neither,0.0206195014663,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Missouri,2024,False,False,neither,-0.0140701002687,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Nebraska,2017,False,False,neither,0.047266433875,soybeans,soybeans,corn,corn
+total_cost_margin,Nebraska,2018,False,False,neither,-0.000955421130265,soybeans,soybeans,corn,corn
+total_cost_margin,Nebraska,2019,False,False,neither,-0.0639674746156,soybeans,soybeans,corn,corn
+total_cost_margin,Nebraska,2020,False,False,neither,0.021153618563,soybeans,soybeans,corn,corn
+total_cost_margin,Nebraska,2021,True,False,score_only,0.0330436472056,soybeans,corn,corn,corn
+total_cost_margin,Nebraska,2022,False,False,neither,-0.0225722816484,corn,corn,corn,corn
+total_cost_margin,Nebraska,2023,True,False,score_only,0.0321494182486,corn,soybeans,corn,corn
+total_cost_margin,Nebraska,2024,False,False,neither,0.00399725838076,soybeans,soybeans,corn,corn
+total_cost_margin,New Jersey,2017,False,False,neither,-0.0104268292683,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2018,False,False,neither,-0.0340384615385,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2019,False,False,neither,0.0107531212243,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2020,False,False,neither,0.0392275513694,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2021,False,False,neither,-0.0168004200105,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2022,False,False,neither,0.0195346795435,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New Jersey,2023,False,False,neither,0.0540158371041,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,New York,2017,False,False,neither,0.0328071379547,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,New York,2018,False,False,neither,-0.0417933130699,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,New York,2019,False,False,neither,-0.00677110993096,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,New York,2020,True,False,score_only,0.0501299250289,winter_wheat,soybeans,corn,corn
+total_cost_margin,New York,2021,True,False,score_only,0.00257393927471,soybeans,winter_wheat,corn,corn
+total_cost_margin,New York,2022,False,False,neither,-0.0119607843137,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,New York,2023,False,False,neither,0.0061038961039,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,New York,2024,False,False,neither,-0.013317010858,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,North Carolina,2017,True,False,score_only,0.0237032492808,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2018,False,False,neither,0.00643734750784,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2019,False,False,neither,-0.0742215020431,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2020,False,False,neither,0.0677841545353,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2021,True,False,score_only,-0.00145123839009,winter_wheat,corn,soybeans,soybeans
+total_cost_margin,North Carolina,2022,True,False,score_only,-0.0605882352941,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2023,False,False,neither,-0.00547231270358,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Carolina,2024,False,False,neither,-0.0246300763749,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2017,False,False,neither,0.0632981211335,soybeans,soybeans,soybeans,soybeans
+total_cost_margin,North Dakota,2018,True,False,score_only,0.0155478938019,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2019,False,False,neither,0.00130116051702,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2020,False,False,neither,-0.00612939026809,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2021,False,False,neither,0.0040487613162,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2022,False,False,neither,0.00618902085921,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2023,False,False,neither,0.00435530626969,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,North Dakota,2024,False,False,neither,-0.0047806236193,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Ohio,2017,True,False,score_only,0.0408118647049,soybeans,winter_wheat,soybeans,soybeans
+total_cost_margin,Ohio,2018,False,False,neither,2.77555756156e-17,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Ohio,2019,True,False,score_only,0.0169267021837,winter_wheat,corn,soybeans,soybeans
+total_cost_margin,Ohio,2020,True,False,score_only,0.0370694177304,corn,soybeans,soybeans,soybeans
+total_cost_margin,Ohio,2021,True,False,score_only,-0.00830564784053,soybeans,corn,soybeans,soybeans
+total_cost_margin,Ohio,2022,True,False,score_only,-0.0236632608287,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,Ohio,2023,False,False,neither,0.023427672956,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Ohio,2024,False,False,neither,-0.0213768115942,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Oklahoma,2017,False,False,neither,-0.0482684699242,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2018,False,False,neither,0.00748682166595,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2019,False,False,neither,0.0175964510111,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2020,False,False,neither,-0.0181658756211,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2021,True,False,score_only,0.0075260685563,winter_wheat,corn,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2022,False,False,neither,0.00519404864423,corn,corn,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2023,False,False,neither,0.00727462303497,corn,corn,winter_wheat,winter_wheat
+total_cost_margin,Oklahoma,2024,True,False,score_only,0.0189051209551,corn,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Pennsylvania,2017,True,False,score_only,0.0107000820655,soybeans,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2018,False,False,neither,-0.0112940134347,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2019,False,False,neither,-0.0138672768879,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2020,False,False,neither,0.0284210526316,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2021,False,False,neither,0.0356698564593,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2022,False,False,neither,0.0301948051948,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2023,False,False,neither,0.00793650793651,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Pennsylvania,2024,False,False,neither,-0.0265700483092,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,South Carolina,2017,False,False,neither,0.0554511278195,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,South Carolina,2018,False,False,neither,-0.0125661375661,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,South Carolina,2019,False,True,acreage_only,-0.0143901863647,winter_wheat,winter_wheat,soybeans,corn
+total_cost_margin,South Carolina,2020,False,False,neither,0.0699457419203,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,South Carolina,2021,False,False,neither,0.000100644122383,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,South Carolina,2022,False,True,acreage_only,0.0092134036532,winter_wheat,winter_wheat,corn,soybeans
+total_cost_margin,South Carolina,2023,False,False,neither,-0.0233625790655,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,South Carolina,2024,False,False,neither,-0.0396551724138,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,South Dakota,2017,False,False,neither,0.0401872887657,soybeans,soybeans,corn,corn
+total_cost_margin,South Dakota,2018,True,True,both,0.0281672976843,soybeans,winter_wheat,corn,soybeans
+total_cost_margin,South Dakota,2019,False,True,acreage_only,0.0424180196055,winter_wheat,winter_wheat,soybeans,corn
+total_cost_margin,South Dakota,2020,True,True,both,-0.0579338699924,winter_wheat,soybeans,corn,soybeans
+total_cost_margin,South Dakota,2021,True,True,both,-0.0492181728638,soybeans,corn,soybeans,corn
+total_cost_margin,South Dakota,2022,True,False,score_only,-0.00550983208131,corn,winter_wheat,corn,corn
+total_cost_margin,South Dakota,2023,False,False,neither,0.00542052125956,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,South Dakota,2024,False,False,neither,-0.00636188136188,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Tennessee,2017,False,False,neither,-0.00657273585591,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Tennessee,2018,False,False,neither,0.00461876277732,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Tennessee,2019,True,False,score_only,-0.0436370935367,winter_wheat,corn,soybeans,soybeans
+total_cost_margin,Tennessee,2020,True,False,score_only,-0.0899818706775,corn,soybeans,soybeans,soybeans
+total_cost_margin,Tennessee,2021,True,False,score_only,-0.0979546353212,soybeans,corn,soybeans,soybeans
+total_cost_margin,Tennessee,2022,True,False,score_only,-0.0843556674007,corn,winter_wheat,soybeans,soybeans
+total_cost_margin,Tennessee,2023,False,False,neither,0.0214165009369,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Tennessee,2024,False,False,neither,-0.0376675449651,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Texas,2017,False,False,neither,0.012110754333,soybeans,soybeans,winter_wheat,winter_wheat
+total_cost_margin,Texas,2018,True,False,score_only,-0.00461709486166,soybeans,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Texas,2019,False,False,neither,-0.0208153963029,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Texas,2020,True,False,score_only,0.0500013410321,winter_wheat,soybeans,winter_wheat,winter_wheat
+total_cost_margin,Texas,2021,False,False,neither,-0.00349639813384,soybeans,soybeans,winter_wheat,winter_wheat
+total_cost_margin,Texas,2022,True,False,score_only,0.00930910551252,soybeans,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Texas,2023,False,False,neither,0.0183470198386,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Texas,2024,False,False,neither,0.000804217674917,winter_wheat,winter_wheat,winter_wheat,winter_wheat
+total_cost_margin,Virginia,2017,False,False,neither,0,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2018,False,False,neither,0.0218993991815,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2019,False,False,neither,-0.0530550888673,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2020,False,False,neither,0.035142118863,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2021,False,False,neither,-0.0123689727463,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2022,False,False,neither,0.0374557783019,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2023,False,False,neither,-0.0342371323529,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,Virginia,2024,False,False,neither,-0.0508678881389,winter_wheat,winter_wheat,soybeans,soybeans
+total_cost_margin,West Virginia,2017,False,False,neither,-0.0114812189936,soybeans,soybeans,corn,corn
+total_cost_margin,West Virginia,2018,False,False,neither,0.0420479302832,soybeans,soybeans,corn,corn
+total_cost_margin,Wisconsin,2017,True,False,score_only,0.0470228526078,soybeans,winter_wheat,corn,corn
+total_cost_margin,Wisconsin,2018,False,False,neither,0.00646284556697,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Wisconsin,2019,False,False,neither,-0.00586849626475,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Wisconsin,2020,True,False,score_only,-0.0117621252327,winter_wheat,soybeans,corn,corn
+total_cost_margin,Wisconsin,2021,True,False,score_only,-0.00133262872504,soybeans,corn,corn,corn
+total_cost_margin,Wisconsin,2022,True,False,score_only,-0.0191558153955,corn,winter_wheat,corn,corn
+total_cost_margin,Wisconsin,2023,False,False,neither,-0.00502701745062,winter_wheat,winter_wheat,corn,corn
+total_cost_margin,Wisconsin,2024,False,False,neither,-0.00125081388575,winter_wheat,winter_wheat,corn,corn

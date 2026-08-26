@@ -1,17 +1,21 @@
 claim_id,manuscript_section,claim_summary,evidence_level,evidence_assets,citation_keys,status
-MC-01,Introduction,Agricultural prediction produces scores and rankings but not constrained acreage allocations,LITERATURE,literature/annotated_synthesis.md,liakos2018machine;vanklompenburg2020crop,SUPPORTED
-MC-02,Introduction,Crop planning is an operationally constrained portfolio problem,LITERATURE,literature/annotated_synthesis.md,filippi2017mixed;boyabatli2019crop;benini2023crop;randall2022robust;randall2024systematic,SUPPORTED
-MC-03,Introduction,Predictive accuracy and downstream decision quality differ,LITERATURE,literature/annotated_synthesis.md,bertsimas2020predictive;elmachtoub2022smart;wilder2019melding;mandi2023decision,SUPPORTED
-MC-04,Model,Loss-CVaR has an atom-safe convex finite-scenario representation,THEOREM,theory/repaired/canonical_theorem_set.md,rockafellar2000optimization;rockafellar2002conditional,SUPPORTED
-MC-05,Structural results,Ordinal rankings do not identify cardinal allocations,THEOREM,theory/repaired/canonical_theorem_set.md,,PROVED
-MC-06,Structural results,Feasibility can force universal reversal,THEOREM,theory/repaired/canonical_theorem_set.md,,PROVED
-MC-07,Structural results,Scalar tail dependence does not generally order acreage,THEOREM_BOUNDARY,theory/repaired/canonical_theorem_set.md,demarta2005tcopula;ansari2024dependence,PROVED_WITH_RESTRICTION
-MC-08,Structural results,Reversal regions may be disconnected or multiple,THEOREM,theory/repaired/canonical_theorem_set.md,,PROVED
-MC-09,Structural results,Information value is actionable and weak action-set monotonicity does not imply strict complementarity,THEOREM_BOUNDARY,theory/repaired/canonical_theorem_set.md,dantzig1955linear;keisler2004value;merkhofer1975value;vanmieghem1998investment,PROVED_WITH_RESTRICTION
-MC-10,Numerical experiments,Primary solves replay and solver diagnostics pass,NUMERICAL_REPRODUCIBILITY,simulation/outputs/summary.json,,VERIFIED
-MC-11,Numerical experiments,Simulation convergence fails the frozen gate,ADVERSE_SIMULATION,simulation/outputs/convergence_summary.csv,,VERIFIED_NONHEADLINE
-MC-12,Empirical results,Operating-margin and acreage top ranks disagree in 63 of 77 state-years,DESCRIPTIVE_EMPIRICAL,empirical/outputs/definition_summary.csv,,VERIFIED
-MC-13,Empirical results,Discordance is definition-sensitive,DESCRIPTIVE_ROBUSTNESS,empirical/outputs/definition_summary.csv,,VERIFIED
-MC-14,Empirical results,National ranks align in all nine crop-year comparisons,NULL_EMPIRICAL,empirical/outputs/national_check.csv,,VERIFIED
-MC-15,Robustness,Lagged 2024 relative-yield ranks disagree in 22 of 25 states,LOW_POWER_DESCRIPTIVE,empirical/outputs/lagged_2024_validation.csv,,VERIFIED_QUALIFIED
-MC-16,Discussion,Observed acreage optimality CVaR binding copula mechanism and causality are not identified,IDENTIFICATION_BOUNDARY,empirical/outputs/claim_boundaries.csv,,VERIFIED_BOUNDARY
+S2MC-01,Introduction,Agricultural prediction produces forecasts and rankings rather than constrained acreage allocations,LITERATURE,literature/annotated_synthesis.md,liakos2018machine;vanklompenburg2020crop,SUPPORTED
+S2MC-02,Introduction,Crop planning is an operationally constrained portfolio problem,LITERATURE,literature/annotated_synthesis.md,filippi2017mixed;boyabatli2019crop;benini2023crop;randall2022robust;randall2024systematic,SUPPORTED
+S2MC-03,Introduction,Predictive accuracy and downstream decision quality differ,LITERATURE,literature/annotated_synthesis.md,bertsimas2020predictive;elmachtoub2022smart;wilder2019melding;mandi2023decision,SUPPORTED
+S2MC-04,Model,Loss-CVaR has an atom-safe convex finite-scenario representation,THEOREM,theory/repaired/canonical_theorem_set.md,rockafellar2000optimization;rockafellar2002conditional,SUPPORTED
+S2MC-05,Model,A scalar tail-dependence coefficient does not identify portfolio CVaR or acreage,THEOREM_BOUNDARY,theory/repaired/canonical_theorem_set.md,demarta2005tcopula;ansari2024dependence,PROVED_WITH_RESTRICTION
+S2MC-06,Structural results,Ordinal rankings do not identify cardinal allocations,THEOREM,theory/stage_ii/canonical_theory_extension.md,,PROVED
+S2MC-07,Structural results,Feasibility can force universal reversal without a risk mechanism,THEOREM,theory/stage_ii/canonical_theory_extension.md,,PROVED
+S2MC-08,Structural results,Complete KKT pressure terms do not imply acreage order,THEOREM,theory/stage_ii/canonical_theory_extension.md,,PROVED
+S2MC-09,Structural results,Dependence comparisons require a portfolio-loss order and reversal regions need not have a unique threshold,THEOREM_BOUNDARY,theory/stage_ii/canonical_theory_extension.md,,PROVED_WITH_RESTRICTION
+S2MC-10,Structural results,All-subset attribution and local pressure diagnostics close numerically,NUMERICAL_REPRODUCIBILITY,simulation/stage_ii/outputs/summary.json,,VERIFIED
+S2MC-11,Confirmatory mechanism experiments,E2 operational interventions produce universal ranking reversal in every treated cell,PROMOTED_CONFIRMATORY_SIMULATION,simulation/stage_ii/outputs/paired_contrasts.csv;visualization/stage_ii/source_data/figure4_e2_cells.csv,,VERIFIED
+S2MC-12,Confirmatory mechanism experiments,E2 passes all 24 registered family-wise primary intervals,PROMOTED_CONFIRMATORY_SIMULATION,visualization/stage_ii/source_data/figure4_e2_contrasts.csv,,VERIFIED
+S2MC-13,Confirmatory mechanism experiments,E6 information-flexibility interaction can be positive exact-null or substitutive,PROMOTED_CONFIRMATORY_SIMULATION,visualization/stage_ii/source_data/figure5_information_interaction.csv,,VERIFIED
+S2MC-14,Confirmatory mechanism experiments,E1 E3 E4 and E5 fail experiment-level precision and remain adverse,ADVERSE_SIMULATION,simulation/stage_ii/outputs/sequential_stopping.csv,,VERIFIED_NONHEADLINE
+S2MC-15,Confirmatory mechanism experiments,Replay solver KKT and Shapley diagnostics pass,NUMERICAL_REPRODUCIBILITY,simulation/stage_ii/outputs/summary.json,,VERIFIED
+S2MC-16,Empirical patterns,Concurrent operating-margin inversion intensity is 0.411 with a 95% state-cluster interval of 0.346 to 0.475,DESCRIPTIVE_EMPIRICAL,empirical/goal16/outputs/rank_metric_summary.csv,,VERIFIED
+S2MC-17,Empirical patterns,All four primary strictly lagged temporal intervals include zero,DESCRIPTIVE_TRANSITION_BOUNDARY,empirical/goal16/outputs/temporal_model.csv,,VERIFIED_QUALIFIED
+S2MC-18,Empirical patterns,National aggregation changes inversion patterns and national relative yield is tied,DESCRIPTIVE_AGGREGATION_BOUNDARY,empirical/goal16/outputs/aggregation_boundary.csv,,VERIFIED_QUALIFIED
+S2MC-19,Discussion,Observed acreage optimality private constraints CVaR copula causality and welfare are not identified,IDENTIFICATION_BOUNDARY,empirical/goal16/EMPIRICAL_REDESIGN.md,,VERIFIED_BOUNDARY
+S2MC-20,Discussion,Information value is actionable but strict information-flexibility complementarity is not general,LITERATURE_AND_THEOREM,theory/stage_ii/information_flexibility_framework.md,dantzig1955linear;keisler2004value;merkhofer1975value;vanmieghem1998investment,PROVED_WITH_RESTRICTION

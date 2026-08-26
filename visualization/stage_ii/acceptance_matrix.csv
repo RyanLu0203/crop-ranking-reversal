@@ -1,0 +1,13 @@
+requirement_id,requirement,evidence,status,notes
+G13-01,"Freeze six main figure-group contracts before rendering",visualization/stage_ii/figure_contracts.md,PASS,"F1–F6 and S1–S4 define conclusions, panels, source data and evidence boundaries"
+G13-02,"Use a Nature-compatible Python/matplotlib figure system",visualization/configs/stage_ii_nature_style.yaml,PASS,"183-mm vector-native workflow with editable text and fixed semantic palette"
+G13-03,"Promote only authorized positive simulation evidence",visualization/stage_ii/source_data/supplementary_stopping_summary.csv,PASS,"E2 and E6 alone pass every registered experiment-level precision interval"
+G13-04,"Retain failed experiments without cherry picking",figures/stage_ii/supplementary/FigureS2.svg,PASS,"E1/E3/E4/E5 and all 206 registered infeasible rows remain visible and non-promoted"
+G13-05,"Show theory architecture and exact geometry",figures/stage_ii/main/Figure1.svg;figures/stage_ii/main/Figure2.svg,PASS,"Ordinal/cardinal boundary and possible/universal/selected reversal are explicit"
+G13-06,"Show closed nested path and exact attribution",figures/stage_ii/main/Figure3.svg,PASS,"M0–M4, all-subset Shapley closure and validated local E2 KKT pressure terms"
+G13-07,"Show operational and information-flexibility evidence",figures/stage_ii/main/Figure4.svg;figures/stage_ii/main/Figure5.svg,PASS,"E2 operational and E6 positive/null/substitution conclusions include registered uncertainty"
+G13-08,"Keep empirical evidence descriptive",figures/stage_ii/main/Figure6.svg,PASS,"Admitted 77 state-years only; no private-objective or optimum inference"
+G13-09,"Export editable and publication raster formats",visualization/stage_ii/figure_manifest.csv,PASS,"SVG/PDF plus exact-size 300-dpi PNG and LZW 600-dpi TIFF for ten figures"
+G13-10,"Provide source-data lineage and checksums",visualization/stage_ii/source_data/lineage.csv,PASS,"Every plotted source table hashes to registered upstream inputs"
+G13-11,"Complete accessibility and visual QA",visualization/stage_ii/qa/visual_qa.csv,PASS,"Original, grayscale and deuteranopia views inspected in a ten-figure contact sheet"
+G13-12,"Register and automatically validate all figures",scripts/validate_stage_ii_visualization.py,PASS,"Ten registry rows, captions, evidence gates, formats, dimensions, vector integrity and checksums fail closed"

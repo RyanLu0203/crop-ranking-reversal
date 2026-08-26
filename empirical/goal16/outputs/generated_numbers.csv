@@ -1,0 +1,19 @@
+macro,value,unit
+GoalSixteenStartYear,2016,year
+GoalSixteenEndYear,2024,year
+GoalSixteenCropRows,744,rows
+GoalSixteenStateYears,248,state-years
+GoalSixteenStates,31,states
+GoalSixteenTransitionsPerDefinition,217,state-year transitions
+GoalSixteenOperatingMarginInversion,0.411290322581,share
+GoalSixteenOperatingMarginInversionLow,0.346405228758,share
+GoalSixteenOperatingMarginInversionHigh,0.474511465603,share
+GoalSixteenRelativeYieldInversion,0.704301075269,share
+GoalSixteenRelativeYieldInversionLow,0.624138268204,share
+GoalSixteenRelativeYieldInversionHigh,0.779614325069,share
+GoalSixteenStandardizedRevenueInversion,0.295698924731,share
+GoalSixteenStandardizedRevenueInversionLow,0.216534101365,share
+GoalSixteenStandardizedRevenueInversionHigh,0.379315726032,share
+GoalSixteenTotalCostMarginInversion,0.620967741935,share
+GoalSixteenTotalCostMarginInversionLow,0.550847371813,share
+GoalSixteenTotalCostMarginInversionHigh,0.688463642214,share

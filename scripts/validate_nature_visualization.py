@@ -55,8 +55,11 @@ def main()->None:
         if sha(src)!=row["source_sha256"]: errors.append(f"source lineage mismatch: {src}")
         if upstream.exists() and sha(upstream)!=row["upstream_sha256"]: errors.append(f"upstream lineage mismatch: {upstream}")
 
-    fig_registry=rows(ROOT/"evidence_registry/figures.csv")
-    if {r["figure_id"] for r in fig_registry}!=set(FIGURES): errors.append("figure registry is incomplete")
+    # Stage I and versioned Stage II figures share the registry. This validator
+    # owns only the original Stage I identifiers; Stage II has its own fail-closed
+    # validator and prefixed identifiers.
+    fig_registry=[r for r in rows(ROOT/"evidence_registry/figures.csv") if r["figure_id"] in FIGURES]
+    if {r["figure_id"] for r in fig_registry}!=set(FIGURES): errors.append("Stage I figure registry is incomplete")
     for row in fig_registry:
         if sha(ROOT/f"figures/{row['manuscript_location']}/{row['figure_id']}.svg")!=row["checksum"]: errors.append(f"registry checksum mismatch: {row['figure_id']}")
         if row["figure_id"] in {"FigureS1","FigureS2"} and row["evidence_status"]!="NONHEADLINE": errors.append(f"{row['figure_id']}: simulation must remain NONHEADLINE")
